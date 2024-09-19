@@ -9,19 +9,10 @@ This Repository is for the work of the CoSAI Technical Steering Committee (TSC).
 You find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
 
 
-## Repository Organization (What's Here?)
+## What's in this Repository
 
-You can use this section to give a brief overview of what can be found in this repository, e.g. documentation, meeting minutes, or templates. A good example of this can be found in the README of the [OASIS OpenC2 TC repository](https://github.com/oasis-tcs/openc2-tc-ops/blob/main/README.md).
-Please make sure to update it on a regular basis – when new files or folder are added to the repository.
+TBD You can use this section to give a brief overview of what can be found in this repository, e.g. documentation, meeting minutes, or templates. A good example of this can be found in the README of the [OASIS OpenC2 TC repository](https://github.com/oasis-tcs/openc2-tc-ops/blob/main/README.md).
 
-## Contributing
-
-Give a brief explanation of what kind of contributions you are looking for and what your requirements are for accepting them. Then link to
-[CONTRIBUTING.md](link to your contributing.md file) for more information and also add a link to [CODE_OF_CONDUCT](link to your code_of_conduct.md file).
-
-
-## Support
-TBD: Where can people ask for help: this can be any combination of an issue tracker, Slack, a chat room, an email address, etc.
 
 
 ## License
