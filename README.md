@@ -25,3 +25,6 @@ creation.
 
 All technical contributions must be covered by a Contributor License Agreement (CLA). This requirement allows our work to advance through OASIS standards development stages and potentially be submitted to de jure organizations such as ISO. You will get a prompt to sign this document when you submit your first pull request to a project repository, or you can sign [here](https://cla-assistant.io/cosai-oasis/oasis-open-project). If you are contributing on behalf of your employer, you must also sign the Entity CLA [here](https://www.oasis-open.org/open-projects/cla/entity-cla-20210630/).
 
+## Feedback
+
+Questions or comments about the TSC's work may be composed as GitHub issues or comments or may be directed to the TSC email list at [cosai-tsc@lists.oasis-open-projects.org](mailto:osai-tsc@lists.oasis-open-projects.org). General questions about OASIS Open Projects may be directed to OASIS staff at [op-admin@lists.oasis-open-projects.org](mailto:op-admin@lists.oasis-open-projects.org).
