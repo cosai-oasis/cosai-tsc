@@ -6,18 +6,22 @@
 
 This Repository is for the work of the CoSAI Technical Steering Committee (TSC). CoSAI is an [OASIS Open Project](https://www.oasis-open.org/open-projects/) and an open ecosystem of AI and security experts from industry leading organizations dedicated to sharing best practices for secure AI deployment and collaborating on AI security research and product development. For more information on CoSAI, please visit the [CoSAI website](https://www.coalitionforsecureai.org/) and the [Open Project repository](https://github.com/cosai-oasis/oasis-open-project) which has information governance and the project charter.
 
-You find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
-
+You can find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
 
 ## What's in this Repository
 
 TBD You can use this section to give a brief overview of what can be found in this repository, e.g. documentation, meeting minutes, or templates. A good example of this can be found in the README of the [OASIS OpenC2 TC repository](https://github.com/oasis-tcs/openc2-tc-ops/blob/main/README.md).
 
+## Governance and Licenses
 
+CoSAI operates under the terms of the [Open Project Rules](https://www.oasis-open.org/policies-guidelines/open-projects-process) and the following the licenses:
+* CC-BY 4.0 for documentation and data contributions; and
+*  Apache License v2.0 for source code and models
+  
+The applicable license will be determined for each repository, as applicable, at the time of its
+creation.
 
-## License
+## CLA & Non-assert signatures required
 
-*Example text*: This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-(You can find the list of licenses approved for OASIS Open Projects [here](https://www.oasis-open.org/policies-guidelines/open-projects-process/#repository-specification-licenses).)
+All technical contributions must be covered by a Contributor License Agreement (CLA). This requirement allows our work to advance through OASIS standards development stages and potentially be submitted to de jure organizations such as ISO. You will get a prompt to sign this document when you submit your first pull request to a project repository, or you can sign [here](https://cla-assistant.io/cosai-oasis/oasis-open-project). If you are contributing on behalf of your employer, you must also sign the Entity CLA [here](https://www.oasis-open.org/open-projects/cla/entity-cla-20210630/).
 
