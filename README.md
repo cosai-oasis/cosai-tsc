@@ -8,6 +8,8 @@ This Repository is for the work of the CoSAI Technical Steering Committee (TSC).
 
 You can find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
 
+The governance docuement for the work of this TSC can be found [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md).
+
 ## What's in this Repository
 
 TBD You can use this section to give a brief overview of what can be found in this repository, e.g. documentation, meeting minutes, or templates. A good example of this can be found in the README of the [OASIS OpenC2 TC repository](https://github.com/oasis-tcs/openc2-tc-ops/blob/main/README.md).
