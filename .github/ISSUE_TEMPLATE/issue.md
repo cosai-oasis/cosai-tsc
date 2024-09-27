@@ -4,7 +4,8 @@ about: Create a comprehensive report to help us improve
 title: '[ISSUE] '
 labels: ''
 assignees: ''
--- 
+
+---
 ## Issue Description
 <!-- Provide a clear and concise description of the issue -->
 
