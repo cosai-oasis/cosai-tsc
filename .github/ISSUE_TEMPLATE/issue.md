@@ -1,6 +1,6 @@
 ---
-name: ''
-about: ''
+name: Issue Report
+about: Create a comprehensive report to help us improve
 title: '[ISSUE] '
 labels: ''
 assignees: ''
