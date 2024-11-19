@@ -44,7 +44,7 @@ There are regular maintainer meetings where members can discuss plans and issues
 Any of the following ways:
 * You stop reviewing PR's, responding to messages, answering emails, and/or generally ghost the project for 4 weeks. You will then be removed as a maintainer.
 * You notify the other maintainers you would like to relinquish your maintainer status.
-* You are disrespectful towards anyone in the community and/or involved in the project and violate [the code of conduct](./CODE_OF_CONDUCT.md).
+* You are disrespectful towards anyone in the community and/or involved in the project and violate [the code of conduct](./CODE-OF-CONDUCT.md).
 * You are disruptive to the general process of maintaining the project, meetings, discussions, issues, or other.
 
 The majority of all current maintainers constitute a quorum for a meeting involving a question of removal. A simple majority vote from maintainers attending the meeting is required to remove a maintainer, but the TSC may be brought in to arbitrate if the maintainer to be removed or any other maintainer wishes to dispute the action.
