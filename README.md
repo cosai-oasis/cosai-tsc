@@ -12,16 +12,15 @@ The governance docuement for the work of this TSC can be found [here](https://gi
 
 ## What's in this Repository
 
-TBD You can use this section to give a brief overview of what can be found in this repository, e.g. documentation, meeting minutes, or templates. A good example of this can be found in the README of the [OASIS OpenC2 TC repository](https://github.com/oasis-tcs/openc2-tc-ops/blob/main/README.md).
+In this repository, you can find meeting minutes and documentation of policies that have be created and approved by the TSC, like the [Contributing](./CONTRIBUTING.md) and [Maintainer](./MAINTAINERS.md) policies.
 
 ## Governance and Licenses
 
 CoSAI operates under the terms of the [Open Project Rules](https://www.oasis-open.org/policies-guidelines/open-projects-process) and the following the licenses:
 * CC-BY 4.0 for documentation and data contributions; and
-*  Apache License v2.0 for source code and models
+* Apache License v2.0 for source code and models
   
-The applicable license will be determined for each repository, as applicable, at the time of its
-creation.
+The applicable license will be determined for each repository, as applicable, at the time of its creation.
 
 ## CLA & Non-assert signatures required
 
