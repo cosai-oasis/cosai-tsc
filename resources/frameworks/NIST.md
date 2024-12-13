@@ -10,6 +10,15 @@
 
 ##### 1.1.1.2. Persona addressed
 
+| Responsibilities | CEO | CTO | CISO | Program & Project Manager | Infrastructure Maintainer | AI Practitioner | Data Analyst | Data Scientist | ML Researcher | SW Architect | SW Engineer | Model Maintainer | SRE/DevOps | Security Architect | Security Analyst | Security Focal |
+| :---: | :---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
+| **Govern (GV)**  | I | I | I/A | I/A | R |  |  |  |  | C |  |  | R | A/C |  | R |
+| **Identify (ID)** | I | I | I/A | I/A |  |  |  |  |  | A/C/R |  |  |  | A/C/R |  | R |
+| **Protect (PR)** | I | I | I/A | I/A | R | R | R | R | R | R | R | R | R | A/C |  | C |
+| **Detect (DE)** | I | I | I/A | I/A |  |  |  |  |  | C |  |  | R | A/C | R | C |
+| **Respond (RS)** | I | I | I/A | I/A |  |  |  |  |  | C |  |  |  | A/C | R | C |
+| **Recover (RC)** | I | I | I/A | I/A | R |  |  |  |  | C | R |  | R | A/C |  | C |
+
 ##### 1.1.1.3. Guidance provided
 
 #### 1.1.2. Detail on current framework
