@@ -1,13 +1,52 @@
+<!-- TOC start -->
+
+- [MITRE](#mitre)
+- [1. ATT\&CK](#1-attck)
+  - [2.1. Overview](#21-overview)
+    - [2.1.1. Scoping of AI system and/or cybersecurity purview](#211-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [2.1.2. Persona addressed](#212-persona-addressed)
+    - [2.1.3. Guidance provided](#213-guidance-provided)
+  - [2.2. Detail on current framework](#22-detail-on-current-framework)
+  - [2.3. What is missing for defenders of AI systems](#23-what-is-missing-for-defenders-of-ai-systems)
+- [2. ATLAS](#2-atlas)
+  - [2.1. Overview](#21-overview-1)
+    - [2.1.1. Scoping of AI system and/or cybersecurity purview](#211-scoping-of-ai-system-andor-cybersecurity-purview-1)
+    - [2.1.2. Persona addressed](#212-persona-addressed-1)
+    - [2.1.3. Guidance provided](#213-guidance-provided-1)
+  - [2.2. Detail on current framework](#22-detail-on-current-framework-1)
+    - [2.2.1. ATLAS Matrix](#221-atlas-matrix)
+    - [2.2.2. Core Components](#222-core-components)
+      - [2.2.2.1. Tactics](#2221-tactics)
+      - [2.2.2.2. Techniques](#2222-techniques)
+      - [2.2.2.3. Procedures](#2223-procedures)
+    - [2.2.3. Attack Surface](#223-attack-surface)
+    - [2.2.4. Threat Mitigation](#224-threat-mitigation)
+  - [2.3. What is missing for defenders of AI systems](#23-what-is-missing-for-defenders-of-ai-systems-1)
+- [3. CAPEC](#3-capec)
+  - [2.1. Overview](#21-overview-2)
+    - [2.1.1. Scoping of AI system and/or cybersecurity purview](#211-scoping-of-ai-system-andor-cybersecurity-purview-2)
+    - [2.1.2. Persona addressed](#212-persona-addressed-2)
+    - [2.1.3. Guidance provided](#213-guidance-provided-2)
+  - [2.2. Detail on current framework](#22-detail-on-current-framework-2)
+  - [2.3. What is missing for defenders of AI systems](#23-what-is-missing-for-defenders-of-ai-systems-2)
+- [4. References](#4-references)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="mitre"></a>
 ## MITRE
 
+<!-- TOC --><a name="1-attck"></a>
 ## 1. ATT&CK
 
+<!-- TOC --><a name="21-overview"></a>
 ### 2.1. Overview
 
 The MITRE ATT&CK framework is a globally recognized, open-source knowledge base that documents real-world adversary tactics, techniques, and procedures (TTPs) across the cyber-attack lifecycle. It organizes adversary behaviors into tactics (what attackers aim to achieve) and techniques/sub-techniques (how they do it), mapped into an intuitive matrix that spans multiple domains, including enterprise, mobile, cloud, and industrial control systems (ICS). Originally focused on post-attack activities, it now also includes early-stage attacker actions like reconnaissance. 
 
 ATT&CK serves as a practical tool for red teaming, behavioral analytics, threat intelligence enrichment, and defensive gap assessments, linking techniques to adversary groups, software, and mitigations. It provides a practical, data-driven guide to strengthening defenses against real-world threats.
 
+<!-- TOC --><a name="211-scoping-of-ai-system-andor-cybersecurity-purview"></a>
 #### 2.1.1. Scoping of AI system and/or cybersecurity purview
 
 The MITRE ATT&CK framework provides a structured approach for identifying, analyzing, and addressing threats in AI systems and cybersecurity. Scoping ATT&CK for AI systems involves adapting the framework's tactics and techniques to the unique aspects of AI, while integrating it into the broader cybersecurity purview.
@@ -47,6 +86,7 @@ The MITRE ATT&CK framework provides a structured approach for identifying, analy
 
 ---
 
+<!-- TOC --><a name="212-persona-addressed"></a>
 #### 2.1.2. Persona addressed
 
 
@@ -73,10 +113,12 @@ The MITRE ATT&CK framework provides a structured approach for identifying, analy
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
 
+<!-- TOC --><a name="213-guidance-provided"></a>
 #### 2.1.3. Guidance provided
 
 The MITRE ATT&CK framework provides a robust foundation for securing AI systems by aligning traditional cybersecurity practices with AI-specific threats. By mapping adversary behaviors, simulating attacks, and enhancing detection capabilities, ATT&CK ensures AI systems are resilient against both known and emerging threats. Organizations can leverage ATT&CK to build a unified, proactive security posture that addresses the unique challenges posed by AI technology.
 
+<!-- TOC --><a name="22-detail-on-current-framework"></a>
 ### 2.2. Detail on current framework
 
 The MITRE ATT&CK framework provides a critical foundation for securing AI systems against emerging threats. AI systems introduce unique vulnerabilities and attack surfaces, such as adversarial inputs, data poisoning, and model theft, which require tailored applications of ATT&CK to ensure comprehensive threat coverage.
@@ -125,6 +167,7 @@ AI systems operate in complex environments and are susceptible to both tradition
 
 
 
+<!-- TOC --><a name="23-what-is-missing-for-defenders-of-ai-systems"></a>
 ### 2.3. What is missing for defenders of AI systems
 
 While the MITRE ATT&CK framework provides a robust structure for addressing traditional cybersecurity threats, it lacks several critical elements specific to the unique challenges posed by AI systems. Those gaps are covered by MITRE ATLAS Framework.
@@ -138,8 +181,10 @@ While the MITRE ATT&CK framework provides a robust structure for addressing trad
 | **Operational Integration**   | Customization is required to integrate ATT&CK into existing workflows for AI security. |
 
 
+<!-- TOC --><a name="2-atlas"></a>
 ## 2. ATLAS
 
+<!-- TOC --><a name="21-overview-1"></a>
 ### 2.1. Overview
 
 The MITRE Adversarial Threat Landscape for AI Systems (ATLAS) is a knowledge base designed to address threats to AI-enabled systems. It documents adversary tactics, techniques, and real-world attack observations while complementing the MITRE ATT&CK framework.
@@ -148,6 +193,7 @@ While MITRE ATT&CK remains the framework for traditional cybersecurity and adver
 
 ATLAS serves as a critical tool for understanding, simulating, and mitigating threats to AI systems. It helps stakeholders (e.g., analysts, developers, and defenders) prepare for AI-specific security challenges through shared knowledge and practical tools.
 
+<!-- TOC --><a name="211-scoping-of-ai-system-andor-cybersecurity-purview-1"></a>
 #### 2.1.1. Scoping of AI system and/or cybersecurity purview
 
 Scoping an AI system within the ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) framework involves identifying the unique components, vulnerabilities, and threats across its lifecycle. This also includes defining the boundaries of cybersecurity purview to secure the AI ecosystem comprehensively. 
@@ -204,6 +250,7 @@ Scoping an AI system within the ATLAS (Adversarial Threat Landscape for Artifici
 
 ---
 
+<!-- TOC --><a name="212-persona-addressed-1"></a>
 #### 2.1.2. Persona addressed
 
 | **Activity**                                | **Red Team** | **Blue Team** | **AI/ML Engineers** | **Threat Intelligence Analysts** | **Incident Responders** | **Software Architects** | **Security Architects** | **SOC Managers** | **SREs**     | **Executives & Risk Managers** | **Product Developers** |
@@ -234,6 +281,7 @@ Scoping an AI system within the ATLAS (Adversarial Threat Landscape for Artifici
 
 
 
+<!-- TOC --><a name="213-guidance-provided-1"></a>
 #### 2.1.3. Guidance provided
 
 ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) provides comprehensive guidance for defending AI systems by addressing unique threats such as data poisoning, adversarial inputs, model theft, API exploitation, and AI misuse. It extends the MITRE ATT&CK framework with AI-specific tactics, techniques, and procedures (TTPs), emphasizing the need to secure AI across its lifecycle—from data preparation and model training to inference and operation. 
@@ -241,10 +289,12 @@ ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) provide
 ATLAS advocates for robust detection and mitigation strategies, including behavioral analytics, adversarial robustness testing, and strict access controls, while integrating AI into red and blue team exercises and enhancing threat intelligence. It also highlights the importance of securing AI supply chains, protecting pre-trained models and frameworks, and addressing cross-domain risks in cloud, edge, and IoT environments. 
 
 
+<!-- TOC --><a name="22-detail-on-current-framework-1"></a>
 ### 2.2. Detail on current framework
 
 The design and structure of MITRE ATLAS reflect its commitment to providing a comprehensive, adaptable framework for addressing adversarial threats to AI systems. Its integration of tactics, techniques, and real-world procedures, combined with a focus on tools and mitigations, ensures its utility across diverse AI environments. By targeting the unique vulnerabilities of AI systems, ATLAS serves as both a practical resource and a strategic guide for securing the next generation of intelligent technologies.
 
+<!-- TOC --><a name="221-atlas-matrix"></a>
 #### 2.2.1. ATLAS Matrix
 
 The ATLAS Matrix provides a visual representation of adversary tactics and techniques, similar to the ATT&CK Matrix but adapted for AI systems. It organizes:
@@ -254,10 +304,12 @@ The ATLAS Matrix provides a visual representation of adversary tactics and techn
 3. Links to Procedures that document real-world use cases and observed attacks.
 
 
+<!-- TOC --><a name="222-core-components"></a>
 #### 2.2.2. Core Components
 
 The ATLAS Framework is organized into components that reflect the adversarial threat landscape of AI systems. These components include Tactics, Techniques, and Procedures (TTPs) and are designed to capture adversary behavior in both training and inference stages.
 
+<!-- TOC --><a name="2221-tactics"></a>
 ##### 2.2.2.1. Tactics
 
 Tactics represent adversary goals and are categorized to address the unique operational aspects of AI systems. Each tactic defines a specific objective the adversary seeks to achieve. AI-Specific Tactics include:
@@ -273,6 +325,7 @@ Tactics represent adversary goals and are categorized to address the unique oper
 
 ---
 
+<!-- TOC --><a name="2222-techniques"></a>
 ##### 2.2.2.2. Techniques
 
 Techniques describe the methods adversaries use to achieve their tactical objectives. These are highly specific to the AI domain and reflect the different stages of the AI lifecycle. Each technique may apply to one or more tactics. Examples of Techniques:
@@ -287,6 +340,7 @@ Techniques describe the methods adversaries use to achieve their tactical object
 
 ---
 
+<!-- TOC --><a name="2223-procedures"></a>
 ##### 2.2.2.3. Procedures
 
 Procedures represent real-world adversary actions and implementations of techniques. These are based on observed adversarial behavior and case studies. Examples of Adversary Procedures:
@@ -301,6 +355,7 @@ Procedures represent real-world adversary actions and implementations of techniq
 
 ---
 
+<!-- TOC --><a name="223-attack-surface"></a>
 #### 2.2.3. Attack Surface
 
 | **Aspect**  | **Description**  | **Examples** |
@@ -314,6 +369,7 @@ Procedures represent real-world adversary actions and implementations of techniq
 
 ---
 
+<!-- TOC --><a name="224-threat-mitigation"></a>
 #### 2.2.4. Threat Mitigation
 
 ATLAS includes a set of mitigation techniques and security measures to prevent or reduce the impact of adversarial attacks:
@@ -333,17 +389,21 @@ ATLAS includes a set of mitigation techniques and security measures to prevent o
 
 ---
 
+<!-- TOC --><a name="23-what-is-missing-for-defenders-of-ai-systems-1"></a>
 ### 2.3. What is missing for defenders of AI systems
 
 ATLAS provides a strong foundation for securing AI systems by extending adversarial tactics, techniques, and procedures (TTPs) to AI/ML. As AI Technology evolves, ATLAS will have to be adding more coverage of advanced adversarial techniques, feedback loop attacks, and supply chain risks.
 
+<!-- TOC --><a name="3-capec"></a>
 ## 3. CAPEC
 
+<!-- TOC --><a name="21-overview-2"></a>
 ### 2.1. Overview
 
 The Common Attack Pattern Enumeration and Classification (CAPEC) is a standardized, community-driven framework for understanding, categorizing, and mitigating cyber-attack techniques. It provides a structured taxonomy of attack patterns that describe methods attackers use to exploit software systems. While CAPEC is not designed to defend AI systems it is relevant for AI-based systems focused on cybersecurity, as it provides machine-readable, systematic descriptions of attacks that can be used to enhance threat detection, prevention, and response capabilities.
 
 
+<!-- TOC --><a name="211-scoping-of-ai-system-andor-cybersecurity-purview-2"></a>
 #### 2.1.1. Scoping of AI system and/or cybersecurity purview
 
 CAPEC is not designed to scope cybersecurity of AI system. However it can be very valuable framework to aid building AI based cybersecurity systems.
@@ -360,6 +420,7 @@ CAPEC is not designed to scope cybersecurity of AI system. However it can be ver
 | **Predictive Threat Analysis**      | CAPEC attack lifecycle context allows AI to predict emerging threats and preemptively respond.        | AI predicts new attacks based on historical CAPEC data and prioritizes preemptive mitigations.              |
 
 
+<!-- TOC --><a name="212-persona-addressed-2"></a>
 #### 2.1.2. Persona addressed
 
 | **Task/Activity**                                 | **AI Engineer**                 | **Cybersecurity Analyst**      | **SOC Analyst**                | **Incident Manager**            | **Executive Leadership**        | **Software Architect**          | **Software Developer**          | **SME**                         | **Data Scientist**              |
@@ -385,10 +446,12 @@ CAPEC is not designed to scope cybersecurity of AI system. However it can be ver
 - **I** = Informed (Kept in the loop)
 
 
+<!-- TOC --><a name="213-guidance-provided-2"></a>
 #### 2.1.3. Guidance provided
 
 CAPEC provides a robust foundation for AI systems to improve cybersecurity automation, detection, prediction, and response, making it useful for AI-driven security solutions. However it doesn't provide any guidance for AI systems security.
 
+<!-- TOC --><a name="22-detail-on-current-framework-2"></a>
 ### 2.2. Detail on current framework
 
 CAPEC provides a comprehensive, structured foundation that AI systems can leverage to detect, analyze, and mitigate cyber-attacks effectively. By combining CAPEC with AI pattern recognition, behavioral analysis, and automation capabilities, organizations can significantly enhance their cybersecurity posture throughout the threat lifecycle.
@@ -420,12 +483,14 @@ CAPEC provides a comprehensive, structured foundation that AI systems can levera
 
 
 
+<!-- TOC --><a name="23-what-is-missing-for-defenders-of-ai-systems-2"></a>
 ### 2.3. What is missing for defenders of AI systems
 
 CAPEC focuses primarily on traditional software and system vulnerabilities but does not include AI-specific attack patterns. It integrates with CWE, which is focused on general software vulnerabilities but lacks specificity for AI. While CAPEC is well-suited for traditional IT systems but does not sufficiently address emerging AI-specific security domains.
 
 
-## 3. References
+<!-- TOC --><a name="4-references"></a>
+## 4. References
 
 | Framework | Referenced Material |
 | --- | --- |
