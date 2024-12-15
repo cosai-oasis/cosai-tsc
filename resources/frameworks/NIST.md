@@ -283,7 +283,7 @@ In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, i
 
 | **Function / Task**                  | **AI System Owner** | **Risk Managers** | **Cybersecurity Team** | **Software Development Team** | **SRE (Site Reliability Engineering)** | **Software Architecture Team** | **Executive Leadership** | **Legal & Compliance Teams** | **External Vendors** | **Data Scientist / AI Engineer** | **End Users** | **Policy Makers / Regulators** |
 |---------------------------------------|---------------------|-------------------|-------------------------|--------------------------------|----------------------------------------|--------------------------------|-------------------------|-----------------------------|-----------------------|--------------------------------|--------------|----------------------------|
-| **1. Govern**                        |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
+| **1. Govern** |  |  |  |  |  |   |   |   |   |   |   |   |
 | Establish governance framework        | A                   | R                 | C                       |                                |                                        | C                              | A                       | C                           | C                     |                                |              |                            |
 | Set risk tolerance levels             | A                   | R                 | C                       |                                |                                        |                                | A                       | C                           |                       |                                |              |                            |
 | Define policies and processes         | C                   | R                 | C                       |                                |                                        | C                              | A                       | C                           | C                     |                                |              |                            |
@@ -362,15 +362,118 @@ While the NIST AI Risk Management Framework (AI RMF 1.0) provides comprehensive 
 
 #### 2.2.1. Overview
 
+NIST AI RMF 1.0 for Generative AI (GAI) provides guidance on managing risks associated with generative AI (GAI) systems. The framework offers a structured approach to managing GAI risks through proactive governance, lifecycle management, and continuous improvement based on empirical evidence and stakeholder feedback​. It is a companion resource to the NIST AI Risk Management Framework (AI RMF 1.0), addressing risks unique to generative AI.
+
 ##### 2.2.1.1. Scoping of AI system and/or cybersecurity purview
+
+As an extension of the NIST AI RMF 1.0 this framework inherits most of the characteristics of its parent. However there are some key scoping deferences specific to Generative AI.
+
+
+| **Aspect**                 | **NIST AI RMF**    | **NIST AI RMF GAI**      |
+|----------------------------|--------------------|-----------------------------------|
+| **Purpose**                | A broad framework for managing risks across all types of AI systems, regardless of specific applications.             | Focused specifically on risks unique to or exacerbated by Generative AI (GAI) systems.   |
+| **Scoping Applicability**  | Covers AI systems across sectors and use cases without being specific to any particular AI technology.  | Tailored to cross-sectoral risks and specific GAI use cases, such as those involving LLMs, multimodal models, or fine-tuned systems. |
+| **Focus on AI Lifecycle**  | Covers all lifecycle stages but emphasizes high-level principles for governance, design, deployment, and monitoring. | Addresses risks specific to GAI at each stage of the lifecycle, including risks during training (e.g., data quality), deployment, and operation. |
+| **Dual-Use Considerations**| General acknowledgment of dual-use risks (e.g., misuse of AI tools). | Detailed focus on GAI misuse risks, such as generating harmful content (e.g., deepfakes, CBRN design, disinformation). |
+| **Cybersecurity Scope**    | Cybersecurity considered as a subset of AI risks, with focus on general vulnerabilities. | Addresses specific cybersecurity risks in GAI, such as prompt injection, data poisoning, adversarial misuse, and reverse engineering. |
+| **Transparency and Provenance** | Recommends transparency and documentation of AI system components and decision-making processes.  | Focuses extensively on content provenance, emphasizing tracing training data, generated outputs, and model lineage to ensure transparency. |
+| **Third-Party Integration**| Broad recommendation to assess and manage risks from third-party data or models.  | Emphasizes the scale of third-party reliance in GAI systems (e.g., datasets, pre-trained models) and risks from non-transparent integration. |
+| **Data Privacy**           | General principles for protecting user data and complying with privacy regulations.  | Focuses on data memorization and inference risks in GAI, which could expose sensitive personal data from training datasets. |
+| **Environmental Impacts**  | Brief mention of energy efficiency and resource usage in AI systems.  | Explicit concern about resource-intensive training and inference in GAI systems and their carbon footprints.       |
+| **Bias and Homogenization**| Broad treatment of bias in AI systems and mitigation through diverse datasets and inclusive design.  | Highlights specific GAI issues, such as amplifying societal biases, representational harms, and risks of algorithmic monoculture. |
+| **Incident Response**      | General recommendations for incident monitoring and response.   | Detailed guidance for incident response plans specific to third-party components, adversarial attacks, and provenance failures in GAI. |
+| **Governance**             | High-level governance principles applicable to various organizational contexts. | Emphasizes governance tailored to GAI risks, including independent evaluations, human-AI configuration, and critical thinking policies. |
+
+
 
 ##### 2.2.1.2. Persona addressed
 
+
+| **Function / Task)** | **AI System Owner** | **Risk Managers** | **Cybersecurity Team** | **Software Development Team** | **SRE** | **Software Architecture Team** | **Executive Leadership** | **Legal & Compliance Teams** | **External Vendors** | **Data Scientist / AI Engineer** | **End Users** | **Policy Makers / Regulators** |
+|-----------------------------|----------------------|--------------------|-------------------------|--------------------------------|---------|----------------------------------|--------------------------|-----------------------------|-----------------------|----------------------------------|--------------|-------------------------------|
+| **1. Govern** |  |  |  |  |  |   |   |   |   |   |   |   |
+| Data privacy compliance                       | A                    | C                  | R                       | I                              | I       | C                                | C                        | R                           | C                     | I                                | I            | R                             |
+| Third-party vendor assessment                 | R                    | C                  | C                       | I                              | I       | C                                | I                        | R                           | A                     | I                                | I            | C                             |
+| Compliance with regulations                   | C                    | C                  | C                       | I                              | I       | I                                | R                        | A                           | I                     | I                                | I            | R                             |
+| Policy development and governance             | C                    | C                  | C                       | I                              | I       | C                                | A                        | A                           | I                     | I                                | I            | R                             |
+| Transparency and explainability               | R                    | C                  | I                       | C                              | I       | C                                | I                        | C                           | I                     | A                                | C            | R                             |
+| Legal compliance auditing                     | I                    | C                  | C                       | I                              | I       | I                                | I                        | R                           | I                     | I                                | I            | R                             |
+| Ethical AI practices and policy alignment     | C                    | R                  | C                       | I                              | I       | I                                | A                        | R                           | C                     | C                                | I            | R                             |
+| **2. Map** |  |  |  |  |  |   |   |   |   |   |   |   |
+| Define AI system scope                        | R                    | A                  | C                       | C                              | C       | C                                | I                        | I                           | C                     | R                                | I            | I                             |
+| Identify risks across lifecycle stages        | C                    | R                  | C                       | I                              | I       | C                                | A                        | C                           | I                     | C                                | I            | I                             |
+| System architecture design                    | R                    | I                  | C                       | C                              | C       | A                                | I                        | I                           | I                     | C                                | I            | I                             |
+| **3. Measure** |  |  |  |  |  |   |   |   |   |   |   |   |
+| Model training and validation                 | R                    | C                  | C                       | C                              | I       | C                                | I                        | I                           | C                     | A                                | I            | I                             |
+| Post-deployment monitoring                    | A                    | C                  | C                       | C                              | R       | C                                | I                        | C                           | I                     | C                                | I            | I                             |
+| Addressing security vulnerabilities           | I                    | C                  | R                       | C                              | R       | I                                | I                        | I                           | I                     | I                                | I            | I                             |
+| Provenance and accountability                 | A                    | C                  | C                       | C                              | C       | R                                | I                        | C                           | I                     | C                                | I            | R                             |
+| Feedback and continuous improvement           | R                    | R                  | C                       | C                              | C       | C                                | I                        | I                           | I                     | C                                | R            | I                             |
+| **4. Manage** |  |  |  |  |  |   |   |   |   |   |   |   |
+| Develop risk mitigation strategies            | C                    | R                  | C                       | C                              | I       | R                                | A                        | C                           | I                     | R                                | I            | I                             |
+| Incident response planning                    | C                    | R                  | A                       | C                              | R       | C                                | I                        | C                           | I                     | C                                | I            | I                             |
+| System deployment                             | R                    | C                  | C                       | R                              | A       | C                                | I                        | I                           | I                     | R                                | I            | I                             |
+| Stakeholder communication                     | R                    | C                  | C                       | I                              | I       | I                                | A                        | C                           | I                     | C                                | A            | C                             |
+
+---
+
+***Legend:***
+- **R** = Responsible (Performs the task/work)
+- **A** = Accountable (Ultimate authority and decision-maker)
+- **C** = Consulted (Provides input and expertise)
+- **I** = Informed (Kept in the loop)
+
+
 ##### 2.2.1.3. Guidance provided
+
+The NIST AI 600-1 (GUI) provides a structured framework for managing risks unique to generative AI (GAI) systems, emphasizing transparency, accountability, and adaptability. It identifies and addresses technical, misuse, and societal risks associated with GAI, such as confabulation, bias amplification, disinformation, and cybersecurity vulnerabilities. 
+
+The guidance aligns with NIST AI RMF 1.0 functions—Govern, Map, Measure, and Manage—and emphasizes trustworthy AI attributes, including fairness, safety, and privacy. Organizations are encouraged to implement robust governance, transparency in content provenance, independent evaluations, and effective risk mitigation strategies throughout the AI lifecycle. 
+
+This evolving framework ensures organizations can navigate the complex and rapidly advancing generative AI landscape while adhering to ethical and regulatory standards.
 
 #### 2.2.2. Detail on current framework
 
+The NIST AI 600-1 Framework is a specialized companion resource to the NIST AI RMF 1.0, tailored to address risks specific to Generative Artificial Intelligence (GAI). This document provides actionable guidance for organizations to manage the unique challenges posed by generative AI systems, such as large language models (LLMs) and multimodal generative tools.
+
+***Key Risks Associated with GAI***
+
+
+| **Risk Category**    | **Description**  |
+|----------------------|------------------|
+| **Technical Risks**   | **1. Confabulation**: GAI systems generating inaccurate or false content, leading to user deception. |
+|                       | **2. Data Privacy**: Potential for GAI to leak sensitive personal data through memorization or inferencing. |
+|                       | **3. Bias and Homogenization**: Amplification of systemic biases and reduced diversity in outputs, leading to societal harms. |                           |
+|                       | **4. Environmental Impact**: High computational resource usage for training and inference, contributing to significant carbon footprints.                |
+| **Misuse Risks**      | **1. Malicious Content**: Use of GAI to create harmful content such as disinformation, deepfakes, or illegal materials. |
+|                       | **2. Cybersecurity Exploitation**: Automation of cyberattacks, such as phishing, malware creation, and vulnerabilities to prompt injection or data poisoning. |
+| **Societal Risks**    | **1. Erosion of Public Trust**: Disinformation campaigns undermining confidence in institutions and facts. |
+|                       | **2. Representational Harms**: Reinforcing harmful stereotypes in GAI outputs, particularly in text-to-image models. |
+|                       | **3. Economic Disruption**: Long-term impacts on labor markets, intellectual property, and creative industries. |
+
+
+***NIST AI RMF Functions Applied to GAI***
+
+
+| **Function** | **Key Actions**  |
+|--------------|------------------|
+| **Govern**   | 1. Align GAI development with legal and regulatory requirements (e.g., data privacy, intellectual property).                                               |
+|              | 2. Foster accountability by establishing organizational risk tolerances and governance structures.                                                         |
+|              | 3. Develop policies for transparency, including documenting training data provenance and model decisions.                                                   |
+|              | 4. Ensure robust oversight through independent evaluations proportional to system risks.                                                                   |
+| **Map**      | 1. Identify and document risks throughout the AI lifecycle, including technical, operational, and societal dimensions.                                      |
+|              | 2. Analyze dependencies on third-party components, such as datasets, libraries, and pre-trained models.                                                    |
+|              | 3. Define roles and responsibilities for stakeholder engagement across teams and external parties.                                                         |
+| **Measure**  | 1. Conduct pre-deployment testing for robustness, fairness, and safety, including red-teaming and validation.                                              |
+|              | 2. Monitor and evaluate system performance for biases, confabulation, and environmental impacts.                                                               |
+|              | 3. Implement tools for assessing content provenance, such as watermarking or cryptographic methods, to trace AI-generated outputs.                         |
+| **Manage**   | 1. Develop incident response plans to address adversarial attacks (e.g., data poisoning, prompt injection).                                                |
+|              | 2. Establish protocols for safe decommissioning of systems, addressing dependencies and user interactions.                                                 |
+|              | 3. Engage stakeholders, including end users and policymakers, to address ethical and societal impacts associated with GAI.                                 |
+
 #### 2.2.3. What is missing for defenders of AI systems
+
+While the NIST AI 600-1 Framework provides a comprehensive approach for managing risks associated with generative AI, several aspects critical for defenders of AI systems (e.g., cybersecurity teams, incident responders, and risk managers) are either missing or could benefit from additional detail.
 
 ### 2.3. NIST AI Adversarial Machine Learning (AML)
 
