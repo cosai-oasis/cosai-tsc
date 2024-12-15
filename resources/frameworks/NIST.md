@@ -475,19 +475,6 @@ The NIST AI 600-1 Framework is a specialized companion resource to the NIST AI R
 
 While the NIST AI 600-1 Framework provides a comprehensive approach for managing risks associated with generative AI, several aspects critical for defenders of AI systems (e.g., cybersecurity teams, incident responders, and risk managers) are either missing or could benefit from additional detail.
 
-### 2.3. NIST AI Adversarial Machine Learning (AML)
-
-#### 2.3.1. Overview
-
-##### 2.3.1.1. Scoping of AI system and/or cybersecurity purview
-
-##### 2.3.1.2. Persona addressed
-
-##### 2.3.1.3. Guidance provided
-
-#### 2.3.2. Detail on current framework
-
-#### 2.3.3. What is missing for defenders of AI systems
 
 ## 3. References
 
@@ -497,4 +484,3 @@ While the NIST AI 600-1 Framework provides a comprehensive approach for managing
 | NIST RMF | [NIST RMF](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf) |
 | NIST AI RMF 1.0 | [NIST AI RMF 1.0](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf) |
 | NIST AI RMF 1.0 for Generative AI (GAI) | [NIST AI RMF 1.0 for Generative AI (GAI)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf) |
-| NIST AI Adversarial Machine Learning (AML) | [NIST AI Adversarial Machine Learning (AML)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf) |
