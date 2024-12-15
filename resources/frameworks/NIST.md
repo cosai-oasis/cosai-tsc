@@ -1,13 +1,56 @@
+<!-- TOC start -->
+
+- [NIST](#nist)
+   * [1. Cybersecurity Framework](#1-cybersecurity-framework)
+      + [1.1. NIST CSF 2.0](#11-nist-csf-20)
+         - [1.1.1. Overview](#111-overview)
+            * [1.1.1.1. Scoping of AI system and/or cybersecurity purview](#1111-scoping-of-ai-system-andor-cybersecurity-purview)
+            * [1.1.1.2. Persona addressed](#1112-persona-addressed)
+            * [1.1.1.3. Guidance provided](#1113-guidance-provided)
+         - [1.1.2. Detail on current framework](#112-detail-on-current-framework)
+            * [1.1.2.1. CSF functions and key concepts applicable to scoping AI systems #####](#1121-csf-functions-and-key-concepts-applicable-to-scoping-ai-systems-)
+         - [1.1.3. What is missing for defenders of AI systems](#113-what-is-missing-for-defenders-of-ai-systems)
+      + [1.2. NIST RMF](#12-nist-rmf)
+         - [1.2.1. Overview](#121-overview)
+            * [1.2.1.1. Scoping of AI system and/or cybersecurity purview](#1211-scoping-of-ai-system-andor-cybersecurity-purview)
+            * [1.2.1.2. Persona addressed](#1212-persona-addressed)
+            * [1.2.1.3. Guidance provided](#1213-guidance-provided)
+         - [1.2.2. Detail on current framework](#122-detail-on-current-framework)
+         - [1.2.3. What is missing for defenders of AI systems](#123-what-is-missing-for-defenders-of-ai-systems)
+   * [2. AI Risk Management Framework](#2-ai-risk-management-framework)
+      + [2.1. NIST AI RMF 1.0](#21-nist-ai-rmf-10)
+         - [2.1.1. Overview](#211-overview)
+            * [2.1.1.1. Scoping of AI system and/or cybersecurity purview](#2111-scoping-of-ai-system-andor-cybersecurity-purview)
+            * [2.1.1.2. Persona addressed](#2112-persona-addressed)
+            * [2.1.1.2. Guidance provided](#2112-guidance-provided)
+         - [2.1.2. Detail on current framework](#212-detail-on-current-framework)
+         - [2.1.3. What is missing for defenders of AI systems](#213-what-is-missing-for-defenders-of-ai-systems)
+      + [2.2. NIST AI RMF 1.0 for Generative AI (GAI)](#22-nist-ai-rmf-10-for-generative-ai-gai)
+         - [2.2.1. Overview](#221-overview)
+            * [2.2.1.1. Scoping of AI system and/or cybersecurity purview](#2211-scoping-of-ai-system-andor-cybersecurity-purview)
+            * [2.2.1.2. Persona addressed](#2212-persona-addressed)
+            * [2.2.1.3. Guidance provided](#2213-guidance-provided)
+         - [2.2.2. Detail on current framework](#222-detail-on-current-framework)
+         - [2.2.3. What is missing for defenders of AI systems](#223-what-is-missing-for-defenders-of-ai-systems)
+   * [3. References](#3-references)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="nist"></a>
 # NIST
 
+<!-- TOC --><a name="1-cybersecurity-framework"></a>
 ## 1. Cybersecurity Framework
 
+<!-- TOC --><a name="11-nist-csf-20"></a>
 ### 1.1. NIST CSF 2.0
 
+<!-- TOC --><a name="111-overview"></a>
 #### 1.1.1. Overview
 
 The NIST Cybersecurity Framework (CSF) 2.0, released in February 2024, is a flexible and non-prescriptive framework designed to help organizations manage cybersecurity risks effectively. It applies to entities of all sizes and across sectors, various missions, technologies (including AI), and regulatory environments, integrating cybersecurity with enterprise risk management.
 
+<!-- TOC --><a name="1111-scoping-of-ai-system-andor-cybersecurity-purview"></a>
 ##### 1.1.1.1. Scoping of AI system and/or cybersecurity purview
 
 The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts, including AI systems, by integrating governance, risk management, and technical safeguards into a unified framework.
@@ -19,6 +62,7 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 3. *Establish clear roles and responsibilities for managing risks associated with AI and other scoped systems.*
 4. *Continuously improve scoping practices to adapt to emerging threats, technologies, and regulatory changes.*
 
+<!-- TOC --><a name="1112-persona-addressed"></a>
 ##### 1.1.1.2. Persona addressed
 
 | **CSF Function / Activity**                | **AI System Owner** | **Cybersecurity Team** | **Data Scientist / AI Engineer** | **Software Development Team** | **SRE Team** | **Software Architecture Team** | **Legal / Compliance Team** | **Executive Leadership** | **External Vendors** |
@@ -62,6 +106,7 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 - **I** = Informed (Kept in the loop)
 
 
+<!-- TOC --><a name="1113-guidance-provided"></a>
 ##### 1.1.1.3. Guidance provided
 
 The NIST Cybersecurity Framework (CSF) 2.0 provides guidance for organizations to manage cybersecurity risks effectively and integrate cybersecurity practices with broader enterprise risk management strategies. 
@@ -73,6 +118,7 @@ The NIST CSF 2.0 serves as a foundational tool to:
 3. Adapt to emerging challenges in technology, supply chains, and global threats.
 4. Foster a culture of proactive risk management and continuous improvement.
 
+<!-- TOC --><a name="112-detail-on-current-framework"></a>
 #### 1.1.2. Detail on current framework
 
 CSF consists of three core sections:
@@ -83,6 +129,7 @@ CSF consists of three core sections:
    
 
 
+<!-- TOC --><a name="1121-csf-functions-and-key-concepts-applicable-to-scoping-ai-systems-"></a>
 ##### 1.1.2.1. CSF functions and key concepts applicable to scoping AI systems #####
 
 
@@ -160,6 +207,7 @@ CSF consists of three core sections:
 
 
 
+<!-- TOC --><a name="113-what-is-missing-for-defenders-of-ai-systems"></a>
 #### 1.1.3. What is missing for defenders of AI systems
 
 The NIST CSF 2.0 provides a strong general framework but could be enhanced for AI system defenders by:
@@ -172,14 +220,17 @@ The NIST CSF 2.0 provides a strong general framework but could be enhanced for A
 
 
 
+<!-- TOC --><a name="12-nist-rmf"></a>
 ### 1.2. NIST RMF
 
+<!-- TOC --><a name="121-overview"></a>
 #### 1.2.1. Overview
  
 The NIST Risk Management Framework (RMF) is a structured framework, that integrates security and privacy into the lifecycle of information systems (including AI systems). It is widely used in federal agencies and private organizations to ensure a consistent, scalable, and effective method for protecting sensitive information.
 
 The RMF is mandatory for federal agencies under laws like FISMA (Federal Information Security Modernization Act) and is recommended for private organizations seeking robust risk management practices. It aligns closely with the NIST Cybersecurity Framework (CSF) for broader risk management.
 
+<!-- TOC --><a name="1211-scoping-of-ai-system-andor-cybersecurity-purview"></a>
 ##### 1.2.1.1. Scoping of AI system and/or cybersecurity purview
 
 In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select steps. It ensures that the boundaries of the system, its operational context, and applicable controls are well-defined to align with organizational objectives, compliance requirements, and risk management strategies.
@@ -195,6 +246,7 @@ In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select step
 | **Monitor**         | Continuously monitor scoped assets and controls to detect changes, emerging threats, and ensure compliance with security objectives. |
 
 
+<!-- TOC --><a name="1212-persona-addressed"></a>
 ##### 1.2.1.2. Persona addressed
 
 | **RMF Activity**                     | **Senior Accountable Official for Risk Management** | **Chief Information Officer (CIO)** | **Authorizing Official (AO)** | **Senior Agency Official for Privacy (SAOP)** | **Senior Agency Information Security Officer (SAISO)** | **System Owner** | **Control Assessor** | **System Security Officer (SSO)** | **System Privacy Officer** | **Data Scientist/AI Engineer** | **Software Development Team** | **SRE** | **Software Architecture Team** | **Common Control Provider** | **Mission/Business Owner** |  
@@ -224,10 +276,12 @@ In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select step
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
 
+<!-- TOC --><a name="1213-guidance-provided"></a>
 ##### 1.2.1.3. Guidance provided
 
 The NIST RMF provides general risk management principles that can be tailored to address the unique risks associated with AI systems. 
 
+<!-- TOC --><a name="122-detail-on-current-framework"></a>
 #### 1.2.2. Detail on current framework
 
 Applying the NIST Risk Management Framework (RMF) to AI systems involves tailoring the framework's steps to address the unique challenges and risks associated with AI technologies. AI systems introduce complexities such as data bias, model integrity, adversarial vulnerabilities, and explainability requirements, which must be integrated into the RMF process.
@@ -243,6 +297,7 @@ Applying the NIST Risk Management Framework (RMF) to AI systems involves tailori
 | **Monitor**         | Continuously track AI system risks and update controls as needed.                             | Monitor for model drift, detect adversarial attacks, maintain data usage logs, automate monitoring processes.           | Updated risk assessments and monitoring reports.                                          |
 
 
+<!-- TOC --><a name="123-what-is-missing-for-defenders-of-ai-systems"></a>
 #### 1.2.3. What is missing for defenders of AI systems
 
 While the RMF is adaptable, it lacks AI-specific extensions that address unique risks, such as adversarial threats, explainability, bias, and dynamic system behaviors. 
@@ -253,16 +308,20 @@ Defenders need:
 3. Enhanced guidance for real-time monitoring, secure AI development, and incident response.
 4. Focus on training and interdisciplinary collaboration for AI and cybersecurity teams.
 
+<!-- TOC --><a name="2-ai-risk-management-framework"></a>
 ## 2. AI Risk Management Framework
 
+<!-- TOC --><a name="21-nist-ai-rmf-10"></a>
 ### 2.1. NIST AI RMF 1.0
 
+<!-- TOC --><a name="211-overview"></a>
 #### 2.1.1. Overview
 
 The NIST AI RMF 1.0, published in January 2023, is a voluntary framework designed to help organizations manage risks associated with artificial intelligence (AI) systems. It aims to promote the responsible design, development, deployment, and use of AI technologies while mitigating potential harms. 
 
 The NIST AI RMF serves as a comprehensive tool for organizations to navigate the complexities of managing AI risks, ensuring their systems are secure, reliable, and aligned with ethical and societal standards.
 
+<!-- TOC --><a name="2111-scoping-of-ai-system-andor-cybersecurity-purview"></a>
 ##### 2.1.1.1. Scoping of AI system and/or cybersecurity purview
 
 In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, integrity, and availability of AI systems. Scoping for cybersecurity purview involves identifying specific areas of focus to protect the AI system and its data.
@@ -278,6 +337,7 @@ In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, i
 | **Governance and Oversight**| Integrating cybersecurity considerations into organizational governance and risk management practices.           | Assigning roles, monitoring risks, ensuring accountability.                                      |
 
 
+<!-- TOC --><a name="2112-persona-addressed"></a>
 ##### 2.1.1.2. Persona addressed
 
 
@@ -316,10 +376,12 @@ In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, i
 - **I** = Informed (Kept in the loop)
 
 
+<!-- TOC --><a name="2112-guidance-provided"></a>
 ##### 2.1.1.2. Guidance provided
 
 The NIST AI RMF 1.0 provides actionable guidance to manage AI risks effectively, ensuring systems are trustworthy, safe, and aligned with organizational goals and societal values. It emphasizes flexibility, continuous improvement, and stakeholder collaboration to address the complexities of deploying AI responsibly.
 
+<!-- TOC --><a name="212-detail-on-current-framework"></a>
 #### 2.1.2. Detail on current framework
 
 AI RMF framework structure consists of two main sections: Framing Risk and Core Functions.
@@ -354,16 +416,20 @@ AI RMF framework structure consists of two main sections: Framing Risk and Core 
 
 
 
+<!-- TOC --><a name="213-what-is-missing-for-defenders-of-ai-systems"></a>
 #### 2.1.3. What is missing for defenders of AI systems
 
 While the NIST AI Risk Management Framework (AI RMF 1.0) provides comprehensive guidance for managing AI risks, there are areas where it could be enhanced to better address cybersecurity concerns, such as adversarial threats, malicious use, and other vulnerabilities. 
 
+<!-- TOC --><a name="22-nist-ai-rmf-10-for-generative-ai-gai"></a>
 ### 2.2. NIST AI RMF 1.0 for Generative AI (GAI)
 
+<!-- TOC --><a name="221-overview"></a>
 #### 2.2.1. Overview
 
 NIST AI RMF 1.0 for Generative AI (GAI) provides guidance on managing risks associated with generative AI (GAI) systems. The framework offers a structured approach to managing GAI risks through proactive governance, lifecycle management, and continuous improvement based on empirical evidence and stakeholder feedback​. It is a companion resource to the NIST AI Risk Management Framework (AI RMF 1.0), addressing risks unique to generative AI.
 
+<!-- TOC --><a name="2211-scoping-of-ai-system-andor-cybersecurity-purview"></a>
 ##### 2.2.1.1. Scoping of AI system and/or cybersecurity purview
 
 As an extension of the NIST AI RMF 1.0 this framework inherits most of the characteristics of its parent. However there are some key scoping deferences specific to Generative AI.
@@ -386,6 +452,7 @@ As an extension of the NIST AI RMF 1.0 this framework inherits most of the chara
 
 
 
+<!-- TOC --><a name="2212-persona-addressed"></a>
 ##### 2.2.1.2. Persona addressed
 
 
@@ -424,6 +491,7 @@ As an extension of the NIST AI RMF 1.0 this framework inherits most of the chara
 - **I** = Informed (Kept in the loop)
 
 
+<!-- TOC --><a name="2213-guidance-provided"></a>
 ##### 2.2.1.3. Guidance provided
 
 The NIST AI 600-1 (GUI) provides a structured framework for managing risks unique to generative AI (GAI) systems, emphasizing transparency, accountability, and adaptability. It identifies and addresses technical, misuse, and societal risks associated with GAI, such as confabulation, bias amplification, disinformation, and cybersecurity vulnerabilities. 
@@ -432,6 +500,7 @@ The guidance aligns with NIST AI RMF 1.0 functions—Govern, Map, Measure, and M
 
 This evolving framework ensures organizations can navigate the complex and rapidly advancing generative AI landscape while adhering to ethical and regulatory standards.
 
+<!-- TOC --><a name="222-detail-on-current-framework"></a>
 #### 2.2.2. Detail on current framework
 
 The NIST AI 600-1 Framework is a specialized companion resource to the NIST AI RMF 1.0, tailored to address risks specific to Generative Artificial Intelligence (GAI). This document provides actionable guidance for organizations to manage the unique challenges posed by generative AI systems, such as large language models (LLMs) and multimodal generative tools.
@@ -471,11 +540,13 @@ The NIST AI 600-1 Framework is a specialized companion resource to the NIST AI R
 |              | 2. Establish protocols for safe decommissioning of systems, addressing dependencies and user interactions.                                                 |
 |              | 3. Engage stakeholders, including end users and policymakers, to address ethical and societal impacts associated with GAI.                                 |
 
+<!-- TOC --><a name="223-what-is-missing-for-defenders-of-ai-systems"></a>
 #### 2.2.3. What is missing for defenders of AI systems
 
 While the NIST AI 600-1 Framework provides a comprehensive approach for managing risks associated with generative AI, several aspects critical for defenders of AI systems (e.g., cybersecurity teams, incident responders, and risk managers) are either missing or could benefit from additional detail.
 
 
+<!-- TOC --><a name="3-references"></a>
 ## 3. References
 
 | Framework | Referenced Material |
