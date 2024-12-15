@@ -23,14 +23,23 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 
 | Responsibilities | CEO | CTO | CISO | Program & Project Manager | Infrastructure Maintainer | AI Practitioner | Data Analyst | Data Scientist | ML Researcher | SW Architect | SW Engineer | Model Maintainer | SRE/DevOps | Security Architect | Security Analyst | Security Focal |
 | :---: | :---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
-| **Govern (GV)**  | I | I | I/A | I/A | R |  |  |  |  | C |  |  | R | A/C |  | R |
+| **Govern (GV)**  | I | I | I/A | I/A | R |  |  |  |  | C/R |  |  | R | A/C |  | R |
 | **Identify (ID)** | I | I | I/A | I/A |  |  |  |  |  | A/C/R |  |  |  | A/C/R |  | R |
-| **Protect (PR)** | I | I | I/A | I/A | R | R | R | R | R | R | R | R | R | A/C |  | C |
-| **Detect (DE)** | I | I | I/A | I/A |  |  |  |  |  | C |  |  | R | A/C | R | C |
-| **Respond (RS)** | I | I | I/A | I/A |  |  |  |  |  | C |  |  |  | A/C | R | C |
-| **Recover (RC)** | I | I | I/A | I/A | R |  |  |  |  | C | R |  | R | A/C |  | C |
+| **Protect (PR)** | I | I | I/A | I/A | R | R | R | R | C/R | R | R | R | R | A/C |  | C |
+| **Detect (DE)** | I | I | I/A | I/A |  |  |  |  |  | C/R |  |  | R | A/C | R | C |
+| **Respond (RS)** | I | I | I/A | I/A |  |  |  |  |  | C/R |  |  |  | A/C | R | C |
+| **Recover (RC)** | I | I | I/A | I/A | R |  |  |  |  | C/R | R |  | R | A/C |  | C |
 
 ##### 1.1.1.3. Guidance provided
+
+The NIST Cybersecurity Framework (CSF) 2.0 provides guidance for organizations to manage cybersecurity risks effectively and integrate cybersecurity practices with broader enterprise risk management strategies. 
+
+The NIST CSF 2.0 serves as a foundational tool to:
+
+1. Standardize cybersecurity practices across organizations, sectors, and regions.
+2. Integrate cybersecurity into business strategies and risk management frameworks.
+3. Adapt to emerging challenges in technology, supply chains, and global threats.
+4. Foster a culture of proactive risk management and continuous improvement.
 
 #### 1.1.2. Detail on current framework
 
@@ -92,36 +101,42 @@ CSF consists of three core sections:
 | --- | --- |
 | **DE.CM (Continuous Monitoring)** | 1. Monitor AI system performance for anomalies, such as adversarial inputs or unexpected outputs. |
 | | 2. Track network activity and system logs for indicators of compromise in AI components. |
-| **DE.AE (Adverse Event Analysis)** |  |
+| **DE.AE (Adverse Event Analysis)** | 1. Analyze anomalies in AI behavior to determine root causes, such as training data corruption or adversarial manipulation. |
+| | 2. Correlate information from multiple sources, including threat intelligence, to understand incidents affecting AI systems. |
 
-Analyze anomalies in AI behavior to determine root causes, such as training data corruption or adversarial manipulation.
-Correlate information from multiple sources, including threat intelligence, to understand incidents affecting AI systems.
-1. Respond (RS): Taking Action Within Scope
-Purpose: Develop and execute plans to mitigate detected cybersecurity incidents involving scoped AI systems.
 
-CSF Application:
-RS.MA (Incident Management):
+***5. Respond (RS): Taking Action Within Scope***
 
-Execute incident response plans for AI-related events, such as data breaches or system exploitation.
-Coordinate responses with external stakeholders, including cloud providers and AI model vendors.
-RS.CO (Incident Communication):
 
-Communicate incident details to internal teams, partners, and customers to mitigate downstream impacts.
-Share lessons learned with stakeholders to improve future scoping efforts.
-6. Recover (RC): Post-Incident Adjustments
-Purpose: Restore operations and refine the scoping process after incidents.
+| Function | Details |
+| --- | --- |
+| **RS.MA (Incident Management)** | 1. Execute incident response plans for AI-related events, such as data breaches or system exploitation. |
+| | 2. Coordinate responses with external stakeholders, including cloud providers and AI model vendors. |
+| **RS.CO (Incident Communication)** | 1. Communicate incident details to internal teams, partners, and customers to mitigate downstream impacts. |
+| | 2. Share lessons learned with stakeholders to improve future scoping efforts. |
 
-CSF Application:
-RC.RP (Incident Recovery Plan Execution):
 
-Restore AI systems to operational status while ensuring the integrity of restored components, such as data and models.
-Validate backups before using them for recovery to avoid reintroducing vulnerabilities.
-RC.CO (Incident Recovery Communication):
+***6. Recover (RC): Post-Incident Adjustments***
 
-Inform stakeholders about recovery progress and measures taken to prevent recurrence.
-Update scoping documents and risk assessments based on lessons learned.
+
+| Function | Details |
+| --- | --- |
+| **RC.RP (Incident Recovery Plan Execution)** | 1. Restore AI systems to operational status while ensuring the integrity of restored components, such as data and models. |
+| | 2. Validate backups before using them for recovery to avoid reintroducing vulnerabilities. |
+| **RC.CO (Incident Recovery Communication)** | 1. Inform stakeholders about recovery progress and measures taken to prevent recurrence. |
+| | 2. Update scoping documents and risk assessments based on lessons learned. |
+
+
 
 #### 1.1.3. What is missing for defenders of AI systems
+
+The NIST CSF 2.0 provides a strong general framework but could be enhanced for AI system defenders by:
+
+1. Incorporating AI-specific risks, such as adversarial attacks, model drift, and poisoning.
+2. Addressing supply chain vulnerabilities unique to AI.
+3. Providing detailed guidance for AI-focused incident response, recovery, and monitoring.
+4. Integrating AI ethics, explainability, and transparency into governance practices.
+5. Explicitly aligning with NIST AI RMF for a holistic approach to AI risk management.
 
 
 ### 1.2. NIST RMF
