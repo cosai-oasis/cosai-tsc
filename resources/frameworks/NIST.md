@@ -21,14 +21,39 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 
 ##### 1.1.1.2. Persona addressed
 
-| Responsibilities | CEO | CTO | CISO | Program & Project Manager | Infrastructure Maintainer | AI Practitioner | Data Analyst | Data Scientist | ML Researcher | SW Architect | SW Engineer | Model Maintainer | SRE/DevOps | Security Architect | Security Analyst | Security Focal |
-| :---: | :---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
-| **Govern (GV)**  | I | I | I/A | I/A | R |  |  |  |  | C/R |  |  | R | A/C |  | R |
-| **Identify (ID)** | I | I | I/A | I/A |  |  |  |  |  | A/C/R |  |  |  | A/C/R |  | R |
-| **Protect (PR)** | I | I | I/A | I/A | R | R | R | R | C/R | R | R | R | R | A/C |  | C |
-| **Detect (DE)** | I | I | I/A | I/A |  |  |  |  |  | C/R |  |  | R | A/C | R | C |
-| **Respond (RS)** | I | I | I/A | I/A |  |  |  |  |  | C/R |  |  |  | A/C | R | C |
-| **Recover (RC)** | I | I | I/A | I/A | R |  |  |  |  | C/R | R |  | R | A/C |  | C |
+| **CSF Function / Activity**                | **AI System Owner** | **Cybersecurity Team** | **Data Scientist / AI Engineer** | **Software Development Team** | **SRE Team** | **Software Architecture Team** | **Legal / Compliance Team** | **Executive Leadership** | **External Vendors** |
+| ------------------------------------------ | ------------------- | ---------------------- | -------------------------------- | ----------------------------- | ------------ | ------------------------------ | --------------------------- | ------------------------ | -------------------- |
+| **Govern (GV)**                            |                     |                        |                                  |                               |              |                                |                             |                          |                      |
+| Define AI cybersecurity governance scope   | R                   | A                      | C                                | C                             | I            | C                              | C                           | I                        | I                    |
+| Establish AI risk management strategy      | A                   | R                      | C                                | C                             | C            | C                              | C                           | I                        | I                    |
+| Develop supply chain risk policies for AI  | R                   | C                      | I                                | I                             | I            | C                              | A                           | I                        | R                    |
+| Define ethical AI usage guidelines         | A                   | C                      | R                                | C                             | I            | C                              | R                           | I                        | I                    |
+| **Identify (ID)**                          |                     |                        |                                  |                               |              |                                |                             |                          |                      |
+| Inventory AI systems and dependencies      | R                   | C                      | R                                | C                             | C            | C                              | I                           | I                        | C                    |
+| Conduct AI-specific risk assessments       | C                   | R                      | A                                | C                             | I            | C                              | C                           | I                        | C                    |
+| Map AI data flow and privacy risks         | R                   | C                      | R                                | C                             | I            | C                              | A                           | I                        | I                    |
+| Evaluate third-party AI components         | R                   | R                      | C                                | C                             | I            | C                              | I                           | I                        | A                    |
+| **Protect (PR)**                           |                     |                        |                                  |                               |              |                                |                             |                          |                      |
+| Implement access controls for AI systems   | C                   | R                      | C                                | C                             | R            | C                              | I                           | I                        | I                    |
+| Secure training data and models            | R                   | R                      | A                                | C                             | C            | C                              | I                           | I                        | I                    |
+| Encrypt data in AI pipelines               | I                   | R                      | A                                | C                             | R            | C                              | I                           | I                        | C                    |
+| Enforce secure software development        | C                   | R                      | A                                | R                             | C            | A                              | I                           | I                        | R                    |
+| **Detect (DE)**                            |                     |                        |                                  |                               |              |                                |                             |                          |                      |
+| Monitor AI models for adversarial inputs   | C                   | R                      | R                                | I                             | R            | C                              | I                           | I                        | C                    |
+| Detect anomalies in AI behavior            | C                   | R                      | A                                | C                             | R            | C                              | I                           | I                        | I                    |
+| Monitor AI supply chain for threats        | C                   | R                      | I                                | I                             | C            | C                              | I                           | I                        | R                    |
+| Analyze cybersecurity incidents in AI      | R                   | A                      | C                                | I                             | R            | C                              | I                           | I                        | I                    |
+| **Respond (RS)**                           |                     |                        |                                  |                               |              |                                |                             |                          |                      |
+| Activate incident response for AI attacks  | R                   | A                      | C                                | I                             | R            | C                              | C                           | I                        | C                    |
+| Mitigate data poisoning or model tampering | C                   | R                      | A                                | C                             | R            | C                              | I                           | I                        | I                    |
+| Report AI-related incidents to regulators  | I                   | R                      | C                                | I                             | I            | C                              | A                           | C                        | I                    |
+| Share threat intelligence with partners    | C                   | R                      | I                                | I                             | I            | C                              | C                           | I                        | A                    |
+| **Recover (RC)**                           |                     |                        |                                  |                               |              |                                |                             |                          |                      |
+| Rebuild or retrain compromised models      | R                   | C                      | A                                | C                             | C            | C                              | I                           | I                        | I                    |
+| Validate integrity of restored AI systems  | R                   | R                      | C                                | C                             | C            | A                              | I                           | I                        | C                    |
+| Communicate recovery progress              | I                   | R                      | C                                | I                             | C            | C                              | C                           | A                        | I                    |
+
+
 
 ##### 1.1.1.3. Guidance provided
 
@@ -139,9 +164,12 @@ The NIST CSF 2.0 provides a strong general framework but could be enhanced for A
 5. Explicitly aligning with NIST AI RMF for a holistic approach to AI risk management.
 
 
+
 ### 1.2. NIST RMF
 
 #### 1.2.1. Overview
+
+Risk Management Framework (RMF) is a structured framework, that integrates security and privacy into the lifecycle of information systems (including AI systems). 
 
 ##### 1.2.1.1. Scoping of AI system and/or cybersecurity purview
 
@@ -197,3 +225,12 @@ The NIST CSF 2.0 provides a strong general framework but could be enhanced for A
 
 #### 2.3.3. What is missing for defenders of AI systems
 
+## 3. References
+
+| Framework | Referenced Material |
+| --- | --- |
+| NIST CSF 2.0 | [NIST CSF 2.0](https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf) |
+| NIST RMF | [NIST RMF](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf) |
+| NIST AI RMF 1.0 | [NIST AI RMF 1.0](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf) |
+| NIST AI RMF 1.0 for Generative AI (GAI) | [NIST AI RMF 1.0 for Generative AI (GAI)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf) |
+| NIST AI Adversarial Machine Learning (AML) | [NIST AI Adversarial Machine Learning (AML)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf) |
