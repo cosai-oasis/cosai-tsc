@@ -341,12 +341,94 @@ ATLAS provides a strong foundation for securing AI systems by extending adversar
 
 ### 2.1. Overview
 
+The Common Attack Pattern Enumeration and Classification (CAPEC) is a standardized, community-driven framework for understanding, categorizing, and mitigating cyber-attack techniques. It provides a structured taxonomy of attack patterns that describe methods attackers use to exploit software systems. While CAPEC is not designed to defend AI systems it is relevant for AI-based systems focused on cybersecurity, as it provides machine-readable, systematic descriptions of attacks that can be used to enhance threat detection, prevention, and response capabilities.
+
+
 #### 2.1.1. Scoping of AI system and/or cybersecurity purview
+
+CAPEC is not designed to scope cybersecurity of AI system. However it can be very valuable framework to aid building AI based cybersecurity systems.
+
+| **Focus Area**                      | **CAPEC Integration**                                                                                  | **AI Application Examples**                                                                                 |
+|------------------------------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| **Proactive Threat Modeling**       | CAPEC supports identifying, simulating, and mitigating attack scenarios during the design phase.      | AI analyzes system design to predict attacks like Phishing (CAPEC-98) and recommend mitigations.        |
+| **Dynamic Threat Modeling**         | CAPEC enables real-time threat modeling and attack chain prediction using AI systems.                 | AI dynamically models attack chains (e.g., from Credential Theft to Privilege Escalation).          |
+| **SIEM Integration**                | CAPEC patterns help AI-enhanced SIEM tools detect malicious activity by correlating logs with attacks.| AI flags network traffic anomalies based on CAPEC-defined patterns like HTTP Response Splitting (CAPEC-34). |
+| **SOAR Platforms**                  | AI-driven SOAR systems automate threat response workflows based on CAPEC attack metadata.             | AI automates response playbooks for attacks such as SQL Injection (CAPEC-66) based on CAPEC severity.   |
+| **Endpoint Detection and Response** | CAPEC attack descriptions guide AI-based endpoint analysis to detect malicious activity.              | AI identifies and mitigates Malware Execution (CAPEC-175) on endpoints.                                 |
+| **Threat Intelligence Enrichment**  | CAPEC integrates with threat intelligence frameworks like STIX/TAXII to enrich data with attack info. | AI correlates live threat feeds with CAPEC patterns to detect emerging threats.                             |
+| **Threat Actor Profiling**          | CAPEC patterns assist AI systems in analyzing TTPs (Tactics, Techniques, Procedures) of adversaries.  | AI identifies adversarial tactics through attack patterns like Credential Abuse or Malware Injection.|
+| **Predictive Threat Analysis**      | CAPEC attack lifecycle context allows AI to predict emerging threats and preemptively respond.        | AI predicts new attacks based on historical CAPEC data and prioritizes preemptive mitigations.              |
+
 
 #### 2.1.2. Persona addressed
 
+| **Task/Activity**                                 | **AI Engineer**                 | **Cybersecurity Analyst**      | **SOC Analyst**                | **Incident Manager**            | **Executive Leadership**        | **Software Architect**          | **Software Developer**          | **SME**                         | **Data Scientist**              |
+|---------------------------------------------------|---------------------------------|--------------------------------|--------------------------------|---------------------------------|---------------------------------|---------------------------------|---------------------------------|---------------------------------|---------------------------------|
+| **Integrate CAPEC into AI Systems**               | R                               | C                              | I                              | I                              | I                              | A                               | C                               | C                               | R                               |
+| **Threat Modeling Using CAPEC**                   | C                               | R                              | C                              | A                              | I                              | R                               | C                               | C                               | C                               |
+| **Train AI Models with CAPEC Data**               | R                               | C                              | I                              | I                              | I                              | C                               | I                               | C                               | R                               |
+| **Identify CAPEC Attack Patterns**                | C                               | R                              | C                              | A                              | I                              | C                               | I                               | R                               | C                               |
+| **Automate Threat Detection Using CAPEC**         | R                               | C                              | I                              | A                              | I                              | C                               | I                               | C                               | R                               |
+| **Vulnerability Assessment and Simulation**       | C                               | R                              | I                              | A                              | I                              | R                               | R                               | C                               | C                               |
+| **Incident Response and Mitigation**              | I                               | C                              | R                              | A                              | I                              | I                               | I                               | C                               | I                               |
+| **Maintain and Update CAPEC Data**                | R                               | R                              | I                              | A                              | I                              | C                               | I                               | R                               | C                               |
+| **Align CAPEC with Threat Intelligence (STIX/TAXII)** | C                            | R                              | C                              | A                              | I                              | C                               | I                               | R                               | C                               |
+| **Report CAPEC-Based Threat Insights**            | C                               | R                              | I                              | A                              | I                              | I                               | I                               | R                               | C                               |
+| **CAPEC Training and Awareness**                  | C                               | R                              | C                              | I                              | A                              | C                               | I                               | R                               | C                               |
+
+---
+
+***Legend:***
+- **R** = Responsible (Performs the task/work)
+- **A** = Accountable (Ultimate authority and decision-maker)
+- **C** = Consulted (Provides input and expertise)
+- **I** = Informed (Kept in the loop)
+
+
 #### 2.1.3. Guidance provided
+
+CAPEC provides a robust foundation for AI systems to improve cybersecurity automation, detection, prediction, and response, making it useful for AI-driven security solutions. However it doesn't provide any guidance for AI systems security.
 
 ### 2.2. Detail on current framework
 
+CAPEC provides a comprehensive, structured foundation that AI systems can leverage to detect, analyze, and mitigate cyber-attacks effectively. By combining CAPEC with AI pattern recognition, behavioral analysis, and automation capabilities, organizations can significantly enhance their cybersecurity posture throughout the threat lifecycle.
+
+***CAPEC Features Applicable to AI Systems***
+
+| **Feature**                  | **Description**                                                                 |
+|------------------------------|-------------------------------------------------------------------------------|
+| **Attack Patterns**          | Reusable descriptions of attack techniques like SQL Injection and XSS.       |
+| **Structured Taxonomy**      | Hierarchical classification of attack methods for easy analysis and linking. |
+| **Data Integration**         | Works with CWE, CVE, and CybOX to create a comprehensive security framework. |
+| **Machine-Readable Format**  | Provides formats suitable for AI systems to perform automated analysis.      |
+| **Attack Lifecycle Context** | Includes attack descriptions, preconditions, methods, consequences, and mitigations. |
+
+---
+
+***Applications of CAPEC for AI Systems***
+
+| **Application**                    | **Description**                                                                                   | **Example Use Case**                                                                                 |
+|------------------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Training AI Models**             | CAPEC provides high-quality labeled datasets for supervised learning.                            | Train AI to detect SQL Injection or Buffer Overflow using CAPEC data.                              |
+| **Attack Pattern Detection**       | AI uses CAPEC to recognize known and evolving attacks by matching observed behaviors.             | Identify HTTP Response Splitting (CAPEC-34) based on network traffic analysis.                     |
+| **Threat Modeling and Prediction** | AI predicts potential attack scenarios during software development using CAPEC taxonomy.       | Simulate attacks like phishing or privilege escalation to find exploitable paths.                  |
+| **Automated Vulnerability Assessment** | CAPEC helps simulate attack patterns for penetration testing and risk evaluation.               | AI-based scanner tests applications for vulnerabilities like XSS or SQL Injection.                 |
+| **Behavioral Analysis and Anomaly Detection** | Detect deviations in system behavior by comparing it to CAPEC-defined attack patterns.         | Flag unusual process executions resembling Buffer Overflow attacks.                                |
+| **Incident Classification and Response** | AI classifies incidents and suggests mitigations using CAPEC context (prerequisites, impact).  | Classify an incident as Session Fixation (CAPEC-60) and prioritize countermeasures.                |
+| **Attack Chain Analysis**          | AI models the sequence of steps in an attack using CAPEC patterns to predict adversary behavior. | Predict escalation from Phishing (CAPEC-98) to credential theft or lateral movement.               |
+| **Real-Time Threat Intelligence**  | CAPEC integrates with live feeds for real-time attack detection and counteractions.              | Correlate threat feeds with CAPEC patterns to detect and block ongoing attacks.                    |
+
+
+
 ### 2.3. What is missing for defenders of AI systems
+
+CAPEC focuses primarily on traditional software and system vulnerabilities but does not include AI-specific attack patterns. It integrates with CWE, which is focused on general software vulnerabilities but lacks specificity for AI. While CAPEC is well-suited for traditional IT systems but does not sufficiently address emerging AI-specific security domains.
+
+
+## 3. References
+
+| Framework | Referenced Material |
+| --- | --- |
+| MITRE ATT&CK | [MITRE ATT&CK](https://attack.mitre.org/) |
+| MITRE ATLAS | [MITRE ATLAS](https://atlas.mitre.org/) |
+| MITRE CAPEC | [MITRE CAPEC](https://capec.mitre.org/) |
