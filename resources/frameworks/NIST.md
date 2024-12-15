@@ -53,6 +53,13 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 | Validate integrity of restored AI systems  | R                   | R                      | C                                | C                             | C            | A                              | I                           | I                        | C                    |
 | Communicate recovery progress              | I                   | R                      | C                                | I                             | C            | C                              | C                           | A                        | I                    |
 
+---
+
+***Legend:***
+- **R** = Responsible (Performs the task/work)
+- **A** = Accountable (Ultimate authority and decision-maker)
+- **C** = Consulted (Provides input and expertise)
+- **I** = Informed (Kept in the loop)
 
 
 ##### 1.1.1.3. Guidance provided
@@ -209,6 +216,13 @@ In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select step
 | **Monitor AI Systems**               | C                                                | C                                   | A                             | C                                             | R                                                      | R                | I                     | R                                 | R                         | C                                | R                                | R     | R                            | I                           | A                           |  
 | Continuous Monitoring Strategy       | A                                                | C                                   | R                             | C                                             | R                                                      | C                | C                     | R                                 | R                         | C                                | C                                | R     | R                            | C                           | C                           |  
 
+---
+
+***Legend:***
+- **R** = Responsible (Performs the task/work)
+- **A** = Accountable (Ultimate authority and decision-maker)
+- **C** = Consulted (Provides input and expertise)
+- **I** = Informed (Kept in the loop)
 
 ##### 1.2.1.3. Guidance provided
 
@@ -245,15 +259,104 @@ Defenders need:
 
 #### 2.1.1. Overview
 
+The NIST AI RMF 1.0, published in January 2023, is a voluntary framework designed to help organizations manage risks associated with artificial intelligence (AI) systems. It aims to promote the responsible design, development, deployment, and use of AI technologies while mitigating potential harms. 
+
+The NIST AI RMF serves as a comprehensive tool for organizations to navigate the complexities of managing AI risks, ensuring their systems are secure, reliable, and aligned with ethical and societal standards.
+
 ##### 2.1.1.1. Scoping of AI system and/or cybersecurity purview
+
+In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, integrity, and availability of AI systems. Scoping for cybersecurity purview involves identifying specific areas of focus to protect the AI system and its data.
+
+| **Category**            | **Description**                                                                                                   | **Examples**                                                                                     |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| **Threat Landscape**     | Identifying cybersecurity threats specific to AI systems.                                                       | Adversarial attacks, data poisoning, model theft, system exploitation, inference attacks.        |
+| **Security Requirements**| Establishing security objectives to protect AI systems and their data.                                           | Secure data storage, protect model infrastructure, safeguard APIs, control third-party access.    |
+| **System Boundaries**    | Defining components and scope for cybersecurity measures.                                                        | Data storage, model infrastructure, APIs, third-party tools.                                     |
+| **Cybersecurity Controls**| Applying technical and organizational measures to secure the AI system.                                          | Access control, encryption, monitoring, resilience planning.                                     |
+| **Regulatory Compliance**| Ensuring adherence to legal and regulatory standards related to cybersecurity.                                   | FISMA, GDPR, CCPA, HIPAA, NIST SP 800-53, SP 800-171.                                            |
+| **Incident Response**    | Planning for and responding to cybersecurity incidents affecting AI systems.                                     | Addressing model poisoning, adversarial attacks, recovery from data corruption.                  |
+| **Governance and Oversight**| Integrating cybersecurity considerations into organizational governance and risk management practices.           | Assigning roles, monitoring risks, ensuring accountability.                                      |
+
 
 ##### 2.1.1.2. Persona addressed
 
+
+| **Function / Task**                  | **AI System Owner** | **Risk Managers** | **Cybersecurity Team** | **Software Development Team** | **SRE (Site Reliability Engineering)** | **Software Architecture Team** | **Executive Leadership** | **Legal & Compliance Teams** | **External Vendors** | **Data Scientist / AI Engineer** | **End Users** | **Policy Makers / Regulators** |
+|---------------------------------------|---------------------|-------------------|-------------------------|--------------------------------|----------------------------------------|--------------------------------|-------------------------|-----------------------------|-----------------------|--------------------------------|--------------|----------------------------|
+| **1. Govern**                        |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
+| Establish governance framework        | A                   | R                 | C                       |                                |                                        | C                              | A                       | C                           | C                     |                                |              |                            |
+| Set risk tolerance levels             | A                   | R                 | C                       |                                |                                        |                                | A                       | C                           |                       |                                |              |                            |
+| Define policies and processes         | C                   | R                 | C                       |                                |                                        | C                              | A                       | C                           | C                     |                                |              |                            |
+| Assign roles and accountability       | A                   | R                 | C                       |                                |                                        |                                | A                       | C                           |                       |                                |              |                            |
+| Integrate AI risk governance into ERM | A                   | R                 | C                       |                                |                                        | C                              | A                       | C                           |                       |                                |              |                            |
+| **2. Map**                           |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
+| Identify AI-specific risks            | R                   | R                 | C                       |                                | C                                      | C                              | C                       | C                           | C                     | A                              |              |                            |
+| Identify societal impacts of AI       | C                   | R                 |                         |                                |                                        | C                              | C                       | C                           |                       | C                              | I            | A                          |
+| Map risks to lifecycle stages         | R                   | A                 | C                       | C                              |                                        | C                              |                         |                             |                       |                                |              |                            |
+| Contextualize risks to applications   | C                   | R                 | C                       | R                              | C                                      | C                              |                         | C                           | C                     | C                              |              |                            |
+| **3. Measure**                       |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
+| Assess system performance risks       | R                   | C                 | C                       | R                              | R                                      | A                              |                         |                             |                       | R                              |              |                            |
+| Validate trustworthiness criteria     | C                   | C                 | R                       |                                |                                        | R                              |                         |                             |                       | C                              |              |                            |
+| Monitor emergent risks                | R                   | A                 | R                       | C                              | R                                      | C                              |                         |                             |                       |                                |              |                            |
+| Conduct TEVV (Testing/Evaluation)     | R                   | C                 | C                       | R                              | R                                      | A                              |                         |                             | C                     |                                |              |                            |
+| Document risk measurement processes   | C                   | R                 | C                       |                                |                                        | R                              |                         |                             |                       |                                |              |                            |
+| **4. Manage**                        |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
+| Develop mitigation strategies         | R                   | R                 | C                       | C                              | R                                      | R                              | C                       | C                           |                       |                                |              |                            |
+| Prioritize risks for action           | C                   | R                 | C                       |                                | C                                      |                                | A                       |                             |                       |                                |              |                            |
+| Implement mitigation controls         | C                   | C                 | R                       | R                              | R                                      | R                              |                         |                             | C                     |                                |              |                            |
+| Monitor effectiveness of actions      | R                   | R                 | C                       |                                | R                                      | C                              |                         |                             |                       |                                |              |                            |
+| Communicate residual risks            | R                   | A                 | C                       |                                |                                        |                                | A                       | C                           | C                     |                                |              |                            |
+
+---
+
+***Legend:***
+- **R** = Responsible (Performs the task/work)
+- **A** = Accountable (Ultimate authority and decision-maker)
+- **C** = Consulted (Provides input and expertise)
+- **I** = Informed (Kept in the loop)
+
+
 ##### 2.1.1.2. Guidance provided
+
+The NIST AI RMF 1.0 provides actionable guidance to manage AI risks effectively, ensuring systems are trustworthy, safe, and aligned with organizational goals and societal values. It emphasizes flexibility, continuous improvement, and stakeholder collaboration to address the complexities of deploying AI responsibly.
 
 #### 2.1.2. Detail on current framework
 
+AI RMF framework structure consists of two main sections: Framing Risk and Core Functions.
+
+***Framing Risk***
+
+
+| **Aspect**              | **Description**                                                                                                                                                                     |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Risk Identification** | AI risks are identified across technical and socio-technical dimensions, considering both anticipated and emergent risks throughout the AI lifecycle.                                |
+| **Dynamic Risks**        | AI risks evolve over time due to changing data, deployment contexts, and interactions with other systems or users, requiring continuous assessment and adaptation.                   |
+| **Trustworthiness Characteristics** | Trustworthy AI must demonstrate attributes such as being valid and reliable, safe, privacy-enhanced, secure, accountable, transparent, explainable, and fair.                        |
+| **Key Challenges**       | Challenges include managing emergent risks, addressing biases, ensuring transparency and explainability, and balancing trade-offs between trustworthiness attributes (e.g., fairness vs. accuracy). |
+| **Stakeholders**         | Includes developers, operators, end users, impacted communities, and regulators who contribute to or are affected by AI systems.                                                   |
+| **Ethical and Societal Risks** | Risks include harm to civil liberties, discrimination, inequities, and environmental impacts, requiring socio-technical alignment to mitigate potential negative outcomes.                          |
+
+
+***Core Functions***
+
+| **Function**   | **Purpose**                                                                                                   | **Key Activities**                                                                                                                                          |
+|-----------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Govern**     | Establishes governance structures and processes for AI risk management.                                      | 1. Define roles and accountability. |
+|  |  | 2. Align AI development with organizational values. |
+|  |  | 3. Integrate AI risks into enterprise risk management (ERM). |
+| **Map**        | Identifies and contextualizes AI risks throughout the AI lifecycle.                                          | 1. Identify risks across design, build, deployment, and operation stages. |
+|  |  | 2. Assess societal, ethical, and operational impacts of AI systems. |
+| **Measure**    | Evaluates risks and trustworthiness using quantitative and qualitative metrics.                              | 1. Conduct TEVV (Testing, Evaluation, Verification, Validation). |
+|  |  | 2. Assess trustworthiness attributes like bias, fairness, and robustness. |
+| **Manage**     | Prioritizes and mitigates risks to minimize harm and enhance AI system reliability.                          | 1. Implement mitigation strategies. |
+|  |  | 2. Monitor systems for emergent risks. |
+|  |  | 3. Communicate residual risks to stakeholders. |
+
+
+
 #### 2.1.3. What is missing for defenders of AI systems
+
+While the NIST AI Risk Management Framework (AI RMF 1.0) provides comprehensive guidance for managing AI risks, there are areas where it could be enhanced to better address cybersecurity concerns, such as adversarial threats, malicious use, and other vulnerabilities. 
 
 ### 2.2. NIST AI RMF 1.0 for Generative AI (GAI)
 
