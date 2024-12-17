@@ -497,3 +497,5 @@ CAPEC focuses primarily on traditional software and system vulnerabilities but d
 | MITRE ATT&CK | [MITRE ATT&CK](https://attack.mitre.org/) |
 | MITRE ATLAS | [MITRE ATLAS](https://atlas.mitre.org/) |
 | MITRE CAPEC | [MITRE CAPEC](https://capec.mitre.org/) |
+
+*Document was created with assistance of OpenAI ChatGPT 4o model.*
