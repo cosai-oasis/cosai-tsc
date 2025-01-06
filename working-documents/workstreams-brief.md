@@ -38,12 +38,13 @@ OASIS Staff will help with any issues with the WS tools. Please contact [Claudia
 * Following up on action items  
 * Inviting Akila and JR to kickoff meetings
 
-  **Key responsibilities:**  
+**Key responsibilities:**  
 * Review and follow the [Workstream Governance Guidelines](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md)  
 * Facilitate voting as needed (OASIS staff available for support)  
 * Implement decision-making processes like lazy consensus  
 * Manage GitHub repository including documentation, issues/PR backlog  
-  **Reporting structure:**  
+
+**Reporting structure:**  
 * Provide regular progress updates to TSC (weekly updates and bi-weekly syncs)
 
 ### Milestones from TSC and Call to Action for WS Leads
