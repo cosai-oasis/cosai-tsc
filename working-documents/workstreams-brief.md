@@ -271,7 +271,7 @@ The following classes of use cases are in scope:
 * AI being used for 'job loss' etc   
 * Trustworthy AI
 
-#### *Reference materials: *
+#### *Reference materials:*
 
 * IBM Whitepaper: [https://ibm.biz/genaiwhitepaper](https://ibm.biz/genaiwhitepaper)
 
