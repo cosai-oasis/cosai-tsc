@@ -85,29 +85,23 @@ This document outlines the goals and scope for each workstream, providing detail
 
 ### Workstream 1: Software Supply Chain Security for AI Systems
 
-##### Workstream Leadership: 
-
+#### Workstream Leadership: 
 This workstream will be led by: 
-
 * Matt Maloney, Cohere  
 * Jay White, Microsoft  
 * Andre Elizondo, Wiz
 
-
 #### Scope
-
 Significant efforts are ongoing to extend SSDF and SLSA principles to the security of AI development. Classical software SSDF and SLSA solutions provide the foundation for secure software development yet the individual organizations continue to face challenges integrating provenance solutions into their infrastructure and development practices including determining how to address changes in provenance proofs, shifts in publisher trust, etc... As the efforts to expand provenance controls into the AI domain advance, this CoSAI workstream will focus on lowering the barriers to AI provenance adoption and risk management.
 
 For the purposes of this workstream, provenance has the meaning defined in NIST SP 800-53 Rev. 5, and does not include broader considerations such as copyright/IP.
 
 #### Targeted Persona
-
 * AI application developers who consume the model  
 * Data Scientists  
 * Model creators
 
 #### Classes of Use Cases
-
 The following classes of use cases are in scope: 
 
 ##### *Model selection and use:*
@@ -135,7 +129,7 @@ The following classes of use cases are in scope:
 * Privacy Preservation: Protect against attacks that could reveal training data by sanitizing user prompts before sending them to the model. Develop techniques to remove or mask personally identifiable information while maintaining prompt effectiveness. This helps preserve user privacy when interacting with AI models.  
 * Backdoor Detection: Evaluate the model for hidden functionalities that could be triggered by specific, unusual inputs
 
-##### *What is not in scope:*
+#### *What is not in scope:*
 
 * Aspects of Provenance such as copyright information, licensing information and terms and conditions.
 
@@ -169,30 +163,29 @@ The following classes of use cases are in scope:
 #### Workstream Leadership 
 
 This workstream will be led by: 
-
 * Vinay Bansal, Cisco  
 * Josiah Hagen, Trend Micro
 
-##### Scope 
+#### Scope 
 
 Develop a defender’s framework to identify needed investments to address the security impacts of AI use by business applications, attackers, and defenders as well as mitigations techniques and best practices. The Defender’s framework aims to scale investments and mitigation strategies with the emergence of pivotal offensive cybersecurity advancements in AI models.
 
-##### Targeted Persona
+#### Targeted Persona
 
 * CISO  
 * Security Practitioners  
 * AI application developers
 
-##### Classes of Use Cases
+#### Classes of Use Cases
 
 The following classes of use cases are in scope: 
 
-###### *Threat and vulnerability management:*
+##### *Threat and vulnerability management:*
 
 * How can we participate in an AI ecosystem of vendors to get timely access to disclosure of AI product vulnerabilities, e.g., access to PSIRT information via CISA’s JCDC, an AI-ISAC or other construct  
 * What are the threat and vulnerability advisories around AI artifacts (models, data etc) and how can I get access to such feeds in a programmatic way?
 
-###### *AI Attack surface management:*
+##### *AI Attack surface management:*
 
 * Developing anomaly detection systems for AI model usage patterns  
 * Creating guidelines for logging and auditing AI model interactions  
@@ -203,17 +196,17 @@ The following classes of use cases are in scope:
 * How can I ensure that the models used in my enterprise have not been subjected to distillation attacks?  
 * Establishing guidelines for verifying the authenticity of digital communications from a human and not from an AI agent
 
-###### *Human-AI Interfaces and Collaboration*
+##### *Human-AI Interfaces and Collaboration*
 
 * Establishing best practices for human oversight of AI systems in critical applications  
 * Implementing "human-in-the-loop" processes for high-stakes AI decisions
 
-###### *What is not in scope:*
+#### *What is not in scope:*
 
 * Security for AI autonomous agents  
 * Security of Agentic Frameworks
 
-###### *Possible Deliverables:* 
+#### *Possible Deliverables:* 
 
 * Education around the coming wave of vulnerability discovery and agent-driven attacks  
   * What does a threat intel feed on AI Attacks look like?   
@@ -228,7 +221,7 @@ The following classes of use cases are in scope:
 
 ### Workstream 3: AI Risk Governance
 
-##### Workstream Leadership 
+#### Workstream Leadership 
 
 This workstream will be led by: 
 
@@ -236,22 +229,22 @@ This workstream will be led by:
 * Lauren Clark, Thomson Reuters  
 * Manhar Arora, EY
 
-##### Scope 
+#### Scope 
 
 Develop a risk and controls taxonomy, checklist, and scorecard to guide practitioners in readiness assessments, management, monitoring, and reporting of their AI products, services, and components.
 
-##### Targeted Persona
+#### Targeted Persona
 
 * Chief Risk Officers  
 * Compliance Officers  
 * CISOs, CIOs, and CEOs  
 * Policy and regulation framers
 
-##### Classes of Use Cases
+#### Classes of Use Cases
 
 The following classes of use cases are in scope: 
 
-###### *Governance when introducing AI to your company*
+##### *Governance when introducing AI to your company*
 
 * What are the dimensions of AI Risk that apply in my industry and company that I need to address in my AI application governance?  
 * What are the applicable AI regulations in my geography, my industry etc?  
@@ -259,7 +252,7 @@ The following classes of use cases are in scope:
 * What is an organizational heat-map for AI risk?  
 * What sovereign/geo-specific policies apply to the usage of the models?
 
-###### *Governance when using AI* 
+##### *Governance when using AI* 
 
 * What is the oversight process for usage of AI and how is it administered in my company?  
 * What business controls and technical controls are needed to govern the usage of AI in my enterprise?  
@@ -268,26 +261,21 @@ The following classes of use cases are in scope:
 * Explainability and transparency on model decision making   
 * What aspects of the model governance need to be surfaced to application developers?
 
-###### 
-
-###### *Governance to users and external authorities*
-
-###### 
+##### *Governance to users and external authorities*
 
 * What is a sufficient trail of evidence to prove compliance with controls?  
 * How can external authorities use model cards to understand models leveraged by an organization?
 
-###### *What is not in scope:*
+#### *What is not in scope:*
 
 * AI being used for 'job loss' etc   
 * Trustworthy AI
 
-###### *Reference materials: *
+#### *Reference materials: *
 
 * IBM Whitepaper: [https://ibm.biz/genaiwhitepaper](https://ibm.biz/genaiwhitepaper)
 
-
-###### *Possible Deliverables:* 
+#### *Possible Deliverables:* 
 
 * Executive risk committee stakeholder recommendations (particularly around C-suite AI ownership)  
 * Suggest a tiered approach based on high, medium, low risks and corresponding controls. Map to evolving regulatory expectations.  
