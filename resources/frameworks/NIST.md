@@ -809,6 +809,6 @@ From a defender's perspective, the NIST AI 100-2e2023 Framework provides a solid
 | NIST RMF | [NIST RMF](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf) |
 | NIST AI RMF 1.0 | [NIST AI RMF 1.0](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf) |
 | NIST AI RMF 1.0 for Generative AI (GAI) | [NIST AI RMF 1.0 for Generative AI (GAI)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf) |
-| NIST AI Adversarial Machine Learning (AML) | [NIST AI Adversarial Machine Learning (AML)] (https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf)|
+| NIST AI Adversarial Machine Learning (AML) | [NIST AI Adversarial Machine Learning (AML)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf)|
 
 *Document was created with assistance of OpenAI ChatGPT 4o model.*
