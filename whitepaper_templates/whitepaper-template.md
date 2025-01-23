@@ -30,7 +30,7 @@ Note: Avoid using more than five heading levels.
 
 ## 6\. Acknowledgements
 
-## Workstream Leads Chairs: WS Lead Chair Name ([Chair.Name@example.com](mailto:Chair.Name@example.com)), Example Corp. (mailto: link for email address; http:// link for affiliation web site) (remove "s" from Chairs if one)
+## Workstream Leads Chairs: WS Lead Name ([Lead.Name@example.com](mailto:Lead.Name@example.com)), Example Corp. (mailto: link for email address; http:// link for affiliation web site) (remove "s" from Leads if one)
 
 ## Editors: Editor Name ([Editor.Name@example.com](mailto:Editor.Name@example.com)), Example Corp. (mailto: link for email address; http:// for affiliation web site) (remove "s" from Editors if just one)
 
