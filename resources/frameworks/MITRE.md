@@ -392,7 +392,7 @@ ATLAS includes a set of mitigation techniques and security measures to prevent o
 <!-- TOC --><a name="23-what-is-missing-for-defenders-of-ai-systems-1"></a>
 ### 2.3. What is missing for defenders of AI systems
 
-ATLAS provides a strong foundation for securing AI systems by extending adversarial tactics, techniques, and procedures (TTPs) to AI/ML. As AI Technology evolves, ATLAS will have to be adding more coverage of advanced adversarial techniques, feedback loop attacks, and supply chain risks.
+MITRE ATLAS is a strong framework for understanding adversarial tactics and techniques targeting AI systems, but it needs to evolve to cover specific adversarial techniques, AI supply chain risks, and model behavior. Furthermore, defenders of AI systems would benefit from better integration with broader cybersecurity frameworks. Addressing these gaps would enhance ATLAS's ability to support defenders in securing AI systems against increasingly sophisticated and novel threats.
 
 <!-- TOC --><a name="3-capec"></a>
 ## 3. CAPEC
