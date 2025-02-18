@@ -8,7 +8,14 @@
       - [1.1.3. Guidance provided](#113-guidance-provided)
     - [1.2. Detail on current framework](#12-detail-on-current-framework)
     - [1.3. What is missing for defenders of AI systems](#13-what-is-missing-for-defenders-of-ai-systems)
-  - [2. References](#2-references)
+  - [2. Machine Learning Security Top 10](#2-machine-learning-security-top-10)
+    - [2.1. Overview](#21-overview)
+      - [2.1.1. Scoping of AI system and/or cybersecurity purview](#211-scoping-of-ai-system-andor-cybersecurity-purview)
+      - [2.1.2. Persona addressed](#212-persona-addressed)
+      - [2.1.3. Guidance provided](#213-guidance-provided)
+    - [2.2. Detail on current framework](#22-detail-on-current-framework)
+    - [2.3. What is missing for defenders of AI systems](#23-what-is-missing-for-defenders-of-ai-systems)
+  - [3. References](#3-references)
 
 <!-- TOC end -->
 
@@ -126,12 +133,58 @@ AI security requires continuous adaptation as adversaries develop new attack tec
 
 <br><br>
 
+## 2. Machine Learning Security Top 10
 
-## 2. References
+
+### 2.1. Overview
+
+
+
+<br><br>
+
+#### 2.1.1. Scoping of AI system and/or cybersecurity purview
+
+
+
+<br>
+
+#### 2.1.2. Persona addressed
+
+
+---
+
+***Legend:***
+- **R** = Responsible (Performs the task/work)
+- **A** = Accountable (Ultimate authority and decision-maker)
+- **C** = Consulted (Provides input and expertise)
+- **I** = Informed (Kept in the loop)
+
+<br><br>
+
+#### 2.1.3. Guidance provided
+
+
+
+
+<br><br>
+
+### 2.2. Detail on current framework
+
+
+
+
+### 2.3. What is missing for defenders of AI systems
+
+
+
+<br><br>
+
+## 3. References
 
 | Framework | Referenced Material |
 | --- | --- |
 | Top 10 for LLM Applications 2025 | [Top 10 for LLM Applications 2025](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/) |
+| Machine Learning Security Top 10 | [Machine Learning Security Top 10](https://mltop10.info/) |
 
 
 *Document was created with assistance of OpenAI ChatGPT 4o model.*
