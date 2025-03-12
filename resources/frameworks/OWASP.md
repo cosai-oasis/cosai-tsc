@@ -3,11 +3,11 @@
 - [OWASP](#owasp)
   - [1. Top 10 for LLM Applications 2025](#1-top-10-for-llm-applications-2025)
     - [1.1. Overview](#11-overview)
-      - [1.1.1. Scoping of AI system and/or cybersecurity purview](#111-scoping-of-ai-system-andor-cybersecurity-purview)
-      - [1.1.2. Persona addressed](#112-persona-addressed)
-      - [1.1.3. Guidance provided](#113-guidance-provided)
-    - [1.2. Detail on current framework](#12-detail-on-current-framework)
-    - [1.3. What is missing for defenders of AI systems](#13-what-is-missing-for-defenders-of-ai-systems)
+    - [1.2. Scoping of AI system and/or cybersecurity purview](#12-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [1.3. Persona addressed](#13-persona-addressed)
+    - [1.4. Guidance provided](#14-guidance-provided)
+    - [1.5. Detail on current framework](#15-detail-on-current-framework)
+    - [1.6. What is missing for defenders of AI systems](#16-what-is-missing-for-defenders-of-ai-systems)
   - [2. References](#2-references)
 
 <!-- TOC end -->
@@ -15,7 +15,6 @@
 
 # OWASP
 
-<br><br>
 
 ## 1. Top 10 for LLM Applications 2025
 
@@ -39,7 +38,7 @@ To mitigate these risks, organizations must enforce strong input/output validati
 
 <br><br>
 
-#### 1.1.1. Scoping of AI system and/or cybersecurity purview
+### 1.2. Scoping of AI system and/or cybersecurity purview
 
 ***AI System Scoping: Components and Boundaries***
 
@@ -68,18 +67,32 @@ To mitigate these risks, organizations must enforce strong input/output validati
 
 <br>
 
-#### 1.1.2. Persona addressed
+### 1.3. Persona addressed
 
-| **Framework Component**                          | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+***Target Audience***
+
++ **CISO/SSO:** Governance of secure AI application development.
++ **Service Architects:** Designing resilient AI services against LLM-specific vulnerabilities.
++ **Security Architects:** Implementing security controls against adversarial LLM threats.
++ **IT Architects:** Securing AI deployment pipelines and infrastructure.
++ **SOC Operations:** Monitoring and detecting AI-specific attacks (e.g., prompt injection).
++ **Researchers/Data Scientists:** Securing LLMs and ensuring adversarial robustness.
+
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                          | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
 |--------------------------------------------------|--------------|-------------|--------------------|---------------|-------------------|--------------|--------------|-----------------|----------------------|----------------------|------------------|
-| **Secure Development Lifecycle (SDLC)**         | A            | R           | R                 | C             | C                 | C            | I            | C               | I                    | C                    | I                |
-| **Risk-Based Approach to LLM Security**         | A            | R           | C                 | C             | R                 | I            | C            | I               | R                    | C                    | I                |
-| **Threat Modeling for LLM Applications**        | I            | R           | C                 | C             | R                 | I            | C            | I               | R                    | C                    | I                |
-| **Secure AI Supply Chain Management**           | A            | R           | R                 | C             | R                 | C            | I            | I               | R                    | C                    | I                |
-| **Robust Access Control & Data Privacy**        | A            | R           | C                 | C             | R                 | R            | C            | C               | R                    | C                    | I                |
-| **Secure Output Handling & Content Moderation** | I            | R           | C                 | C             | R                 | R            | R            | C               | C                    | C                    | C                |
-| **AI Model Robustness & Adversarial Defense**   | I            | R           | C                 | C             | R                 | C            | R            | C               | C                    | R                    | C                |
-| **Monitoring & Incident Response**              | I            | R           | C                 | C             | R                 | R            | R            | C               | C                    | C                    | C                |
+| Secure Development Lifecycle (SDLC)         | **A**            | R           | R                 | C             | C                 | C            | I            | C               | I                    | C                    | I                |
+| Risk-Based Approach to LLM Security         | **A**            | R           | C                 | C             | R                 | I            | C            | I               | R                    | C                    | I                |
+| Threat Modeling for LLM Applications        | I            | R           | C                 | C             | **A**                 | I            | C            | I               | R                    | C                    | I                |
+| Secure AI Supply Chain Management           | **A**            | R           | R                 | C             | R                 | C            | I            | I               | R                    | C                    | I                |
+| Robust Access Control & Data Privacy        | **A**            | R           | C                 | C             | R                 | R            | C            | C               | R                    | C                    | I                |
+| Secure Output Handling & Content Moderation | I            | R           | C                 | C             | **A**                 | R            | R            | C               | C                    | C                    | C                |
+| AI Model Robustness & Adversarial Defense   | I            | R           | C                 | C             | R                 | C            | **A**            | C               | C                    | R                    | C                |
+| Monitoring & Incident Response              | I            | R           | C                 | C             | R                 | R            | **A**            | C               | C                    | C                    | C                |
 
 ---
 
@@ -88,10 +101,11 @@ To mitigate these risks, organizations must enforce strong input/output validati
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 <br><br>
 
-#### 1.1.3. Guidance provided
+### 1.4. Guidance provided
 
 The OWASP Top 10 for LLM Applications (2025) provides structured guidance to ensure secure AI system deployment, mitigate cybersecurity risks, and establish compliance with industry standards. Below is a summary of the key guidance outlined in the framework.
 
@@ -107,7 +121,7 @@ The OWASP Top 10 for LLM Applications (2025) provides structured guidance to ens
 
 <br><br>
 
-### 1.2. Detail on current framework
+### 1.5. Detail on current framework
 
 OWASP Top 10 for LLM Applications (2025) document for each risk follows a consistent structure:
 + Title & Risk Identifier (LLM01 - LLM10)
@@ -120,7 +134,7 @@ OWASP Top 10 for LLM Applications (2025) document for each risk follows a consis
 Document aligns security best practices with MITRE ATLAS tactics and provides detailed mitigation measures using "Zero Trust Model for AI", "RBAC and OAuth-Based Access Controls", "Adversarial Robustness Training", "Watermarking and Secure AI Supply Chain Management​".
 
 
-### 1.3. What is missing for defenders of AI systems
+### 1.6. What is missing for defenders of AI systems
 
 AI security requires continuous adaptation as adversaries develop new attack techniques. The OWASP Top 10 for LLM Applications must expand its scope by integrating MITRE ATLAS threat intelligence, red teaming methodologies, and AI-specific security controls. By addressing gaps in AI supply chain security, adversarial attack prevention, and incident reporting, defenders can better protect LLM applications in enterprise, cloud, and military environments.
 
@@ -132,6 +146,3 @@ AI security requires continuous adaptation as adversaries develop new attack tec
 | Framework | Referenced Material |
 | --- | --- |
 | Top 10 for LLM Applications 2025 | [Top 10 for LLM Applications 2025](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/) |
-
-
-*Document was created with assistance of OpenAI ChatGPT 4o model.*
