@@ -1,70 +1,56 @@
 <!-- TOC start -->
 
 - [NIST](#nist)
-  - [1. Cybersecurity Framework](#1-cybersecurity-framework)
-    - [1.1. NIST CSF 2.0](#11-nist-csf-20)
-      - [1.1.1. Overview](#111-overview)
-        - [1.1.1.1. Scoping of AI system and/or cybersecurity purview](#1111-scoping-of-ai-system-andor-cybersecurity-purview)
-        - [1.1.1.2. Persona addressed](#1112-persona-addressed)
-        - [1.1.1.3. Guidance provided](#1113-guidance-provided)
-      - [1.1.2. Detail on current framework](#112-detail-on-current-framework)
-        - [1.1.2.1. CSF functions and key concepts applicable to scoping AI systems](#1121-csf-functions-and-key-concepts-applicable-to-scoping-ai-systems)
-      - [1.1.3. What is missing for defenders of AI systems](#113-what-is-missing-for-defenders-of-ai-systems)
-    - [1.2. NIST RMF](#12-nist-rmf)
-      - [1.2.1. Overview](#121-overview)
-        - [1.2.1.1. Scoping of AI system and/or cybersecurity purview](#1211-scoping-of-ai-system-andor-cybersecurity-purview)
-        - [1.2.1.2. Persona addressed](#1212-persona-addressed)
-        - [1.2.1.3. Guidance provided](#1213-guidance-provided)
-      - [1.2.2. Detail on current framework](#122-detail-on-current-framework)
-      - [1.2.3. What is missing for defenders of AI systems](#123-what-is-missing-for-defenders-of-ai-systems)
-  - [2. AI Risk Management Framework](#2-ai-risk-management-framework)
-    - [2.1. NIST AI RMF 1.0](#21-nist-ai-rmf-10)
-      - [2.1.1. Overview](#211-overview)
-        - [2.1.1.1. Scoping of AI system and/or cybersecurity purview](#2111-scoping-of-ai-system-andor-cybersecurity-purview)
-        - [2.1.1.2. Persona addressed](#2112-persona-addressed)
-        - [2.1.1.2. Guidance provided](#2112-guidance-provided)
-      - [2.1.2. Detail on current framework](#212-detail-on-current-framework)
-      - [2.1.3. What is missing for defenders of AI systems](#213-what-is-missing-for-defenders-of-ai-systems)
-    - [2.2. NIST AI RMF 1.0 for Generative AI (GAI)](#22-nist-ai-rmf-10-for-generative-ai-gai)
-      - [2.2.1. Overview](#221-overview)
-        - [2.2.1.1. Scoping of AI system and/or cybersecurity purview](#2211-scoping-of-ai-system-andor-cybersecurity-purview)
-        - [2.2.1.2. Persona addressed](#2212-persona-addressed)
-        - [2.2.1.3. Guidance provided](#2213-guidance-provided)
-      - [2.2.2. Detail on current framework](#222-detail-on-current-framework)
-      - [2.2.3. What is missing for defenders of AI systems](#223-what-is-missing-for-defenders-of-ai-systems)
-    - [2.3. NIST AI Adversarial Machine Learning (AML)](#23-nist-ai-adversarial-machine-learning-aml)
-      - [2.3.1. Overview](#231-overview)
-        - [2.2.1.1. Scoping of AI system and/or cybersecurity purview](#2211-scoping-of-ai-system-andor-cybersecurity-purview-1)
-        - [2.3.1.2. Persona addressed](#2312-persona-addressed)
-        - [2.3.1.3. Guidance provided](#2313-guidance-provided)
-      - [2.3.2. Detail on current framework](#232-detail-on-current-framework)
-      - [2.3.3. What is missing for defenders of AI systems](#233-what-is-missing-for-defenders-of-ai-systems)
-  - [3. References](#3-references)
+  - [1. NIST CSF 2.0](#1-nist-csf-20)
+    - [1.1. Overview](#11-overview)
+    - [1.2. Scoping of AI system and/or cybersecurity purview](#12-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [1.3. Persona addressed](#13-persona-addressed)
+    - [1.4. Guidance provided](#14-guidance-provided)
+    - [1.5. Detail on current framework](#15-detail-on-current-framework)
+    - [1.6. What is missing for defenders of AI systems](#16-what-is-missing-for-defenders-of-ai-systems)
+  - [2. NIST RMF](#2-nist-rmf)
+    - [2.1. Overview](#21-overview)
+    - [2.2. Scoping of AI system and/or cybersecurity purview](#22-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [2.3. Persona addressed](#23-persona-addressed)
+    - [2.4. Guidance provided](#24-guidance-provided)
+    - [2.5. Detail on current framework](#25-detail-on-current-framework)
+    - [2.6. What is missing for defenders of AI systems](#26-what-is-missing-for-defenders-of-ai-systems)
+  - [3. NIST AI RMF 1.0](#3-nist-ai-rmf-10)
+    - [3.1. Overview](#31-overview)
+    - [3.2. Scoping of AI system and/or cybersecurity purview](#32-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [3.3. Persona addressed](#33-persona-addressed)
+    - [3.4. Guidance provided](#34-guidance-provided)
+    - [3.5. Detail on current framework](#35-detail-on-current-framework)
+    - [3.6. What is missing for defenders of AI systems](#36-what-is-missing-for-defenders-of-ai-systems)
+  - [4. NIST AI RMF 1.0 for Generative AI (GAI)](#4-nist-ai-rmf-10-for-generative-ai-gai)
+    - [4.1. Overview](#41-overview)
+    - [4.2. Scoping of AI system and/or cybersecurity purview](#42-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [4.3. Persona addressed](#43-persona-addressed)
+    - [4.4. Guidance provided](#44-guidance-provided)
+    - [4.5. Detail on current framework](#45-detail-on-current-framework)
+    - [4.6. What is missing for defenders of AI systems](#46-what-is-missing-for-defenders-of-ai-systems)
+  - [5. NIST AI Adversarial Machine Learning (AML)](#5-nist-ai-adversarial-machine-learning-aml)
+    - [5.1. Overview](#51-overview)
+    - [5.2. Scoping of AI system and/or cybersecurity purview](#52-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [5.3. Persona addressed](#53-persona-addressed)
+    - [5.4. Guidance provided](#54-guidance-provided)
+    - [5.5. Detail on current framework](#55-detail-on-current-framework)
+    - [5.6. What is missing for defenders of AI systems](#56-what-is-missing-for-defenders-of-ai-systems)
+  - [6. References](#6-references)
 
 <!-- TOC end -->
 
-<!-- TOC --><a name="nist"></a>
 # NIST
 
-<br><br>
+## 1. NIST CSF 2.0
 
-<!-- TOC --><a name="1-cybersecurity-framework"></a>
-## 1. Cybersecurity Framework
-
-<br><br>
-
-<!-- TOC --><a name="11-nist-csf-20"></a>
-### 1.1. NIST CSF 2.0
-
-<!-- TOC --><a name="111-overview"></a>
-#### 1.1.1. Overview
+### 1.1. Overview
 
 The NIST Cybersecurity Framework (CSF) 2.0, released in February 2024, is a flexible and non-prescriptive framework designed to help organizations manage cybersecurity risks effectively. It applies to entities of all sizes and across sectors, various missions, technologies (including AI), and regulatory environments, integrating cybersecurity with enterprise risk management.
 
 <br><br>
 
-<!-- TOC --><a name="1111-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-##### 1.1.1.1. Scoping of AI system and/or cybersecurity purview
+### 1.2. Scoping of AI system and/or cybersecurity purview
 
 The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts, including AI systems, by integrating governance, risk management, and technical safeguards into a unified framework.
 
@@ -77,40 +63,53 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 
 <br><br>
 
-<!-- TOC --><a name="1112-persona-addressed"></a>
-##### 1.1.1.2. Persona addressed
+### 1.3. Persona addressed
 
-| **CSF Function / Activity**                | **AI System Owner** | **Cybersecurity Team** | **Data Scientist / AI Engineer** | **Software Development Team** | **SRE Team** | **Software Architecture Team** | **Legal / Compliance Team** | **Executive Leadership** | **External Vendors** |
-| ------------------------------------------ | ------------------- | ---------------------- | -------------------------------- | ----------------------------- | ------------ | ------------------------------ | --------------------------- | ------------------------ | -------------------- |
-| **Govern (GV)**                            |                     |                        |                                  |                               |              |                                |                             |                          |                      |
-| Define AI cybersecurity governance scope   | R                   | A                      | C                                | C                             | I            | C                              | C                           | I                        | I                    |
-| Establish AI risk management strategy      | A                   | R                      | C                                | C                             | C            | C                              | C                           | I                        | I                    |
-| Develop supply chain risk policies for AI  | R                   | C                      | I                                | I                             | I            | C                              | A                           | I                        | R                    |
-| Define ethical AI usage guidelines         | A                   | C                      | R                                | C                             | I            | C                              | R                           | I                        | I                    |
-| **Identify (ID)**                          |                     |                        |                                  |                               |              |                                |                             |                          |                      |
-| Inventory AI systems and dependencies      | R                   | C                      | R                                | C                             | C            | C                              | I                           | I                        | C                    |
-| Conduct AI-specific risk assessments       | C                   | R                      | A                                | C                             | I            | C                              | C                           | I                        | C                    |
-| Map AI data flow and privacy risks         | R                   | C                      | R                                | C                             | I            | C                              | A                           | I                        | I                    |
-| Evaluate third-party AI components         | R                   | R                      | C                                | C                             | I            | C                              | I                           | I                        | A                    |
-| **Protect (PR)**                           |                     |                        |                                  |                               |              |                                |                             |                          |                      |
-| Implement access controls for AI systems   | C                   | R                      | C                                | C                             | R            | C                              | I                           | I                        | I                    |
-| Secure training data and models            | R                   | R                      | A                                | C                             | C            | C                              | I                           | I                        | I                    |
-| Encrypt data in AI pipelines               | I                   | R                      | A                                | C                             | R            | C                              | I                           | I                        | C                    |
-| Enforce secure software development        | C                   | R                      | A                                | R                             | C            | A                              | I                           | I                        | R                    |
-| **Detect (DE)**                            |                     |                        |                                  |                               |              |                                |                             |                          |                      |
-| Monitor AI models for adversarial inputs   | C                   | R                      | R                                | I                             | R            | C                              | I                           | I                        | C                    |
-| Detect anomalies in AI behavior            | C                   | R                      | A                                | C                             | R            | C                              | I                           | I                        | I                    |
-| Monitor AI supply chain for threats        | C                   | R                      | I                                | I                             | C            | C                              | I                           | I                        | R                    |
-| Analyze cybersecurity incidents in AI      | R                   | A                      | C                                | I                             | R            | C                              | I                           | I                        | I                    |
-| **Respond (RS)**                           |                     |                        |                                  |                               |              |                                |                             |                          |                      |
-| Activate incident response for AI attacks  | R                   | A                      | C                                | I                             | R            | C                              | C                           | I                        | C                    |
-| Mitigate data poisoning or model tampering | C                   | R                      | A                                | C                             | R            | C                              | I                           | I                        | I                    |
-| Report AI-related incidents to regulators  | I                   | R                      | C                                | I                             | I            | C                              | A                           | C                        | I                    |
-| Share threat intelligence with partners    | C                   | R                      | I                                | I                             | I            | C                              | C                           | I                        | A                    |
-| **Recover (RC)**                           |                     |                        |                                  |                               |              |                                |                             |                          |                      |
-| Rebuild or retrain compromised models      | R                   | C                      | A                                | C                             | C            | C                              | I                           | I                        | I                    |
-| Validate integrity of restored AI systems  | R                   | R                      | C                                | C                             | C            | A                              | I                           | I                        | C                    |
-| Communicate recovery progress              | I                   | R                      | C                                | I                             | C            | C                              | C                           | A                        | I                    |
+***Target Audience***
+
++ **Executives:** Strategic alignment of cybersecurity with business goals.
++ **CISO/SSO:** Enterprise-wide cybersecurity governance and policy enforcement.
++ **Service Architects:** Designing secure AI systems in alignment with organizational policies.
++ **Security Architects:** Integrating security controls and risk management into AI architecture.
++ **IT Operations:** Implementing operational security controls and incident response.
++ **Service Operations:** Maintaining operational resilience and compliance in AI services.
++ **Auditors/Policy Makers:** Auditing cybersecurity policies and regulatory compliance.
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+| ------------------------------------------ | -------------- | ------------ | ---------------------- | ----------------- | ----------------------- | ----------------- | ------------------ | ---------------------- | -------------------------- | ------------------------------- | ----------------------- |
+| **Govern (GV)**                            |                |              |                        |                   |                         |                   |                    |                        |                            |                                 |                         |
+| Define AI cybersecurity governance scope   | **A**              | R            | C                      | C                 | C                       | I                 | I                  | I                      | C                          | C                               | I                       |
+| Establish AI risk management strategy      | **A**              | R            | C                      | C                 | C                       | I                 | I                  | I                      | C                          | C                               | I                       |
+| Develop supply chain risk policies for AI  | R              | **A**            | C                      | C                 | C                       | I                 | I                  | I                      | C                          | C                               | I                       |
+| Define ethical AI usage guidelines         | **A**              | C            | R                      | C                 | C                       | I                 | I                  | I                      | C                          | C                               | I                       |
+| **Identify (ID)**                          |                |              |                        |                   |                         |                   |                    |                        |                            |                                 |                         |
+| Inventory AI systems and dependencies      | R              | C            | C                      | C                 | **A**                       | I                 | I                  | I                      | C                          | C                               | I                       |
+| Conduct AI-specific risk assessments       | C              | R            | C                      | C                 | C                       | I                 | I                  | I                      | **A**                          | C                               | I                       |
+| Map AI data flow and privacy risks         | R              | C            | C                      | C                 | C                       | I                 | I                  | I                      | **A**                          | C                               | I                       |
+| Evaluate third-party AI components         | R              | C            | C                      | C                 | C                       | I                 | I                  | I                      | **A**                          | C                               | I                       |
+| **Protect (PR)**                           |                |              |                        |                   |                         |                   |                    |                        |                            |                                 |                         |
+| Implement access controls for AI systems   | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Secure training data and models            | R              | C            | C                      | C                 | C                       | I                 | I                  | I                      | C                          | **A**                               | I                       |
+| Encrypt data in AI pipelines               | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Enforce secure software development        | C              | R            | C                      | C                 | **A**                       | I                 | I                  | I                      | C                          | C                               | I                       |
+| **Detect (DE)**                            |                |              |                        |                   |                         |                   |                    |                        |                            |                                 |                         |
+| Monitor AI models for adversarial inputs   | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Detect anomalies in AI behavior            | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Monitor AI supply chain for threats        | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Analyze cybersecurity incidents in AI      | I              | **A**            | C                      | C                 | C                       | R                 | R                  | C                      | C                          | C                               | I                       |
+| **Respond (RS)**                           |                |              |                        |                   |                         |                   |                    |                        |                            |                                 |                         |
+| Activate incident response for AI attacks  | I              | **A**            | C                      | C                 | C                       | R                 | R                  | C                      | C                          | C                               | I                       |
+| Mitigate data poisoning or model tampering | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Report AI-related incidents to regulators  | I              | R            | C                      | C                 | C                       | I                 | I                  | C                      | **A**                          | C                               | I                       |
+| Share threat intelligence with partners    | I              | R            | C                      | C                 | C                       | I                 | I                  | C                      | **A**                          | C                               | I                       |
+| **Recover (RC)**                           |                |              |                        |                   |                         |                   |                    |                        |                            |                                 |                         |
+| Rebuild or retrain compromised models      | I              | R            | C                      | C                 | C                       | I                 | I                  | C                      | C                          | **A**                               | I                       |
+| Validate integrity of restored AI systems  | I              | R            | C                      | C                 | C                       | **A**                 | R                  | C                      | C                          | C                               | I                       |
+| Communicate recovery progress              | I              | R            | C                      | C                 | C                       | I                 | I                  | C                      | **A**                          | C                               | I                       |
 
 ---
 
@@ -119,11 +118,11 @@ The NIST CSF 2.0 provides a flexible structure for scoping cybersecurity efforts
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 <br><br>
 
-<!-- TOC --><a name="1113-guidance-provided"></a>
-##### 1.1.1.3. Guidance provided
+### 1.4. Guidance provided
 
 The NIST Cybersecurity Framework (CSF) 2.0 provides guidance for organizations to manage cybersecurity risks effectively and integrate cybersecurity practices with broader enterprise risk management strategies. 
 
@@ -136,8 +135,7 @@ The NIST CSF 2.0 serves as a foundational tool to:
 
 <br><br>
 
-<!-- TOC --><a name="112-detail-on-current-framework"></a>
-#### 1.1.2. Detail on current framework
+### 1.5. Detail on current framework
 
 CSF consists of three core sections:
 
@@ -147,8 +145,7 @@ CSF consists of three core sections:
    
 <br><br>
 
-<!-- TOC --><a name="1121-csf-functions-and-key-concepts-applicable-to-scoping-ai-systems-"></a>
-##### 1.1.2.1. CSF functions and key concepts applicable to scoping AI systems #####
+**CSF functions and key concepts applicable to scoping AI systems**
 
 <br><br>
 
@@ -230,8 +227,7 @@ CSF consists of three core sections:
 
 <br><br>
 
-<!-- TOC --><a name="113-what-is-missing-for-defenders-of-ai-systems"></a>
-#### 1.1.3. What is missing for defenders of AI systems
+### 1.6. What is missing for defenders of AI systems
 
 The NIST CSF 2.0 provides a strong general framework but could be enhanced for AI system defenders by:
 
@@ -243,11 +239,9 @@ The NIST CSF 2.0 provides a strong general framework but could be enhanced for A
 
 <br><br>
 
-<!-- TOC --><a name="12-nist-rmf"></a>
-### 1.2. NIST RMF
+## 2. NIST RMF
 
-<!-- TOC --><a name="121-overview"></a>
-#### 1.2.1. Overview
+### 2.1. Overview
  
 The NIST Risk Management Framework (RMF) is a structured framework, that integrates security and privacy into the lifecycle of information systems (including AI systems). It is widely used in federal agencies and private organizations to ensure a consistent, scalable, and effective method for protecting sensitive information.
 
@@ -255,8 +249,7 @@ The RMF is mandatory for federal agencies under laws like FISMA (Federal Informa
 
 <br><br>
 
-<!-- TOC --><a name="1211-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-##### 1.2.1.1. Scoping of AI system and/or cybersecurity purview
+### 2.2. Scoping of AI system and/or cybersecurity purview
 
 In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select steps. It ensures that the boundaries of the system, its operational context, and applicable controls are well-defined to align with organizational objectives, compliance requirements, and risk management strategies.
 
@@ -272,27 +265,41 @@ In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select step
 
 <br><br>
 
-<!-- TOC --><a name="1212-persona-addressed"></a>
-##### 1.2.1.2. Persona addressed
+### 2.3. Persona addressed
 
-| **RMF Activity**                     | **Senior Accountable Official for Risk Management** | **Chief Information Officer (CIO)** | **Authorizing Official (AO)** | **Senior Agency Official for Privacy (SAOP)** | **Senior Agency Information Security Officer (SAISO)** | **System Owner** | **Control Assessor** | **System Security Officer (SSO)** | **System Privacy Officer** | **Data Scientist/AI Engineer** | **Software Development Team** | **SRE** | **Software Architecture Team** | **Common Control Provider** | **Mission/Business Owner** |  
-|--------------------------------------|----------------------------------------------------|-------------------------------------|-------------------------------|-----------------------------------------------|--------------------------------------------------------|------------------|-----------------------|-----------------------------------|---------------------------|----------------------------------|----------------------------------|-------|------------------------------|-----------------------------|-----------------------------|  
-| **Prepare**                          | A                                                | R                                   | C                             | C                                             | C                                                      | I                | I                     | I                                 | I                         | C                                | I                                | I     | C                            | C                           | A                           |  
-| Identify Risk Management Roles       | A                                                | R                                   | C                             | C                                             | R                                                      | I                | I                     | I                                 | I                         | I                                | I                                | I     | I                            | I                           | A                           |  
-| Define Risk Management Strategy      | A                                                | C                                   | R                             | C                                             | C                                                      | I                | I                     | I                                 | I                         | I                                | C                                | I     | R                            | I                           | A                           |  
-| Perform Risk Assessment              | R                                                | C                                   | A                             | C                                             | R                                                      | C                | R                     | I                                 | I                         | C                                | R                                | C     | C                            | I                           | C                           |  
-| **Categorize AI Systems**            | R                                                | C                                   | A                             | C                                             | R                                                      | R                | I                     | C                                 | C                         | R                                | R                                | C     | R                            | I                           | A                           |  
-| Identify Privacy/Security Impacts    | C                                                | C                                   | A                             | R                                             | C                                                      | R                | I                     | R                                 | C                         | R                                | R                                | I     | C                            | C                           | A                           |  
-| **Select Controls**                  | A                                                | C                                   | R                             | C                                             | R                                                      | R                | C                     | C                                 | C                         | C                                | C                                | I     | R                            | I                           | A                           |  
-| Tailor Controls to AI Systems        | A                                                | C                                   | R                             | C                                             | R                                                      | R                | C                     | R                                 | R                         | C                                | R                                | I     | R                            | I                           | A                           |  
-| **Implement Controls**               | C                                                | C                                   | A                             | C                                             | C                                                      | R                | I                     | R                                 | R                         | R                                | R                                | R     | R                            | C                           | I                           |  
-| Deploy Privacy & Security Features   | C                                                | C                                   | A                             | R                                             | R                                                      | R                | I                     | R                                 | R                         | R                                | R                                | R     | R                            | I                           | I                           |  
-| **Assess Controls**                  | C                                                | C                                   | A                             | C                                             | C                                                      | I                | R                     | R                                 | R                         | C                                | I                                | I     | C                            | C                           | I                           |  
-| Validate AI Security and Privacy     | C                                                | C                                   | A                             | C                                             | C                                                      | I                | R                     | R                                 | R                         | R                                | I                                | I     | C                            | I                           | I                           |  
-| **Authorize AI System**              | C                                                | C                                   | A                             | C                                             | C                                                      | C                | C                     | C                                 | C                         | C                                | C                                | C     | C                            | I                           | A                           |  
-| Risk Decision and Authorization      | C                                                | C                                   | A                             | C                                             | C                                                      | C                | C                     | C                                 | C                         | C                                | I                                | C     | C                            | I                           | A                           |  
-| **Monitor AI Systems**               | C                                                | C                                   | A                             | C                                             | R                                                      | R                | I                     | R                                 | R                         | C                                | R                                | R     | R                            | I                           | A                           |  
-| Continuous Monitoring Strategy       | A                                                | C                                   | R                             | C                                             | R                                                      | C                | C                     | R                                 | R                         | C                                | C                                | R     | R                            | C                           | C                           |  
+***Target Audience***
+
++ **Executives:** Risk management strategy and governance alignment.
++ **CISO/SSO:** Enterprise risk management and security compliance.
++ **IT Architects:** Secure infrastructure design and risk categorization.
++ **Security Architects:** Control selection, threat modeling, and risk assessment.
++ **IT Operations:** Implementation and monitoring of security controls.
++ **Auditors/Policy Makers:** Compliance auditing and regulatory risk management.
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                  | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|------------------------------------------|------------|----------|--------------------|---------------|---------------------|---------------|---------------|--------------------|---------------------------|-----------------------------|-----------------------|
+| **Prepare**                              | **A**          | R        | C                 | C             | I                   | I             | I             | I                  | C                         | I                           | I                     |
+| • Assign Roles and Responsibilities        | **A**          | R        | C                 | -             | -                   | -             | -             | -                  | C                         | -                           | -                     |
+| • Risk Management Strategy                | **A**          | R        | C                 | C             | -                   | -             | -             | -                  | C                         | -                           | -                     |
+| • Organization-Wide Risk Assessment        | **A**          | R        | C                 | -             | -                   | -             | -             | -                  | C                         | -                           | -                     |
+| **Categorize**                           | **A**          | R        | C                 | C             | -                   | -             | -             | -                  | C                         | -                           | -                     |
+| • Information System Categorization        | **A**          | R        | C                 | C             | R                   | -             | -             | -                  | C                         | -                           | -                     |
+| **Select**                               | **A**          | R        | C                 | C             | R                   | -             | -             | -                  | C                         | -                           | -                     |
+| • Select Security and Privacy Controls      | **A**          | R        | C                 | C             | R                   | -             | -             | -                  | C                         | -                           | -                     |
+| • Tailor Controls                           | **A**          | R        | C                 | C             | R                   | -             | -             | -                  | C                         | -                           | -                     |
+| **Implement**                            | **A**          | R        | -                 | R             | R                   | R             | C             | C                  | C                         | -                           | -                     |
+| • Implement Controls                        | **A**          | R        | -                 | R             | R                   | R             | C             | C                  | C                         | -                           | -                     |
+| **Assess**                               | **A**          | R        | C                 | C             | R                   | C             | C             | -                  | R                         | -                           | -                     |
+| • Assess Control Effectiveness             | **A**          | R        | C                 | C             | R                   | C             | C             | -                  | R                         | -                           | -                     |
+| **Authorize**                            | **A**          | R        | C                 | C             | R                   | -             | -             | -                  | R                         | -                           | -                     |
+| • Risk-Based Authorization Decision         | **A**          | R        | C                 | C             | R                   | -             | -             | -                  | R                         | -                           | -                     |
+| **Monitor**                              | **A**          | R        | -                 | C             | R                   | R             | R             | R                  | C                         | -                           | -                     |
+| • Continuous Monitoring                     | **A**          | R        | -                 | C             | R                   | R             | R             | R                  | C                         | -                           | -                     |
+| • Document Changes to System and Controls   | **A**          | R        | -                 | C             | R                   | R             | R             | R                  | C                         | -                           | -                     |
 
 ---
 
@@ -301,18 +308,17 @@ In the NIST RMF, scoping is critical to the Prepare, Categorize, and Select step
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 <br><br>
 
-<!-- TOC --><a name="1213-guidance-provided"></a>
-##### 1.2.1.3. Guidance provided
+### 2.4. Guidance provided
 
 The NIST RMF provides general risk management principles that can be tailored to address the unique risks associated with AI systems. 
 
 <br><br>
 
-<!-- TOC --><a name="122-detail-on-current-framework"></a>
-#### 1.2.2. Detail on current framework
+### 2.5. Detail on current framework
 
 Applying the NIST Risk Management Framework (RMF) to AI systems involves tailoring the framework's steps to address the unique challenges and risks associated with AI technologies. AI systems introduce complexities such as data bias, model integrity, adversarial vulnerabilities, and explainability requirements, which must be integrated into the RMF process.
 
@@ -321,17 +327,16 @@ Applying the NIST Risk Management Framework (RMF) to AI systems involves tailori
 | **RMF Step**       | **Objective**                                                                                   | **AI-Specific Tasks**                                                                                                  | **Output**                                                                                 |
 |---------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | **Prepare**         | Establish readiness to manage AI-specific risks.                                              | Define AI system boundaries, identify stakeholders, develop AI-specific risk management strategy.                      | AI-specific risk strategy and system inventory.                                           |
-| **Categorize**      | Determine the AI system’s security impact level.                                              | Evaluate sensitivity of data, assess impact of model failures, identify AI-specific vulnerabilities (e.g., adversarial). | Categorization documentation that includes AI-specific risks.                            |
+| **Categorize**      | Determine the AI system's security impact level.                                              | Evaluate sensitivity of data, assess impact of model failures, identify AI-specific vulnerabilities (e.g., adversarial). | Categorization documentation that includes AI-specific risks.                            |
 | **Select**          | Choose controls to mitigate AI risks.                                                         | Tailor controls for privacy, bias, adversarial robustness, and explainability. Integrate supply chain risk management.  | Control baselines tailored for the AI system.                                             |
-| **Implement**       | Deploy controls within the AI system’s lifecycle.                                             | Apply data governance policies, implement runtime protections, document model and data lineage.                        | Evidence of implemented controls (e.g., secure pipelines, data protection measures).      |
+| **Implement**       | Deploy controls within the AI system's lifecycle.                                             | Apply data governance policies, implement runtime protections, document model and data lineage.                        | Evidence of implemented controls (e.g., secure pipelines, data protection measures).      |
 | **Assess**          | Validate that controls mitigate AI-specific risks effectively.                                | Test for model robustness, bias detection, performance validation, and incident response readiness.                    | Security Assessment Report (SAR) with AI-specific findings.                              |
 | **Authorize**       | Approve the AI system for operation after evaluating residual risks.                          | Review ethical and regulatory compliance, evaluate residual risks with input from data scientists and legal advisors.   | Authorization decision (ATO or denial).                                                  |
 | **Monitor**         | Continuously track AI system risks and update controls as needed.                             | Monitor for model drift, detect adversarial attacks, maintain data usage logs, automate monitoring processes.           | Updated risk assessments and monitoring reports.                                          |
 
 <br><br>
 
-<!-- TOC --><a name="123-what-is-missing-for-defenders-of-ai-systems"></a>
-#### 1.2.3. What is missing for defenders of AI systems
+### 2.6. What is missing for defenders of AI systems
 
 While the RMF is adaptable, it lacks AI-specific extensions that address unique risks, such as adversarial threats, explainability, bias, and dynamic system behaviors. 
 
@@ -343,14 +348,9 @@ Defenders need:
 
 <br><br>
 
-<!-- TOC --><a name="2-ai-risk-management-framework"></a>
-## 2. AI Risk Management Framework
+## 3. NIST AI RMF 1.0
 
-<!-- TOC --><a name="21-nist-ai-rmf-10"></a>
-### 2.1. NIST AI RMF 1.0
-
-<!-- TOC --><a name="211-overview"></a>
-#### 2.1.1. Overview
+### 3.1. Overview
 
 The NIST AI RMF 1.0, published in January 2023, is a voluntary framework designed to help organizations manage risks associated with artificial intelligence (AI) systems. It aims to promote the responsible design, development, deployment, and use of AI technologies while mitigating potential harms. 
 
@@ -358,8 +358,7 @@ The NIST AI RMF serves as a comprehensive tool for organizations to navigate the
 
 <br><br>
 
-<!-- TOC --><a name="2111-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-##### 2.1.1.1. Scoping of AI system and/or cybersecurity purview
+### 3.2. Scoping of AI system and/or cybersecurity purview
 
 In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, integrity, and availability of AI systems. Scoping for cybersecurity purview involves identifying specific areas of focus to protect the AI system and its data.
 
@@ -377,35 +376,45 @@ In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, i
 
 <br><br>
 
-<!-- TOC --><a name="2112-persona-addressed"></a>
-##### 2.1.1.2. Persona addressed
+### 3.3. Persona addressed
 
+***Target Audience***
 
-| **Function / Task**                  | **AI System Owner** | **Risk Managers** | **Cybersecurity Team** | **Software Development Team** | **SRE (Site Reliability Engineering)** | **Software Architecture Team** | **Executive Leadership** | **Legal & Compliance Teams** | **External Vendors** | **Data Scientist / AI Engineer** | **End Users** | **Policy Makers / Regulators** |
-|---------------------------------------|---------------------|-------------------|-------------------------|--------------------------------|----------------------------------------|--------------------------------|-------------------------|-----------------------------|-----------------------|--------------------------------|--------------|----------------------------|
-| **1. Govern** |  |  |  |  |  |   |   |   |   |   |   |   |
-| Establish governance framework        | A                   | R                 | C                       |                                |                                        | C                              | A                       | C                           | C                     |                                |              |                            |
-| Set risk tolerance levels             | A                   | R                 | C                       |                                |                                        |                                | A                       | C                           |                       |                                |              |                            |
-| Define policies and processes         | C                   | R                 | C                       |                                |                                        | C                              | A                       | C                           | C                     |                                |              |                            |
-| Assign roles and accountability       | A                   | R                 | C                       |                                |                                        |                                | A                       | C                           |                       |                                |              |                            |
-| Integrate AI risk governance into ERM | A                   | R                 | C                       |                                |                                        | C                              | A                       | C                           |                       |                                |              |                            |
-| **2. Map**                           |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
-| Identify AI-specific risks            | R                   | R                 | C                       |                                | C                                      | C                              | C                       | C                           | C                     | A                              |              |                            |
-| Identify societal impacts of AI       | C                   | R                 |                         |                                |                                        | C                              | C                       | C                           |                       | C                              | I            | A                          |
-| Map risks to lifecycle stages         | R                   | A                 | C                       | C                              |                                        | C                              |                         |                             |                       |                                |              |                            |
-| Contextualize risks to applications   | C                   | R                 | C                       | R                              | C                                      | C                              |                         | C                           | C                     | C                              |              |                            |
-| **3. Measure**                       |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
-| Assess system performance risks       | R                   | C                 | C                       | R                              | R                                      | A                              |                         |                             |                       | R                              |              |                            |
-| Validate trustworthiness criteria     | C                   | C                 | R                       |                                |                                        | R                              |                         |                             |                       | C                              |              |                            |
-| Monitor emergent risks                | R                   | A                 | R                       | C                              | R                                      | C                              |                         |                             |                       |                                |              |                            |
-| Conduct TEVV (Testing/Evaluation)     | R                   | C                 | C                       | R                              | R                                      | A                              |                         |                             | C                     |                                |              |                            |
-| Document risk measurement processes   | C                   | R                 | C                       |                                |                                        | R                              |                         |                             |                       |                                |              |                            |
-| **4. Manage**                        |                     |                   |                         |                                |                                        |                                |                         |                             |                       |                                |              |                            |
-| Develop mitigation strategies         | R                   | R                 | C                       | C                              | R                                      | R                              | C                       | C                           |                       |                                |              |                            |
-| Prioritize risks for action           | C                   | R                 | C                       |                                | C                                      |                                | A                       |                             |                       |                                |              |                            |
-| Implement mitigation controls         | C                   | C                 | R                       | R                              | R                                      | R                              |                         |                             | C                     |                                |              |                            |
-| Monitor effectiveness of actions      | R                   | R                 | C                       |                                | R                                      | C                              |                         |                             |                       |                                |              |                            |
-| Communicate residual risks            | R                   | A                 | C                       |                                |                                        |                                | A                       | C                           | C                     |                                |              |                            |
++ **Executives:** Strategic governance, ethical AI, risk management alignment.
++ **CISO/SSO:** Implementing AI-specific risk management policies and compliance.
++ **Service Architects:** Designing AI systems with integrated risk controls.
++ **Security Architects:** Threat modeling and security design for adversarial resilience.
++ **Auditors/Policy Makers:** Ensuring AI governance, risk, and compliance reporting.
++ **Researchers/Data Scientists:** Ethical AI development and risk mitigation research.
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                  | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|---------------------------------------|---------------|--------------|------------------------|-------------------|------------------------|------------------|------------------|------------------|----------------------|------------------------|------------------|
+| **1. Govern**                        |              |             |                       |                  |                       |                 |                 |                 |                     |                       |                 |
+| Establish governance framework        | **A**             | R            | C                      | C                 | C                      | -                | -                | -                | R                    | -                      | -                |
+| Define AI risk tolerance levels       | **A**             | R            | C                      | C                 | C                      | -                | -                | -                | R                    | -                      | -                |
+| Establish policies and procedures     | **A**             | R            | C                      | C                 | R                      | -                | -                | -                | R                    | -                      | -                |
+| Assign risk management roles          | **A**             | R            | C                      | -                 | R                      | -                | -                | -                | R                    | -                      | -                |
+| **2. Map**                           |              |             |                       |                  |                       |                 |                 |                 |                     |                       |                 |
+| Identify AI-specific risks            | C             | R            | **A**                      | C                 | R                      | -                | -                | -                | R                    | R                      | -                |
+| Identify societal impacts of AI       | C             | R            | C                      | -                 | R                      | -                | -                | -                | **A**                    | C                      | I                |
+| Map risks across AI lifecycle stages  | C             | R            | **A**                      | C                 | R                      | C                | -                | -                | -                    | -                      | -                |
+| Contextualize risks to applications   | C             | R            | **A**                      | C                 | R                      | C                | -                | -                | R                    | C                      | -                |
+| **3. Measure**                       |              |             |                       |                  |                       |                 |                 |                 |                     |                       |                 |
+| Assess system performance risks       | C             | C            | **A**                      | R                 | R                      | R                | -                | -                | -                    | R                      | -                |
+| Validate trustworthiness criteria     | C             | R            | **A**                      | R                 | R                      | -                | -                | -                | -                    | C                      | -                |
+| Monitor emergent risks                | C             | R            | C                      | C                 | R                      | -                | **A**                | -                | -                    | -                      | -                |
+| Conduct TEVV (Testing, Evaluation)    | I             | R            | -                      | R                 | **A**                      | -                | C                | -                | -                    | R                      | -                |
+| Document risk measurement processes   | I             | R            | C                      | -                 | **A**                      | -                | C                | -                | -                    | -                      | -                |
+| **4. Manage**                        |              |             |                       |                  |                       |                 |                 |                 |                     |                       |                 |
+| Develop mitigation strategies         | C             | R            | C                      | R                 | **A**                      | -                | C                | -                | -                    | -                      | -                |
+| Prioritize risks for action           | C             | R            | -                      | -                 | **A**                      | -                | -                | -                | R                    | -                      | -                |
+| Implement risk mitigation controls    | I             | R            | -                      | R                 | **A**                      | R                | R                | R                | -                    | -                      | -                |
+| Monitor effectiveness of actions      | I             | R            | -                      | -                 | **A**                      | R                | R                | -                | -                    | -                      | -                |
+| Communicate residual risks            | C             | R            | -                      | -                 | R                      | -                | -                | -                | **A**                    | -                      | -                |
 
 ---
 
@@ -414,19 +423,19 @@ In the AI RMF, cybersecurity plays a key role in ensuring the confidentiality, i
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
+
 
 
 <br><br>
 
-<!-- TOC --><a name="2112-guidance-provided"></a>
-##### 2.1.1.2. Guidance provided
+### 3.4. Guidance provided
 
 The NIST AI RMF 1.0 provides actionable guidance to manage AI risks effectively, ensuring systems are trustworthy, safe, and aligned with organizational goals and societal values. It emphasizes flexibility, continuous improvement, and stakeholder collaboration to address the complexities of deploying AI responsibly.
 
 <br><br>
 
-<!-- TOC --><a name="212-detail-on-current-framework"></a>
-#### 2.1.2. Detail on current framework
+### 3.5. Detail on current framework
 
 AI RMF framework structure consists of two main sections: Framing Risk and Core Functions.
 
@@ -463,25 +472,21 @@ AI RMF framework structure consists of two main sections: Framing Risk and Core 
 
 <br><br>
 
-<!-- TOC --><a name="213-what-is-missing-for-defenders-of-ai-systems"></a>
-#### 2.1.3. What is missing for defenders of AI systems
+### 3.6. What is missing for defenders of AI systems
 
 While the NIST AI Risk Management Framework (AI RMF 1.0) provides comprehensive guidance for managing AI risks, there are areas where it could be enhanced to better address cybersecurity concerns, such as adversarial threats, malicious use, and other vulnerabilities. 
 
 <br><br>
 
-<!-- TOC --><a name="22-nist-ai-rmf-10-for-generative-ai-gai"></a>
-### 2.2. NIST AI RMF 1.0 for Generative AI (GAI)
+## 4. NIST AI RMF 1.0 for Generative AI (GAI)
 
-<!-- TOC --><a name="221-overview"></a>
-#### 2.2.1. Overview
+### 4.1. Overview
 
 NIST AI RMF 1.0 for Generative AI (GAI) provides guidance on managing risks associated with generative AI (GAI) systems. The framework offers a structured approach to managing GAI risks through proactive governance, lifecycle management, and continuous improvement based on empirical evidence and stakeholder feedback​. It is a companion resource to the NIST AI Risk Management Framework (AI RMF 1.0), addressing risks unique to generative AI.
 
 <br><br>
 
-<!-- TOC --><a name="2211-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-##### 2.2.1.1. Scoping of AI system and/or cybersecurity purview
+### 4.2. Scoping of AI system and/or cybersecurity purview
 
 As an extension of the NIST AI RMF 1.0 this framework inherits most of the characteristics of its parent. However there are some key scoping deferences specific to Generative AI.
 
@@ -503,35 +508,51 @@ As an extension of the NIST AI RMF 1.0 this framework inherits most of the chara
 
 <br><br>
 
-<!-- TOC --><a name="2212-persona-addressed"></a>
-##### 2.2.1.2. Persona addressed
+### 4.3. Persona addressed
 
+***Target Audience***
 
-| **Function / Task)** | **AI System Owner** | **Risk Managers** | **Cybersecurity Team** | **Software Development Team** | **SRE** | **Software Architecture Team** | **Executive Leadership** | **Legal & Compliance Teams** | **External Vendors** | **Data Scientist / AI Engineer** | **End Users** | **Policy Makers / Regulators** |
-|-----------------------------|----------------------|--------------------|-------------------------|--------------------------------|---------|----------------------------------|--------------------------|-----------------------------|-----------------------|----------------------------------|--------------|-------------------------------|
-| **1. Govern** |  |  |  |  |  |   |   |   |   |   |   |   |
-| Data privacy compliance                       | A                    | C                  | R                       | I                              | I       | C                                | C                        | R                           | C                     | I                                | I            | R                             |
-| Third-party vendor assessment                 | R                    | C                  | C                       | I                              | I       | C                                | I                        | R                           | A                     | I                                | I            | C                             |
-| Compliance with regulations                   | C                    | C                  | C                       | I                              | I       | I                                | R                        | A                           | I                     | I                                | I            | R                             |
-| Policy development and governance             | C                    | C                  | C                       | I                              | I       | C                                | A                        | A                           | I                     | I                                | I            | R                             |
-| Transparency and explainability               | R                    | C                  | I                       | C                              | I       | C                                | I                        | C                           | I                     | A                                | C            | R                             |
-| Legal compliance auditing                     | I                    | C                  | C                       | I                              | I       | I                                | I                        | R                           | I                     | I                                | I            | R                             |
-| Ethical AI practices and policy alignment     | C                    | R                  | C                       | I                              | I       | I                                | A                        | R                           | C                     | C                                | I            | R                             |
-| **2. Map** |  |  |  |  |  |   |   |   |   |   |   |   |
-| Define AI system scope                        | R                    | A                  | C                       | C                              | C       | C                                | I                        | I                           | C                     | R                                | I            | I                             |
-| Identify risks across lifecycle stages        | C                    | R                  | C                       | I                              | I       | C                                | A                        | C                           | I                     | C                                | I            | I                             |
-| System architecture design                    | R                    | I                  | C                       | C                              | C       | A                                | I                        | I                           | I                     | C                                | I            | I                             |
-| **3. Measure** |  |  |  |  |  |   |   |   |   |   |   |   |
-| Model training and validation                 | R                    | C                  | C                       | C                              | I       | C                                | I                        | I                           | C                     | A                                | I            | I                             |
-| Post-deployment monitoring                    | A                    | C                  | C                       | C                              | R       | C                                | I                        | C                           | I                     | C                                | I            | I                             |
-| Addressing security vulnerabilities           | I                    | C                  | R                       | C                              | R       | I                                | I                        | I                           | I                     | I                                | I            | I                             |
-| Provenance and accountability                 | A                    | C                  | C                       | C                              | C       | R                                | I                        | C                           | I                     | C                                | I            | R                             |
-| Feedback and continuous improvement           | R                    | R                  | C                       | C                              | C       | C                                | I                        | I                           | I                     | C                                | R            | I                             |
-| **4. Manage** |  |  |  |  |  |   |   |   |   |   |   |   |
-| Develop risk mitigation strategies            | C                    | R                  | C                       | C                              | I       | R                                | A                        | C                           | I                     | R                                | I            | I                             |
-| Incident response planning                    | C                    | R                  | A                       | C                              | R       | C                                | I                        | C                           | I                     | C                                | I            | I                             |
-| System deployment                             | R                    | C                  | C                       | R                              | A       | C                                | I                        | I                           | I                     | R                                | I            | I                             |
-| Stakeholder communication                     | R                    | C                  | C                       | I                              | I       | I                                | A                        | C                           | I                     | C                                | A            | C                             |
++ **Executives:** Strategic governance, risk management, and compliance for Generative AI deployment.
++ **CISO/SSO:** Establishing AI-specific security policies, risk controls, and compliance standards for GAI systems.
++ **Service Architects:** Designing secure Generative AI services, including LLMs, with integrated risk controls.
++ **IT Architects:** Secure infrastructure design and deployment pipelines for GAI models.
++ **Security Architects:** Implementing adversarial defense against prompt injection, model inversion, membership inference, and model theft.
++ **IT Operations:** Maintaining secure deployment, operational integrity, and incident response for GAI systems.
++ **SOC Operations:** Monitoring for adversarial attacks, anomalies, and threats specific to GAI models.
++ **Service Operations:** Ensuring operational security and resilience for Generative AI services.
++ **Auditors/Policy Makers:** Auditing compliance with GAI-specific security, ethical guidelines, and regulatory requirements.
++ **Researchers/Data Scientists:** Developing secure GAI models with adversarial robustness, privacy-preserving techniques, and ethical AI design.
++ **Users/Practitioners:** Adhering to security policies, ethical guidelines, and reporting security incidents in GAI usage.
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                 | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|--------------------------------------------|---------------|--------------|----------------------|----------------|-------------------|--------------|---------------|-----------------|----------------------|----------------------|------------------|
+| **1. Govern**                        |              |             |                       |                  |                       |                 |                 | 
+| Data privacy compliance                   | **A**             | R            | C                    | C              | C                 | I            | I             | I               | R                    | -                    | I                |
+| Third-party vendor assessment             | **A**             | R            | C                    | C              | R                 | I            | I             | I               | R                    | I                    | -                |
+| Compliance with regulations               | **A**             | R            | C                    | I              | I                 | -            | -             | -               | R                    | -                    | -                |
+| Policy development & governance           | **A**             | R            | C                    | I              | I                 | -            | -             | -               | R                    | -                    | -                |
+| Transparency & explainability             | **A**             | R            | C                    | C              | I                 | -            | -             | -               | R                    | C                    | I                |
+| Legal compliance auditing                 | I             | R            | C                    | -              | -                 | -            | -             | -               | **A**                   | -                    | -                |
+| Ethical AI practices & policy alignment   | **A**             | R            | C                    | I              | I                 | -            | -             | -               | R                    | C                    | I                |
+| **2. Map**                        |              |             |                       |                  |                       |                 |                 | 
+| Define AI system scope                     | **A**             | R            | C                    | R              | C                 | I            | I             | I               | C                    | C                    | I                |
+| Identify risks across lifecycle stages     | **A**             | R            | C                    | C              | R                 | I            | I             | I               | C                    | C                    | I                |
+| System architecture design                 | **A**             | C            | R                    | R              | C                 | -            | -             | -               | C                    | C                    | -                |
+| **3. Measure**                        |              |             |                       |                  |                       |                 |                 | 
+| Model training & validation               | I             | C            | C                    | C              | C                 | -            | -             | **A**               | C                    | R                    | -                |
+| Post-deployment monitoring                | I             | R            | C                    | C              | R                 | **A**            | R             | C               | C                    | C                    | I                |
+| Security vulnerability management         | I             | R            | C                    | C              | **A**                 | R            | R             | C               | C                    | -                    | -                |
+| Provenance & accountability               | **A**             | R            | C                    | C              | C                 | -            | -             | -               | C                    | C                    | -                |
+| Feedback & continuous improvement         | **A**             | R            | C                    | C              | C                 | I            | I             | I               | C                    | R                    | I                |
+| **4. Manage**                        |              |             |                       |                  |                       |                 |                 | 
+| Risk mitigation strategy development      | **A**             | R            | C                    | C              | R                 | -            | -             | -               | C                    | R                    | -                |
+| Incident response planning                | I             | R            | C                    | C              | R                 | C            | **A**             | C               | C                    | -                    | -                |
+| System deployment                         | I             | C            | C                    | R              | R                 | **A**            | -             | R               | -                    | -                    | -                |
+| Stakeholder communication                 | **A**             | R            | C                    | I              | C                 | -            | -             | -               | R                    | C                    | C                |
 
 ---
 
@@ -540,11 +561,11 @@ As an extension of the NIST AI RMF 1.0 this framework inherits most of the chara
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 <br><br>
 
-<!-- TOC --><a name="2213-guidance-provided"></a>
-##### 2.2.1.3. Guidance provided
+### 4.4. Guidance provided
 
 The NIST AI 600-1 (GUI) provides a structured framework for managing risks unique to generative AI (GAI) systems, emphasizing transparency, accountability, and adaptability. It identifies and addresses technical, misuse, and societal risks associated with GAI, such as confabulation, bias amplification, disinformation, and cybersecurity vulnerabilities. 
 
@@ -554,8 +575,7 @@ This evolving framework ensures organizations can navigate the complex and rapid
 
 <br><br>
 
-<!-- TOC --><a name="222-detail-on-current-framework"></a>
-#### 2.2.2. Detail on current framework
+### 4.5. Detail on current framework
 
 The NIST AI 600-1 Framework is a specialized companion resource to the NIST AI RMF 1.0, tailored to address risks specific to Generative Artificial Intelligence (GAI). This document provides actionable guidance for organizations to manage the unique challenges posed by generative AI systems, such as large language models (LLMs) and multimodal generative tools.
 
@@ -599,18 +619,15 @@ The NIST AI 600-1 Framework is a specialized companion resource to the NIST AI R
 
 <br><br>
 
-<!-- TOC --><a name="223-what-is-missing-for-defenders-of-ai-systems"></a>
-#### 2.2.3. What is missing for defenders of AI systems
+### 4.6. What is missing for defenders of AI systems
 
 While the NIST AI 600-1 Framework provides a comprehensive approach for managing risks associated with generative AI, several aspects critical for defenders of AI systems (e.g., cybersecurity teams, incident responders, and risk managers) are either missing or could benefit from additional detail.
 
 <br><br>
 
-<!-- TOC --><a name="23-nist-ai-adversarial-machine-learning-aml"></a>
-### 2.3. NIST AI Adversarial Machine Learning (AML)
+## 5. NIST AI Adversarial Machine Learning (AML)
 
-<!-- TOC --><a name="231-overview"></a>
-#### 2.3.1. Overview
+### 5.1. Overview
 
 The NIST AI 100-2e2023 - Adversarial Machine Learning framework provides a comprehensive taxonomy and terminology for understanding adversarial machine learning (AML), addressing the security, resilience, and trustworthiness of AI systems. It categorizes attacks based on learning stages, attacker objectives, capabilities, and knowledge levels, covering evasion, poisoning, privacy, and abuse threats across predictive and generative AI systems. 
 
@@ -620,8 +637,7 @@ It proposes mitigation strategies, including adversarial training, differential 
 
 <br><br>
 
-<!-- TOC --><a name="2311-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-##### 2.2.1.1. Scoping of AI system and/or cybersecurity purview
+### 5.2. Scoping of AI system and/or cybersecurity purview
 
 The NIST AI 100-2e2023 Framework scoping provides a detailed purview of AI systems, adversarial threats, and cybersecurity practices. It establishes clear boundaries around AI lifecycle stages, data modalities, and attack vectors, integrating AML into the broader cybersecurity landscape. 
 
@@ -649,25 +665,41 @@ The NIST AI 100-2e2023 Framework scoping provides a detailed purview of AI syste
 
 <br><br>
 
-<!-- TOC --><a name="2312-persona-addressed"></a>
-##### 2.3.1.2. Persona addressed
+### 5.3. Persona addressed
 
-| **Task/Activity**                                  | **AI System Owner** | **Risk Managers** | **Cybersecurity Team** | **Software Development Team** | **SRE** | **Software Architecture Team** | **Executive Leadership** | **Legal & Compliance Teams** | **External Vendors** | **Data Scientist / AI Engineer** | **End Users** | **Policy Makers / Regulators** |
-|----------------------------------------------------|----------------------|-------------------|-------------------------|-------------------------------|----------|-------------------------------|---------------------------|-------------------------------|------------------------|---------------------------------|-------------|----------------------------|
-| Define AML strategy and roadmap                   | R                    | A                 | C                       | C                             | C        | C                             | A                       | C                             | C                      | C                               | I           | C                          |
-| Identify and assess adversarial risks             | A                    | R                 | C                       | I                             | I        | C                             | I                       | I                             | I                      | R                               | I           | I                          |
-| Develop robust AI models and defenses             | I                    | C                 | C                       | R                             | I        | C                             | I                       | I                             | I                      | A                               | I           | I                          |
-| Implement adversarial training                    | I                    | C                 | C                       | A                             | I        | C                             | I                       | I                             | I                      | R                               | I           | I                          |
-| Perform formal verification for robustness        | C                    | C                 | R                       | A                             | I        | C                             | I                       | I                             | I                      | R                               | I           | I                          |
-| Secure AI supply chain (models and datasets)      | R                    | C                 | A                       | C                             | C        | R                             | I                       | C                             | R                      | I                               | I           | I                          |
-| Monitor AI systems for adversarial activity       | C                    | C                 | A                       | I                             | R        | C                             | I                       | I                             | I                      | I                               | I           | I                          |
-| Evaluate and validate external vendor compliance  | C                    | C                 | A                       | I                             | I        | I                             | I                       | R                             | A                      | I                               | I           | C                          |
-| Define policies and governance frameworks         | I                    | C                 | C                       | I                             | I        | I                             | R                       | A                             | I                      | I                               | I           | A                          |
-| Conduct training and awareness sessions           | R                    | R                 | C                       | I                             | I        | I                             | I                       | C                             | I                      | I                               | C           | I                          |
-| Ensure regulatory compliance                      | A                    | C                 | C                       | I                             | I        | I                             | R                       | A                             | I                      | I                               | I           | R                          |
-| Manage trade-offs: accuracy vs. robustness        | A                    | C                 | C                       | C                             | C        | R                             | R                       | I                             | I                      | C                               | I           | C                          |
-| Report adversarial risks and defenses to leaders  | C                    | R                 | C                       | I                             | I        | I                             | A                       | C                             | I                      | I                               | I           | I                          |
-| Communicate AML risks to end users                | I                    | C                 | C                       | I                             | I        | I                             | A                       | C                             | I                      | I                               | A           | I                          |
+***Target Audience***
+
++ **Executives:** Strategic risk management and governance for adversarial AI threats.
++ **CISO/SSO:** Implementing adversarial defense strategies, security policies, and compliance for AML.
++ **Service Architects:** Designing resilient AI systems with adversarial robustness and input validation.
++ **IT Architects:** Secure infrastructure design to protect against adversarial inputs and model theft.
++ **Security Architects:** Implementing advanced threat modeling, defense strategies, and countermeasures against adversarial attacks.
++ **IT Operations:** Securing deployment pipelines and maintaining operational integrity against adversarial threats.
++ **SOC Operations:** Real-time monitoring, detection, and incident response for adversarial attacks, using AI-specific threat intelligence.
++ **Service Operations:** Ensuring resilience and operational security against adversarial manipulation and output integrity attacks.
++ **Auditors/Policy Makers:** Auditing compliance with AML-specific security standards and adversarial defense policies.
++ **Researchers/Data Scientists:** Developing adversarially robust models, implementing adversarial training, and researching adversarial AI behaviors.
++ **Users/Practitioners:** Adhering to security policies and reporting anomalies related to adversarial AI behavior.
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                                | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|--------------------------------------------------|---------------|--------------|-----------------------|-------------------|-----------------------|-----------------|----------------|-------------------|-------------------------|----------------------------|--------------------|
+| Define AML strategy and governance framework    | **A**             | R            | C                     | C                 | C                     | -               | -              | -                 | C                         | -                            | -                  |
+| Identify and assess adversarial risks           | I             | **A**            | C                     | C                 | R                     | -               | -              | -                 | C                         | R                            | I                  |
+| Develop and implement robust AI models          | I             | C            | R                     | C                 | C                     | -               | -              | -                 | -                         | **A**                            | -                  |
+| Implement adversarial training                  | I             | C            | C                     | C                 | R                     | -               | -              | -                 | -                         | **A**                            | -                  |
+| Perform model security validation               | I             | R            | C                     | C                 | **A**                     | -               | -              | -                 | -                         | R                            | -                  |
+| Secure AI supply chain (datasets, models, APIs) | R             | **A**            | C                     | R                 | C                     | -               | -              | -                 | C                         | C                            | -                  |
+| Monitor AI systems for adversarial activity     | I             | C            | -                     | -                 | C                     | R               | **A**              | R                 | -                         | I                            | -                  |
+| Define regulatory compliance requirements       | C             | **A**            | C                     | -                 | C                     | -               | -              | -                 | R                         | -                            | -                  |
+| Conduct AML security audits                     | I             | C            | -                     | -                 | R                     | -               | R              | -                 | **A**                         | -                            | -                  |
+| Respond to adversarial attacks                  | I             | C            | -                     | -                 | R                     | R               | **A**              | R                 | -                         | -                            | -                  |
+| Define ethical AI usage policies                | **A**             | R            | C                     | C                 | -                     | -               | -              | -                 | **A**                         | -                            | -                  |
+| Communicate AML risks to stakeholders           | **A**             | R            | C                     | C                 | -                     | -               | -              | -                 | C                         | I                            | I                  |
+
 
 ---
 
@@ -676,19 +708,18 @@ The NIST AI 100-2e2023 Framework scoping provides a detailed purview of AI syste
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 
 <br><br>
 
-<!-- TOC --><a name="2313-guidance-provided"></a>
-##### 2.3.1.3. Guidance provided
+### 5.4. Guidance provided
 
 NIST AI 100-2e2023 Framework provides comprehensive guidance to enhance the security, robustness, and trustworthiness of AI systems. Its emphasis on lifecycle security, risk assessment, and interdisciplinary collaboration ensures that AI systems are prepared to face both current and emerging adversarial threats.
 
 <br><br>
 
-<!-- TOC --><a name="232-detail-on-current-framework"></a>
-#### 2.3.2. Detail on current framework
+### 5.5. Detail on current framework
 
 The NIST AI 100-2e2023 Framework represents a foundational step in addressing the multifaceted challenges posed by adversarial machine learning (AML). By providing a comprehensive taxonomy and terminology, the framework enables a systematic understanding of the diverse threats to AI systems and outlines actionable strategies to mitigate these risks. It establishes a much-needed bridge between the fields of AI development, cybersecurity, and policy, laying the groundwork for designing, deploying, and governing secure and trustworthy AI systems.
 
@@ -793,15 +824,13 @@ The NIST AI 100-2e2023 Framework represents a foundational step in addressing th
 
 <br><br>
 
-<!-- TOC --><a name="233-what-is-missing-for-defenders-of-ai-systems"></a>
-#### 2.3.3. What is missing for defenders of AI systems
+### 5.6. What is missing for defenders of AI systems
 
 From a defender's perspective, the NIST AI 100-2e2023 Framework provides a solid foundation for understanding adversarial risks but requires enhancements to address practical challenges. Key missing elements include detailed playbooks, incident response protocols, and tools for testing AI robustness. Defenders need more guidance on lightweight, scalable defenses, threat intelligence sharing, and securing the AI supply chain.
 
 <br><br>
 
-<!-- TOC --><a name="3-references"></a>
-## 3. References
+## 6. References
 
 | Framework | Referenced Material |
 | --- | --- |
@@ -810,5 +839,3 @@ From a defender's perspective, the NIST AI 100-2e2023 Framework provides a solid
 | NIST AI RMF 1.0 | [NIST AI RMF 1.0](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf) |
 | NIST AI RMF 1.0 for Generative AI (GAI) | [NIST AI RMF 1.0 for Generative AI (GAI)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf) |
 | NIST AI Adversarial Machine Learning (AML) | [NIST AI Adversarial Machine Learning (AML)](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf)|
-
-*Document was created with assistance of OpenAI ChatGPT 4o model.*

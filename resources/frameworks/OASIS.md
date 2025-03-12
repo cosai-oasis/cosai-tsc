@@ -1,30 +1,22 @@
 <!-- TOC start -->
 
 - [OASIS](#oasis)
-  - [1. STIX 2.1](#1-stix-21)
+  - [1. OASIS STIX 2.1](#1-oasis-stix-21)
     - [1.1. Overview](#11-overview)
-      - [1.1.1. Scoping of AI system and/or cybersecurity purview](#111-scoping-of-ai-system-andor-cybersecurity-purview)
-      - [1.1.2. Persona addressed](#112-persona-addressed)
-      - [1.1.3. Guidance provided](#113-guidance-provided)
-    - [1.2. Detail on current framework](#12-detail-on-current-framework)
-      - [1.2.1. Core Architecture](#121-core-architecture)
-      - [1.2.2. Application for AI Systems](#122-application-for-ai-systems)
-    - [1.3. What is missing for defenders of AI systems](#13-what-is-missing-for-defenders-of-ai-systems)
+    - [1.2. Scoping of AI system and/or cybersecurity purview](#12-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [1.3. Persona addressed](#13-persona-addressed)
+    - [1.4. Guidance provided](#14-guidance-provided)
+    - [1.5. Detail on current framework](#15-detail-on-current-framework)
+    - [1.6. What is missing for defenders of AI systems](#16-what-is-missing-for-defenders-of-ai-systems)
   - [2. References](#2-references)
 
 <!-- TOC end -->
 
 
-<!-- TOC --><a name="oasis"></a>
 # OASIS
 
+## 1. OASIS STIX 2.1
 
-<br><br>
-
-<!-- TOC --><a name="1-stix-21"></a>
-## 1. STIX 2.1
-
-<!-- TOC --><a name="11-overview"></a>
 ### 1.1. Overview
 
 The Structured Threat Information Expression (STIX) 2.1 framework is a robust standard designed to facilitate the exchange and representation of Cyber Threat Intelligence (CTI) in a structured, machine-readable format. As artificial intelligence becomes increasingly integrated into cybersecurity systems, defenders require robust frameworks to analyze, respond to, and prevent cyber threats. STIX 2.1, with its structured approach to Cyber Threat Intelligence (CTI), offers key advantages for AI systems defending against advanced threats. 
@@ -32,8 +24,7 @@ The Structured Threat Information Expression (STIX) 2.1 framework is a robust st
 
 <br><br>
 
-<!-- TOC --><a name="111-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-#### 1.1.1. Scoping of AI system and/or cybersecurity purview
+### 1.2. Scoping of AI system and/or cybersecurity purview
 
 
 | **Aspect**               | **AI System Scope**   | **Cybersecurity Purview**   |
@@ -48,32 +39,37 @@ The Structured Threat Information Expression (STIX) 2.1 framework is a robust st
 
 <br><br>
 
-<!-- TOC --><a name="112-persona-addressed"></a>
-#### 1.1.2. Persona addressed
+### 1.3. Persona addressed
+
+***Target Audience***
+
++ **CISO/SSO:** Strategic threat intelligence sharing and collaboration.
++ **Security Architects:** Integrating AI-specific threat intelligence for proactive defense.
++ **SOC Operations:** Real-time AI-specific threat detection and incident response.
++ **Researchers/Data Scientists:** Utilizing threat intelligence for adversarial AI research.
+
+<br><br>
+
+***Roles and Activities***
 
 
-| **Task/Responsibility**                                    | **AI Systems Defender** | **CTI Analyst** | **Threat Hunter** | **SOC Analyst** | **CTI Producer** | **CTI Consumer** | **Red Team Operator** | **Blue Team Operator** | **Researcher** | **Responder** | **Data Scientist/ML Engineer** | **Platform Developer** | **Policy Maker** | **Threat Actor** |
-|------------------------------------------------------------|--------------------------|-----------------|-------------------|-----------------|------------------|------------------|-----------------------|------------------------|----------------|---------------|-----------------------------|-----------------------|------------------|------------------|
-| **Define threat models**                                   | R                        | A               | C                 | C               | C                | I                | C                     | A                      | A              | C             | C                           | C                     | I                |                  |
-| **Analyze Indicators of Compromise (IOCs)**                | A                        | R               | R                 | A               | C                | I                |                      | C                      | C              | A             | C                           | C                     |                  |                  |
-| **Create STIX-based CTI objects**                          | C                        | R               | C                 | C               | A                | I                |                      | C                      | A              | C             | C                           | C                     |                  |                  |
-| **Automate detection using STIX patterns**                 | A                        | C               | C                 | R               | I                | C                |                      | C                      | C              | C             | R                           | A                     | I                |                  |
-| **Develop detection models for emerging threats**          | R                        | C               | C                 | I               | C                | I                | C                     | C                      | A              | I             | A                           | C                     | I                |                  |
-| **Monitor and respond to STIX-based alerts**               | R                        | I               | I                 | A               | C                | C                |                      | A                      | I              | R             | I                           | I                     |                  |                  |
-| **Generate and share CTI in STIX format**                  | C                        | R               | C                 | I               | A                | C                |                      | I                      | R              | I             | C                           | A                     |                  |                  |
-| **Investigate incidents and trace attack paths**           | I                        | C               | C                 | A               | C                | C                |                      | R                      | C              | A             | C                           | C                     |                  |                  |
-| **Simulate attack scenarios for testing**                  | C                        | C               | C                 | I               | C                | I                | A                     | R                      | I              | C             | C                           | C                     |                  |                  |
-| **Extend STIX objects with custom properties**             | R                        | C               | I                 | I               | C                | C                |                      | C                      | R              | I             | A                           | R                     | I                |                  |
-| **Integrate STIX with AI-driven platforms**                | A                        | I               | C                 | I               | I                | C                |                      | I                      | I              | I             | R                           | A                     |                  |                  |
-| **Ensure compliance with CTI sharing policies**            | I                        | I               | I                 | I               | C                | C                |                      | I                      | I              | I             | C                           | C                     | A                |                  |
-| **Map attacker behavior using STIX and MITRE ATT&CK**      | A                        | R               | R                 | A               | C                | C                |                      | R                      | C              | A             | C                           | C                     | I                |                  |
-| **Disseminate tailored CTI to partners**                   | C                        | R               | I                 | I               | A                | R                |                      | C                      | R              | I             | I                           | C                     |                  |                  |
-| **Identify vulnerabilities and recommend mitigations**     | A                        | C               | C                 | C               | C                | I                |                      | R                      | R              | C             | C                           | C                     | I                |                  |
-| **Produce intelligence on attacker motives and techniques**| C                        | R               | C                 | C               | A                | I                |                      | I                      | A              | I             | I                           | C                     |                  |                  |
-| **Exploit vulnerabilities for red-teaming purposes**       |                          |                 |                   |                 |                  |                  | R                     | C                      | I              | I             | I                           | I                     |                  | A                |
-| **Adapt AI models based on new STIX intelligence**         | A                        | C               | I                 | I               | C                | C                |                      | I                      | I              | I             | R                           | I                     |                  |                  |
-| **Develop and maintain STIX-compatible CTI platforms**     | I                        | C               | C                 | I               | C                | C                |                      | C                      | C              | I             | C                           | A                     | I                |                  |
-| **Test AI models using simulated STIX objects**            | A                        | C               | C                 | I               | I                | I                | C                     | C                      | I              | I             | A                           | C                     |                  |                  |
+| **Task/Responsibility**                                    | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|------------------------------------------------------------|---------------|-------------|---------------------|--------------|-------------------|--------------|---------------|----------------|--------------------|-------------------------|--------------------|
+| Define AI and ML Security Strategy                     | **A**             | R           | C                   | I            | R                 | -            | -             | -              | C                  | C                         | -                  |
+| Develop AI/ML Security Policies and Compliance         | R             | R           | I                   | C            | R                 | -            | -             | -              | **A**                  | C                         | -                  |
+| Design AI/ML Secure Architectures                      | I             | C           | R                   | **A**            | R                 | I            | -             | I              | I                  | C                         | -                  |
+| Implement AI-Specific Threat Intelligence in STIX 2.1  | I             | R           | C                   | C            | **A**                 | I            | C             | -              | I                  | R                         | -                  |
+| Monitor AI/ML System for Security Threats             | I             | -           | -                   | -            | C                 | R            | **A**             | C              | I                  | I                         | -                  |
+| Respond to AI-Specific Cyber Threats                  | I             | -           | -                   | -            | R                 | C            | **A**             | C              | I                  | -                         | -                  |
+| Ensure AI Model Integrity and Trustworthiness          | I             | **A**           | I                   | C            | R                 | I            | -             | -              | C                  | R                         | I                  |
+| Prevent AI Adversarial Attacks                         | I             | R           | C                   | C            | **A**                 | I            | R             | -              | I                  | R                         | -                  |
+| Secure AI Training Data from Poisoning Attacks         | I             | C           | C                   | I            | **A**                 | -            | -             | -              | R                  | R                         | -                  |
+| Audit and Assess AI/ML Security Measures               | I             | **A**           | C                   | I            | R                 | -            | -             | -              | **A**                  | C                         | -                  |
+| Incident Response for AI-Specific Cybersecurity Events | I             | -           | -                   | -            | R                 | R            | **A**             | -              | I                  | -                         | -                  |
+| Regulatory Compliance for AI/ML Systems               | R             | **A**           | I                   | C            | R                 | -            | -             | -              | C                  | -                         | -                  |
+| Integrate AI-Specific Security into IT and Business Ops| I             | R           | C                   | C            | **A**                 | R            | -             | R              | I                  | C                         | -                  |
+| Evaluate and Enhance AI Threat Detection Models        | I             | C           | C                   | I            | **A**                 | -            | R             | -              | I                  | **A**                         | -                  |
+| Training and Awareness for AI Security Practices       | **A**             | R           | C                   | C            | R                 | I            | -             | R              | I                  | C                         | R                  |
 
 ---
 
@@ -82,11 +78,11 @@ The Structured Threat Information Expression (STIX) 2.1 framework is a robust st
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 <br><br>
 
-<!-- TOC --><a name="113-guidance-provided"></a>
-#### 1.1.3. Guidance provided
+### 1.4. Guidance provided
 
 
 | **Feature**    | **Guidance**        | **Relevance for AI Systems**   |
@@ -108,11 +104,10 @@ The Structured Threat Information Expression (STIX) 2.1 framework is a robust st
 
 <br><br>
 
-<!-- TOC --><a name="12-detail-on-current-framework"></a>
-### 1.2. Detail on current framework
 
-<!-- TOC --><a name="121-core-architecture"></a>
-#### 1.2.1. Core Architecture
+### 1.5. Detail on current framework
+
+**Core Architecture**
 
 STIX models CTI as a graph comprising:
 * Nodes: STIX Domain Objects (SDOs) and Cyber-observable Objects (SCOs).
@@ -169,8 +164,7 @@ This approach allows organizations to model complex threat environments by inter
 
 <br><br>
 
-<!-- TOC --><a name="122-core-architecture"></a>
-#### 1.2.2. Application for AI Systems
+**Application for AI Systems**
 
 
 | **Application**               | **Key Focus**   | **Details**   |
@@ -186,8 +180,7 @@ This approach allows organizations to model complex threat environments by inter
 |                           | ***Extension Mechanisms***: Adds flexibility to meet custom needs.                                 | 1. Tailors intelligence for unique AI systems.<br>2. Allows seamless updates for emerging threats. |
 
 
-<!-- TOC --><a name="13-what-is-missing-for-defenders-of-ai-systems"></a>
-### 1.3. What is missing for defenders of AI systems
+### 1.6. What is missing for defenders of AI systems
 
 While STIX 2.1 is a powerful framework for sharing and representing Cyber Threat Intelligence (CTI), there are several gaps when it comes to AI system-specific threats, including adversarial attacks, model integrity, and real-time learning. Defenders of AI systems need additional tools, object types, and relationships within the STIX framework to represent and address the unique threats posed to AI, especially as these systems become more integral to cybersecurity efforts.
 
@@ -220,15 +213,8 @@ The inclusion of AI-specific elements within STIX 2.1 would provide a more compr
 
 <br><br>
 
-<br><br>
-
-
-<!-- TOC --><a name="2-references"></a>
 ## 2. References
 
 | Framework | Referenced Material |
 | --- | --- |
 | STIX 2.1 | [STIX 2.1](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.pdf) |
-
-
-*Document was created with assistance of OpenAI ChatGPT 4o model.*

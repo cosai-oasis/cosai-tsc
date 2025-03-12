@@ -1,65 +1,50 @@
 <!-- TOC start -->
 
 - [MITRE](#mitre)
-- [1. ATT\&CK](#1-attck)
-  - [1.1. Overview](#11-overview)
-    - [1.1.1. Scoping of AI system and/or cybersecurity purview](#111-scoping-of-ai-system-andor-cybersecurity-purview)
-    - [1.1.2. Persona addressed](#112-persona-addressed)
-    - [1.1.3. Guidance provided](#113-guidance-provided)
-  - [1.2. Detail on current framework](#12-detail-on-current-framework)
-  - [1.3. What is missing for defenders of AI systems](#13-what-is-missing-for-defenders-of-ai-systems)
-- [2. ATLAS](#2-atlas)
-  - [2.1. Overview](#21-overview)
-    - [2.1.1. Scoping of AI system and/or cybersecurity purview](#211-scoping-of-ai-system-andor-cybersecurity-purview)
-    - [2.1.2. Persona addressed](#212-persona-addressed)
-    - [2.1.3. Guidance provided](#213-guidance-provided)
-  - [2.2. Detail on current framework](#22-detail-on-current-framework)
-    - [2.2.1. ATLAS Matrix](#221-atlas-matrix)
-    - [2.2.2. Core Components](#222-core-components)
-      - [2.2.2.1. Tactics](#2221-tactics)
-      - [2.2.2.2. Techniques](#2222-techniques)
-      - [2.2.2.3. Procedures](#2223-procedures)
-    - [2.2.3. Attack Surface](#223-attack-surface)
-    - [2.2.4. Threat Mitigation](#224-threat-mitigation)
-  - [2.3. What is missing for defenders of AI systems](#23-what-is-missing-for-defenders-of-ai-systems)
-- [3. CAPEC](#3-capec)
-  - [3.1. Overview](#31-overview)
-    - [3.1.1. Scoping of AI system and/or cybersecurity purview](#311-scoping-of-ai-system-andor-cybersecurity-purview)
-    - [3.1.2. Persona addressed](#312-persona-addressed)
-    - [3.1.3. Guidance provided](#313-guidance-provided)
-  - [3.2. Detail on current framework](#32-detail-on-current-framework)
-  - [3.3. What is missing for defenders of AI systems](#33-what-is-missing-for-defenders-of-ai-systems)
-- [4. D3FEND](#4-d3fend)
-  - [4.1. Overview](#41-overview)
-    - [4.1.1. Scoping of AI system and/or cybersecurity purview](#411-scoping-of-ai-system-andor-cybersecurity-purview)
-    - [4.1.2. Persona addressed](#412-persona-addressed)
-    - [4.1.3. Guidance provided](#413-guidance-provided)
-  - [4.2. Detail on current framework](#42-detail-on-current-framework)
-    - [4.2.1. Core Design Principles](#421-core-design-principles)
-    - [4.2.2. Core Taxonomy](#422-core-taxonomy)
-    - [4.2.3. D3FEND Knowledge Graph](#423-d3fend-knowledge-graph)
-    - [4.2.4. Data Model and Schema](#424-data-model-and-schema)
-    - [4.2.5. D3FEND Deployment and Integration](#425-d3fend-deployment-and-integration)
-  - [4.3. What is missing for defenders of AI systems](#43-what-is-missing-for-defenders-of-ai-systems)
-- [5. References](#5-references)
+  - [1. MITRE ATT\&CK](#1-mitre-attck)
+    - [1.1. Overview](#11-overview)
+    - [1.2. Scoping of AI system and/or cybersecurity purview](#12-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [1.3. Persona addressed](#13-persona-addressed)
+    - [1.4. Guidance provided](#14-guidance-provided)
+    - [1.5. Detail on current framework](#15-detail-on-current-framework)
+    - [1.6. What is missing for defenders of AI systems](#16-what-is-missing-for-defenders-of-ai-systems)
+  - [2. MITRE ATLAS](#2-mitre-atlas)
+    - [2.1. Overview](#21-overview)
+    - [2.2. Scoping of AI system and/or cybersecurity purview](#22-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [2.3. Persona addressed](#23-persona-addressed)
+    - [2.4. Guidance provided](#24-guidance-provided)
+    - [2.5. Detail on current framework](#25-detail-on-current-framework)
+    - [2.6. What is missing for defenders of AI systems](#26-what-is-missing-for-defenders-of-ai-systems)
+  - [3. MITRE CAPEC](#3-mitre-capec)
+    - [3.1. Overview](#31-overview)
+    - [3.2. Scoping of AI system and/or cybersecurity purview](#32-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [3.3. Persona addressed](#33-persona-addressed)
+    - [3.4. Guidance provided](#34-guidance-provided)
+    - [3.5. Detail on current framework](#35-detail-on-current-framework)
+    - [3.6. What is missing for defenders of AI systems](#36-what-is-missing-for-defenders-of-ai-systems)
+  - [4. MITRE D3FEND](#4-mitre-d3fend)
+    - [4.1. Overview](#41-overview)
+    - [4.2. Scoping of AI system and/or cybersecurity purview](#42-scoping-of-ai-system-andor-cybersecurity-purview)
+    - [4.3. Persona addressed](#43-persona-addressed)
+    - [4.4. Guidance provided](#44-guidance-provided)
+    - [4.5. Detail on current framework](#45-detail-on-current-framework)
+    - [4.6. What is missing for defenders of AI systems](#46-what-is-missing-for-defenders-of-ai-systems)
+  - [5. References](#5-references)
 
 <!-- TOC end -->
 
-<!-- TOC --><a name="mitre"></a>
-## MITRE
+# MITRE
 
-<!-- TOC --><a name="1-attck"></a>
-## 1. ATT&CK
+## 1. MITRE ATT&CK
 
-<!-- TOC --><a name="11-overview"></a>
 ### 1.1. Overview
 
-The MITRE ATT&CK framework is a globally recognized, open-source knowledge base that documents real-world adversary tactics, techniques, and procedures (TTPs) across the cyber-attack lifecycle. It organizes adversary behaviors into tactics (what attackers aim to achieve) and techniques/sub-techniques (how they do it), mapped into an intuitive matrix that spans multiple domains, including enterprise, mobile, cloud, and industrial control systems (ICS). Originally focused on post-attack activities, it now also includes early-stage attacker actions like reconnaissance. 
+The MITRE ATT&CK framework is a globally recognized, open-source knowledge base that documents real-world adversary tactics, techniques, and procedures (TTPs) across the cyber-attack lifecycle. It organizes adversary behaviors into tactics (the high level goals attackers intend to achieve), techniques/sub-techniques (the specific methods to accomplish those goals), and procedures (the detailed steps an adversary would take to implement the technique). The TTPs are mapped into an intuitive matrix that spans multiple domains, including enterprise, mobile, cloud, and industrial control systems (ICS). Originally focused on post-attack activities, it now also includes early-stage attacker actions like reconnaissance. 
 
-ATT&CK serves as a practical tool for red teaming, behavioral analytics, threat intelligence enrichment, and defensive gap assessments, linking techniques to adversary groups, software, and mitigations. It provides a practical, data-driven guide to strengthening defenses against real-world threats.
+ATT&CK serves as a practical tool for red teaming, behavioral analytics, threat intelligence enrichment, and defensive gap assessments, linking techniques to adversary groups, software, and mitigations. It provides a practical, data-driven guide to strengthening defenses against real-world threats. Of note, entries in ATT&CK are drawn from publicly reported incidents or offensive research, so that the model is grounded in real-world threats and not theoretical techniques with limited utility. 
 
-<!-- TOC --><a name="111-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-#### 1.1.1. Scoping of AI system and/or cybersecurity purview
+
+### 1.2. Scoping of AI system and/or cybersecurity purview
 
 The MITRE ATT&CK framework provides a structured approach for identifying, analyzing, and addressing threats in AI systems and cybersecurity. Scoping ATT&CK for AI systems involves adapting the framework's tactics and techniques to the unique aspects of AI, while integrating it into the broader cybersecurity purview.
 
@@ -68,9 +53,9 @@ The MITRE ATT&CK framework provides a structured approach for identifying, analy
 | **Component**       | **Description**                                                  | **Relevant ATT&CK Techniques**                     |
 |----------------------|------------------------------------------------------------------|----------------------------------------------------|
 | **Data Pipeline**    | Protect data integrity, ensure secure collection and storage.   | Data Destruction (T1485), Data Manipulation (T1565) |
-| **ML Models**        | Safeguard against adversarial attacks and model theft.          | Exploit Public-Facing Applications (T1190), Adversary-in-the-Middle (T1557) |
-| **APIs and Interfaces** | Secure endpoints and prevent injection attacks.                | Input Capture (T1056), Command and Scripting Interpreter (T1059) |
-| **Infrastructure**   | Secure cloud, edge, and on-prem systems hosting AI.             | Resource Hijacking (T1496), Cloud Service Exploitation (T1586) |
+| **ML Models**        | Safeguard against adversarial attacks and model theft.          | Exploitation for Defense Evasion (T1211) |
+| **APIs and Interfaces** | Secure endpoints and prevent injection attacks.                | Exploit Public-Facing Applications (T1190) |
+| **Infrastructure**   | Secure cloud, edge, and on-prem systems hosting AI.             | Resource Hijacking (T1496), Compromise Accounts (T1586) |
 
 
 ---
@@ -80,8 +65,8 @@ The MITRE ATT&CK framework provides a structured approach for identifying, analy
 | **Tactic**            | **Description**                                                                  | **Relevant Techniques**                                       |
 |------------------------|----------------------------------------------------------------------------------|--------------------------------------------------------------|
 | **Initial Access**     | Methods used to gain unauthorized access to AI systems.                         | Phishing (T1566), Supply Chain Compromise (T1195), Valid Accounts (T1078) |
-| **Defense Evasion**    | Hiding malicious activity or bypassing defenses.                                | Indicator Removal on Host (T1070), Abuse Elevation Control Mechanism (T1574) |
-| **Privilege Escalation** | Techniques to gain elevated permissions in AI systems.                         | Exploitation for Privilege Escalation (T1068), New Service (T1201) |
+| **Defense Evasion**    | Hiding malicious activity or bypassing defenses.                                | Indicator Removal (T1070), Impair Defenses (T1562) |
+| **Privilege Escalation** | Techniques to gain elevated permissions in AI systems.                         | Exploitation for Privilege Escalation (T1068), Abuse Elevation Control Mechanism (T1548) |
 | **Command and Control** | Techniques to maintain communication with compromised AI systems.               | Encrypted Channel (T1573), Multi-Hop Proxy (T1090) |
 | **Impact**             | Techniques that manipulate AI outcomes or disrupt operations.                   | Data Manipulation (T1565), Service Stop (T1489) |
 
@@ -98,24 +83,36 @@ The MITRE ATT&CK framework provides a structured approach for identifying, analy
 
 ---
 
-<!-- TOC --><a name="112-persona-addressed"></a>
-#### 1.1.2. Persona addressed
+### 1.3. Persona addressed
+
+***Target Audience***
+
++ **CISO/SSO:** Strategic threat intelligence integration.
++ **Security Architects:** Adversarial AI threat modeling and defense design.
++ **SOC Operations:** Real-time threat detection, hunting, and incident response.
++ **Researchers/Data Scientists:** Adversarial AI research and TTPs (Tactics, Techniques, Procedures).
 
 
-| **Activity**                                | **Red Team** | **Blue Team** | **AI/ML Engineers** | **Threat Intelligence Analysts** | **Incident Responders** | **Software Architects** | **Security Architects** | **SOC Managers** | **SREs**     | **Executives & Risk Managers** | **Product Developers** |
-|---------------------------------------------|--------------|---------------|----------------------|-----------------------------------|--------------------------|--------------------------|--------------------------|-------------------|-------------|---------------------------------|-------------------------|
-| **Adversary Emulation for AI Systems**      | R            | C             | C                    | C                                 | I                        | C                        | C                        | I                 | C           | I                               | C                       |
-| **Threat Detection in AI Systems**          | -            | R             | C                    | C                                 | C                        | C                        | I                        | A                 | C           | I                               | C                       |
-| **AI-Specific Threat Intelligence Enrichment** | C          | C             | C                    | R                                 | C                        | I                        | I                        | I                 | C           | I                               | C                       |
-| **Defensive Gap Assessment for AI**         | -            | R             | C                    | C                                 | C                        | C                        | A                        | C                 | I           | I                               | -                       |
-| **SOC Maturity Assessment with AI Tools**   | I            | R             | C                    | C                                 | I                        | I                        | A                        | I                 | I           | I                               | -                       |
-| **Incident Response for AI Breaches**       | I            | C             | C                    | C                                 | R                        | C                        | C                        | A                 | R           | I                               | I                       |
-| **AI System Security Architecture Design**  | I            | C             | C                    | I                                 | C                        | R                        | R                        | A                 | C           | C                               | -                       |
-| **AI-Specific Detection Rule Development**  | I            | R             | C                    | C                                 | I                        | C                        | C                        | A                 | C           | I                               | -                       |
-| **Adversary Use of AI-Based Techniques**    | R            | C             | C                    | R                                 | I                        | C                        | I                        | I                 | C           | I                               | -                       |
-| **Product Alignment with ATT&CK for AI**    | I            | I             | C                    | I                                 | I                        | C                        | C                        | I                 | I           | C                               | R                       |
-| **AI Cybersecurity Investment Prioritization** | I         | I             | I                    | C                                 | I                        | C                        | C                        | C                 | I           | A                               | -                       |
-| **AI System Reliability & Observability**   | I            | C             | C                    | C                                 | I                        | C                        | C                        | I                 | R           | A                               | C                       |
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                                | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|---------------------------------------------|---------------|--------------|----------------------|---------------|------------------|---------------|---------------|------------------|-----------------------|----------------------------|------------------|
+| Threat Intelligence & Analysis          | I             | **A**            | C                    | C             | R                | -             | C             | -                | I                     | R                          | -                |
+| Adversary Emulation & Red Teaming       | I             | **A**            | C                    | C             | R                | -             | R             | -                | -                     | C                          | -                |
+| Threat Detection & Monitoring           | I             | **A**            | C                    | R             | R                | C             | R             | C                | I                     | C                          | -                |
+| Incident Response & Containment         | I             | R            | C                    | C             | **A**                | C             | R             | R                | -                     | -                          | -                |
+| Security Architecture & Design          | I             | **A**            | R                    | R             | R                | -             | -             | -                | -                     | C                          | -                |
+| Risk Assessment & Mitigation Planning   | **A**             | R            | C                    | C             | R                | -             | -             | -                | **A**                     | C                          | -                |
+| Defensive Gap Assessment                | I             | R            | C                    | C             | **A**                | -             | R             | -                | I                     | C                          | -                |
+| SOC Maturity Assessment                 | I             | **A**            | -                    | -             | R                | C             | R             | -                | I                     | -                          | -                |
+| Policy & Compliance Mapping             | **A**             | R            | -                    | -             | C                | -             | -             | -                | C                     | -                          | -                |
+| Security Awareness & Training           | **A**             | R            | C                    | -             | C                | C             | C             | C                | **A**                     | -                          | R                |
+| AI/ML Security Integration              | I             | R            | C                    | R             | R                | -             | -             | -                | I                     | **A**                          | -                |
+| Vulnerability & Patch Management        | I             | R            | C                    | C             | R                | **A**             | R             | -                | I                     | -                          | -                |
+| Auditing & Regulatory Compliance        | I             | R            | -                    | -             | R                | -             | -             | -                | **A**                     | -                          | -                |
+| User Access & Identity Management       | I             | R            | C                    | C             | R                | **A**             | -             | C                | I                     | -                          | R                |
 
 ---
 
@@ -124,14 +121,14 @@ The MITRE ATT&CK framework provides a structured approach for identifying, analy
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
-<!-- TOC --><a name="113-guidance-provided"></a>
-#### 1.1.3. Guidance provided
+### 1.4. Guidance provided
 
 The MITRE ATT&CK framework provides a robust foundation for securing AI systems by aligning traditional cybersecurity practices with AI-specific threats. By mapping adversary behaviors, simulating attacks, and enhancing detection capabilities, ATT&CK ensures AI systems are resilient against both known and emerging threats. Organizations can leverage ATT&CK to build a unified, proactive security posture that addresses the unique challenges posed by AI technology.
 
-<!-- TOC --><a name="12-detail-on-current-framework"></a>
-### 1.2. Detail on current framework
+
+### 1.5. Detail on current framework
 
 The MITRE ATT&CK framework provides a critical foundation for securing AI systems against emerging threats. AI systems introduce unique vulnerabilities and attack surfaces, such as adversarial inputs, data poisoning, and model theft, which require tailored applications of ATT&CK to ensure comprehensive threat coverage.
 
@@ -147,12 +144,12 @@ AI systems operate in complex environments and are susceptible to both tradition
 |-----------------------|----------------------------------------------------------|----------------------------------------------------|
 | **Data-Related**      | Data poisoning to degrade AI model performance.          | Data Manipulation (T1565), Data Destruction (T1485) |
 |                       | Data exfiltration from AI datasets or inference systems. | Exfiltration Over Web Service (T1567), Automated Exfiltration (T1020) |
-| **Model-Specific**    | Adversarial inputs misleading AI predictions.            | Command and Scripting Interpreter (T1059), Exploit Public-Facing Applications (T1190) |
-|                       | Model theft through reverse engineering or inference.    | Credential Dumping (T1003), Application Layer Protocol (T1071) |
-| **Infrastructure**    | Resource hijacking for unauthorized use (e.g., cryptomining). | Resource Hijacking (T1496), Cloud Service Exploitation (T1586) |
-|                       | API exploitation leading to malicious actions.           | Input Capture (T1056), API Abuse (T1555) |
+| **Model-Specific**    | Adversarial inputs misleading AI predictions.            | Exploitation for Defense Evasion (T1211) |
+|                       | Model theft through reverse engineering or inference.    | Exploit Public-Facing Applications (T1190) |
+| **Infrastructure**    | Resource hijacking for unauthorized use (e.g., cryptomining). | Resource Hijacking (T1496), Compromise Accounts (T1586) |
+|                       | API exploitation leading to malicious actions.           | Exploitation of Remote Services (T1210) |
 | **Lifecycle Threats** | Reconnaissance for vulnerable AI components.             | Gather Victim Network Information (T1590) |
-|                       | Manipulation of AI outputs to disrupt operations.        | Data Manipulation (T1565), Service Stop (T1489) |
+|                       | Manipulation of AI outputs to disrupt operations.        | Service Stop (T1489), Endpoint Denial of Service (T1499) |
 
 
 ***Application of ATT&CK Tactics to AI Systems***
@@ -161,7 +158,7 @@ AI systems operate in complex environments and are susceptible to both tradition
 |------------------------|------------------------------------------------------------|---------------------------------------------------|
 | **Reconnaissance**     | Discovering weak points in AI workflows.                   | Gather Victim Network Information (T1590)         |
 | **Initial Access**     | Exploiting APIs or supply chain vulnerabilities.           | Exploit Public-Facing Applications (T1190)        |
-| **Execution**          | Triggering malicious actions via adversarial inputs.       | Command and Scripting Interpreter (T1059)         |
+| **Execution**          | Triggering malicious actions via adversarial inputs.       | Exploitation of Remote Services (T1210)        |
 | **Persistence**        | Maintaining access to AI systems.                         | Account Manipulation (T1098)                      |
 | **Exfiltration**       | Stealing datasets, models, or outputs.                     | Exfiltration Over Web Service (T1567)             |
 | **Impact**             | Manipulating functionality or disrupting AI operations.    | Data Manipulation (T1565), Service Stop (T1489)   |
@@ -179,8 +176,7 @@ AI systems operate in complex environments and are susceptible to both tradition
 
 
 
-<!-- TOC --><a name="13-what-is-missing-for-defenders-of-ai-systems"></a>
-### 1.3. What is missing for defenders of AI systems
+### 1.6. What is missing for defenders of AI systems
 
 While the MITRE ATT&CK framework provides a robust structure for addressing traditional cybersecurity threats, it lacks several critical elements specific to the unique challenges posed by AI systems. Those gaps are covered by MITRE ATLAS Framework.
 
@@ -193,20 +189,18 @@ While the MITRE ATT&CK framework provides a robust structure for addressing trad
 | **Operational Integration**   | Customization is required to integrate ATT&CK into existing workflows for AI security. |
 
 
-<!-- TOC --><a name="2-atlas"></a>
-## 2. ATLAS
+## 2. MITRE ATLAS
 
-<!-- TOC --><a name="21-overview"></a>
 ### 2.1. Overview
 
-The MITRE Adversarial Threat Landscape for AI Systems (ATLAS) is a knowledge base designed to address threats to AI-enabled systems. It documents adversary tactics, techniques, and real-world attack observations while complementing the MITRE ATT&CK framework.
+The MITRE Adversarial Threat Landscape for Artificial-Intelligence Systems (ATLAS) is a knowledge base designed to address threats to AI-enabled systems. It documents adversary tactics, techniques, and real-world attack observations while complementing the MITRE ATT&CK framework.
 
-While MITRE ATT&CK remains the framework for traditional cybersecurity and adversary behaviors, MITRE ATLAS extends this model into the AI domain. ATLAS focuses on the unique adversarial threats faced by AI systems, such as model poisoning, prompt injection, and evasion attacks, complementing the capabilities of ATT&CK for a holistic view of modern cyber and AI threats.
+While MITRE ATT&CK remains the framework for traditional cybersecurity and adversary behaviors, MITRE ATLAS extends this model into the AI domain. ATLAS focuses on the unique adversarial threats faced by AI systems, such as model poisoning, prompt injection, and evasion attacks, complementing the capabilities of ATT&CK for a holistic view of modern cyber and AI threats. Like ATT&CK, ATLAS focuses on real-world documented threats rather than theoretical attacks
 
 ATLAS serves as a critical tool for understanding, simulating, and mitigating threats to AI systems. It helps stakeholders (e.g., analysts, developers, and defenders) prepare for AI-specific security challenges through shared knowledge and practical tools.
 
-<!-- TOC --><a name="211-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-#### 2.1.1. Scoping of AI system and/or cybersecurity purview
+
+### 2.2. Scoping of AI system and/or cybersecurity purview
 
 Scoping an AI system within the ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) framework involves identifying the unique components, vulnerabilities, and threats across its lifecycle. This also includes defining the boundaries of cybersecurity purview to secure the AI ecosystem comprehensively. 
 
@@ -262,26 +256,32 @@ Scoping an AI system within the ATLAS (Adversarial Threat Landscape for Artifici
 
 ---
 
-<!-- TOC --><a name="212-persona-addressed"></a>
-#### 2.1.2. Persona addressed
+### 2.3. Persona addressed
 
-| **Activity**                                | **Red Team** | **Blue Team** | **AI/ML Engineers** | **Threat Intelligence Analysts** | **Incident Responders** | **Software Architects** | **Security Architects** | **SOC Managers** | **SREs**     | **Executives & Risk Managers** | **Product Developers** |
-|---------------------------------------------|--------------|---------------|----------------------|-----------------------------------|--------------------------|--------------------------|--------------------------|-------------------|-------------|---------------------------------|-------------------------|
-| **Adversary Emulation for AI/ML Systems**   | R            | C             | C                    | C                                 | I                        | C                        | C                        | I                 | C           | I                               | C                       |
-| **Threat Detection for AI/ML Systems**      | -            | R             | C                    | C                                 | C                        | C                        | I                        | A                 | C           | I                               | C                       |
-| **AI/ML-Specific Threat Intelligence**      | C            | C             | C                    | R                                 | C                        | I                        | I                        | I                 | C           | I                               | C                       |
-| **Defensive Gap Assessment for AI/ML**      | -            | R             | C                    | C                                 | C                        | C                        | A                        | C                 | I           | I                               | -                       |
-| **SOC Maturity Assessment with AI Tools**   | I            | R             | C                    | C                                 | I                        | I                        | A                        | I                 | I           | I                               | -                       |
-| **Incident Response for AI Breaches**       | I            | C             | C                    | C                                 | R                        | C                        | C                        | A                 | R           | I                               | I                       |
-| **AI System Security Architecture Design**  | I            | C             | C                    | I                                 | C                        | R                        | R                        | A                 | C           | C                               | -                       |
-| **AI-Specific Detection Rule Development**  | I            | R             | C                    | C                                 | I                        | C                        | C                        | A                 | C           | I                               | -                       |
-| **Adversary Use of AI in Attacks**          | R            | C             | C                    | R                                 | I                        | C                        | I                        | I                 | C           | I                               | -                       |
-| **Product Alignment with ATLAS for AI**     | I            | I             | C                    | I                                 | I                        | C                        | C                        | I                 | I           | C                               | R                       |
-| **AI Cybersecurity Investment Prioritization** | I         | I             | I                    | C                                 | I                        | C                        | C                        | C                 | I           | A                               | -                       |
-| **AI System Reliability & Observability**   | I            | C             | C                    | C                                 | I                        | C                        | C                        | I                 | R           | A                               | C                       |
-| **Threat Modeling for AI/ML**               | C            | C             | R                    | C                                 | C                        | C                        | R                        | C                 | C           | I                               | -                       |
-| **AI Supply Chain Risk Assessment**         | C            | C             | C                    | R                                 | C                        | C                        | R                        | C                 | C           | A                               | C                       |
-| **Adversarial Input Detection and Mitigation** | I         | R             | C                    | C                                 | C                        | C                        | C                        | A                 | C           | I                               | -                       |
+***Target Audience***
+
++ **CISO/SSO:** Strategic threat intelligence integration.
++ **Security Architects:** Adversarial AI threat modeling and defense design.
++ **SOC Operations:** Real-time threat detection, hunting, and incident response.
++ **Researchers/Data Scientists:** Adversarial AI research and TTPs (Tactics, Techniques, Procedures).
+
+
+<br><br>
+
+***Roles and Activities***
+
+| **Activity**                    | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|--------------------------------------|--------------|--------------|----------------------|--------------|--------------------|--------------|--------------|------------------|----------------------|------------------------|------------------|
+| Identify AI systems and assets       | I            | **A**            | R                    | C            | C                  | I            | -            | -                | -                      | C                      | -                |
+| Perform AI threat assessments        | I            | **A**            | C                    | -            | R                  | I            | R            | -                | I                      | C                      | -                |
+| Implement data integrity measures    | I            | **A**            | C                    | R            | R                  | R            | R            | R                | I                      | C                      | -                |
+| Develop adversarial detection        | I            | **A**            | -                    | -            | R                  | C            | R            | -                | -                      | C                      | -                |
+| Conduct adversarial red teaming      | I            | **A**            | -                    | -            | C                  | -            | R            | -                | -                      | C                      | -                |
+| Establish monitoring and logging     | I            | **A**            | C                    | R            | R                  | R            | R            | R                | -                      | -                      | -                |
+| Create AI security mitigation plans  | I            | **A**            | C                    | C            | R                  | -            | C            | -                | I                      | C                      | -                |
+| Document and share AI incidents      | I            | **A**            | C                    | -            | R                  | I            | R            | -                | C                      | C                      | I                |
+| Maintain ATLAS framework updates     | I            | **A**            | -                    | -            | R                  | -            | R            | -                | -                      | R                      | -                |
+| Train staff on ATLAS principles      | R            | **A**            | -                    | -            | C                  | -            | R            | R                | I                      | C                      | I                |
 
 ---
 
@@ -290,24 +290,22 @@ Scoping an AI system within the ATLAS (Adversarial Threat Landscape for Artifici
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 
 
-<!-- TOC --><a name="213-guidance-provided"></a>
-#### 2.1.3. Guidance provided
+### 2.4. Guidance provided
 
 ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) provides comprehensive guidance for defending AI systems by addressing unique threats such as data poisoning, adversarial inputs, model theft, API exploitation, and AI misuse. It extends the MITRE ATT&CK framework with AI-specific tactics, techniques, and procedures (TTPs), emphasizing the need to secure AI across its lifecycle—from data preparation and model training to inference and operation. 
 
 ATLAS advocates for robust detection and mitigation strategies, including behavioral analytics, adversarial robustness testing, and strict access controls, while integrating AI into red and blue team exercises and enhancing threat intelligence. It also highlights the importance of securing AI supply chains, protecting pre-trained models and frameworks, and addressing cross-domain risks in cloud, edge, and IoT environments. 
 
 
-<!-- TOC --><a name="22-detail-on-current-framework"></a>
-### 2.2. Detail on current framework
+### 2.5. Detail on current framework
 
 The design and structure of MITRE ATLAS reflect its commitment to providing a comprehensive, adaptable framework for addressing adversarial threats to AI systems. Its integration of tactics, techniques, and real-world procedures, combined with a focus on tools and mitigations, ensures its utility across diverse AI environments. By targeting the unique vulnerabilities of AI systems, ATLAS serves as both a practical resource and a strategic guide for securing the next generation of intelligent technologies.
 
-<!-- TOC --><a name="221-atlas-matrix"></a>
-#### 2.2.1. ATLAS Matrix
+**ATLAS Matrix**
 
 The ATLAS Matrix provides a visual representation of adversary tactics and techniques, similar to the ATT&CK Matrix but adapted for AI systems. It organizes:
 
@@ -316,13 +314,11 @@ The ATLAS Matrix provides a visual representation of adversary tactics and techn
 3. Links to Procedures that document real-world use cases and observed attacks.
 
 
-<!-- TOC --><a name="222-core-components"></a>
-#### 2.2.2. Core Components
+**Core Components**
 
 The ATLAS Framework is organized into components that reflect the adversarial threat landscape of AI systems. These components include Tactics, Techniques, and Procedures (TTPs) and are designed to capture adversary behavior in both training and inference stages.
 
-<!-- TOC --><a name="2221-tactics"></a>
-##### 2.2.2.1. Tactics
+***Tactics***
 
 Tactics represent adversary goals and are categorized to address the unique operational aspects of AI systems. Each tactic defines a specific objective the adversary seeks to achieve. AI-Specific Tactics include:
 
@@ -337,8 +333,7 @@ Tactics represent adversary goals and are categorized to address the unique oper
 
 ---
 
-<!-- TOC --><a name="2222-techniques"></a>
-##### 2.2.2.2. Techniques
+***Techniques***
 
 Techniques describe the methods adversaries use to achieve their tactical objectives. These are highly specific to the AI domain and reflect the different stages of the AI lifecycle. Each technique may apply to one or more tactics. Examples of Techniques:
 
@@ -352,8 +347,7 @@ Techniques describe the methods adversaries use to achieve their tactical object
 
 ---
 
-<!-- TOC --><a name="2223-procedures"></a>
-##### 2.2.2.3. Procedures
+***Procedures***
 
 Procedures represent real-world adversary actions and implementations of techniques. These are based on observed adversarial behavior and case studies. Examples of Adversary Procedures:
 
@@ -367,8 +361,7 @@ Procedures represent real-world adversary actions and implementations of techniq
 
 ---
 
-<!-- TOC --><a name="223-attack-surface"></a>
-#### 2.2.3. Attack Surface
+**Attack Surface**
 
 | **Aspect**  | **Description**  | **Examples** |
 |-------------|------------------|--------------|
@@ -381,8 +374,8 @@ Procedures represent real-world adversary actions and implementations of techniq
 
 ---
 
-<!-- TOC --><a name="224-threat-mitigation"></a>
-#### 2.2.4. Threat Mitigation
+
+**Threat Mitigation**
 
 ATLAS includes a set of mitigation techniques and security measures to prevent or reduce the impact of adversarial attacks:
 
@@ -401,22 +394,22 @@ ATLAS includes a set of mitigation techniques and security measures to prevent o
 
 ---
 
-<!-- TOC --><a name="23-what-is-missing-for-defenders-of-ai-systems"></a>
-### 2.3. What is missing for defenders of AI systems
+
+### 2.6. What is missing for defenders of AI systems
 
 MITRE ATLAS is a strong framework for understanding adversarial tactics and techniques targeting AI systems, but it needs to evolve to cover specific adversarial techniques, AI supply chain risks, and model behavior. Furthermore, defenders of AI systems would benefit from better integration with broader cybersecurity frameworks. Addressing these gaps would enhance ATLAS's ability to support defenders in securing AI systems against increasingly sophisticated and novel threats.
 
-<!-- TOC --><a name="3-capec"></a>
-## 3. CAPEC
+While ATLAS provides detail on adversarial tactics and techniques, its stated goal is a knowledge base, and does not help defenders prioritize mitigations and countermeasures. Its target audience of developers, incident responders, and security analysts means that it is not easily understood by executives and risk compliance, as it focuses on individual tactics rather than helping make decisions based on a higher level risk management framework.
 
-<!-- TOC --><a name="31-overview"></a>
+
+## 3. MITRE CAPEC
+
 ### 3.1. Overview
 
 The Common Attack Pattern Enumeration and Classification (CAPEC) is a standardized, community-driven framework for understanding, categorizing, and mitigating cyber-attack techniques. It provides a structured taxonomy of attack patterns that describe methods attackers use to exploit software systems. While CAPEC is not designed to defend AI systems it is relevant for AI-based systems focused on cybersecurity, as it provides machine-readable, systematic descriptions of attacks that can be used to enhance threat detection, prevention, and response capabilities.
 
 
-<!-- TOC --><a name="311-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-#### 3.1.1. Scoping of AI system and/or cybersecurity purview
+### 3.2. Scoping of AI system and/or cybersecurity purview
 
 CAPEC is not designed to scope cybersecurity of AI system. However it can be very valuable framework to aid building AI based cybersecurity systems.
 
@@ -432,22 +425,33 @@ CAPEC is not designed to scope cybersecurity of AI system. However it can be ver
 | **Predictive Threat Analysis**      | CAPEC attack lifecycle context allows AI to predict emerging threats and preemptively respond.        | AI predicts new attacks based on historical CAPEC data and prioritizes preemptive mitigations.              |
 
 
-<!-- TOC --><a name="312-persona-addressed"></a>
-#### 3.1.2. Persona addressed
+### 3.3. Persona addressed
 
-| **Task/Activity**                                 | **AI Engineer**                 | **Cybersecurity Analyst**      | **SOC Analyst**                | **Incident Manager**            | **Executive Leadership**        | **Software Architect**          | **Software Developer**          | **SME**                         | **Data Scientist**              |
-|---------------------------------------------------|---------------------------------|--------------------------------|--------------------------------|---------------------------------|---------------------------------|---------------------------------|---------------------------------|---------------------------------|---------------------------------|
-| **Integrate CAPEC into AI Systems**               | R                               | C                              | I                              | I                              | I                              | A                               | C                               | C                               | R                               |
-| **Threat Modeling Using CAPEC**                   | C                               | R                              | C                              | A                              | I                              | R                               | C                               | C                               | C                               |
-| **Train AI Models with CAPEC Data**               | R                               | C                              | I                              | I                              | I                              | C                               | I                               | C                               | R                               |
-| **Identify CAPEC Attack Patterns**                | C                               | R                              | C                              | A                              | I                              | C                               | I                               | R                               | C                               |
-| **Automate Threat Detection Using CAPEC**         | R                               | C                              | I                              | A                              | I                              | C                               | I                               | C                               | R                               |
-| **Vulnerability Assessment and Simulation**       | C                               | R                              | I                              | A                              | I                              | R                               | R                               | C                               | C                               |
-| **Incident Response and Mitigation**              | I                               | C                              | R                              | A                              | I                              | I                               | I                               | C                               | I                               |
-| **Maintain and Update CAPEC Data**                | R                               | R                              | I                              | A                              | I                              | C                               | I                               | R                               | C                               |
-| **Align CAPEC with Threat Intelligence (STIX/TAXII)** | C                            | R                              | C                              | A                              | I                              | C                               | I                               | R                               | C                               |
-| **Report CAPEC-Based Threat Insights**            | C                               | R                              | I                              | A                              | I                              | I                               | I                               | R                               | C                               |
-| **CAPEC Training and Awareness**                  | C                               | R                              | C                              | I                              | A                              | C                               | I                               | R                               | C                               |
+***Target Audience***
+
++ **CISO/SSO:** Implementing adversarial defense strategies and security controls informed by CAPEC attack patterns.
++ **Security Architects:** Advanced threat modeling, risk assessment, and security design using CAPEC AI-specific attack patterns.
++ **SOC Operations:** Real-time monitoring, detection, and incident response for adversarial AI attacks.
++ **Researchers/Data Scientists:** Investigating adversarial attack methodologies and developing adversarially robust models.
+
+
+<br><br>
+
+***Roles and Activities***
+
+| **Task/Activity**                                 | **Executives** | **CISO/SSO** | **Service Architects** | **IT Architects** | **Security Architects** | **IT Operations** | **SOC Operations** | **Service Operations** | **Auditors/Policy Makers** | **Researchers/Data Scientists** | **Users/Practitioners** |
+|---------------------------------------------------|---------------|--------------|-----------------------|-------------------|----------------------|----------------|----------------|------------------|----------------------|---------------------------|---------------------|
+| Integrate CAPEC into AI Systems               | I             | **A**            | R                     | C                 | C                    | I              | I              | I                | C                      | R                         | I                   |
+| Threat Modeling Using CAPEC                   | I             | **A**            | R                     | R                 | R                    | I              | C              | I                | C                      | C                         | -                   |
+| Train AI Models with CAPEC Data               | I             | C            | **A**                     | C                 | C                    | -              | I              | R                | -                      | R                         | -                   |
+| Identify CAPEC Attack Patterns                | I             | **A**            | R                     | C                 | R                    | -              | R              | I                | C                      | C                         | -                   |
+| Automate Threat Detection Using CAPEC         | I             | **A**            | C                     | C                 | R                    | I              | R              | I                | C                      | C                         | -                   |
+| Vulnerability Assessment and Simulation       | I             | **A**            | C                     | R                 | R                    | -              | R              | I                | C                      | C                         | -                   |
+| Incident Response and Mitigation              | I             | **A**            | -                     | -                 | R                    | I              | R              | I                | C                      | -                         | I                   |
+| Maintain and Update CAPEC Data                | I             | C            | C                     | C                 | R                    | -              | R              | I                | **A**                      | R                         | -                   |
+| Align CAPEC with Threat Intelligence | I         | **A**            | C                     | R                 | R                    | -              | R              | I                | C                      | C                         | -                   |
+| Report CAPEC-Based Threat Insights            | I             | **A**            | C                     | C                 | R                    | -              | R              | I                | R                      | C                         | -                   |
+| CAPEC Training and Awareness                  | I             | **A**            | C                     | C                 | R                    | I              | C              | I                | R                      | R                         | I                   |
 
 ---
 
@@ -456,15 +460,15 @@ CAPEC is not designed to scope cybersecurity of AI system. However it can be ver
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 
-<!-- TOC --><a name="313-guidance-provided"></a>
-#### 3.1.3. Guidance provided
+### 3.4. Guidance provided
 
 CAPEC provides a robust foundation for AI systems to improve cybersecurity automation, detection, prediction, and response, making it useful for AI-driven security solutions. However it doesn't provide any guidance for AI systems security.
 
-<!-- TOC --><a name="32-detail-on-current-framework"></a>
-### 3.2. Detail on current framework
+
+### 3.5. Detail on current framework
 
 CAPEC provides a comprehensive, structured foundation that AI systems can leverage to detect, analyze, and mitigate cyber-attacks effectively. By combining CAPEC with AI pattern recognition, behavioral analysis, and automation capabilities, organizations can significantly enhance their cybersecurity posture throughout the threat lifecycle.
 
@@ -494,46 +498,52 @@ CAPEC provides a comprehensive, structured foundation that AI systems can levera
 | **Real-Time Threat Intelligence**  | CAPEC integrates with live feeds for real-time attack detection and counteractions.              | Correlate threat feeds with CAPEC patterns to detect and block ongoing attacks.                    |
 
 
-
-<!-- TOC --><a name="33-what-is-missing-for-defenders-of-ai-systems"></a>
-### 3.3. What is missing for defenders of AI systems
+### 3.6. What is missing for defenders of AI systems
 
 CAPEC focuses primarily on traditional software and system vulnerabilities but does not include AI-specific attack patterns. It integrates with CWE, which is focused on general software vulnerabilities but lacks specificity for AI. While CAPEC is well-suited for traditional IT systems but does not sufficiently address emerging AI-specific security domains.
 
-<!-- TOC --><a name="4-d3fend"></a>
-## 4. D3FEND
+## 4. MITRE D3FEND
 
-<!-- TOC --><a name="41-overview"></a>
 ### 4.1. Overview
 
 The MITRE D3FEND framework represents a rigorously structured, semantically enriched knowledge base designed to systematically characterize cybersecurity countermeasures in relation to offensive tactics and techniques, as delineated by the MITRE ATT&CK framework. By employing an ontologically grounded knowledge graph, D3FEND elucidates the precise mechanisms by which defensive strategies mitigate adversarial threats, thereby enabling a more nuanced understanding of cybersecurity resilience. Its application extends across security architects, red and blue teams, and threat intelligence analysts, facilitating a more evidence-based, adaptive, and scalable paradigm for cyber threat mitigation and strategic security planning.
 
 
-<!-- TOC --><a name="411-scoping-of-ai-system-andor-cybersecurity-purview"></a>
-#### 4.1.1. Scoping of AI system and/or cybersecurity purview
+### 4.2. Scoping of AI system and/or cybersecurity purview
 
 D3FEND provides a comprehensive scoping framework for securing AI systems within the broader cybersecurity purview. By defining AI-specific security threats, defensive techniques, cybersecurity controls, and governance alignment, D3FEND enables AI security professionals, threat hunters, and enterprise architects to proactively mitigate AI security risks.
 
 As AI security threats continue evolving, D3FEND's structured, adaptive, and machine-readable approach will remain critical in defining, automating, and enforcing AI security best practices across enterprises, governments, and critical infrastructure sectors. 
 
 
-<!-- TOC --><a name="412-persona-addressed"></a>
-#### 4.1.2. Persona addressed
+### 4.3. Persona addressed
 
-| Task / Activity  | Executives | CISO/SSO | Service Architects | IT Architects | Security Architects | IT Operations | SOC Operations | Service Operations | Auditors/Policy Makers | Researchers/Data Scientists | Users/Practitioners |
+***Target Audience***
+
++ **Security Architects:** Defensive countermeasure design against adversarial AI threats.
++ **SOC Operations:** Implementing and monitoring AI defensive measures.
++ **IT Operations:** Ensuring operational deployment of D3FEND countermeasures.
++ **Service Architects:** Integrating countermeasures into AI service design.
+
+
+<br><br>
+
+***Roles and Activities***
+
+| Activity  | Executives | CISO/SSO | Service Architects | IT Architects | Security Architects | IT Operations | SOC Operations | Service Operations | Auditors/Policy Makers | Researchers/Data Scientists | Users/Practitioners |
 |------------------|------------|-----------|--------------------|--------------|---------------------|--------------|---------------|-----------------|---------------------|------------------------|------------------|
-| Define cybersecurity strategy using D3FEND | A          | R        | C                  | I            | C                   | I            | I             | I               | C                   | C                      | I                |
-| Integrate D3FEND into enterprise security architecture | I          | A        | R                  | R            | R                   | C            | I             | I               | C                   | C                      | I                |
-| Develop AI security countermeasures using D3FEND | I          | I        | C                  | C            | R                   | I            | C             | I               | I                   | R                      | C                |
-| Align D3FEND security controls with compliance frameworks | I          | A        | C                  | I            | R                   | I            | I             | I               | R                   | C                      | I                |
-| Threat modeling and mapping ATT&CK to D3FEND | I          | R        | C                  | C            | R                   | I            | R             | C               | C                   | C                      | I                |
-| SOC implementation of D3FEND-based monitoring | I          | C        | C                  | C            | C                   | I            | R             | C               | I                   | I                      | I                |
-| Incident response & investigation using D3FEND | I          | C        | C                  | C            | C                   | C            | R             | C               | I                   | I                      | I                |
-| AI security risk assessment leveraging D3FEND | C          | R        | C                  | C            | R                   | I            | I             | I               | C                   | R                      | I                |
-| Implementation of D3FEND security controls in AI models | I          | I        | C                  | R            | R                   | R            | I             | C               | C                   | R                      | C                |
-| Development of AI security best practices with D3FEND | I          | C        | C                  | C            | C                   | C            | C             | C               | A                   | R                      | C                |
-| Research on AI threat detection and mitigation via D3FEND | I          | I        | I                  | C            | C                   | C            | C             | C               | C                   | A                      | C                |
-| Security awareness and training on D3FEND | I          | R        | C                  | C            | R                   | C            | C             | C               | C                   | C                      | A                |
+| Define cybersecurity strategy using D3FEND | **A**          | R        | C                  | I            | C                   | I            | I             | I               | C                   | C                      | -                |
+| Integrate D3FEND into enterprise security architecture | I          | **A**        | R                  | R            | R                   | C            | I             | I               | C                   | C                      | -                |
+| Develop AI security countermeasures using D3FEND | I          | I        | C                  | C            | **A**                   | I            | R             | R               | I                   | R                      | -                |
+| Align D3FEND security controls with compliance frameworks | I          | **A**        | C                  | I            | R                   | I            | I             | I               | R                   | C                      | -                |
+| Threat modeling and mapping ATT&CK to D3FEND | I          | R        | C                  | C            | **A**                   | I            | R             | C               | C                   | C                      | -                |
+| SOC implementation of D3FEND-based monitoring | I          | C        | C                  | C            | **A**                   | I            | R             | C               | I                   | I                      | -                |
+| Incident response & investigation using D3FEND | I          | C        | C                  | C            | **A**                   | C            | R             | C               | I                   | I                      | -                |
+| AI security risk assessment leveraging D3FEND | C          | R        | C                  | C            | **A**                   | I            | I             | I               | C                   | R                      | -                |
+| Implementation of D3FEND security controls in AI models | I          | I        | C                  | R            | **A**                   | R            | I             | C               | C                   | R                      | -                |
+| Development of AI security best practices with D3FEND | I          | C        | C                  | C            | **A**                   | C            | C             | C               | **A**                   | R                      | -                |
+| Research on AI threat detection and mitigation via D3FEND | I          | I        | I                  | C            | **A**                   | C            | C             | C               | C                   | **A**                      | -                |
+| Security awareness and training on D3FEND | **A**          | R        | C                  | C            | R                   | C            | C             | C               | C                   | C                      |  I              |
 
 ---
 
@@ -542,20 +552,18 @@ As AI security threats continue evolving, D3FEND's structured, adaptive, and mac
 - **A** = Accountable (Ultimate authority and decision-maker)
 - **C** = Consulted (Provides input and expertise)
 - **I** = Informed (Kept in the loop)
+- **"-"** = No direct involvement
 
 
-<!-- TOC --><a name="413-guidance-provided"></a>
-#### 4.1.3. Guidance provided
+### 4.4. Guidance provided
 
 The MITRE D3FEND framework provides structured defensive cybersecurity guidance that can be directly applied to AI systems, particularly in securing machine learning models, AI-driven decision-making, and autonomous security architectures. Given the unique attack surfaces introduced by AI systems, D3FEND helps organizations map, implement, and automate cybersecurity controls to protect AI models from adversarial attacks, data manipulation, and exploitation.
 
-<!-- TOC --><a name="42-detail-on-current-framework"></a>
-### 4.2. Detail on current framework
+### 4.5. Detail on current framework
 
 The MITRE D3FEND framework is an ontology-driven cybersecurity knowledge base designed to systematically categorize, relate, and structure cybersecurity countermeasures in a way that is machine-readable, semantically rigorous, and actionable. It complements MITRE ATT&CK by providing a defensive knowledge model that helps security practitioners map, analyze, and implement cybersecurity defenses.
 
-<!-- TOC --><a name="421-core-design-principles"></a>
-#### 4.2.1. Core Design Principles
+**Core Design Principles**
 
 | **Design Principle**                     | **Description** |
 |-------------------------------------------|--------------------------------------------------------------|
@@ -566,8 +574,7 @@ The MITRE D3FEND framework is an ontology-driven cybersecurity knowledge base de
 | **Graph-Based Structure**                | Uses knowledge graph principles to model relationships between threats, countermeasures, and security controls. |
 | **Machine Learning and AI Readiness**    | Supports AI-driven security automation, anomaly detection, and adversarial machine learning defense strategies. |
 
-<!-- TOC --><a name="422-taxonomy"></a>
-#### 4.2.2. Core Taxonomy
+**Core Taxonomy**
 
 D3FEND categorizes cybersecurity defensive techniques into structured domains, which define the different layers of security controls.
 
@@ -580,8 +587,8 @@ D3FEND categorizes cybersecurity defensive techniques into structured domains, w
 | **Endpoint Security & Hardening**     | Protection mechanisms that secure devices and applications from exploitation. |
 | **Security Monitoring & Threat Detection** | Techniques to detect, log, and analyze cybersecurity threats in real time. |
 
-<!-- TOC --><a name="423-core-knowledge-graph"></a>
-#### 4.2.3. D3FEND Knowledge Graph
+
+**D3FEND Knowledge Graph**
 
 D3FEND is structured as a graph-based knowledge model, where nodes represent different security concepts, and edges define relationships between them.
 
@@ -599,8 +606,8 @@ D3FEND is structured as a graph-based knowledge model, where nodes represent dif
 + Enhances - Shows how a technique strengthens another defense (e.g., AI-driven anomaly detection enhances traditional log analysis).
 + Correlates - Establishes links between threat intelligence indicators and defensive techniques.
 
-<!-- TOC --><a name="424-data-model-and-schema"></a>
-#### 4.2.4. Data Model and Schema
+
+**Data Model and Schema**
 
 | **Attribute**            | **Description** |
 |--------------------------|--------------------------------------------------------------|
@@ -612,8 +619,8 @@ D3FEND is structured as a graph-based knowledge model, where nodes represent dif
 | **Effectiveness**        | Metrics, evidence, and case studies demonstrating the technique's effectiveness. |
 | **Data Sources**         | Required logs, telemetry, or forensic artifacts needed for detection and analysis. |
 
-<!-- TOC --><a name="425-deployment-and-integration"></a>
-#### 4.2.5. D3FEND Deployment and Integration
+
+**D3FEND Deployment and Integration**
 
 ***Security Architecture Integration***
 
@@ -631,8 +638,8 @@ D3FEND is particularly valuable in AI-driven cybersecurity, where it enables:
 + Intelligent security automation for self-adaptive cyber defenses.
 
 
-<!-- TOC --><a name="43-what-is-missing-for-defenders-of-ai-systems"></a>
-### 4.3. What is missing for defenders of AI systems
+
+### 4.6. What is missing for defenders of AI systems
 
 D3FEND is primarily designed for mapping defensive cybersecurity techniques to known adversarial TTPs from MITRE ATT&CK, focusing on traditional cybersecurity defenses rather than AI security. At this point D3FEND does not yet integrate AI-specific threat mappings covered by MITRE ATLAS. There are no current D3FEND techniques explicitly addressing adversarial ML, model robustness, AI compliance, or LLM security, indicating gaps in AI security defense strategies.
 
@@ -646,8 +653,8 @@ D3FEND is primarily designed for mapping defensive cybersecurity techniques to k
 | Model Robustness & Integrity Verification | There are no defined defensive techniques in D3FEND for verifying AI model robustness against adversarial ML attacks, including model evasion and inversion attacks. |
 | Secure AI Model Access & API Protections  | D3FEND does not outline access control mechanisms specific to AI models, including protections against API abuse, unauthorized access, and model inversion attacks. |
 
+<br><br>
 
-<!-- TOC --><a name="5-references"></a>
 ## 5. References
 
 | Framework | Referenced Material |
@@ -656,5 +663,3 @@ D3FEND is primarily designed for mapping defensive cybersecurity techniques to k
 | MITRE ATLAS | [MITRE ATLAS](https://atlas.mitre.org/) |
 | MITRE CAPEC | [MITRE CAPEC](https://capec.mitre.org/) |
 | MITRE D3FEND | [MITRE D3FEND](https://d3fend.mitre.org/) |
-
-*Document was created with assistance of OpenAI ChatGPT 4o model.*
