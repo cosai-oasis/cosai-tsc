@@ -1,7 +1,8 @@
 # Onboarding information for new Workstream members
 
 Welcome to CoSAI! CoSAI is an Open Source project, so anyone can get involved and start contributing by joining a workstream (WS) mailing list, attending WS meetings, submitting an issue or a PR to a CoSAI repository, or by participating in other official project tool. 
-Every CoSAI contributor is required to sign a Contributor License Agreement (CLA). You can sign the CLA at this link: [https://cla-assistant.io/cosai-oasis/oasis-open-project](https://cla-assistant.io/cosai-oasis/oasis-open-project).
+
+**Every CoSAI contributor is required to sign a Contributor License Agreement (CLA).** You can sign the CLA at this link: [https://cla-assistant.io/cosai-oasis/oasis-open-project](https://cla-assistant.io/cosai-oasis/oasis-open-project).
 
 ## CoSAI Governance and Code of Conduct
 We suggest you take a look at the [CoSAI Governance](https://github.com/cosai-oasis/oasis-open-project/blob/main/GOVERNANCE.md) and the [Workstream Governance](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md).
@@ -38,7 +39,7 @@ The goal of this workstream is to research and develop secure design patterns fo
 * [Link to workstream 4 GitHub repository](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems)
 
 ## Google Drive
-CoSAI participants also use a Google Drive for draft documents. Once you join a workstream, we will add you to the access group for the WS folder. Please note, that in order to get **write** access, you need to sign [the CLA](https://cla-assistant.io/cosai-oasis/oasis-open-project).
+CoSAI participants also use a Google Drive for draft documents. Once you join a workstream, you will be added to either the read or write group for the WS folder. **Please note:** write access is dependent on the signed [CLA](https://cla-assistant.io/cosai-oasis/oasis-open-project).
 
 ## Slack
 Join the CoSAI Slack [via this link](https://join.slack.com/t/cosai-op/shared_invite/zt-2rbgqtolg-GdajCyOiddYtGJ3cSdk1Jg).
