@@ -1,3 +1,0 @@
-# AI Regulations
-
-Placeholder
