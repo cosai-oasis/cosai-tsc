@@ -1,0 +1,64 @@
+<mxfile host="Electron" modified="2025-03-11T18:37:26.029Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="Q2Hh-fSeqhVvxdas4cE0" version="24.2.5" type="device">
+  <diagram name="Page-1" id="GANiJUj63k5gLe6JUFVs">
+    <mxGraphModel dx="812" dy="443" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zKr0SYVUYA967J5vDxl2-1" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.25;endAngle=0.75;arcWidth=0.25;fillColor=#10739E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="410" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-2" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.75;endAngle=0.25;arcWidth=0.25;fillColor=#F2931E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="255" y="410" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-3" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.25;endAngle=0.75;arcWidth=0.25;fillColor=#AE4132;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="360" y="410" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-4" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.75;endAngle=0.25;arcWidth=0.25;fillColor=#23445D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="465" y="410" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-5" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.25;endAngle=0.75;arcWidth=0.25;fillColor=#12AAB5;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="570" y="410" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-6" value="1" style="shape=ellipse;strokeWidth=6;strokeColor=#10739E;fontSize=15;html=1;whiteSpace=wrap;fontStyle=1;fontColor=#10739E;" vertex="1" parent="1">
+          <mxGeometry x="185" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-7" value="2" style="shape=ellipse;strokeWidth=6;strokeColor=#F2931E;fontSize=15;html=1;whiteSpace=wrap;fontStyle=1;fontColor=#F2931E;" vertex="1" parent="1">
+          <mxGeometry x="290" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-8" value="3" style="shape=ellipse;strokeWidth=6;strokeColor=#AE4132;fontSize=15;html=1;whiteSpace=wrap;fontStyle=1;fontColor=#AE4132;" vertex="1" parent="1">
+          <mxGeometry x="395" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-9" value="4" style="shape=ellipse;strokeWidth=6;strokeColor=#23445D;fontSize=15;html=1;whiteSpace=wrap;fontStyle=1;fontColor=#23445D;" vertex="1" parent="1">
+          <mxGeometry x="500" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-10" value="5" style="shape=ellipse;strokeWidth=6;strokeColor=#12AAB5;fontSize=15;html=1;whiteSpace=wrap;fontStyle=1;fontColor=#12AAB5;" vertex="1" parent="1">
+          <mxGeometry x="605" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-11" value="&lt;font style=&quot;&quot;&gt;&lt;font color=&quot;#10739e&quot;&gt;&lt;b&gt;AI Model &amp;amp; Data Supply Chain Security&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=top;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="150" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-12" value="&lt;font color=&quot;#f2931e&quot;&gt;&lt;b&gt;Secure AI Model Deployment &amp;amp; Runtime Protection&lt;/b&gt;&lt;/font&gt;" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=top;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="255" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-13" value="&lt;font color=&quot;#ae4132&quot;&gt;&lt;b&gt;Zero Trust for AI Systems&lt;/b&gt;&lt;/font&gt;" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=top;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="360" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-14" value="&lt;font color=&quot;#23445d&quot;&gt;&lt;b&gt;AI Security Awareness and Red Teaming&lt;/b&gt;&lt;/font&gt;" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=top;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="465" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-15" value="&lt;font style=&quot;font-size: 10px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#12AAB5&quot;&gt;&lt;b&gt;AI-Specific Threat Intelligence &amp;amp;&amp;nbsp; Detection&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=top;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="570" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-19" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0.75;endAngle=0.25;arcWidth=0.25;fillColor=#330066;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="680" y="410" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-20" value="&lt;font color=&quot;#330066&quot;&gt;6&lt;/font&gt;" style="shape=ellipse;strokeWidth=6;strokeColor=#330066;fontSize=15;html=1;whiteSpace=wrap;fontStyle=1;fontColor=#F2931E;" vertex="1" parent="1">
+          <mxGeometry x="715" y="445" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zKr0SYVUYA967J5vDxl2-22" value="&lt;b style=&quot;&quot;&gt;&lt;font color=&quot;#330066&quot;&gt;AI-Specific Incident Response &amp;amp; SOC Automation&lt;/font&gt;&lt;/b&gt;" style="rounded=1;strokeColor=none;fillColor=#EEEEEE;align=center;arcSize=12;verticalAlign=top;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
