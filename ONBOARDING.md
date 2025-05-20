@@ -34,7 +34,7 @@ The goal of this workstream is to develop a defender’s framework to identify n
 Workstream 3 contributors are working to develop a security-focused risk and controls taxonomy, checklist, and scorecard to guide practitioners in readiness assessments, management, monitoring, and reporting of their AI products, services, and components. 
 * [Link to workstream 3 GitHub repository](https://github.com/cosai-oasis/ws3-ai-risk-governance)
 
-### Workstream 4: Secure Design Patterns for Agentic Systems Workstream
+### Workstream 4: Secure Design Patterns for Agentic Systems 
 The goal of this workstream is to research and develop secure design patterns for AI-based agentic systems including updates to AI usage threat models, conceptual high-level secure design pattern(s), impacts to secure infrastructure design, and other agent integration and use based needs.
 * [Link to workstream 4 GitHub repository](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems)
 
