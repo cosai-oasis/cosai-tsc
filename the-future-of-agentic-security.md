@@ -408,7 +408,6 @@ The future of work is not humans or agents. It is a chat channel where you canno
 >
 > ![Open Research Problems: EDR and Oversight](diagrams/research-edr-oversight.svg)
 
-\newpage
 
 ## Conclusion: Balancing Utility and Control
 
