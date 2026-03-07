@@ -1,6 +1,6 @@
 ---
 title: "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
-author: ddlb
+author: tbd
 date: 6-Mar-2026
 version: 1.0
 ---
@@ -86,7 +86,7 @@ sequenceDiagram
 > * **Provable Robustness against IPI**  
 > Mathematically proving an LLM will *never* execute an injected instruction from an untrusted log file is currently considered theoretically impossible (akin to the halting problem for semantic execution). That is because even if the model passes all known red‑team tests, you cannot prove that future, adversarially‑crafted content won’t cause an unsafe interpretation. The space of possible inputs is infinite, and natural‑language instructions are too expressive to constrain with complete formal/deterministic security guarantees.
 >
-> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity.svg)
+> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity.svg)<!--{width=55%}-->
 
 
 ---
@@ -162,8 +162,9 @@ sequenceDiagram
 > * **Inter-Agent Semantic Health Attestation**  
 > Establishing zero-trust verification between agents—ensuring Agent B can verify Agent A's internal cognitive state hasn't been covertly poisoned before accepting a request—is an unsolved area of multi-agent systems research.
 >
-> ![Open Research Problems: Authorization and Attestation](diagrams/research-authorization-attestation.svg)
+> ![Open Research Problems: Authorization and Attestation](diagrams/research-authorization-attestation.svg)<!--{width=55%}-->
 
+<!--\newpage-->
 
 ---
 
@@ -246,7 +247,7 @@ sequenceDiagram
 > * **Dynamic Context Impersonation at Scale**  
 > Securely mapping a human user's complex entitlement graph to an autonomous agent traversing multiple enterprise systems asynchronously is highly error-prone and lacks standardized protocols.  
 >
-> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity-v2.svg)
+> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity-v2.svg)<!--{width=55%}-->
 
 ---
 
@@ -330,7 +331,7 @@ This is not hypothetical, this is how some of the most advanced AI adoption comp
 > * **Mitigating Automation Bias in UX**  
 > Research struggles with designing UX/UI for HITL that mathematically degrades human trust when an agent's internal confidence is low or when logic jumps are detected in a PR review.
 >
-> ![Open Research Problems: Control, Boundaries, and CI/CD](diagrams/research-control-boundaries.svg)
+> ![Open Research Problems: Control, Boundaries, and CI/CD](diagrams/research-control-boundaries.svg)<!--{width=55%}-->
 
 
 ---
@@ -406,8 +407,9 @@ The future of work is not humans or agents. It is a chat channel where you canno
 > * **Low-Latency Intent Parsing**  
 > Real-time ADR requires analyzing continuous token streams for malicious intent before an action is executed. Accomplishing this without introducing unacceptable system latency or requiring massive parallel AI-on-AI compute overhead remains a major engineering and research hurdle.
 >
-> ![Open Research Problems: EDR and Oversight](diagrams/research-edr-oversight.svg)
+> ![Open Research Problems: EDR and Oversight](diagrams/research-edr-oversight.svg)<!--{width=55%}-->
 
+<!--\newpage-->
 
 ## Conclusion: Balancing Utility and Control
 
