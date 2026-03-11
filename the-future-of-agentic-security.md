@@ -45,8 +45,9 @@ These are not gaps awaiting incremental engineering; they represent areas where 
 
 ### The 2 A.M. Incident
 
-At 2 a.m. on a quiet weeknight, an alert fired inside a CoSAI member's infrastructure: an outage was underway. No human had noticed yet. But something else had. An autonomous on-call agent, built on an agent SDK, snapped awake. It had been dormant, sleeping until exactly this kind of moment. Within seconds, it entered an agentic loop, pulling logs, scanning monitoring dashboards, and reading internal documentation. Its first real action was social: it created a Slack channel, dropped itself in, and queried the corporate on-call schedule, pulling in the current shift—a unified rotation of human engineers and specialized AI agents (see Figure 1).
+At 2 a.m. on a quiet weeknight, an alert fired inside a CoSAI member's infrastructure: an outage was underway. No human had noticed yet. But something else had. An autonomous on-call agent, built on an agent SDK, snapped awake. It had been dormant, sleeping until exactly this kind of moment. Within seconds, it entered an agentic loop, pulling logs, scanning monitoring dashboards, and reading internal documentation. Its first real action was social: it created a Slack channel, dropped itself in, and queried the corporate on-call schedule, pulling in the current shift—a unified rotation of human engineers and specialized AI agents (see [Autonomous Activation](#fig-autonomous-activation)).
 
+<!--{#fig-autonomous-activation}-->
 ```mermaid
 ---
 title: "Autonomous Activation: From Alert to Incident Bridge"
@@ -112,9 +113,9 @@ sequenceDiagram
 > * **NHI Identity Binding**  
 > Cryptographically binding a dynamically downscoping IAM token to a generative cognitive loop remains an unsolved architectural challenge. How do we attest that the identity requesting the token hasn't been fundamentally altered by its context window?  
 > * **Provable Robustness against IPI**  
-> Mathematically proving an LLM will *never* execute an injected instruction from an untrusted log file is currently considered theoretically impossible (akin to the halting problem for semantic execution). That is because even if the model passes all known red‑team tests, you cannot prove that future, adversarially‑crafted content won’t cause an unsafe interpretation. The space of possible inputs is infinite, and natural‑language instructions are too expressive to constrain with complete formal/deterministic security guarantees (see Figure 2).
+> Mathematically proving an LLM will *never* execute an injected instruction from an untrusted log file is currently considered theoretically impossible (akin to the halting problem for semantic execution). That is because even if the model passes all known red-team tests, you cannot prove that future, adversarially-crafted content won’t cause an unsafe interpretation. The space of possible inputs is infinite, and natural-language instructions are too expressive to constrain with complete formal/deterministic security guarantees (see [Research: Privilege, Identity and Access](#fig-research-privilege-identity)).
 >
-> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity.svg)<!--{width=55%}-->
+> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity.svg)<!--{#fig-research-privilege-identity width=55%}-->
 
 
 ---
@@ -123,8 +124,9 @@ sequenceDiagram
 
 Next, the on-call agent traced the outage to a code push from hours earlier, by reading the push logs. It read the stack trace, identified the offending change, and then did something unmistakably new: it reached out to a designated remediation agent in the Slack channel, one explicitly scoped and authorized to draft code patches during active incidents, and asked it for help. In plain English, on Slack, one AI said to another: "Can you write the code change that would solve this problem for me?" The second agent responded, reviewed the issue, and produced a fix.
  
- The on-call agent posts: "Thank you, this is very helpful." The coding agent responds: "You're welcome! Happy to help!" (see Figure 3).
+ The on-call agent posts: "Thank you, this is very helpful." The coding agent responds: "You're welcome! Happy to help!" (see [Agent-to-Agent Delegation](#fig-agent-delegation)).
 
+<!--{#fig-agent-delegation}-->
 ```mermaid
 ---
 title: "Agent-to-Agent Delegation: Natural Language as API"
@@ -188,9 +190,9 @@ sequenceDiagram
 > * **Intent-Based Authorization**  
 > Securing "Natural Language APIs" requires authorizing the *intent* of a prompt, which current RBAC/ABAC models cannot fundamentally do.  
 > * **Inter-Agent Semantic Health Attestation**  
-> Establishing zero-trust verification between agents—ensuring Agent B can verify Agent A's internal cognitive state hasn't been covertly poisoned before accepting a request—is an unsolved area of multi-agent systems research (see Figure 4).
+> Establishing zero-trust verification between agents—ensuring Agent B can verify Agent A's internal cognitive state hasn't been covertly poisoned before accepting a request—is an unsolved area of multi-agent systems research (see [Research: Authorization and Attestation](#fig-research-authorization)).
 >
-> ![Open Research Problems: Authorization and Attestation](diagrams/research-authorization-attestation.svg)<!--{width=55%}-->
+> ![Open Research Problems: Authorization and Attestation](diagrams/research-authorization-attestation.svg)<!--{#fig-research-authorization width=55%}-->
 
 <!--\newpage-->
 
@@ -198,8 +200,9 @@ sequenceDiagram
 
 ### Who Owns This Code?
 
-In parallel, the on-call agent reached out to a third agent—a specialized knowledge-retrieval bot built and authorized to map internal documentation and organizational topology during events—and asked it for the most recent code owner and best contacts for this feature. It pulled them into the channel (see Figure 5).
+In parallel, the on-call agent reached out to a third agent—a specialized knowledge-retrieval bot built and authorized to map internal documentation and organizational topology during events—and asked it for the most recent code owner and best contacts for this feature. It pulled them into the channel (see [Swarm Expansion](#fig-swarm-expansion)).
 
+<!--{#fig-swarm-expansion}-->
 ```mermaid
 ---
 title: "Swarm Expansion: Knowledge Retrieval and Human Discovery"
@@ -273,16 +276,17 @@ sequenceDiagram
 > * **The Semantic Mosaic Effect**  
 > Creating DLP systems that can detect semantic exfiltration—where the agent infers and leaks a secret without quoting the source text directly—is an unsolved data security problem.  
 > * **Dynamic Context Impersonation at Scale**  
-> Securely mapping a human user's complex entitlement graph to an autonomous agent traversing multiple enterprise systems asynchronously is highly error-prone and lacks standardized protocols (see Figure 6).
+> Securely mapping a human user's complex entitlement graph to an autonomous agent traversing multiple enterprise systems asynchronously is highly error-prone and lacks standardized protocols (see [Research: Privilege, Identity and Access v2](#fig-research-privilege-v2)).
 >
-> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity-v2.svg)<!--{width=55%}-->
+> ![Open Research Problems: Privilege, Identity and Access](diagrams/research-privilege-identity-v2.svg)<!--{#fig-research-privilege-v2 width=55%}-->
 
 ---
 
 ### The Human on the Loop
 
-By the time the human on-caller checked their phone ten minutes after the page, the root cause had been identified, a code fix was written, and a pull request was sitting in review, waiting for a human to approve and deploy. The entire investigation and remediation had been drafted by agents collaborating with each other in a channel where humans could watch every step unfold in real time (see Figure 7).
+By the time the human on-caller checked their phone ten minutes after the page, the root cause had been identified, a code fix was written, and a pull request was sitting in review, waiting for a human to approve and deploy. The entire investigation and remediation had been drafted by agents collaborating with each other in a channel where humans could watch every step unfold in real time (see [Human-on-the-Loop](#fig-human-on-loop)).
 
+<!--{#fig-human-on-loop}-->
 ```mermaid
 ---
 title: "Human-on-the-Loop: From Agent Draft to Human Approval"
@@ -357,9 +361,9 @@ This is not hypothetical, this is how some of the most advanced AI adoption comp
 > * **Reverse-Engineering State Drift**  
 > If a human *does* invoke a "glass break" protocol to let an agent hotfix production during a catastrophic CI/CD failure, how do we build agents capable of reliably reverse-engineering that live state change back into a declarative Git PR post-incident to restore parity?  
 > * **Mitigating Automation Bias in UX**  
-> Research struggles with designing UX/UI for HITL that mathematically degrades human trust when an agent's internal confidence is low or when logic jumps are detected in a PR review (see Figure 8).
+> Research struggles with designing UX/UI for HITL that mathematically degrades human trust when an agent's internal confidence is low or when logic jumps are detected in a PR review (see [Research: Control, Boundaries, and CI/CD](#fig-research-control-boundaries)).
 >
-> ![Open Research Problems: Control, Boundaries, and CI/CD](diagrams/research-control-boundaries.svg)<!--{width=55%}-->
+> ![Open Research Problems: Control, Boundaries, and CI/CD](diagrams/research-control-boundaries.svg)<!--{#fig-research-control-boundaries width=55%}-->
 
 <!--\newpage-->
 
@@ -369,8 +373,9 @@ This is not hypothetical, this is how some of the most advanced AI adoption comp
 
 For the security industry, this shift creates a new frontier. Traditional endpoint detection and response (EDR) systems were built to monitor operating-system-level activity on laptops and servers. But when work happens inside a virtual machine running an AI agent loop, those sensors are blind. A new category, sometimes called ADR (Agent Detection and Response), is emerging to fill the gap. The agent platforms themselves are becoming the new endpoints, and the companies building them know it.
 
-What makes frontier approaches remarkable is not just the technology but the philosophy: agents should work where humans work, communicate in human language, and leave a trail that anyone on the team can follow. The most powerful orchestration layer for autonomous AI, it turns out, is not a custom protocol or a proprietary bus or any other new technical solution. It is a chat channel with a few bots and a few people, all working the same incident together at 2 a.m, following the principle of least privilege (see Figure 9).
+What makes frontier approaches remarkable is not just the technology but the philosophy: agents should work where humans work, communicate in human language, and leave a trail that anyone on the team can follow. The most powerful orchestration layer for autonomous AI, it turns out, is not a custom protocol or a proprietary bus or any other new technical solution. It is a chat channel with a few bots and a few people, all working the same incident together at 2 a.m, following the principle of least privilege (see [Orchestration Bus](#fig-orchestration-bus)).
 
+<!--{#fig-orchestration-bus}-->
 ```mermaid
 ---
 title: "The Chat Channel as Orchestration Bus and Security Perimeter"
@@ -434,9 +439,9 @@ The future of work is not humans or agents. It is a chat channel where you canno
 > * **Semantic Telemetry Standardization**  
 > There is no industry standard format (analogous to Syslog or CloudTrail) for logging "cognitive events," memory modifications, or agent reasoning steps.  
 > * **Low-Latency Intent Parsing**  
-> Real-time ADR requires analyzing continuous token streams for malicious intent before an action is executed. Accomplishing this without introducing unacceptable system latency or requiring massive parallel AI-on-AI compute overhead remains a major engineering and research hurdle (see Figure 10).
+> Real-time ADR requires analyzing continuous token streams for malicious intent before an action is executed. Accomplishing this without introducing unacceptable system latency or requiring massive parallel AI-on-AI compute overhead remains a major engineering and research hurdle (see [Research: EDR and Oversight](#fig-research-edr-oversight)).
 >
-> ![Open Research Problems: EDR and Oversight](diagrams/research-edr-oversight.svg)<!--{width=55%}-->
+> ![Open Research Problems: EDR and Oversight](diagrams/research-edr-oversight.svg)<!--{#fig-research-edr-oversight width=55%}-->
 
 <!--\newpage-->
 
