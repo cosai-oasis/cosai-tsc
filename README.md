@@ -8,11 +8,11 @@ This Repository is for the work of the CoSAI Technical Steering Committee (TSC).
 
 You can find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
 
-The governance docuement for the work of this TSC can be found [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md).
+The governance document for the work of this TSC can be found [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md).
 
 ## What's in this Repository
 
-In this repository, you can find meeting minutes and documentation of policies that have be created and approved by the TSC, like the [Contributing](./CONTRIBUTING.md) and [Maintainer](./MAINTAINERS.md) policies.
+In this repository, you can find meeting minutes and documentation of policies that have be created and approved by the TSC, like the [Contributing](./CONTRIBUTING.md) and [Maintainer](./MAINTAINERS.md) policies. This repository also includes organization level documents created by workstreams and approved by the TSC such as the [CoSAI Principles for Secure-by-Design Agentic Systems](./security-principles-for-agentic-systems.md).
 
 ## Governance and Licenses
 
