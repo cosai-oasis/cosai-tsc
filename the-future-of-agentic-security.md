@@ -1,7 +1,7 @@
 ---
 title: "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
-author: tbd
-date: 6-Mar-2026
+author: Coalition for Secure AI
+date: 16-Mar-2026
 version: 1.0
 ---
 
