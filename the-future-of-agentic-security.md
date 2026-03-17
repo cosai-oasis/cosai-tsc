@@ -164,7 +164,7 @@ sequenceDiagram
 >
 > #### Adversarial Threat Modeling & Blast Radius
 >
-> This introduces the risk of **Inter-Agent Trust Exploitation**. Furthermore, if the initial on-call agent acts as a centralized orchestrator and partitions the swarm across multiple, isolated Slack channels (e.g., \#incident-db, \#incident-network), it introduces **Context Fragmentation** and **Orchestrator-in-the-Middle (AitM)** attacks. A compromised orchestrator becomes a malicious information broker, capable of lying to sub-agents about human approvals or peer findings because the agents no longer share a "ground truth" context window.
+> This introduces the risk of **Inter-Agent Trust Exploitation**. Furthermore, if the initial on-call agent acts as a centralized orchestrator and partitions the swarm across multiple, isolated Slack channels (e.g., \#incident-db, \#incident-network), it introduces **Context Fragmentation** and **Orchestrator as Agent-in-the-Middle (O-AitM)** attacks. A compromised orchestrator becomes a malicious information broker, capable of lying to sub-agents about human approvals or peer findings because the agents no longer share a "ground truth" context window.
 > 
 > #### Implied Access & Entitlements
 > 
@@ -284,7 +284,7 @@ sequenceDiagram
 
 ### The Human on the Loop
 
-By the time the human on-caller checked their phone ten minutes after the page, the root cause had been identified, a code fix was written, and a pull request was sitting in review, waiting for a human to approve and deploy. The entire investigation and remediation had been drafted by agents collaborating with each other in a channel where humans could watch every step unfold in real time (see [Human-on-the-Loop](#fig-human-on-loop)).
+By the time the human on-call checked their phone ten minutes after the page, the root cause had been identified, a code fix was written, and a pull request was sitting in review, waiting for a human to approve and deploy. The entire investigation and remediation had been drafted by agents collaborating with each other in a channel where humans could watch every step unfold in real time (see [Human-on-the-Loop](#fig-human-on-loop)).
 
 <!--{#fig-human-on-loop}-->
 ```mermaid
@@ -295,7 +295,7 @@ config:
   look: handDrawn
 ---
 sequenceDiagram
-    participant Human as Human On-Caller
+    participant Human as Human On-Call
     participant Chat as Channel
     participant OnCall as On-Call Agent
     participant VCS as Source Control
@@ -384,7 +384,7 @@ config:
   theme: neutral
 ---
 sequenceDiagram
-  participant Human as Human On-Caller
+  participant Human as Human On-Call
   participant Chat as Chat Channel
   participant OnCall as On-Call Agent
   participant Code as Coding Agent
@@ -408,7 +408,7 @@ The future of work is not humans or agents. It is a chat channel where you canno
 
 > ### » The Emergence of Agent Detection and Response (ADR) & The Oversight Agent
 >
-> The cognitive loop of an LLM is opaque to traditional endpoint and network security. Furthermore, a peer-to-peer ecosystem of agents is inherently fragile without an authoritative governance layer. The architecture requires an out-of-band **Oversight Agent** (or Deterministic Supervisor)—an entity with no operational duties other than monitoring swarm semantic health, equipped with the authority to instantly downscope or squelch compromised agents.
+> The cognitive loop of an LLM is opaque to traditional endpoint and network security. Furthermore, a peer-to-peer ecosystem of agents is inherently fragile without an authoritative governance layer. The architecture requires an out-of-band **Oversight Agent** (or Deterministic Supervisor) capability. Rather than a single centralized supervisor, this is a governance function distributed across specialized agents and platform services. The Oversight Agent has no operational duties other than monitoring swarm semantic health and is empowered to instantly downscope or squelch compromised agents.
 >
 > #### Adversarial Threat Modeling
 >
@@ -449,6 +449,6 @@ The future of work is not humans or agents. It is a chat channel where you canno
 
 The transition from isolated AI tools to autonomous, event-driven swarms does not change what organizations must protect; auditability, separation of duties, least privilege, and data protection remain non-negotiable. What changes, as this analysis demonstrates across every phase of the scenario, are the foundational assumptions underlying how those controls are enforced. Legacy mechanisms remain anchored to human-driven workflows; the attack surface has moved to the semantic layer, where agents negotiate intent, delegate tasks, and accumulate privileges through natural language at machine speed.
 
-Securing this layer demands the enforcement stack this paper outlines — from ephemeral compute and dynamic Non-Human Identity management to semantic egress filtering, immutable GitOps enforcement, and Agent Detection and Response at the prompt layer. But the hard limits are real: intent-based authorization and the semantic mosaic effect represent open research frontiers where no proven successor to legacy assumptions yet exists.
+Securing this layer demands the enforcement stack this paper outlines — from ephemeral compute and dynamic Non-Human Identity management to semantic egress filtering, immutable GitOps enforcement, and Agent Detection and Response at the prompt layer.  But while classical controls — trust boundaries, least privilege, separation of duties — are necessary and foundational, they are not sufficient. The hard limits are real: intent-based authorization and the semantic mosaic effect represent open research frontiers where no proven successor to legacy assumptions yet exists.
 
 We have a narrowing opportunity to define the control architecture for autonomous systems — before those systems outscale the controls meant to govern them. The goal is not to constrain their utility, but to **build the resilient, cryptographically sound guardrails** necessary to unleash their full potential securely.

@@ -1,4 +1,4 @@
-# CLAUDE.md — CoSAI TSC Repository
+# INSTRUCTIONS.md - CoSAI TSC Repository
 
 ## Project Overview
 
@@ -62,7 +62,7 @@ Research problem visualizations rendered as Graphviz DOT files and SVGs:
 - **NHI** — Non-Human Identity (autonomous agents operating as identities)
 - **IPI** — Indirect Prompt Injection
 - **ADR** — Agent Detection and Response (vs traditional EDR)
-- **AitM** — Orchestrator-in-the-Middle attack
+- **O-AitM** — Orchestrator as Agent-in-the-Middle attack
 - **JIT Upscoping** — Just-In-Time privilege elevation
 - **Dynamic Contextual Downscoping** — auto-shrinking token privileges based on context toxicity
 - **Semantic Smurfing** — splitting malicious intent across multiple benign requests
