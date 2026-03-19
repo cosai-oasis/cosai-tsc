@@ -6,6 +6,12 @@
 
 This Repository is for the work of the CoSAI Technical Steering Committee (TSC). CoSAI is an [OASIS Open Project](https://www.oasis-open.org/open-projects/) and an open ecosystem of AI and security experts from industry leading organizations dedicated to sharing best practices for secure AI deployment and collaborating on AI security research and product development. For more information on CoSAI, please visit the [CoSAI website](https://www.coalitionforsecureai.org/) and the [Open Project repository](https://github.com/cosai-oasis/oasis-open-project) which has information governance and the project charter.
 
+## TSC Co-Chairs and Membership
+
+### TSC Co-Chairs
+* Akila Srinivasan (Anthropic)
+* J.R. Rao (IBM)
+
 You can find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
 
 The governance document for the work of this TSC can be found [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md).
