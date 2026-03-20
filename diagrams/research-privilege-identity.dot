@@ -1,0 +1,83 @@
+// Open Research Problems: Privilege, Identity and Access
+// Highlighted: NHI, PRI
+// Render with: neato -n -Tsvg
+graph research_tree {
+    layout=neato;
+    size="5.85,4.68!";
+    bgcolor="transparent";
+    node [fontname="Montserrat", style="filled,rounded", shape=box, margin="0.08,0.04"];
+    edge [color="#999999", penwidth=1.5];
+
+    // Root — center
+    Root [label=<Open Research<br/>Challenges>, shape=circle, width=1.8, fixedsize=true,
+          style=filled, fillcolor="#1a237e", fontcolor="white", fontsize=15, fontname="Montserrat Bold",
+          pos="310,240!"];
+
+    // Category nodes — diamond around root
+    ID [label=<Identity &amp;<br/>Trust Boundaries>, fillcolor="#e8f5e9", color="#2e7d32",
+        penwidth=2, fontcolor="#1b5e20", fontname="Montserrat Bold", fontsize=13,
+        pos="200,170!"];
+    CS [label=<Cognitive Security<br/>&amp; Data>, fillcolor="#e3f2fd", color="#1565c0",
+        penwidth=2, fontcolor="#0d47a1", fontname="Montserrat Bold", fontsize=13,
+        pos="420,166!"];
+    OB [label=<Observability<br/>&amp; Telemetry>, fillcolor="#fff3e0", color="#e65100",
+        penwidth=2, fontcolor="#bf360c", fontname="Montserrat Bold", fontsize=13,
+        pos="218,340!"];
+    SO [label=<State Operations<br/>&amp; UX>, fillcolor="#fce4ec", color="#c62828",
+        penwidth=2, fontcolor="#b71c1c", fontname="Montserrat Bold", fontsize=13,
+        pos="417,330!"];
+
+    // Leaf nodes — Identity & Trust
+    NHI [label=<NHI Identity<br/>Binding>, fillcolor="#fff9c4", color="#f9a825",
+         penwidth=2.5, fontcolor="black", fontname="Montserrat Bold", fontsize=12,
+         pos="55,262!"];
+    IBA [label=<Intent-Based<br/>Authorization>, fillcolor="white", color="#bbbbbb",
+         penwidth=1, fontcolor="#333333", fontsize=12,
+         pos="41,62!"];
+    ISHA [label=<Inter-Agent Semantic<br/>Health Attestation>, fillcolor="white", color="#bbbbbb",
+          penwidth=1, fontcolor="#333333", fontsize=12,
+          pos="348,31!"];
+    DCIS [label=<Dynamic Context<br/>Impersonation at Scale>, fillcolor="white", color="#bbbbbb",
+          penwidth=1, fontcolor="#333333", fontsize=12,
+          pos="189,18!"];
+
+    // Leaf nodes — Cognitive Security
+    PRI [label=<Provable Robustness<br/>against IPI>, fillcolor="#fff9c4", color="#f9a825",
+         penwidth=2.5, fontcolor="black", fontname="Montserrat Bold", fontsize=12,
+         pos="552,35!"];
+    SME [label=<The Semantic<br/>Mosaic Effect>, fillcolor="white", color="#bbbbbb",
+         penwidth=1, fontcolor="#333333", fontsize=12,
+         pos="577,228!"];
+
+    // Leaf nodes — Observability
+    STS [label=<Semantic Telemetry<br/>Standardization>, fillcolor="white", color="#bbbbbb",
+         penwidth=1, fontcolor="#333333", fontsize=12,
+         pos="58,459!"];
+    LLIP [label=<Low-Latency<br/>Intent Parsing>, fillcolor="white", color="#bbbbbb",
+          penwidth=1, fontcolor="#333333", fontsize=12,
+          pos="239,486!"];
+
+    // Leaf nodes — State Operations
+    RESD [label=<Reverse-Engineering<br/>State Drift>, fillcolor="white", color="#bbbbbb",
+          penwidth=1, fontcolor="#333333", fontsize=12,
+          pos="576,444!"];
+    MAB [label=<Mitigating Automation<br/>Bias in UX>, fillcolor="white", color="#bbbbbb",
+         penwidth=1, fontcolor="#333333", fontsize=12,
+         pos="407,485!"];
+
+    // Edges
+    Root -- ID;
+    Root -- CS;
+    Root -- OB;
+    Root -- SO;
+    ID -- NHI;
+    ID -- IBA;
+    ID -- ISHA;
+    ID -- DCIS;
+    CS -- PRI;
+    CS -- SME;
+    OB -- STS;
+    OB -- LLIP;
+    SO -- RESD;
+    SO -- MAB;
+}
