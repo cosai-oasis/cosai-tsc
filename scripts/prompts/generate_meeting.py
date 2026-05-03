@@ -29,8 +29,8 @@ from datetime import date, timedelta
 
 MEETINGS_DIR        = os.path.join("TSC Meeting Planner and Tracker", "meetings")
 README_PATH         = os.path.join("TSC Meeting Planner and Tracker", "README.md")
-MEETING_TIME        = "10:00 AM ET"                       # e.g. "10:00 AM ET"
-MEETING_LINK        = "https://zoom.us/j/your-meeting-id" # your recurring call link
+MEETING_TIME        = "10:00 AM PT / 1:00 PM ET"                       # e.g. "10:00 AM ET"
+MEETING_LINK        = "https://meet.google.com/gsn-gysc-uyt" # your recurring call link
 MILESTONE_BASE_URL  = "../../../../milestone"
 # Path from the meetings/ folder up to the tsc-meeting-minutes/ folder.
 # Adjust this if the folder structure changes.
@@ -80,8 +80,8 @@ def meeting_template(meeting_date: date, milestone_number: str = "?") -> str:
 **Time:** {MEETING_TIME}  
 **Location / Call Link:** {MEETING_LINK}  
 **Milestone:** [{iso}]({MILESTONE_BASE_URL}/{milestone_number})  
-**Facilitator:** [Name]  
-**Notes Taker:** [Name]  
+**Facilitator:** Akila Srinivasan and J.R. Rao 
+**Notes Taker:** Google Gemini  
 
 ---
 
