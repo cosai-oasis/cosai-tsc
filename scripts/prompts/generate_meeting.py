@@ -27,11 +27,14 @@ from datetime import date, timedelta
 # ── Configuration ────────────────────────────────────────────────────────────
 # Edit these values once and all future meeting files will use them.
 
-MEETINGS_DIR       = os.path.join("TSC Meeting Planner and Tracker", "meetings")
-README_PATH        = os.path.join("TSC Meeting Planner and Tracker", "README.md")
-MEETING_TIME       = "10:00 AM ET"                       # e.g. "10:00 AM ET"
-MEETING_LINK       = "https://zoom.us/j/your-meeting-id" # your recurring call link
-MILESTONE_BASE_URL = "../../../../milestone"
+MEETINGS_DIR        = os.path.join("TSC Meeting Planner and Tracker", "meetings")
+README_PATH         = os.path.join("TSC Meeting Planner and Tracker", "README.md")
+MEETING_TIME        = "10:00 AM ET"                       # e.g. "10:00 AM ET"
+MEETING_LINK        = "https://zoom.us/j/your-meeting-id" # your recurring call link
+MILESTONE_BASE_URL  = "../../../../milestone"
+# Path from the meetings/ folder up to the tsc-meeting-minutes/ folder.
+# Adjust this if the folder structure changes.
+TRANSCRIPT_BASE_URL = "../../tsc-meeting-minutes"
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -88,7 +91,7 @@ def meeting_template(meeting_date: date, milestone_number: str = "?") -> str:
 
 | # | Issue | Topic | Proposer | Time Requested | Status |
 |---|---|---|---|---|---|
-| 1 | | Administrative Issues | Claudia Rauch | 5 min | ✅ Confirmed |
+| 1 | | Welcome and Introductions | Organizer | 5 min | ✅ Confirmed |
 | 2 | | _Open for suggestions_ | | | |
 
 **Status Key:** ✅ Confirmed · 🔄 Under Discussion · ❌ Deferred
@@ -99,12 +102,17 @@ def meeting_template(meeting_date: date, milestone_number: str = "?") -> str:
 
 | # | Topic | Presenter | Time |
 |---|---|---|---|
-| 1 | Administrative Issues | Claudia Rauch | 5 min |
+| 1 | Welcome and Introductions | Organizer | 5 min |
 
 ---
 
 ## 📝 Meeting Notes
 > To be filled in during or after the meeting.
+
+---
+
+## 📄 Meeting Transcript
+> ⏳ Available after the meeting: [{iso} Transcript]({TRANSCRIPT_BASE_URL}/{iso}.md)
 
 ---
 
