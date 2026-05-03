@@ -91,7 +91,7 @@ def meeting_template(meeting_date: date, milestone_number: str = "?") -> str:
 
 | # | Issue | Topic | Proposer | Time Requested | Status |
 |---|---|---|---|---|---|
-| 1 | | Welcome and Introductions | Organizer | 5 min | ✅ Confirmed |
+| 1 | | Administrative Items | Claudia Rauch | 5 min | ✅ Confirmed |
 | 2 | | _Open for suggestions_ | | | |
 
 **Status Key:** ✅ Confirmed · 🔄 Under Discussion · ❌ Deferred
@@ -102,7 +102,7 @@ def meeting_template(meeting_date: date, milestone_number: str = "?") -> str:
 
 | # | Topic | Presenter | Time |
 |---|---|---|---|
-| 1 | Welcome and Introductions | Organizer | 5 min |
+| 1 | Administrative Items | Claudia Rauch | 5 min |
 
 ---
 
