@@ -2,8 +2,9 @@ name: Refresh CoSAI Citation Impact Report
 
 on:
   schedule:
-    # Every Monday at 09:00 ET during daylight saving time / 13:00 UTC.
-    - cron: "0 13 * * 1"
+    # Every Monday at noon Eastern; GitHub applies daylight saving automatically.
+    - cron: "0 12 * * 1"
+      timezone: "America/New_York"
   workflow_dispatch:
 
 concurrency:

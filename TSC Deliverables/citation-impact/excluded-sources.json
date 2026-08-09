@@ -1,0 +1,26 @@
+[
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/ws4-agentic/README.md",
+    "matched_works": ["Principles for Secure-by-Design Agentic Systems"],
+    "reason": "Mirrors the official CoSAI Workstream 4 README rather than independently citing or applying it.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/ai_risk_management/README.md",
+    "matched_works": ["CoSAI Risk Map"],
+    "reason": "Repeats the same CoSAI Risk Map references already captured in the publisher’s dedicated CoSAI training lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/ai_security_tools.md",
+    "matched_works": ["CoSAI Risk Map"],
+    "reason": "Repeats the same CoSAI Risk Map references already captured in the publisher’s dedicated CoSAI training lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/model_and_genai_application_security_testing.md",
+    "matched_works": ["CoSAI Risk Map"],
+    "reason": "Repeats the same CoSAI Risk Map references already captured in the publisher’s dedicated CoSAI training lesson.",
+    "reviewed_on": "2026-08-09"
+  }
+]

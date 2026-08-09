@@ -17,12 +17,13 @@ import subprocess
 import sys
 import time
 from collections import Counter
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import quote, urlencode, urlparse
+from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -31,6 +32,7 @@ GITHUB_API = "https://api.github.com"
 CROSSREF_API = "https://api.crossref.org/works"
 OWNER_DOMAINS = {"coalitionforsecureai.org", "oasis-open.org"}
 KNOWN_MEMBER_OWNERS = {"google", "google-deepmind", "microsoft", "ibm", "cisco", "cisco-open"}
+EASTERN_TIME = ZoneInfo("America/New_York")
 
 WORKS = {
     "Model Context Protocol (MCP) Security": (
@@ -70,7 +72,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--skip-crossref", action="store_true", help="Skip Crossref, useful where api.crossref.org is unavailable.")
     parser.add_argument("--max-results-per-query", type=int, default=10, help="Maximum results fetched from each discovery query.")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
-    parser.add_argument("--as-of", type=date.fromisoformat, default=date.today(), help="Report date in YYYY-MM-DD format.")
+    parser.add_argument("--as-of", type=date.fromisoformat, default=datetime.now(EASTERN_TIME).date(), help="Report date in YYYY-MM-DD format.")
     parser.add_argument("--fail-on-discovery-error", action="store_true", help="Exit nonzero when a discovery provider cannot be reached.")
     return parser.parse_args(argv)
 
@@ -222,16 +224,18 @@ def discover_crossref(max_results: int) -> tuple[list[dict[str, Any]], list[str]
     return list(found.values()), warnings
 
 
-def merge_candidates(existing: list[dict[str, Any]], discovered: list[dict[str, Any]], verified: list[dict[str, Any]], as_of: date) -> list[dict[str, Any]]:
+def merge_candidates(existing: list[dict[str, Any]], discovered: list[dict[str, Any]], verified: list[dict[str, Any]], as_of: date, excluded: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     verified_urls = {canonical_url(item["source_url"]) for item in verified}
+    excluded_urls = {canonical_url(item["source_url"]) for item in excluded or []}
+    disallowed_urls = verified_urls | excluded_urls
     combined = {
         canonical_url(item["url"]): item
         for item in existing
-        if canonical_url(item["url"]) not in verified_urls
+        if canonical_url(item["url"]) not in disallowed_urls
     }
     for candidate in discovered:
         key = canonical_url(candidate["url"])
-        if key in verified_urls:
+        if key in disallowed_urls:
             continue
         if key in combined:
             current = combined[key]
@@ -245,10 +249,38 @@ def merge_candidates(existing: list[dict[str, Any]], discovered: list[dict[str, 
 
 
 def markdown_link(label: str, url: str) -> str:
-    return f"[{label.replace('[', '(').replace(']', ')')}]({url.replace(' ', '%20')})"
+    return f"[{label.replace('[', '(').replace(']', ')').replace('|', '&#124;')}]({url.replace(' ', '%20')})"
 
 
-def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any]], warnings: list[str], as_of: date, discovery_enabled: bool) -> str:
+def discovery_review_entries(verified: list[dict[str, Any]], candidates: list[dict[str, Any]], excluded: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Keep the complete discovery trail after candidates are reviewed or excluded."""
+    entries = [
+        {
+            "publisher": item["publisher"],
+            "title": item["citing_publication"],
+            "url": item["source_url"],
+            "matched_works": item.get("cosai_works", []),
+            "status": "Verified — included in totals",
+        }
+        for item in verified
+        if item.get("discovery_provider")
+    ]
+    entries.extend({**item, "status": "Pending human review — not counted"} for item in candidates)
+    for item in excluded:
+        parts = [part for part in urlparse(item["source_url"]).path.split("/") if part]
+        publisher = "/".join(parts[:2]) if len(parts) >= 2 else urlparse(item["source_url"]).netloc
+        title = "/".join(parts[4:]) if len(parts) > 4 else publisher
+        entries.append({
+            "publisher": publisher,
+            "title": title,
+            "url": item["source_url"],
+            "matched_works": item.get("matched_works", []),
+            "status": f"Excluded — {item['reason']}",
+        })
+    return sorted(entries, key=lambda item: (item["publisher"].casefold(), item["title"].casefold()))
+
+
+def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any]], warnings: list[str], as_of: date, discovery_enabled: bool, excluded: list[dict[str, Any]] | None = None) -> str:
     citing = [item for item in verified if item.get("cosai_works")]
     mentions = [item for item in verified if not item.get("cosai_works")]
     edges = sum(len(item.get("cosai_works", [])) for item in citing)
@@ -257,6 +289,9 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
     distribution = Counter(work for item in citing for work in item["cosai_works"])
     directly_inspected = sum(item.get("verification") == "Directly inspected" for item in verified)
     by_id = {item["id"]: item for item in verified}
+    review_entries = discovery_review_entries(verified, candidates, excluded or [])
+    preferred_sources = ("C31", "C01", "C02", "C04", "C05", "C08", "C09", "C10", "C30", "C32", "C33")
+    source_priority = {identifier: position for position, identifier in enumerate(preferred_sources)}
     highlights = (
         ("C01", "Google DeepMind", "applies CoSAI’s agentic security principles"),
         ("C02", "Microsoft", "references CoSAI in its agentic failure-mode taxonomy"),
@@ -265,42 +300,59 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         ("C09", "SIIA", "cites CoSAI’s principles in a CAISI submission"),
         ("C05", "AI Alliance", "dedicates an enterprise-MCP guide chapter to CoSAI’s paper"),
         ("C10", "Cloud Security Alliance", "formally references CoSAI enterprise-security guidance"),
+        ("C31", "OWASP AISVS", "formally cites CoSAI’s MCP-security and agentic-identity guidance"),
+        ("C32", "OWASP AISVS", "references CoSAI’s incident-response and agentic-identity work"),
+        ("C33", "Google Trillian", "links the CoSAI Signing ML Artifacts specification"),
+        ("C30", "Agent Threat Rule", "maps all 12 CoSAI MCP threat categories to detection rules"),
         ("O01", "UK National Cyber Security Centre", "identifies CoSAI as an AI-security stakeholder"),
     )
 
     lines = [
         "# CoSAI Citation and External Impact",
         "",
-        f"**Last refreshed:** {as_of.strftime('%B %-d, %Y')}",
+        "> [!NOTE]",
+        f"> **Last updated: {as_of.strftime('%B %-d, %Y')}**",
+        ">",
+        "> Scheduled refresh: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).",
+        "",
         "**Scope:** Publicly discoverable references to Coalition for Secure AI publications and frameworks.",
         "",
         f"> **{len(citing)} external publications** cite or use specific CoSAI work, representing **{edges} distinct publication-to-work citations**. Another **{len(mentions)} publications** mention CoSAI at the organizational level, for **{len(verified)} verified external sources** overall.",
         "",
         "## Citation snapshot",
         "",
-        "| Measure | Verified minimum |",
-        "| --- | ---: |",
-        f"| External publications citing a CoSAI work | {len(citing)} |",
-        f"| Distinct publication-to-work citations | {edges} |",
-        f"| Formal references and bibliographies | {formal} |",
-        f"| Substantive framework or implementation citations | {substantive} |",
-        f"| Additional organization-only mentions | {len(mentions)} |",
-        f"| Total external publications | {len(verified)} |",
+        "| Measure | Verified minimum | What this means |",
+        "| --- | ---: | --- |",
+        f"| External publications citing a CoSAI work | {len(citing)} | {len(citing)} externally published documents cite, discuss or use at least one specific CoSAI publication, framework or other work. |",
+        f"| Distinct publication-to-work citations | {edges} | Those {len(citing)} documents make {edges} unique connections to CoSAI works; some documents cite more than one work. |",
+        f"| Formal references and bibliographies | {formal} | {formal} of the {len(citing)} documents cite CoSAI through a formal reference, footnote, bibliography or equivalent source attribution. |",
+        f"| Substantive framework or implementation citations | {substantive} | {substantive} of the {len(citing)} documents discuss, apply or incorporate a CoSAI framework or other work substantively. |",
+        f"| Additional organization-only mentions | {len(mentions)} | {len(mentions)} additional publications mention CoSAI as an organization without identifying a specific CoSAI work. |",
+        f"| Total external publications | {len(verified)} | The {len(citing)} publications citing specific CoSAI works plus the {len(mentions)} publications mentioning only the organization. |",
+        "",
+        "Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.",
         "",
         "## Most-cited CoSAI work",
         "",
-        "| Publication or framework | Distinct citing publications |",
-        "| --- | ---: |",
+        "| CoSAI publication or framework | Distinct citing publications | Selected external citations |",
+        "| --- | ---: | --- |",
     ]
-    lines.extend(f"| {work} | {count} |" for work, count in sorted(distribution.items(), key=lambda pair: (-pair[1], pair[0])))
+    for work, count in sorted(distribution.items(), key=lambda pair: (-pair[1], pair[0])):
+        work_sources = sorted(
+            (item for item in citing if work in item["cosai_works"]),
+            key=lambda item: (source_priority.get(item["id"], len(preferred_sources)), item.get("publisher", item["id"]).casefold()),
+        )
+        examples = "; ".join(markdown_link(item.get("publisher", item["id"]), item["source_url"]) for item in work_sources[:3])
+        lines.append(f"| {work} | {count} | {examples} |")
     lines += [
         "",
         "## Selected external citations",
         "",
     ]
     for identifier, publisher, description in highlights:
-        item = by_id[identifier]
-        lines.append(f"- **{publisher}:** {markdown_link(description, item['source_url'])}.")
+        if identifier in by_id:
+            item = by_id[identifier]
+            lines.append(f"- **{publisher}:** {markdown_link(description, item['source_url'])}.")
 
     lines += [
         "",
@@ -311,7 +363,21 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "3. Verify the source directly or from a precise indexed excerpt, then classify the reference as a formal citation, substantive framework use or organization-only mention.",
         "4. Exclude CoSAI/OASIS self-citations, owner-controlled announcements, mirrors and repeated links; count each publication-to-work relationship only once.",
         "",
-        f"Of the **{len(verified)} verified sources**, **{directly_inspected} were inspected directly** and **{len(verified) - directly_inspected} were confirmed from precise search-index excerpts**. Known member-affiliated publishers are identified in [`sources.json`](sources.json).",
+        f"Of the **{len(verified)} verified sources**, **{directly_inspected} were inspected directly** and **{len(verified) - directly_inspected} were confirmed from precise search-index excerpts**. Known member- and contributor-affiliated publishers, along with source-date discrepancies, are identified in [`sources.json`](sources.json).",
+        f"Reviewed mirrors and repeated publisher resource listings are excluded permanently; **{len(excluded or [])} reviewed exclusions** are recorded in [`excluded-sources.json`](excluded-sources.json).",
+        "",
+        "## All discovered references and review status",
+        "",
+        f"Automated discovery identified **{len(review_entries)} references**: **{sum(item['status'].startswith('Verified') for item in review_entries)} verified and counted**, **{len(candidates)} awaiting review**, and **{len(excluded or [])} excluded as copied or duplicative**.",
+        "",
+        "| External reference | CoSAI works identified | Review status |",
+        "| --- | --- | --- |",
+    ]
+    for item in review_entries:
+        works = "; ".join(item.get("matched_works", [])) or "CoSAI organizational mention"
+        lines.append(f"| {markdown_link(item['publisher'] + ': ' + item['title'], item['url'])} | {works} | {item['status']} |")
+
+    lines += [
         "",
         "## New references awaiting review",
         "",
@@ -337,14 +403,29 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "",
         "## Refresh and review",
         "",
-        "- GitHub Actions refreshes this report every Monday and can also be started manually.",
+        "- GitHub Actions refreshes this report every Monday at 12:00 p.m. Eastern Time, including daylight-saving changes, and can also be started manually.",
         "- The workflow opens or updates a pull request; new candidates never increase verified counts automatically.",
-        "- To verify a candidate, inspect its source and add it to [`sources.json`](sources.json). The next refresh recalculates all totals.",
+        "- To verify a candidate, inspect its source, add it to [`sources.json`](sources.json), and preserve its `discovery_provider` field. The next refresh recalculates all totals and keeps its discovery-review history.",
+        "- To reject copied or duplicative material, record its source, matched works and reason in [`excluded-sources.json`](excluded-sources.json). Future refreshes will not rediscover it as pending.",
         "- GitHub code search discovers public code/documentation references; Crossref adds matching scholarly metadata. General-web discovery can be added later through an approved search provider.",
         "",
         "**Interpretation:** These figures are verified public-web minimums, not a comprehensive academic citation count, Google Scholar metric or social-media reach measure.",
         "",
+        "## Complete CoSAI paper-to-source register",
+        "",
+        f"Every verified publication-to-work relationship is listed below: **{edges} distinct citations across {len(distribution)} CoSAI papers and frameworks**. Sources citing multiple CoSAI works correctly appear once under each work.",
+        "",
+        "| CoSAI paper or framework | External citing publication | Publisher | Citation type | Verification | Publisher relationship |",
+        "| --- | --- | --- | --- | --- | --- |",
     ]
+    for work, _ in sorted(distribution.items(), key=lambda pair: (-pair[1], pair[0])):
+        work_sources = sorted((item for item in citing if work in item["cosai_works"]), key=lambda item: (item.get("publisher", item["id"]).casefold(), item.get("citing_publication", work).casefold()))
+        for item in work_sources:
+            publication = markdown_link(item.get("citing_publication", work), item["source_url"])
+            relationship = item.get("publisher_relationship", "Not established")
+            publisher = item.get("publisher", item["id"])
+            lines.append(f"| {work} | {publication} | {publisher} | {item['category']} | {item['verification']} | {relationship} |")
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -354,6 +435,7 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("--max-results-per-query must be between 1 and 100")
     output_dir = args.output_dir.resolve()
     verified_path = output_dir / "sources.json"
+    excluded_path = output_dir / "excluded-sources.json"
     candidates_path = output_dir / "discovered-candidates.json"
     report_path = output_dir / "README.md"
     verified = load_json(verified_path, [])
@@ -364,6 +446,15 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("Verified source IDs must be unique")
     if not all(item.get("source_url", "").startswith("https://") for item in verified):
         raise ValueError("Every verified source must have an HTTPS source URL")
+    excluded = load_json(excluded_path, [])
+    if not all(item.get("source_url", "").startswith("https://") for item in excluded):
+        raise ValueError("Every reviewed exclusion must have an HTTPS source URL")
+    verified_urls = {canonical_url(item["source_url"]) for item in verified}
+    excluded_urls = {canonical_url(item["source_url"]) for item in excluded}
+    if len(excluded_urls) != len(excluded):
+        raise ValueError("Reviewed exclusions must have unique source URLs")
+    if verified_urls & excluded_urls:
+        raise ValueError("A source cannot be both verified and excluded")
 
     existing_payload = load_json(candidates_path, {"candidates": []})
     existing = existing_payload.get("candidates", [])
@@ -377,7 +468,7 @@ def main(argv: list[str] | None = None) -> int:
             crossref_results, crossref_warnings = discover_crossref(args.max_results_per_query)
             discovered.extend(crossref_results)
             warnings.extend(crossref_warnings)
-    candidates = merge_candidates(existing, discovered, verified, args.as_of)
+    candidates = merge_candidates(existing, discovered, verified, args.as_of, excluded)
     candidates_payload = {
         "last_refreshed": args.as_of.isoformat(),
         "description": "Unreviewed external CoSAI references; not included in verified citation totals.",
@@ -386,7 +477,7 @@ def main(argv: list[str] | None = None) -> int:
         "candidates": candidates,
     }
     candidates_path.write_text(json.dumps(candidates_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    report_path.write_text(render_report(verified, candidates, warnings, args.as_of, args.discover), encoding="utf-8")
+    report_path.write_text(render_report(verified, candidates, warnings, args.as_of, args.discover, excluded), encoding="utf-8")
     print(f"Verified sources: {len(verified)}")
     print(f"Verified work-level citations: {sum(len(item.get('cosai_works', [])) for item in verified)}")
     print(f"Unreviewed discovery candidates: {len(candidates)}")

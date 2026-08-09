@@ -5,20 +5,6 @@
   "discovery_warnings": [],
   "candidates": [
     {
-      "publisher": "Agent-Threat-Rule/agent-threat-rules",
-      "title": "docs/crosswalks/atr-cosai-mcp-taxonomy-mapping.md",
-      "url": "https://github.com/Agent-Threat-Rule/agent-threat-rules/blob/45cb8cd7c271ec2e2337c3d6f85fbab22e86bac0/docs/crosswalks/atr-cosai-mcp-taxonomy-mapping.md",
-      "matched_works": [
-        "Model Context Protocol (MCP) Security"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "# ATR -> CoSAI MCP Security taxonomy: threat-to-detection mapping This document maps the twelve threat categories in the Coalition for Secure AI (CoSAI) **\"Model Context Protocol (MCP) Security\"** taxonomy to Agent Threat Rules (ATR) detection content, and -- just as importantly -- says clearly which CoSAI threat categ",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
       "publisher": "FlorianBruniaux/claude-code-ultimate-guide",
       "title": "guide/security/security-hardening.md",
       "url": "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/a4d1247c2188437cc855a0c24e6350e35a3015c3/guide/security/security-hardening.md",
@@ -47,94 +33,6 @@
       "last_seen": "2026-08-09"
     },
     {
-      "publisher": "OWASP/AISVS",
-      "title": "1.0/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
-      "url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
-      "matched_works": [
-        "Agentic Identity and Access Management"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "- [ ] **Are schema-strict wrapper tools enough when the wrapped CLI is the attack surface?** — CVE-2026-39884 (mcp-server-kubernetes `port_forward`) and CVE-2026-33980 (Azure Data Explorer MCP KQL injection) both passed schema validation at the MCP boundary and then reintroduced classical injection flaws below it: kube",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "OWASP/AISVS",
-      "title": "1.0/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
-      "url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
-      "matched_works": [
-        "Agentic Identity and Access Management"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "- [Functional Subspace Watermarking for Large Language Models (March 2026)](https://arxiv.org/abs/2603.18793) -- Ownership signals anchored into a stable functional subspace for robustness under fine-tuning, quantization, and distillation - [Beyond A Fixed Seal: Adaptive Stealing Watermark in Large Language Models (Apr",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "The-Art-of-Hacking/h4cker",
-      "title": "ai/ai-security/ai_risk_management/README.md",
-      "url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/ai_risk_management/README.md",
-      "matched_works": [
-        "CoSAI Risk Map"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "### Coalition for Secure AI (CoSAI) - [Coalition for Secure AI (CoSAI)](https://github.com/cosai-oasis) – open project defining cross‑industry guidance for secure AI. - [CoSAI Risk Map / Secure AI Tooling](https://github.com/cosai-oasis/secure-ai-tooling) – AI-specific risk map and control framework across the AI lifec",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "The-Art-of-Hacking/h4cker",
-      "title": "ai/ai-security/ai_security_tools.md",
-      "url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/ai_security_tools.md",
-      "matched_works": [
-        "CoSAI Risk Map"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "## AI Risk Maps and Secure Design Patterns - [Coalition for Secure AI (CoSAI)](https://github.com/cosai-oasis) – community defining standards, patterns, and tools for secure AI. - [CoSAI Risk Map / Secure AI Tooling](https://github.com/cosai-oasis/secure-ai-tooling) – framework for mapping AI-specific security risks ac",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "The-Art-of-Hacking/h4cker",
-      "title": "ai/ai-security/model_and_genai_application_security_testing.md",
-      "url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/model_and_genai_application_security_testing.md",
-      "matched_works": [
-        "CoSAI Risk Map"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "### 2. Risk Maps and Secure Design Patterns - [Coalition for Secure AI (CoSAI)](https://github.com/cosai-oasis) - [CoSAI Risk Map / Secure AI Tooling](https://github.com/cosai-oasis/secure-ai-tooling) – risk mapping and control framework for AI systems. - [Workstream 4 – Secure Design Patterns for Agentic Systems](http",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "The-Art-of-Hacking/h4cker",
-      "title": "certifications/cisco/AITECH/Lesson-2-Prompt-Engineering/Lesson-2-7-resources.md",
-      "url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/certifications/cisco/AITECH/Lesson-2-Prompt-Engineering/Lesson-2-7-resources.md",
-      "matched_works": [
-        "AI Incident Response Framework",
-        "Agentic Identity and Access Management",
-        "Model Context Protocol (MCP) Security",
-        "Principles for Secure-by-Design Agentic Systems",
-        "Signing ML Artifacts"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "- **AI Incident Response Framework** — CoSAI guidance for detecting and remediating AI-specific incidents. - **CoSAI Risk Map** — A framework for identifying, analyzing, and mitigating AI-specific security risks across the lifecycle. - **Project CodeGuard** — An open-source security framework for AI coding agents, dona",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
       "publisher": "ajessu/albertson-agents",
       "title": "docs/corpus/agent-guardrails-sops/code-cosai-ws4-secure-agentic-design.md",
       "url": "https://github.com/ajessu/albertson-agents/blob/11bc84e80290724c3e3048d59bfb970b35669cd3/docs/corpus/agent-guardrails-sops/code-cosai-ws4-secure-agentic-design.md",
@@ -143,34 +41,6 @@
       ],
       "discovery_provider": "GitHub public code search",
       "evidence": "id: \"df6d8eb3\" source: code url: https://github.com/cosai-oasis/ws4-secure-design-agentic-systems title: \"CoSAI Workstream 4: Secure Design Patterns for Agentic Systems (OASIS Open Project)\" date: 2026 topic_list: [cosai, oasis, secure-design-patterns, mcp-gap-analysis, trust-aware-dataplane, secure-by-design] voice: t",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "google/trillian",
-      "title": "docs/claimantmodel/CoreModel.md",
-      "url": "https://github.com/google/trillian/blob/52c8a9983a982210e1ad6cef8ad3215c70464977/docs/claimantmodel/CoreModel.md",
-      "matched_works": [
-        "Signing ML Artifacts"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "* **CoSAI: Signing ML Artifacts** * Links: * [CoSAI Signing ML Artifacts Specification](https://github.com/cosai-oasis/ws1-supply-chain/blob/main/signing-ml-artifacts.md) * Description: Applies the Claimant Model to machine learning supply chain security, defining the roles for publishing and verifying ML model signatu",
-      "status": "Needs human review",
-      "publisher_relationship": "Known member-affiliated",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "rocklambros/ai-security-framework-crosswalk",
-      "title": "data/frameworks/cosai/ws4-agentic/README.md",
-      "url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/ws4-agentic/README.md",
-      "matched_works": [
-        "Principles for Secure-by-Design Agentic Systems"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "### Published work from this workstream [CoSAI Principles for Secure-by-Design Agentic Systems](https://github.com/cosai-oasis/cosai-tsc/blob/main/security-principles-for-agentic-systems.md) ### Workstream Leads * Ian Molloy (IBM)",
       "status": "Needs human review",
       "publisher_relationship": "Not established",
       "first_seen": "2026-08-09",

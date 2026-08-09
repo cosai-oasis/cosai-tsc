@@ -440,6 +440,93 @@
     "notes": ""
   },
   {
+    "id": "C30",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Agent Threat Rule",
+    "citing_publication": "ATR to CoSAI MCP Security taxonomy: threat-to-detection mapping",
+    "source_url": "https://github.com/Agent-Threat-Rule/agent-threat-rules/blob/45cb8cd7c271ec2e2337c3d6f85fbab22e86bac0/docs/crosswalks/atr-cosai-mcp-taxonomy-mapping.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Dedicated external threat-detection crosswalk explicitly identifies CoSAI’s MCP Security white paper as its source document and maps all twelve CoSAI threat categories.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Verified directly against the source document and distinguished from owner-controlled CoSAI/OASIS repositories."
+  },
+  {
+    "id": "C31",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C10: Model Context Protocol Security",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "OWASP’s MCP-security chapter separately links and describes CoSAI’s MCP Security Taxonomy and Agentic Identity and Access Management paper in its references.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Two distinct CoSAI works appear in one independently hosted OWASP technical publication."
+  },
+  {
+    "id": "C32",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C11.3: Model-Extraction Defense",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Incident Response Framework",
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "OWASP’s model-extraction-defense chapter formally cites both the CoSAI AI Incident Response Framework and CoSAI’s agentic identity and detection guidance.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The OWASP text dates the incident-response framework to 2026; CoSAI’s official publication announcement dates the underlying framework to November 2025. The citation is valid, but the citing publication’s year is inaccurate."
+  },
+  {
+    "id": "C33",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Google Trillian",
+    "citing_publication": "Claimant Model: real-world applications",
+    "source_url": "https://github.com/google/trillian/blob/52c8a9983a982210e1ad6cef8ad3215c70464977/docs/claimantmodel/CoreModel.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Google’s Trillian technical documentation directly links the CoSAI Signing ML Artifacts specification as a real-world application of its claimant model.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "Counted as an externally published technical document, not as organizationally independent evidence."
+  },
+  {
+    "id": "C34",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "The Art of Hacking / Omar Santos",
+    "citing_publication": "Lesson 2-7: Introducing the Coalition for Secure AI",
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/certifications/cisco/AITECH/Lesson-2-Prompt-Engineering/Lesson-2-7-resources.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Principles for Secure-by-Design Agentic Systems",
+      "AI Incident Response Framework",
+      "CoSAI Risk Map",
+      "Signing ML Artifacts",
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 6,
+    "evidence_signal": "Dedicated technical-training lesson identifies and explains six distinct CoSAI publications and frameworks in its deliverables table and workstream overview.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Repository description identifies Omar Santos as maintainer. Three other resource-list pages in the same repository repeat the same material and are excluded as duplicate coverage."
+  },
+  {
     "id": "O01",
     "publisher": "UK National Cyber Security Centre",
     "citing_publication": "NCSC Annual Review 2025: Artificial Intelligence",
