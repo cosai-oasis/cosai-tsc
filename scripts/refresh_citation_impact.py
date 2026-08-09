@@ -314,6 +314,7 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
     directly_inspected = sum(item.get("verification") == "Directly inspected" for item in verified)
     by_id = {item["id"]: item for item in verified}
     review_entries = discovery_review_entries(verified, candidates, excluded or [])
+    discovered_verified = sum(item["status"].startswith("Verified") for item in review_entries)
     preferred_sources = ("C96", "C60", "C61", "C82", "C97", "C53", "C92", "C95", "C31", "C01", "C02", "C04", "C05", "C08", "C09", "C10", "C30", "C32", "C33")
     source_priority = {identifier: position for position, identifier in enumerate(preferred_sources)}
 
@@ -327,20 +328,16 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "",
         "**Scope:** Publicly discoverable references to Coalition for Secure AI publications and frameworks.",
         "",
-        f"> **{len(citing)} external publications** cite **{len(distribution)} CoSAI works**, representing **{edges} distinct citations**.",
+        "## Summary",
         "",
-        "## Citation snapshot",
-        "",
-        "| Measure | Result | Meaning |",
-        "| --- | --- | --- |",
-        f"| Publications citing CoSAI work | **{len(citing)}** | External publications identifying at least one CoSAI paper, framework or technical work. |",
-        f"| Citation relationships | **{edges} across {len(distribution)} works** | Each unique publication-to-work connection; one publication can cite multiple works. |",
-        f"| Citation types | **{formal} formal; {substantive} substantive** | Formal references and substantive discussion or implementation together account for all {len(citing)} citing publications. |",
-        f"| Organization-only mentions | **{len(mentions)} additional; {len(verified)} total** | Publications mentioning CoSAI without citing a specific work, plus the overall external-publication total. |",
+        f"- **Reach:** {len(citing)} external publications reference at least one of {len(distribution)} CoSAI papers, frameworks or technical works.",
+        f"- **Total citations:** Those {len(citing)} publications create {edges} distinct citations because some reference more than one CoSAI work.",
+        f"- **Type of use:** {formal} publications cite CoSAI formally and {substantive} discuss or apply its work substantively. These are the same {len(citing)} publications, not additional citations.",
+        f"- **Additional visibility:** {len(mentions)} publications mention CoSAI without citing a specific work, bringing the total to {len(verified)} external publications.",
         "",
         "Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.",
         "",
-        "## Most-cited CoSAI work",
+        "## Most-cited CoSAI publications and frameworks",
         "",
         "| CoSAI publication or framework | Distinct citing publications | Selected external citations |",
         "| --- | ---: | --- |",
@@ -354,7 +351,7 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         lines.append(f"| {work} | {count} | {examples} |")
     lines += [
         "",
-        "## Selected adoption evidence",
+        "## Examples of real-world use",
         "",
     ]
     if "C96" in by_id:
@@ -411,9 +408,12 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         f"Of the **{len(verified)} verified sources**, **{directly_inspected} were inspected directly** and **{len(verified) - directly_inspected} were confirmed from precise search-index excerpts**. Known member- and contributor-affiliated publishers, along with source-date discrepancies, are identified in [`sources.json`](sources.json).",
         f"Reviewed false positives, mirrors and duplicate publisher listings are excluded permanently; **{len(excluded or [])} reviewed exclusions** are recorded in [`excluded-sources.json`](excluded-sources.json).",
         "",
-        "## All discovered references and review status",
+        "## Discovery and review status",
         "",
-        f"Automated discovery and targeted public-source review identified **{len(review_entries)} references**: **{sum(item['status'].startswith('Verified') for item in review_entries)} verified and counted**, **{len(candidates)} awaiting review**, and **{len(excluded or [])} excluded as false positives, copied materials or duplicates**.",
+        f"The discovery log contains **{len(review_entries)} references**: **{discovered_verified} verified and counted**, **{len(candidates)} awaiting review**, and **{len(excluded or [])} excluded as false positives, copied materials or duplicates**. The remaining **{len(verified) - discovered_verified} verified sources** were found through direct research and are included in the complete source register above.",
+        "",
+        "<details>",
+        f"<summary>View all {len(review_entries)} reviewed references</summary>",
         "",
         "| External reference | CoSAI works identified | Review status |",
         "| --- | --- | --- |",
@@ -423,6 +423,8 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         lines.append(f"| {markdown_link(item['publisher'] + ': ' + item['title'], item['url'])} | {works} | {item['status']} |")
 
     lines += [
+        "",
+        "</details>",
         "",
         "## New references awaiting review",
         "",

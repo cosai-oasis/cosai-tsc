@@ -7,20 +7,16 @@
 
 **Scope:** Publicly discoverable references to Coalition for Secure AI publications and frameworks.
 
-> **98 external publications** cite **12 CoSAI works**, representing **146 distinct citations**.
+## Summary
 
-## Citation snapshot
-
-| Measure | Result | Meaning |
-| --- | --- | --- |
-| Publications citing CoSAI work | **98** | External publications identifying at least one CoSAI paper, framework or technical work. |
-| Citation relationships | **146 across 12 works** | Each unique publication-to-work connection; one publication can cite multiple works. |
-| Citation types | **46 formal; 52 substantive** | Formal references and substantive discussion or implementation together account for all 98 citing publications. |
-| Organization-only mentions | **8 additional; 106 total** | Publications mentioning CoSAI without citing a specific work, plus the overall external-publication total. |
+- **Reach:** 98 external publications reference at least one of 12 CoSAI papers, frameworks or technical works.
+- **Total citations:** Those 98 publications create 146 distinct citations because some reference more than one CoSAI work.
+- **Type of use:** 46 publications cite CoSAI formally and 52 discuss or apply its work substantively. These are the same 98 publications, not additional citations.
+- **Additional visibility:** 8 publications mention CoSAI without citing a specific work, bringing the total to 106 external publications.
 
 Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.
 
-## Most-cited CoSAI work
+## Most-cited CoSAI publications and frameworks
 
 | CoSAI publication or framework | Distinct citing publications | Selected external citations |
 | --- | ---: | --- |
@@ -37,7 +33,7 @@ Here, **external** means published outside CoSAI/OASIS-controlled channels; it d
 | Establish Risks and Controls for the AI Supply Chain | 2 | [AI Shared Responsibility educational companion](https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/agentic-ai-security/agentic-security.md); [Open Source Software Supply Chain Security / Michael Scovetta](https://sscsecurity.dev/appendices/appendix-b/) |
 | Addressing What’s Next in Securing Enterprise AI | 1 | [Cloud Security Alliance / CSAI Foundation](https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/05/ai-developer-ecosystem-critical-infrastructure-concentration-risk-v1-csa-styled.pdf) |
 
-## Selected adoption evidence
+## Examples of real-world use
 
 - **Government guidance:** The U.S. National Security Agency [formally cites CoSAI MCP Security](https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF); this is not a government endorsement.
 - **Security standards:** The App Defense Alliance applies CoSAI’s MCP threat model in an AI-tool [security specification](https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI%20Profile/AI%20Tool%20Specification.md) and corresponding [audit tests](https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI%20Profile/AI%20Tool%20Testing%20Guide.md).
@@ -209,9 +205,12 @@ Every verified publication-to-work relationship is listed below: **146 distinct 
 Of the **106 verified sources**, **95 were inspected directly** and **11 were confirmed from precise search-index excerpts**. Known member- and contributor-affiliated publishers, along with source-date discrepancies, are identified in [`sources.json`](sources.json).
 Reviewed false positives, mirrors and duplicate publisher listings are excluded permanently; **93 reviewed exclusions** are recorded in [`excluded-sources.json`](excluded-sources.json).
 
-## All discovered references and review status
+## Discovery and review status
 
-Automated discovery and targeted public-source review identified **162 references**: **69 verified and counted**, **0 awaiting review**, and **93 excluded as false positives, copied materials or duplicates**.
+The discovery log contains **162 references**: **69 verified and counted**, **0 awaiting review**, and **93 excluded as false positives, copied materials or duplicates**. The remaining **37 verified sources** were found through direct research and are included in the complete source register above.
+
+<details>
+<summary>View all 162 reviewed references</summary>
 
 | External reference | CoSAI works identified | Review status |
 | --- | --- | --- |
@@ -377,6 +376,8 @@ Automated discovery and targeted public-source review identified **162 reference
 | [Vulnex Security Visualization: MAESTRO Agentic Threat Modeling Guide](https://github.com/vulnex/usecvislib/blob/93ac076ed280755d08c9bccf01b32d156c1c4016/docs/MAESTRO_GUIDE.md) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [weoifgiljb/interview-collection: 02-ai-application/ai-interview-guide/docs/14-mcp-skill-systems/README.md](https://github.com/weoifgiljb/interview-collection/blob/1daa92b1a52b372c135c034381f0a0cfad93fb18/02-ai-application/ai-interview-guide/docs/14-mcp-skill-systems/README.md) | Agentic Identity and Access Management | Excluded — Exact duplicate of the already-counted Chinese-language AI engineering guide. |
 | [Zone of Distrust: CoSAI Risk Map Mapping](https://github.com/bluvibytes/zone-of-distrust/blob/7ddaba9c4c7f1edb4221a50e81a8c03738c9b6f4/docs/mappings/cosai-mapping.md) | CoSAI Risk Map | Verified — included in totals |
+
+</details>
 
 ## New references awaiting review
 
