@@ -1,0 +1,546 @@
+[
+  {
+    "id": "C01",
+    "publisher": "Google DeepMind",
+    "citing_publication": "A Framework for Evaluating and Mitigating the Security Risks of AI Agents",
+    "source_url": "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/three-layers-of-agent-security.pdf",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "States that CoSAI’s secure-by-design principles guide Google’s internal implementations.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": ""
+  },
+  {
+    "id": "C02",
+    "publisher": "Microsoft",
+    "citing_publication": "Taxonomy of Failure Modes in Agentic AI Systems, version 2.0",
+    "source_url": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Section 6.5 names the CoSAI principles and provides a numbered source reference.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": ""
+  },
+  {
+    "id": "C03",
+    "publisher": "Cisco",
+    "citing_publication": "The Domains of AI Security",
+    "source_url": "https://cscrdr.cloudapps.cisco.com/cscrdr/security/center/files/cisco-domains-of-ai-security.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Explicitly maps security domains to the CoSAI Risk Map and links its repository.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "PDF search result establishes the reference; full text was not retrievable in the browsing session."
+  },
+  {
+    "id": "C04",
+    "publisher": "IBM",
+    "citing_publication": "ContextForge AI Gateway: MCP Architecture Patterns",
+    "source_url": "https://ibm.github.io/mcp-context-forge/latest/best-practices/mcp-architecture-patterns/",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Links the CoSAI MCP security framework in the implementation guidance and bibliography.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "A CoSAI explanatory article and its underlying MCP framework are deduplicated as one underlying work."
+  },
+  {
+    "id": "C05",
+    "publisher": "AI Alliance",
+    "citing_publication": "MCP (and Beyond) in the Enterprise: Securing the Model Context Protocol",
+    "source_url": "https://the-ai-alliance.github.io/enterprise-MCP/security/securing-mcp-cosai/",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An entire external guide chapter explicitly summarizes the CoSAI MCP security paper.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The chapter editor notes that an author also leads the CoSAI workstream; this is externally hosted but contributor-affiliated."
+  },
+  {
+    "id": "C06",
+    "publisher": "Research Data Alliance",
+    "citing_publication": "Artificial Intelligence and Data Visitation Working Group: System Security Assessment Plan Template",
+    "source_url": "https://www.rd-alliance.org/groups/artificial-intelligence-and-data-visitation-aidv-wg/outputs/?output=211235",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Indexed output explicitly references CoSAI’s AI Incident Response Framework, V1.0.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "The result exposes the citation and DOI 10.15497/RDA00144; the destination returned a browser challenge."
+  },
+  {
+    "id": "C07",
+    "publisher": "TechNet",
+    "citing_publication": "Comments to NIST Regarding Security Considerations for Artificial Intelligence Agents",
+    "source_url": "https://www.technet.org/wp-content/uploads/2026/03/TechNet-Comment-RE-NIST-2025-0035.pdf",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Policy submission identifies CoSAI’s secure-by-design agentic principles as an existing industry framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C08",
+    "publisher": "Computer & Communications Industry Association",
+    "citing_publication": "Response to NIST RFI Regarding Security Considerations for Artificial Intelligence Agents",
+    "source_url": "https://ccianet.org/wp-content/uploads/2026/03/CCIA-Response-to-NIST-RFI-Regarding-Security-Considerations-for-Artificial-Intelligence-Agents.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "NIST-facing response contains numbered footnote 16 naming CoSAI’s published secure-by-design principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C09",
+    "publisher": "Software & Information Industry Association",
+    "citing_publication": "Submission to CAISI: Request for Information Regarding Security Considerations for Artificial Intelligence Agents",
+    "source_url": "https://www.siia.net/wp-content/uploads/2026/03/SIIA-Submission-CAISI-RFI-on-Security-for-AI-Agents.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Policy submission cites the CoSAI principles in numbered footnotes 4 and 7.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Repeated footnotes to the same underlying work count as one work-level relationship."
+  },
+  {
+    "id": "C10",
+    "publisher": "Cloud Security Alliance / CSAI Foundation",
+    "citing_publication": "AI Developer Ecosystem Critical Infrastructure Concentration Risk",
+    "source_url": "https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/05/ai-developer-ecosystem-critical-infrastructure-concentration-risk-v1-csa-styled.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Addressing What’s Next in Securing Enterprise AI"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Reference [10] cites Coalition for Secure AI, ‘Addressing What’s Next in Securing Enterprise AI,’ 2026.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C11",
+    "publisher": "Casaba Security",
+    "citing_publication": "Agentic AI Security Guide: References",
+    "source_url": "https://www.casaba.com/guides/agentic-ai-security/references/",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A dedicated CoSAI / OASIS references section names a January 2026 MCP-security work.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The citing site paraphrases the CoSAI work’s title rather than reproducing its canonical title exactly."
+  },
+  {
+    "id": "C12",
+    "publisher": "ResearchGate-hosted research paper",
+    "citing_publication": "Building Scalable and Reliable Agentic AI Systems: A Technical Blueprint for Autonomous Intelligence",
+    "source_url": "https://www.researchgate.net/publication/398083685_Building_Scalable_and_Reliable_Agentic_AI_Systems_A_Technical_Blueprint_for_Autonomous_Intelligence",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Reference 3 identifies Coalition for Secure AI and links the secure-by-design agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The citing bibliography gives 2024, while CoSAI’s publication page is dated July 16, 2025; preserve this metadata discrepancy."
+  },
+  {
+    "id": "C13",
+    "publisher": "AI Runtime Security",
+    "citing_publication": "Why Containment Beats Evaluation",
+    "source_url": "https://airuntimesecurity.io/Downloads/Why%20Containment%20Beats%20Evaluation.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "The references list separately names CoSAI’s MCP Security paper and its secure-by-design agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C14",
+    "publisher": "OISG",
+    "citing_publication": "Open Intelligent Secure Governed: A Unifying Paradigm for Autonomous AI Systems",
+    "source_url": "https://oisg.ai/paper/OISG-paper.pdf",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Bibliography entry 8 cites CoSAI’s Principles for Secure-by-Design Agentic Systems.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C15",
+    "publisher": "O’Reilly / Pearson",
+    "citing_publication": "Agentic AI for Cybersecurity: Building Autonomous Defenders and Adversaries, Chapter 10",
+    "source_url": "https://www.oreilly.com/library/view/agentic-ai-for/9780135589861/ch10.xhtml",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map",
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "Chapter contents explicitly name the CoSAI Risk Map and the AI Incident Response Framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C16",
+    "publisher": "Hugging Face / RockCyber",
+    "citing_publication": "crosswalk-v7c: Two-Stage Ensemble for AI Security Framework Mapping",
+    "source_url": "https://huggingface.co/rockCO78/crosswalk-v7c",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Published model description identifies the CoSAI Risk Map as one of nine frameworks used in its control-mapping knowledge graph.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "The indexed model card reports 983 nodes and 4,342 relationships across nine frameworks; direct retrieval failed."
+  },
+  {
+    "id": "C17",
+    "publisher": "Safeguard",
+    "citing_publication": "OpenSSF Model Signing v1.0 Sigstore Guide",
+    "source_url": "https://safeguard.sh/resources/blog/openssf-model-signing-v1-0-sigstore-ml-supply-chain",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Identifies CoSAI’s Signing ML Artifacts as a reference implementation for enterprise defenders.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C18",
+    "publisher": "Safeguard",
+    "citing_publication": "CoSAI Model Signing and Incident Response Frameworks",
+    "source_url": "https://safeguard.sh/resources/blog/cosai-model-signing-incident-response-frameworks-2025",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Signing ML Artifacts",
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "Explains two separately identifiable CoSAI works: model signing and AI incident response.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Same publisher as C17 but a separate publication; count both source documents once each."
+  },
+  {
+    "id": "C19",
+    "publisher": "UnderDefense",
+    "citing_publication": "AI-Powered Incident Response: Use Cases, Frameworks, Tools, and a Complete Implementation Playbook",
+    "source_url": "https://underdefense.com/blog/ai-incident-response/",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Lists and describes CoSAI AI Incident Response Framework v1.0 in its external incident-response implementation guide.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C20",
+    "publisher": "AI Threat Atlas",
+    "citing_publication": "AI Incident Response Playbooks",
+    "source_url": "https://threatatlas.ai/defense/ai-incident-response-playbook",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Indexed description says the playbooks are grounded in the CoSAI AI Incident Response Framework v1.0.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "The direct page returned a cache miss; classify the source as indexed-only."
+  },
+  {
+    "id": "C21",
+    "publisher": "Perea AI",
+    "citing_publication": "MAESTRO Threat Modeling for Multi-Agent Architectures",
+    "source_url": "https://www.perea.ai/research/maestro-threat-modeling-multi-agent-2026",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Indexed research identifies the CoSAI Model Context Protocol Security white paper and its January 2026 publication dates.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "Full page could not be retrieved during the browsing session."
+  },
+  {
+    "id": "C22",
+    "publisher": "AUFAIT research questions",
+    "citing_publication": "Research Questions",
+    "source_url": "https://storage.googleapis.com/fs-aufait-public/research-questions.html",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Names CoSAI’s Signing ML Artifacts framework and distinguishes signing from hardware binding.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C23",
+    "publisher": "DigiDAI",
+    "citing_publication": "The First Minute After an HR Agent Goes Out of Bounds",
+    "source_url": "https://digidai.github.io/2026/05/03/agent-quarantine-layer-hr-ai-control-plane/",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Links and discusses the CoSAI Agentic Identity and Access Management paper.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C24",
+    "publisher": "Resilient Cyber",
+    "citing_publication": "The Identity Layer Underneath the Agentic Enterprise",
+    "source_url": "https://www.resilientcyber.io/p/the-identity-layer-underneath-the",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Describes CoSAI’s agentic IAM guidance and its human-governed, bounded-authority principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The article uses the descriptive label ‘Principles for Agentic IAM’; mapped conservatively to the published Agentic Identity and Access Management work."
+  },
+  {
+    "id": "C25",
+    "publisher": "bureado / GitHub",
+    "citing_publication": "awesome-agent-runtime-security",
+    "source_url": "https://github.com/bureado/awesome-agent-runtime-security/blob/main/README.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Signing ML Artifacts",
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "External curated security-resource list separately names CoSAI Signing ML Artifacts and CoSAI MCP Security.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "Search result displays both entries; this curated list is not an academic publication."
+  },
+  {
+    "id": "C26",
+    "publisher": "AgentTrust.io",
+    "citing_publication": "Awesome AI Agent Governance",
+    "source_url": "https://governance.agentrust-io.com/",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "External governance directory lists CoSAI Risk Map v1 with its component, control, risk and lifecycle taxonomy.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "Counted as an external technical directory, not as a peer-reviewed citation."
+  },
+  {
+    "id": "C27",
+    "publisher": "CyberChaos",
+    "citing_publication": "MCP Security Best Practices 2026",
+    "source_url": "https://ai-hacking.cyberchaos.nl/mcp-security",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "References and resources list includes the Coalition for Secure AI MCP Security Guide.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "C28",
+    "publisher": "The Claw Street Journal",
+    "citing_publication": "MCP: The Protocol That Ate Enterprise Security",
+    "source_url": "https://theclawstreetjournal.com/cyber-defense/2026/04/14/mcp-the-protocol-that-ate-enterprise-security.html",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Source list cites CoSAI’s practical MCP-security guide and the associated OASIS release.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "The release announcement and practical guide describe the same underlying MCP-security work and count once."
+  },
+  {
+    "id": "C29",
+    "publisher": "The Digital Grapevine",
+    "citing_publication": "The Taxonomy of Failure Modes in Agentic AI Systems and the 2026 Threat Landscape",
+    "source_url": "https://thedigitalgrapevine.com/the-taxonomy-of-failure-modes-in-agentic-ai-systems-and-the-2026-threat-landscape",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "References list names both the CoSAI MCP Security paper and the secure-by-design agentic principles.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": ""
+  },
+  {
+    "id": "O01",
+    "publisher": "UK National Cyber Security Centre",
+    "citing_publication": "NCSC Annual Review 2025: Artificial Intelligence",
+    "source_url": "https://www.ncsc.gov.uk/collection/ncsc-annual-review-2025/chapter-03-keeping-pace-with-evolving-technology/artificial-intelligence",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "UK government review identifies CoSAI as a stakeholder in AI-security workshops and consultations.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Counts as external organizational recognition, not as a citation of a specific CoSAI work."
+  },
+  {
+    "id": "O02",
+    "publisher": "Google",
+    "citing_publication": "Secure AI Framework",
+    "source_url": "https://saif.google/secure-ai-framework",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "States that Google shared SAIF risk-assessment and risk-map materials with CoSAI.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "This is contribution and ecosystem participation evidence, not a citation of a CoSAI-authored publication."
+  },
+  {
+    "id": "O03",
+    "publisher": "HiddenLayer",
+    "citing_publication": "AI Threat Landscape Report 2025",
+    "source_url": "https://21998286.fs1.hubspotusercontent-na1.net/hubfs/21998286/HiddenLayer%20AI%20Threat%20Landscape%20Report%202025.pdf",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "Industry threat report describes CoSAI as a collaborative AI-security initiative.",
+    "verification": "Search-index excerpt verified",
+    "publisher_relationship": "Not established",
+    "notes": "Search indexing establishes the passage; no specific CoSAI work is identified."
+  },
+  {
+    "id": "O04",
+    "publisher": "Cisco",
+    "citing_publication": "Securing AI/ML Ops",
+    "source_url": "https://sec.cloudapps.cisco.com/security/center/resources/SecuringAIMLOps",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "External resources list identifies Coalition for Secure AI and links its website.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": ""
+  },
+  {
+    "id": "O05",
+    "publisher": "AI Alliance",
+    "citing_publication": "AI Trust and Safety User Guide: References",
+    "source_url": "https://the-ai-alliance.github.io/trust-safety-user-guide/references/",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "Frameworks, principles and tools references include Coalition for Secure AI as an organization.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The visible references listing does not identify a distinct CoSAI-authored work."
+  },
+  {
+    "id": "O06",
+    "publisher": "Cloud Security Alliance",
+    "citing_publication": "The Agentic Trust Framework: Zero Trust Governance for AI Agents",
+    "source_url": "https://cloudsecurityalliance.org/blog/2026/02/02/the-agentic-trust-framework-zero-trust-governance-for-ai-agents",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "States that its framework aligns with industry guidance from CoSAI and OWASP.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "No uniquely identifiable CoSAI publication is cited in the inspected passage."
+  },
+  {
+    "id": "O07",
+    "publisher": "AgentTrust.io",
+    "citing_publication": "TRACE v0.1 Specification",
+    "source_url": "https://trace.agentrust-io.com/spec/trace-v0.1/",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "Specification discusses CoSAI as a possible governance or technical-workstream host.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Governance discussion is not a citation of a specific published CoSAI framework."
+  },
+  {
+    "id": "O08",
+    "publisher": "ResearchGate-hosted research paper",
+    "citing_publication": "From Specification to Deployment: Empirical Evidence from a W3C VC + DID Trust Infrastructure for Autonomous Agents",
+    "source_url": "https://www.researchgate.net/publication/404712423_From_Specification_to_Deployment_Empirical_Evidence_from_a_W3C_VC_DID_Trust_Infrastructure_for_Autonomous_Agents",
+    "category": "Organizational mention",
+    "cosai_works": [],
+    "citation_relationships": 0,
+    "evidence_signal": "Academic-style paper mentions Google’s contribution of SAIF risk-map data to CoSAI.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Counted only as organizational recognition because the inspected passage does not cite a distinct CoSAI-authored Risk Map publication."
+  }
+]

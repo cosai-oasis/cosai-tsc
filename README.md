@@ -20,6 +20,8 @@ The governance document for the work of this TSC can be found [here](https://git
 
 In this repository, you can find meeting minutes and documentation of policies that have be created and approved by the TSC, like the [Contributing](./CONTRIBUTING.md) and [Maintainer](./MAINTAINERS.md) policies. This repository also includes organization level documents created by workstreams and approved by the TSC such as the [CoSAI Principles for Secure-by-Design Agentic Systems](./security-principles-for-agentic-systems.md).
 
+The [CoSAI Citation and External Impact report](./TSC%20Deliverables/citation-impact/README.md) tracks verified references to CoSAI publications and frameworks. It is refreshed weekly and surfaces new public citations for TSC review.
+
 ## Governance and Licenses
 
 CoSAI operates under the terms of the [Open Project Rules](https://www.oasis-open.org/policies-guidelines/open-projects-process) and the following the licenses:
