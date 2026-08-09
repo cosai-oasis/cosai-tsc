@@ -61,7 +61,7 @@ class CitationImpactTests(unittest.TestCase):
         candidate = {"publisher": "external/project", "title": "README.md", "url": "https://github.com/external/project/blob/main/README.md", "matched_works": ["CoSAI Risk Map"]}
         report = REFRESH.render_report(verified, [candidate], [], date(2026, 8, 9), True)
         self.assertIn("**1 external publications**", report)
-        self.assertIn("**1 distinct publication-to-work citations**", report)
+        self.assertIn("**1 distinct citations**", report)
         self.assertIn("**1 candidate references**", report)
 
     def test_snapshot_explains_each_metric_and_shows_last_updated_date(self):
@@ -70,12 +70,16 @@ class CitationImpactTests(unittest.TestCase):
             {"id": "O01", "source_url": "https://example.com/b", "cosai_works": [], "category": "Organizational mention", "verification": "Directly inspected"},
         ]
         report = REFRESH.render_report(verified, [], [], date(2026, 8, 9), False)
-        self.assertIn("| Measure | Verified minimum | What this means |", report)
-        self.assertIn("Those 1 documents make 1 unique connections to CoSAI works", report)
+        self.assertIn("| Measure | Result | Meaning |", report)
+        self.assertIn("| Citation types | **1 formal; 0 substantive** |", report)
+        self.assertIn("| Organization-only mentions | **1 additional; 2 total** |", report)
         self.assertIn("**Last updated: August 9, 2026**", report)
         self.assertNotIn("Evidence last reviewed", report)
         self.assertIn("every Monday at **12:00 p.m. Eastern Time**", report)
         self.assertIn("| CoSAI publication or framework | Distinct citing publications | Selected external citations |", report)
+        self.assertIn("## Selected adoption evidence", report)
+        self.assertNotIn("## Selected external citations", report)
+        self.assertNotIn("## What the adoption evidence shows", report)
         self.assertIn("## Complete CoSAI paper-to-source register", report)
         self.assertIn("[CoSAI Risk Map](https://example.com/a)", report)
         self.assertLess(report.index("## Complete CoSAI paper-to-source register"), report.index("## Methodology"))

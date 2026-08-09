@@ -7,18 +7,16 @@
 
 **Scope:** Publicly discoverable references to Coalition for Secure AI publications and frameworks.
 
-> **98 external publications** cite or use specific CoSAI work, representing **146 distinct publication-to-work citations**. Another **8 publications** mention CoSAI at the organizational level, for **106 verified external sources** overall.
+> **98 external publications** cite **12 CoSAI works**, representing **146 distinct citations**.
 
 ## Citation snapshot
 
-| Measure | Verified minimum | What this means |
-| --- | ---: | --- |
-| External publications citing a CoSAI work | 98 | 98 externally published documents cite, discuss or use at least one specific CoSAI publication, framework or other work. |
-| Distinct publication-to-work citations | 146 | Those 98 documents make 146 unique connections to CoSAI works; some documents cite more than one work. |
-| Formal references and bibliographies | 46 | 46 of the 98 documents cite CoSAI through a formal reference, footnote, bibliography or equivalent source attribution. |
-| Substantive framework or implementation citations | 52 | 52 of the 98 documents discuss, apply or incorporate a CoSAI framework or other work substantively. |
-| Additional organization-only mentions | 8 | 8 additional publications mention CoSAI as an organization without identifying a specific CoSAI work. |
-| Total external publications | 106 | The 98 publications citing specific CoSAI works plus the 8 publications mentioning only the organization. |
+| Measure | Result | Meaning |
+| --- | --- | --- |
+| Publications citing CoSAI work | **98** | External publications identifying at least one CoSAI paper, framework or technical work. |
+| Citation relationships | **146 across 12 works** | Each unique publication-to-work connection; one publication can cite multiple works. |
+| Citation types | **46 formal; 52 substantive** | Formal references and substantive discussion or implementation together account for all 98 citing publications. |
+| Organization-only mentions | **8 additional; 106 total** | Publications mentioning CoSAI without citing a specific work, plus the overall external-publication total. |
 
 Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.
 
@@ -39,35 +37,14 @@ Here, **external** means published outside CoSAI/OASIS-controlled channels; it d
 | Establish Risks and Controls for the AI Supply Chain | 2 | [AI Shared Responsibility educational companion](https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/agentic-ai-security/agentic-security.md); [Open Source Software Supply Chain Security / Michael Scovetta](https://sscsecurity.dev/appendices/appendix-b/) |
 | Addressing What’s Next in Securing Enterprise AI | 1 | [Cloud Security Alliance / CSAI Foundation](https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/05/ai-developer-ecosystem-critical-infrastructure-concentration-risk-v1-csa-styled.pdf) |
 
-## Selected external citations
+## Selected adoption evidence
 
-- **U.S. National Security Agency:** [formally cites CoSAI MCP Security in federal cybersecurity guidance](https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF).
-- **App Defense Alliance:** [builds its AI Tool Security Specification on CoSAI’s MCP threat model](https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI%20Profile/AI%20Tool%20Specification.md).
-- **App Defense Alliance:** [maps AI-tool audit tests directly to CoSAI MCP threat categories](https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI%20Profile/AI%20Tool%20Testing%20Guide.md).
-- **OpenSSF:** [reports model-signing adoption by IBM and Cohere following CoSAI collaboration](https://github.com/ossf/tac/blob/d019efec7b3eeafbbf3c38e1b5d9946c8f77892b/TI-reports/2026/2026-Q1-AI-ML-WG.md).
-- **Red Hat Product Security:** [incorporates Project CodeGuard into its secure-development skills](https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/docs/secure-development-skills.md).
-- **Northwoods Sentinel:** [maps the AI Shared Responsibility Framework to Anthropic deployment](https://github.com/NorthwoodsSentinel/Northwoods-Sentinel/blob/b53211546d46766a741efc114dd673731c13ae14/src/content/essays/2026-06-13-anthropic-srf-mapping.md).
-- **Google DeepMind:** [applies CoSAI’s agentic security principles](https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/securing-the-future-of-ai-agents/three-layers-of-agent-security.pdf).
-- **Microsoft:** [references CoSAI in its agentic failure-mode taxonomy](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf).
-- **IBM:** [links CoSAI MCP security guidance from implementation documentation](https://ibm.github.io/mcp-context-forge/latest/best-practices/mcp-architecture-patterns/).
-- **CCIA:** [cites CoSAI’s principles in a submission to NIST](https://ccianet.org/wp-content/uploads/2026/03/CCIA-Response-to-NIST-RFI-Regarding-Security-Considerations-for-Artificial-Intelligence-Agents.pdf).
-- **SIIA:** [cites CoSAI’s principles in a CAISI submission](https://www.siia.net/wp-content/uploads/2026/03/SIIA-Submission-CAISI-RFI-on-Security-for-AI-Agents.pdf).
-- **AI Alliance:** [dedicates an enterprise-MCP guide chapter to CoSAI’s paper](https://the-ai-alliance.github.io/enterprise-MCP/security/securing-mcp-cosai/).
-- **Cloud Security Alliance:** [formally references CoSAI enterprise-security guidance](https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/05/ai-developer-ecosystem-critical-infrastructure-concentration-risk-v1-csa-styled.pdf).
-- **OWASP AISVS:** [formally cites CoSAI’s MCP-security and agentic-identity guidance](https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C10-MCP-Security/C10-MCP-Security.md).
-- **OWASP AISVS:** [references CoSAI’s incident-response and agentic-identity work](https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md).
-- **Google Trillian:** [links the CoSAI Signing ML Artifacts specification](https://github.com/google/trillian/blob/52c8a9983a982210e1ad6cef8ad3215c70464977/docs/claimantmodel/CoreModel.md).
-- **Agent Threat Rule:** [maps all 12 CoSAI MCP threat categories to detection rules](https://github.com/Agent-Threat-Rule/agent-threat-rules/blob/45cb8cd7c271ec2e2337c3d6f85fbab22e86bac0/docs/crosswalks/atr-cosai-mcp-taxonomy-mapping.md).
-- **UK National Cyber Security Centre:** [identifies CoSAI as an AI-security stakeholder](https://www.ncsc.gov.uk/collection/ncsc-annual-review-2025/chapter-03-keeping-pace-with-evolving-technology/artificial-intelligence).
-
-## What the adoption evidence shows
-
-- **Government recognition:** The U.S. National Security Agency formally cites CoSAI’s MCP Security paper in cybersecurity guidance; the citation is not a government endorsement.
-- **Security standards and testing:** The App Defense Alliance translates CoSAI’s MCP threat model into an AI-tool security specification and corresponding audit tests.
-- **Supply-chain implementation:** OpenSSF reports model-signing adoption by IBM and Cohere and connects that work to the CoSAI signing publication.
-- **Secure-development adoption:** Red Hat Product Security incorporates CoSAI Project CodeGuard into its AI secure-development skills.
-- **Shared-responsibility deployment:** External researchers and practitioners apply the CoSAI Shared Responsibility Framework to real provider, customer, agent, and platform accountability questions.
-- **Investment signal:** Model Context Protocol (MCP) Security currently leads with **28** distinct citing publications; compare depth of implementation, independent adoption and standards incorporation alongside raw citation counts.
+- **Government guidance:** The U.S. National Security Agency [formally cites CoSAI MCP Security](https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF); this is not a government endorsement.
+- **Security standards:** The App Defense Alliance applies CoSAI’s MCP threat model in an AI-tool [security specification](https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI%20Profile/AI%20Tool%20Specification.md) and corresponding [audit tests](https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI%20Profile/AI%20Tool%20Testing%20Guide.md).
+- **Practitioner standards:** [OWASP GenAI Security Project](https://genai.owasp.org/resource/state-of-agentic-ai-security-and-governance/) and [OWASP AI Security Verification Standard](https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C10-MCP-Security/C10-MCP-Security.md) reference CoSAI security guidance.
+- **Supply-chain security:** [OpenSSF reports model-signing adoption by IBM and Cohere](https://github.com/ossf/tac/blob/d019efec7b3eeafbbf3c38e1b5d9946c8f77892b/TI-reports/2026/2026-Q1-AI-ML-WG.md) in connection with CoSAI work.
+- **Secure-development tooling:** [Red Hat Product Security](https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/docs/secure-development-skills.md) and [Cisco DevNet](https://github.com/CiscoDevNet/foundry-security-spec/blob/c770bf7764265dda188d9a270b1105a4bb62759b/docs/adoption/integration-decisions.md) incorporate or reference Project CodeGuard.
+- **Shared responsibility:** [An external practitioner analysis](https://github.com/NorthwoodsSentinel/Northwoods-Sentinel/blob/b53211546d46766a741efc114dd673731c13ae14/src/content/essays/2026-06-13-anthropic-srf-mapping.md) applies CoSAI’s framework to provider and customer accountability.
 
 ## Complete CoSAI paper-to-source register
 

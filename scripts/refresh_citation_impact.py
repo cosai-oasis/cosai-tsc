@@ -316,26 +316,6 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
     review_entries = discovery_review_entries(verified, candidates, excluded or [])
     preferred_sources = ("C96", "C60", "C61", "C82", "C97", "C53", "C92", "C95", "C31", "C01", "C02", "C04", "C05", "C08", "C09", "C10", "C30", "C32", "C33")
     source_priority = {identifier: position for position, identifier in enumerate(preferred_sources)}
-    highlights = (
-        ("C96", "U.S. National Security Agency", "formally cites CoSAI MCP Security in federal cybersecurity guidance"),
-        ("C60", "App Defense Alliance", "builds its AI Tool Security Specification on CoSAI’s MCP threat model"),
-        ("C61", "App Defense Alliance", "maps AI-tool audit tests directly to CoSAI MCP threat categories"),
-        ("C82", "OpenSSF", "reports model-signing adoption by IBM and Cohere following CoSAI collaboration"),
-        ("C53", "Red Hat Product Security", "incorporates Project CodeGuard into its secure-development skills"),
-        ("C95", "Northwoods Sentinel", "maps the AI Shared Responsibility Framework to Anthropic deployment"),
-        ("C01", "Google DeepMind", "applies CoSAI’s agentic security principles"),
-        ("C02", "Microsoft", "references CoSAI in its agentic failure-mode taxonomy"),
-        ("C04", "IBM", "links CoSAI MCP security guidance from implementation documentation"),
-        ("C08", "CCIA", "cites CoSAI’s principles in a submission to NIST"),
-        ("C09", "SIIA", "cites CoSAI’s principles in a CAISI submission"),
-        ("C05", "AI Alliance", "dedicates an enterprise-MCP guide chapter to CoSAI’s paper"),
-        ("C10", "Cloud Security Alliance", "formally references CoSAI enterprise-security guidance"),
-        ("C31", "OWASP AISVS", "formally cites CoSAI’s MCP-security and agentic-identity guidance"),
-        ("C32", "OWASP AISVS", "references CoSAI’s incident-response and agentic-identity work"),
-        ("C33", "Google Trillian", "links the CoSAI Signing ML Artifacts specification"),
-        ("C30", "Agent Threat Rule", "maps all 12 CoSAI MCP threat categories to detection rules"),
-        ("O01", "UK National Cyber Security Centre", "identifies CoSAI as an AI-security stakeholder"),
-    )
 
     lines = [
         "# CoSAI Citation and External Impact",
@@ -347,18 +327,16 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "",
         "**Scope:** Publicly discoverable references to Coalition for Secure AI publications and frameworks.",
         "",
-        f"> **{len(citing)} external publications** cite or use specific CoSAI work, representing **{edges} distinct publication-to-work citations**. Another **{len(mentions)} publications** mention CoSAI at the organizational level, for **{len(verified)} verified external sources** overall.",
+        f"> **{len(citing)} external publications** cite **{len(distribution)} CoSAI works**, representing **{edges} distinct citations**.",
         "",
         "## Citation snapshot",
         "",
-        "| Measure | Verified minimum | What this means |",
-        "| --- | ---: | --- |",
-        f"| External publications citing a CoSAI work | {len(citing)} | {len(citing)} externally published documents cite, discuss or use at least one specific CoSAI publication, framework or other work. |",
-        f"| Distinct publication-to-work citations | {edges} | Those {len(citing)} documents make {edges} unique connections to CoSAI works; some documents cite more than one work. |",
-        f"| Formal references and bibliographies | {formal} | {formal} of the {len(citing)} documents cite CoSAI through a formal reference, footnote, bibliography or equivalent source attribution. |",
-        f"| Substantive framework or implementation citations | {substantive} | {substantive} of the {len(citing)} documents discuss, apply or incorporate a CoSAI framework or other work substantively. |",
-        f"| Additional organization-only mentions | {len(mentions)} | {len(mentions)} additional publications mention CoSAI as an organization without identifying a specific CoSAI work. |",
-        f"| Total external publications | {len(verified)} | The {len(citing)} publications citing specific CoSAI works plus the {len(mentions)} publications mentioning only the organization. |",
+        "| Measure | Result | Meaning |",
+        "| --- | --- | --- |",
+        f"| Publications citing CoSAI work | **{len(citing)}** | External publications identifying at least one CoSAI paper, framework or technical work. |",
+        f"| Citation relationships | **{edges} across {len(distribution)} works** | Each unique publication-to-work connection; one publication can cite multiple works. |",
+        f"| Citation types | **{formal} formal; {substantive} substantive** | Formal references and substantive discussion or implementation together account for all {len(citing)} citing publications. |",
+        f"| Organization-only mentions | **{len(mentions)} additional; {len(verified)} total** | Publications mentioning CoSAI without citing a specific work, plus the overall external-publication total. |",
         "",
         "Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.",
         "",
@@ -376,32 +354,33 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         lines.append(f"| {work} | {count} | {examples} |")
     lines += [
         "",
-        "## Selected external citations",
-        "",
-    ]
-    for identifier, publisher, description in highlights:
-        if identifier in by_id:
-            item = by_id[identifier]
-            lines.append(f"- **{publisher}:** {markdown_link(description, item['source_url'])}.")
-
-    lines += [
-        "",
-        "## What the adoption evidence shows",
+        "## Selected adoption evidence",
         "",
     ]
     if "C96" in by_id:
-        lines.append("- **Government recognition:** The U.S. National Security Agency formally cites CoSAI’s MCP Security paper in cybersecurity guidance; the citation is not a government endorsement.")
+        lines.append(f"- **Government guidance:** The U.S. National Security Agency {markdown_link('formally cites CoSAI MCP Security', by_id['C96']['source_url'])}; this is not a government endorsement.")
     if "C60" in by_id and "C61" in by_id:
-        lines.append("- **Security standards and testing:** The App Defense Alliance translates CoSAI’s MCP threat model into an AI-tool security specification and corresponding audit tests.")
+        specification = markdown_link("security specification", by_id["C60"]["source_url"])
+        testing = markdown_link("audit tests", by_id["C61"]["source_url"])
+        lines.append(f"- **Security standards:** The App Defense Alliance applies CoSAI’s MCP threat model in an AI-tool {specification} and corresponding {testing}.")
+    if "C97" in by_id or "C31" in by_id:
+        examples = []
+        if "C97" in by_id:
+            examples.append(markdown_link("OWASP GenAI Security Project", by_id["C97"]["source_url"]))
+        if "C31" in by_id:
+            examples.append(markdown_link("OWASP AI Security Verification Standard", by_id["C31"]["source_url"]))
+        lines.append(f"- **Practitioner standards:** {' and '.join(examples)} reference CoSAI security guidance.")
     if "C82" in by_id:
-        lines.append("- **Supply-chain implementation:** OpenSSF reports model-signing adoption by IBM and Cohere and connects that work to the CoSAI signing publication.")
-    if "C53" in by_id:
-        lines.append("- **Secure-development adoption:** Red Hat Product Security incorporates CoSAI Project CodeGuard into its AI secure-development skills.")
+        lines.append(f"- **Supply-chain security:** {markdown_link('OpenSSF reports model-signing adoption by IBM and Cohere', by_id['C82']['source_url'])} in connection with CoSAI work.")
+    if "C53" in by_id or "C92" in by_id:
+        examples = []
+        if "C53" in by_id:
+            examples.append(markdown_link("Red Hat Product Security", by_id["C53"]["source_url"]))
+        if "C92" in by_id:
+            examples.append(markdown_link("Cisco DevNet", by_id["C92"]["source_url"]))
+        lines.append(f"- **Secure-development tooling:** {' and '.join(examples)} incorporate or reference Project CodeGuard.")
     if "C95" in by_id:
-        lines.append("- **Shared-responsibility deployment:** External researchers and practitioners apply the CoSAI Shared Responsibility Framework to real provider, customer, agent, and platform accountability questions.")
-    if distribution:
-        leader, leader_count = distribution.most_common(1)[0]
-        lines.append(f"- **Investment signal:** {leader} currently leads with **{leader_count}** distinct citing publications; compare depth of implementation, independent adoption and standards incorporation alongside raw citation counts.")
+        lines.append(f"- **Shared responsibility:** {markdown_link('An external practitioner analysis', by_id['C95']['source_url'])} applies CoSAI’s framework to provider and customer accountability.")
 
     lines += [
         "",
