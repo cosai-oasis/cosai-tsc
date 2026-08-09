@@ -73,6 +73,7 @@ class CitationImpactTests(unittest.TestCase):
         self.assertIn("| Measure | Verified minimum | What this means |", report)
         self.assertIn("Those 1 documents make 1 unique connections to CoSAI works", report)
         self.assertIn("**Last updated: August 9, 2026**", report)
+        self.assertNotIn("Evidence last reviewed", report)
         self.assertIn("every Monday at **12:00 p.m. Eastern Time**", report)
         self.assertIn("| CoSAI publication or framework | Distinct citing publications | Selected external citations |", report)
         self.assertIn("## Complete CoSAI paper-to-source register", report)

@@ -342,7 +342,6 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "",
         "> [!NOTE]",
         f"> **Last updated: {as_of.strftime('%B %-d, %Y')}**",
-        f"> **Evidence last reviewed:** {datetime.now(EASTERN_TIME).strftime('%B %-d, %Y at %-I:%M %p Eastern Time')}",
         ">",
         "> Scheduled refresh: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).",
         "",

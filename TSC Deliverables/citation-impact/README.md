@@ -2,7 +2,6 @@
 
 > [!NOTE]
 > **Last updated: August 9, 2026**
-> **Evidence last reviewed:** August 9, 2026 at 8:54 AM Eastern Time
 >
 > Scheduled refresh: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).
 
