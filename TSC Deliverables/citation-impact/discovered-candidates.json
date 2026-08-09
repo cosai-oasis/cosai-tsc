@@ -3,48 +3,5 @@
   "description": "Unreviewed external CoSAI references; not included in verified citation totals.",
   "discovery_enabled": false,
   "discovery_warnings": [],
-  "candidates": [
-    {
-      "publisher": "FlorianBruniaux/claude-code-ultimate-guide",
-      "title": "guide/security/security-hardening.md",
-      "url": "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/a4d1247c2188437cc855a0c24e6350e35a3015c3/guide/security/security-hardening.md",
-      "matched_works": [
-        "AI Incident Response Framework"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "**Regulatory context:** - **EU AI Act** (Aug 2025): Kill switches mandatory for high-risk AI systems. Non-compliance = fines up to 7% global turnover. If your org deploys Claude Code in regulated workflows, document your containment architecture. - **CoSAI AI Incident Response Framework V1.0** (Nov 2025): First framewo",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "FreezeSoul/agent-engineering-by-openclaw",
-      "title": "articles/harness/cosai-mcp-security-threat-taxonomy-2026.md",
-      "url": "https://github.com/FreezeSoul/agent-engineering-by-openclaw/blob/a66524cfb23f73c35ef171572cff3a028c7ce4e5/articles/harness/cosai-mcp-security-threat-taxonomy-2026.md",
-      "matched_works": [
-        "Model Context Protocol (MCP) Security"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "> **使用方式**：将 12 个威胁类别作为 MCP 部署的安全审计 checklist，逐项评估。对于 MCP-Specific 威胁（主要是 T3/T4/T9/T11），优先投入治理；对于 MCP-Contextualized 威胁，参考既有的云原生安全实践。 ## 信息来源 - [CoSAI Model Context Protocol (MCP) Security 白皮书](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/blob/main/model-context-protocol-security.md)（OASIS Open，2026",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    },
-    {
-      "publisher": "ajessu/albertson-agents",
-      "title": "docs/corpus/agent-guardrails-sops/code-cosai-ws4-secure-agentic-design.md",
-      "url": "https://github.com/ajessu/albertson-agents/blob/11bc84e80290724c3e3048d59bfb970b35669cd3/docs/corpus/agent-guardrails-sops/code-cosai-ws4-secure-agentic-design.md",
-      "matched_works": [
-        "Principles for Secure-by-Design Agentic Systems"
-      ],
-      "discovery_provider": "GitHub public code search",
-      "evidence": "id: \"df6d8eb3\" source: code url: https://github.com/cosai-oasis/ws4-secure-design-agentic-systems title: \"CoSAI Workstream 4: Secure Design Patterns for Agentic Systems (OASIS Open Project)\" date: 2026 topic_list: [cosai, oasis, secure-design-patterns, mcp-gap-analysis, trust-aware-dataplane, secure-by-design] voice: t",
-      "status": "Needs human review",
-      "publisher_relationship": "Not established",
-      "first_seen": "2026-08-09",
-      "last_seen": "2026-08-09"
-    }
-  ]
+  "candidates": []
 }

@@ -518,13 +518,1073 @@
       "AI Incident Response Framework",
       "CoSAI Risk Map",
       "Signing ML Artifacts",
-      "Agentic Identity and Access Management"
+      "Agentic Identity and Access Management",
+      "Project CodeGuard"
     ],
-    "citation_relationships": 6,
+    "citation_relationships": 7,
     "evidence_signal": "Dedicated technical-training lesson identifies and explains six distinct CoSAI publications and frameworks in its deliverables table and workstream overview.",
     "verification": "Directly inspected",
     "publisher_relationship": "CoSAI contributor-affiliated",
-    "notes": "Repository description identifies Omar Santos as maintainer. Three other resource-list pages in the same repository repeat the same material and are excluded as duplicate coverage."
+    "notes": "Repository description identifies Omar Santos as maintainer. Three other resource-list pages in the same repository repeat the same material and are excluded as duplicate coverage. Direct inspection also confirms that the same lesson explicitly teaches Project CodeGuard."
+  },
+  {
+    "id": "C35",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Claude Code Ultimate Guide / Florian Bruniaux",
+    "citing_publication": "Security Hardening Guide",
+    "source_url": "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/a4d1247c2188437cc855a0c24e6350e35a3015c3/guide/security/security-hardening.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Directly links the published CoSAI incident-response framework in a widely used security-hardening guide.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C36",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Agent Engineering by OpenClaw / FreezeSoul",
+    "citing_publication": "CoSAI MCP Security 白皮书：首个系统性 MCP 威胁分类框架",
+    "source_url": "https://github.com/FreezeSoul/agent-engineering-by-openclaw/blob/a66524cfb23f73c35ef171572cff3a028c7ce4e5/articles/harness/cosai-mcp-security-threat-taxonomy-2026.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Independently explains and operationalizes all twelve CoSAI MCP threat categories for Chinese-language practitioners.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C37",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP GenAI Security Project",
+    "citing_publication": "LLM04:2026 Supply Chain",
+    "source_url": "https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/blob/7bbe0f06f468cdcc61fa73e1752183c6cfd23987/2026/final/LLM04_SupplyChain.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "OWASP GenAI LLM Top 10 supply-chain guidance cites the CoSAI ML-artifact-signing maturity model.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C38",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Secure AI General Public License",
+    "citing_publication": "SAIL‑GPL — Secure AI General Public License",
+    "source_url": "https://github.com/Grigaliunas/SAIL-GPL/blob/35896fd78f024d15d65c6f0db1f8f44a1b315e51/SAIL-GPL-1.0.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Incident Response Framework",
+      "CoSAI Risk Map",
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 3,
+    "evidence_signal": "A proposed secure-AI license incorporates the CoSAI Risk Map, model-signing guidance, and incident-response framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C39",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Agent Security Research",
+    "citing_publication": "AI Application Ecosystem Security",
+    "source_url": "https://github.com/ItsNishi/AI-Agent-Security/blob/01d56e161f2aeb586dd6bdc40cc05dfc14c9b741/notes/13_AI_Application_Ecosystem_Security.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Signing ML Artifacts",
+      "Project CodeGuard"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "External AI-security research notes name both the CoSAI Signing ML Artifacts publication and Project CodeGuard in their deliverables inventory.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C40",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Runtime Security",
+    "citing_publication": "AI Runtime Security News",
+    "source_url": "https://github.com/JonathanCGill/airuntimesecurity.io/blob/5bb2bcac154c48ab5d0e39065f791c1773b4b1c8/docs/news.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "External runtime-security analysis cites CoSAI agentic-identity research when discussing operational identity gaps.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C41",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Runtime Security",
+    "citing_publication": "References & Sources",
+    "source_url": "https://github.com/JonathanCGill/airuntimesecurity.io/blob/5bb2bcac154c48ab5d0e39065f791c1773b4b1c8/docs/references.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "External runtime-security framework documents a full alignment to CoSAI secure-by-design agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C42",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "LatentMesh AI",
+    "citing_publication": "The illusion of preparedness",
+    "source_url": "https://github.com/KarthikSync/latentmesh-ai-blog/blob/3f02fdbb6321549a5b7eb21ae807a497751c5ce2/src/content/blog/the-incident-response-gap-in-ai-systems.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Independent incident-response analysis includes the CoSAI AI Incident Response Framework in its formal references.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C43",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C5.1: Authentication",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C05-Access-Control/C05-01-Identity-Management-Authentication.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "OWASP AISVS authentication controls explicitly reference the CoSAI Agentic Identity and Access Management paper.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C44",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C6.2: AI BOM & Supply Chain Monitoring",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C06-Supply-Chain/C06-02-AI-BOM-Supply-Chain-Monitoring.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Signing ML Artifacts",
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "OWASP AISVS supply-chain monitoring guidance formally cites the CoSAI model-signing and incident-response works.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C45",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C9.5: Agent Authorization, Delegation, and Continuous Enforcement",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C09-Orchestration-and-Agents/C09-05-Agent-Authorization-Delegation.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management",
+      "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+    ],
+    "citation_relationships": 3,
+    "evidence_signal": "OWASP AISVS agent-authorization guidance separately names and links three CoSAI agent-security publications.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C46",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C10.1: Component Integrity & Supply Chain Hygiene",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C10-MCP-Security/C10-01-Component-Integrity.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "OWASP AISVS component-integrity controls link the CoSAI MCP Security publication.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C47",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C10.2: Authentication & Authorization",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C10-MCP-Security/C10-02-Authentication-Authorization.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "OWASP AISVS authentication chapter explains the CoSAI MCP threat taxonomy and applies CoSAI agentic-IAM guidance.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C48",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OWASP AI Security Verification Standard",
+    "citing_publication": "C12: Monitoring, Logging & Anomaly Detection",
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/chapters/C12-Monitoring-and-Logging/C12-Monitoring-and-Logging.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "OWASP AISVS monitoring guidance references the CoSAI AI Incident Response Framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C49",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Open Digital Product Factory",
+    "citing_publication": "Trusted AI Agent Governance",
+    "source_url": "https://github.com/OpenDigitalProductFactory/opendigitalproductfactory/blob/349186d77294589f5358d8ee13904fbdeb1d9e1f/docs/architecture/2026-04-18-trusted-ai-agent-governance-white-paper.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "External agent-governance white paper formally references the CoSAI Agentic Identity and Access Management paper.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C50",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Open Digital Product Factory",
+    "citing_publication": "Global AI Agent Identification and Governance Framework (GAID)",
+    "source_url": "https://github.com/OpenDigitalProductFactory/opendigitalproductfactory/blob/349186d77294589f5358d8ee13904fbdeb1d9e1f/docs/architecture/GAID.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A global agent-identification architecture maps its governance and identity model to CoSAI agentic IAM.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C51",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Open Digital Product Factory",
+    "citing_publication": "TAK + GAID Standards Review — 2026-05-12",
+    "source_url": "https://github.com/OpenDigitalProductFactory/opendigitalproductfactory/blob/349186d77294589f5358d8ee13904fbdeb1d9e1f/docs/architecture/standards-review-2026-05-12.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Standards-review document directs an external architecture to map its controls to the CoSAI agentic-identity framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C52",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Open Digital Product Factory",
+    "citing_publication": "Trusted AI Kernel (TAK)",
+    "source_url": "https://github.com/OpenDigitalProductFactory/opendigitalproductfactory/blob/349186d77294589f5358d8ee13904fbdeb1d9e1f/docs/architecture/trusted-ai-kernel.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Trusted AI Kernel architecture incorporates CoSAI agentic-identity controls and cites the underlying publication.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C53",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Red Hat Product Security",
+    "citing_publication": "Secure Development skills",
+    "source_url": "https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/docs/secure-development-skills.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Project CodeGuard"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Red Hat Product Security identifies CoSAI Project CodeGuard as the source for secure-development skills.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C54",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Security Newsletter / Tal Eliyahu",
+    "citing_publication": "AI Security Newsletter – July 2025",
+    "source_url": "https://github.com/TalEliyahu/AI-Security-Newsletter/blob/d8d92b6d8ca7bcba41ff3f295ee187f3f4539dc0/AI Security Newsletter – July 2025.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Preparing Defenders of AI Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Independent AI-security newsletter links the CoSAI Preparing Defenders of AI Systems paper.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C55",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Awesome AI Security / Tal Eliyahu",
+    "citing_publication": "Awesome AI Security ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)",
+    "source_url": "https://github.com/TalEliyahu/Awesome-AI-Security/blob/944b0e52f535d13d5b543fddd9bd3b895aa6de1b/README.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Preparing Defenders of AI Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Widely used AI-security resource index formally lists the CoSAI Preparing Defenders publication.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C56",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "The Art of Hacking / Omar Santos",
+    "citing_publication": "Coalition for Secure AI (CoSAI) Risk Map - Comprehensive Summary",
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/Coalition-for-Secure-AI-CoSAI-Risk-Map.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Contributor-maintained security training develops a dedicated, detailed explanation of the CoSAI Risk Map.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C57",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Adversa AI / SecureClaw",
+    "citing_publication": "SecureClaw",
+    "source_url": "https://github.com/adversa-ai/secureclaw/blob/bf17e2b3deb989e348b3a98080e33a7047e90ac3/README.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "SecureClaw publicly maps its security-control coverage to all three CoSAI secure-by-design principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately. Public project reports full coverage of all three CoSAI principles; that statement is publisher-asserted, not an independently audited certification."
+  },
+  {
+    "id": "C58",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Agentique French-Language Security Compendium",
+    "citing_publication": "Annexe I — Bibliographie générale consolidée",
+    "source_url": "https://github.com/agbruneau/Agentique/blob/1e920ff2be706b2caaa58d20b1f7f0fce58af867/2 - Compendium/annexe-bibliographie.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems",
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "French-language security compendium formally cites both CoSAI agentic-security principles and its incident-response framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C59",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Albertson Agents",
+    "citing_publication": "CoSAI Workstream 4: Secure Design Patterns for Agentic Systems",
+    "source_url": "https://github.com/ajessu/albertson-agents/blob/11bc84e80290724c3e3048d59bfb970b35669cd3/docs/corpus/agent-guardrails-sops/code-cosai-ws4-secure-agentic-design.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management",
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 3,
+    "evidence_signal": "An external agent-guardrails knowledge corpus summarizes and links three distinct CoSAI workstream deliverables.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C60",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "App Defense Alliance",
+    "citing_publication": "AI Tool Security Specification",
+    "source_url": "https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI Profile/AI Tool Specification.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "The App Defense Alliance AI Tool Security Specification explicitly derives security requirements from the CoSAI MCP threat model.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Independent consortium; CoSAI member-company contributors",
+    "notes": "The independent App Defense Alliance publication lists contributors from Google, Meta and Microsoft. Several contributors are employed by CoSAI member companies."
+  },
+  {
+    "id": "C61",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "App Defense Alliance",
+    "citing_publication": "App Defense Alliance AI Tool Testing Guide",
+    "source_url": "https://github.com/appdefensealliance/ASA-WG/blob/0e5f36db71f7315796eca10dfd6a35d62f446ed8/AI Profile/AI Tool Testing Guide.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "The App Defense Alliance AI Tool Testing Guide maps its audit tests back to the CoSAI MCP threat categories.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Independent consortium; CoSAI member-company contributors",
+    "notes": "The independent App Defense Alliance publication lists contributors from Google, Meta and Microsoft. Several contributors are employed by CoSAI member companies."
+  },
+  {
+    "id": "C62",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Shared Responsibility educational companion",
+    "citing_publication": "AI and Agent Security: A Cross-Framework Synthesis",
+    "source_url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/agentic-ai-security/agentic-security.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Principles for Secure-by-Design Agentic Systems",
+      "AI Incident Response Framework",
+      "Signing ML Artifacts",
+      "Agentic Identity and Access Management",
+      "AI Shared Responsibility Framework",
+      "Preparing Defenders of AI Systems",
+      "The Future of Agentic Security: From Chatbots to Autonomous Swarms",
+      "Establish Risks and Controls for the AI Supply Chain"
+    ],
+    "citation_relationships": 9,
+    "evidence_signal": "An externally hosted cross-framework synthesis individually identifies and compares nine distinct CoSAI publications.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Externally hosted educational companion. Several dates printed in its comparison table differ from CoSAI’s official publication dates; publication identities were independently corroborated."
+  },
+  {
+    "id": "C63",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Shared Responsibility educational companion",
+    "citing_publication": "Manufacturing Vertical: Handoff Brief",
+    "source_url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/manufacturing-vertical-handoff.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A manufacturing-specific handoff applies the CoSAI Shared Responsibility Framework to accountable control ownership.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C64",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Shared Responsibility educational companion",
+    "citing_publication": "Making the TACIP profile LLM- and machine-readable",
+    "source_url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/nist/WHY-machine-readable.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "External NIST-profile implementation guidance applies the CoSAI Shared Responsibility Framework machine-readable publishing pattern.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C65",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Zone of Distrust",
+    "citing_publication": "CoSAI Risk Map Mapping",
+    "source_url": "https://github.com/bluvibytes/zone-of-distrust/blob/7ddaba9c4c7f1edb4221a50e81a8c03738c9b6f4/docs/mappings/cosai-mapping.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An external autonomous-agent security architecture maps its controls to the CoSAI Risk Map.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C66",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "BRACE Agent Security Framework",
+    "citing_publication": "Input to CoSAI's Secure Design Patterns for Agentic Systems: Agent Identity and the Harness Pattern",
+    "source_url": "https://github.com/brace-ai-security/brace/blob/e9daec3247120b5d722b5dcb797e8a3a1e6c3997/outreach/cosai-secure-design-patterns-input.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management",
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 3,
+    "evidence_signal": "An independent security-framework proposal explains how its control architecture composes with three CoSAI agent-security works.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C67",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Splunk Monitoring Use Cases",
+    "citing_publication": "splunk-uc-mcp",
+    "source_url": "https://github.com/fenre/splunk-monitoring-use-cases/blob/a3402fc8513c22e665f830f052995e46327a9abd/mcp/README.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A Splunk-based MCP security implementation explicitly follows the CoSAI MCP Security guidance.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C68",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Fundación CTIC AI Coding Tools Course",
+    "citing_publication": "**The Architectures of Autonomy: A Comparative. Analysis of Agentic. Software. Engineering. Environments**",
+    "source_url": "https://github.com/fundacionctic/ai-coding-tools-course/blob/83e7f084ed739cefc9ef69b5dee5bc945e225c7d/research/foundations/agentic-ide-tools-comparison.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An external technical-training comparison formally references CoSAI secure-by-design agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C69",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "SecureAI Framework / David Girard",
+    "citing_publication": "SecureAI Framework - Project Summary",
+    "source_url": "https://github.com/girdav01/AISEC/blob/1ad31bd991f56101dfcb44f714173cf72227b95b/FRAMEWORK_SUMMARY.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An independently published secure-AI framework explicitly aligns its design to CoSAI agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C70",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Telemetry Framework / David Girard",
+    "citing_publication": "Monitoring AI Applications: Logs, Telemetry, and Observability for AI DR, AI IR, and AI SPM",
+    "source_url": "https://github.com/girdav01/AITelemetry/blob/1368a0f5d75eebc55fdfb7ca916c993b610b8826/ai_monitoring_comprehensive_report.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Contributor-affiliated AI-observability research formally references and discusses the CoSAI incident-response framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Authored in a contributor-associated telemetry project; the source is externally hosted but is not independent of CoSAI contributors."
+  },
+  {
+    "id": "C71",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Telemetry Framework / David Girard",
+    "citing_publication": "AI Monitoring Framework with Complete MITRE ATLAS Coverage",
+    "source_url": "https://github.com/girdav01/AITelemetry/blob/1368a0f5d75eebc55fdfb7ca916c993b610b8826/ai_monitoring_framework_atlas_complete.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A separate contributor-affiliated monitoring implementation maps MITRE ATLAS telemetry to the CoSAI incident-response lifecycle.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI contributor-affiliated",
+    "notes": "Authored in a contributor-associated telemetry project; the source is externally hosted but is not independent of CoSAI contributors."
+  },
+  {
+    "id": "C72",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Agent Governance Landscape Research",
+    "citing_publication": "Agent Governance Landscape — Research Brief",
+    "source_url": "https://github.com/grahamrowe82/pt-edge/blob/a27a73aac632cd3fc2a8ef7b49f4290ea40eb382/docs/briefs/agent-governance-landscape-research.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Agent-governance research formally identifies the CoSAI Risk Map in its external ecosystem inventory.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C73",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Risk Mitigation Research",
+    "citing_publication": "Categories",
+    "source_url": "https://github.com/grapesfrog/GAI-is-going-well/blob/2c6dcf09f239dd975d3d56269c4f952ef82baf88/mitigation.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Independent AI-risk mitigation research links the CoSAI secure-by-design agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C74",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Engineering Interview Guide",
+    "citing_publication": "🔥 MCP（Model Context Protocol）协议与工具系统面试题",
+    "source_url": "https://github.com/guocong-bincai/ai-interview-guide/blob/94b889329619e8437efed807497a275515102b0b/docs/14-mcp-skill-systems/README.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A Chinese-language technical interview guide explains and applies CoSAI Agentic Identity and Access Management.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C75",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "HI120KI AI Security Research",
+    "citing_publication": "AI Security Challenges in 2026",
+    "source_url": "https://github.com/hi120ki/hi120ki.github.io/blob/37787ea09785b0ef450d45b20d9a1463c0f53d94/blog/2026-01-03-ai-security-challenges.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Independent security research describes the CoSAI AI Incident Response Framework as a mature operational baseline.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C76",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "HiddenLayer / archived report",
+    "citing_publication": "2026 AI Threat Landscape Report",
+    "source_url": "https://github.com/jacobdjwilson/awesome-annual-security-reports/blob/f3f40eda507388dbe7c6f1de07df68983913003c/Markdown Conversions/2026/HiddenLayer-AI-Threat-Landscape-Report-2026.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems",
+      "AI Incident Response Framework"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "HiddenLayer’s 2026 annual AI threat report explicitly discusses CoSAI agentic-security principles and incident-response work.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "Full report text was inspected in a third-party archived Markdown conversion; the underlying publication is attributed to HiddenLayer, a CoSAI member."
+  },
+  {
+    "id": "C77",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "HiddenLayer / archived report",
+    "citing_publication": "Quarterly AI Threat Landscape Update: April-June 2026",
+    "source_url": "https://github.com/jacobdjwilson/awesome-annual-security-reports/blob/f3f40eda507388dbe7c6f1de07df68983913003c/Markdown Conversions/2026/HiddenLayer-Quarterly-AI-Threat-Landscape-Update-July-2026.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Agentic Identity and Access Management",
+      "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "HiddenLayer’s 2026 quarterly threat report discusses CoSAI agentic IAM and its Future of Agentic Security paper.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "Full report text was inspected in a third-party archived Markdown conversion; the underlying publication is attributed to HiddenLayer, a CoSAI member."
+  },
+  {
+    "id": "C78",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "LLM-Agent Assurance Standard",
+    "citing_publication": "LLM-Agent Assurance Standard (LAAS) — Proposal v1.1",
+    "source_url": "https://github.com/jonathan-kellerai/kellerai-oss-template/blob/8c0f533df8d19f1ebbb560b31021436c05ff537d/docs/laas/proposal-v1.1.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems",
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "An independent agent-assurance standard proposal names both CoSAI secure-by-design principles and agentic identity guidance.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C79",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Kubernaut",
+    "citing_publication": "PROPOSAL-EXT-003: Agent Runtime Evaluation",
+    "source_url": "https://github.com/jordigilh/kubernaut/blob/906779508502c76e42d83076f6d6d34588c7f1de/docs/architecture/proposals/PROPOSAL-EXT-003-goose-runtime-evaluation.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "A Kubernetes agent-runtime architecture derives delegation, credential, and gateway controls directly from two CoSAI papers.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C80",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "MCP Security Project",
+    "citing_publication": "Blogs, Whitepapers, and Research",
+    "source_url": "https://github.com/mcp-security-project/awesome-agentic-mcp-security/blob/0ba347c8fa2b6a44aa1d732e93eba671771531f5/mcp_blogs_whitepapers_academicpapers.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An external MCP-security bibliography directly links and summarizes the CoSAI MCP Security publication.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C81",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "NV Digital Open Operator System",
+    "citing_publication": "NV oOS Roadmap",
+    "source_url": "https://github.com/nvdigitalsolutions/mcp-ai-wpoos/blob/1646f08f66505dd037d6940174cb64bbea8d27a2/docs/ROADMAP.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An externally developed agent platform records implementation of CoSAI secure-by-design boundaries, audit trails, and approval gates.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C82",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "OpenSSF Technical Advisory Council",
+    "citing_publication": "2026 Q1 AI/ML WG and model signing project",
+    "source_url": "https://github.com/ossf/tac/blob/d019efec7b3eeafbbf3c38e1b5d9946c8f77892b/TI-reports/2026/2026-Q1-AI-ML-WG.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An OpenSSF working-group report links the CoSAI model-signing publication and reports adoption by IBM and Cohere.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C83",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Awesome AI Security / Otto Sulin",
+    "citing_publication": "Awesome AI Security [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome) [![Track Awesome List](https://www.trackawesomelist.com/badge.svg)](https://www.trackawesomelist.com/ottosulin/awesome-ai-security)",
+    "source_url": "https://github.com/ottosulin/awesome-ai-security/blob/95acd3a85aa2e763fcee751fafa136e461103a6f/README.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Project CodeGuard"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A widely used independent AI-security resource catalog formally identifies CoSAI Project CodeGuard.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C84",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "TRACT Framework Mapping",
+    "citing_publication": "TRACT — Translating Requirements Across CRE Trees",
+    "source_url": "https://github.com/rocklambros/TRACT/blob/7fcfa2c85302a180655f847e29722d74375d734a/PRD.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A framework-interoperability project operationalizes the CoSAI Risk Map in its requirements and parser design.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C85",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "TRACT Framework Mapping",
+    "citing_publication": "Adding a Framework to TRACT",
+    "source_url": "https://github.com/rocklambros/TRACT/blob/7fcfa2c85302a180655f847e29722d74375d734a/docs/framework-guide.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A separately published implementation guide demonstrates how its parser ingests and normalizes the CoSAI Risk Map.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C86",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "AI Security Framework Crosswalk",
+    "citing_publication": "AI Security Framework Crosswalk: From Baseline Failure to Ordinal Ensemble",
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/report/report.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An independent research report evaluates the CoSAI Risk Map in a nine-framework security crosswalk.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C87",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Sondera Trustworthy Agent Development Kit",
+    "citing_publication": "docs/References.md",
+    "source_url": "https://github.com/sondera-ai/trustworthy-adk/blob/f010ad416087252700863e8f62304b5224811606/docs/References.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An external trustworthy-agent development kit formally cites the CoSAI secure-by-design principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C88",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "SPDX AI Team",
+    "citing_publication": "SPDX AI Team Meeting Minutes | 2026-02-04",
+    "source_url": "https://github.com/spdx/meetings/blob/d58ec031c89b83e6f6456946f01659177b374632/ai/2026/2026-02-04.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Published SPDX AI-team minutes link the CoSAI Risk Map while discussing standards interoperability.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C89",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Claude Marketplace AI Risk Mapper",
+    "citing_publication": "AI Security Risk Assessment Report",
+    "source_url": "https://github.com/totallyGreg/claude-mp/blob/96fb90ab36adcc3c66e609325e6cd1f15d891bb5/plugins/ai-risk-mapper/skills/ai-risk-mapper/assets/report_template.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "CoSAI Risk Map"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An external AI-risk assessment product supplies a working report template built around the CoSAI Risk Map.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C90",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "GovZero Kit",
+    "citing_publication": "ADR-pool.agent-reliability-framework: Agent Reliability Framework for Software Systems",
+    "source_url": "https://github.com/tvproductions/gzkit/blob/8f2454df61c155f95514793e4e950e136860d163/docs/design/adr/pool/ADR-pool.agent-reliability-framework.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security",
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 2,
+    "evidence_signal": "An agent-reliability architecture incorporates the CoSAI MCP threat taxonomy and secure-by-design agentic principles.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C91",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Vulnex Security Visualization",
+    "citing_publication": "MAESTRO Agentic Threat Modeling Guide",
+    "source_url": "https://github.com/vulnex/usecvislib/blob/93ac076ed280755d08c9bccf01b32d156c1c4016/docs/MAESTRO_GUIDE.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An external threat-modeling guide identifies CoSAI secure-by-design principles as a complementary governance control.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit; duplicate, copied, first-party and NIST COSAiS results were reviewed separately."
+  },
+  {
+    "id": "C92",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Cisco DevNet / Foundry Security Spec",
+    "citing_publication": "Integration Decisions",
+    "source_url": "https://github.com/CiscoDevNet/foundry-security-spec/blob/c770bf7764265dda188d9a270b1105a4bb62759b/docs/adoption/integration-decisions.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Project CodeGuard"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Cisco’s Foundry Security Spec integrates a named Project CodeGuard secure-development rule into its engineering decisions.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "CoSAI sponsor/member-affiliated",
+    "notes": "Directly inspected at its immutable GitHub commit in an expanded targeted work-title search."
+  },
+  {
+    "id": "C93",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Cybersecurity Models / Keith McCammon",
+    "citing_publication": "Cybersecurity models",
+    "source_url": "https://github.com/keithmccammon/cybersecurity-models/blob/82a4077a6b3161dfe8763206b083417917166e9e/README.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "An independent cybersecurity-framework catalog directly links the CoSAI AI Shared Responsibility Framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit in an expanded targeted work-title search."
+  },
+  {
+    "id": "C94",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Holy Trinity Agent Security Benchmark",
+    "citing_publication": "Authority-Bound Agentic Execution: Measuring Unauthorized Effect Under Adversarial Load",
+    "source_url": "https://github.com/ScriptKittyOS/HolyTrinity-Benchmark/blob/60f7414212b662b97e986761ff4122399cbd6227/PAPER.md",
+    "category": "Formal reference",
+    "cosai_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "A published agent-security benchmark formally cites and operationalizes the CoSAI AI Shared Responsibility Framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The paper also mentions an AI-agentic principles catalog, but that catalog was not treated as the distinct CoSAI Secure-by-Design Agentic Systems publication."
+  },
+  {
+    "id": "C95",
+    "discovery_provider": "GitHub public code search",
+    "publisher": "Northwoods Sentinel",
+    "citing_publication": "An Anthropic Mapping for the AI Shared Responsibility Framework",
+    "source_url": "https://github.com/NorthwoodsSentinel/Northwoods-Sentinel/blob/b53211546d46766a741efc114dd673731c13ae14/src/content/essays/2026-06-13-anthropic-srf-mapping.md",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "Independent deployment analysis maps Anthropic’s Claude operating model to each layer of the CoSAI Shared Responsibility Framework.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Directly inspected at its immutable GitHub commit in an expanded targeted work-title search."
+  },
+  {
+    "id": "C96",
+    "discovery_provider": "Public-web primary-source review",
+    "publisher": "U.S. National Security Agency",
+    "citing_publication": "Model Context Protocol (MCP): Security Design Considerations",
+    "source_url": "https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "citation_relationships": 1,
+    "evidence_signal": "NSA cybersecurity guidance includes CoSAI MCP Security as formal bibliography reference 25.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "The NSA publication expressly states that citation does not constitute U.S. government endorsement."
+  },
+  {
+    "id": "C97",
+    "discovery_provider": "Public-web primary-source review",
+    "publisher": "OWASP GenAI Security Project",
+    "citing_publication": "State of Agentic AI Security and Governance 2.01",
+    "source_url": "https://genai.owasp.org/resource/state-of-agentic-ai-security-and-governance/",
+    "category": "Substantive work citation",
+    "cosai_works": [
+      "Principles for Secure-by-Design Agentic Systems",
+      "AI Incident Response Framework",
+      "Model Context Protocol (MCP) Security",
+      "Signing ML Artifacts"
+    ],
+    "citation_relationships": 4,
+    "evidence_signal": "OWASP’s June 2026 flagship agentic-security report groups and discusses four CoSAI agentic, incident-response and model-signing deliverables.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "CoSAI references were verified against the publicly indexed report text; the OWASP report dates the incident-response framework to October 2025, while the official framework release was November 2025."
+  },
+  {
+    "id": "C98",
+    "discovery_provider": "Public-web primary-source review",
+    "publisher": "Open Source Software Supply Chain Security / Michael Scovetta",
+    "citing_publication": "Appendix B: Resource Guide",
+    "source_url": "https://sscsecurity.dev/appendices/appendix-b/",
+    "category": "Formal reference",
+    "cosai_works": [
+      "Establish Risks and Controls for the AI Supply Chain",
+      "Signing ML Artifacts",
+      "Preparing Defenders of AI Systems",
+      "AI Incident Response Framework",
+      "AI Shared Responsibility Framework",
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management",
+      "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+    ],
+    "citation_relationships": 8,
+    "evidence_signal": "Independently published supply-chain security book formally references eight distinct CoSAI papers and frameworks.",
+    "verification": "Directly inspected",
+    "publisher_relationship": "Not established",
+    "notes": "Eight separate numbered footnotes were inspected in the canonical publication; six duplicate Markdown chapters from the same book were excluded."
   },
   {
     "id": "O01",

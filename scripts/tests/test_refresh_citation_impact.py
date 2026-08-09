@@ -28,6 +28,7 @@ class CitationImpactTests(unittest.TestCase):
     def test_owner_controlled_sources_are_excluded(self):
         self.assertTrue(REFRESH.is_owner_controlled("https://www.coalitionforsecureai.org/report"))
         self.assertTrue(REFRESH.is_owner_controlled("https://github.com/cosai-oasis/cosai-tsc/blob/main/README.md", "cosai-oasis/cosai-tsc"))
+        self.assertTrue(REFRESH.is_owner_controlled("https://github.com/project-codeguard/rules/blob/main/README.md", "project-codeguard/rules"))
         self.assertFalse(REFRESH.is_owner_controlled("https://github.com/external/project/blob/main/README.md", "external/project"))
 
     def test_verified_urls_are_not_added_as_pending_candidates(self):
@@ -76,6 +77,7 @@ class CitationImpactTests(unittest.TestCase):
         self.assertIn("| CoSAI publication or framework | Distinct citing publications | Selected external citations |", report)
         self.assertIn("## Complete CoSAI paper-to-source register", report)
         self.assertIn("[CoSAI Risk Map](https://example.com/a)", report)
+        self.assertLess(report.index("## Complete CoSAI paper-to-source register"), report.index("## Methodology"))
 
     def test_review_ledger_retains_verified_pending_and_excluded_discoveries(self):
         verified = [{
@@ -86,7 +88,7 @@ class CitationImpactTests(unittest.TestCase):
         candidates = [{"publisher": "Pending publisher", "title": "Pending paper", "url": "https://example.com/pending", "matched_works": ["CoSAI Risk Map"]}]
         excluded = [{"source_url": "https://github.com/example/project/blob/main/docs/mirror.md", "matched_works": ["CoSAI Risk Map"], "reason": "Copied source material."}]
         report = REFRESH.render_report(verified, candidates, [], date(2026, 8, 9), False, excluded)
-        self.assertIn("Automated discovery identified **3 references**", report)
+        self.assertIn("Automated discovery and targeted public-source review identified **3 references**", report)
         self.assertIn("Verified — included in totals", report)
         self.assertIn("Pending human review — not counted", report)
         self.assertIn("Excluded — Copied source material.", report)
@@ -101,6 +103,19 @@ class CitationImpactTests(unittest.TestCase):
         self.assertEqual(result, {"items": []})
         self.assertEqual(urlopen.call_count, 2)
         sleep.assert_called_once_with(1)
+
+    def test_github_code_search_rate_limit_is_retried_after_reset(self):
+        headers = {"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "110"}
+        limited = HTTPError("https://api.github.com/search/code", 403, "Forbidden", headers, None)
+        success = mock.MagicMock()
+        success.__enter__.return_value = io.BytesIO(b'{"items": []}')
+        with mock.patch.object(REFRESH, "urlopen", side_effect=[limited, success]) as urlopen:
+            with mock.patch.object(REFRESH.time, "time", return_value=100):
+                with mock.patch.object(REFRESH.time, "sleep") as sleep:
+                    result = REFRESH.request_json("https://api.github.com/search/code")
+        self.assertEqual(result, {"items": []})
+        self.assertEqual(urlopen.call_count, 2)
+        sleep.assert_called_once_with(11)
 
 
 if __name__ == "__main__":
