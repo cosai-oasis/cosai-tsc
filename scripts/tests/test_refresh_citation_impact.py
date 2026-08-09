@@ -60,8 +60,8 @@ class CitationImpactTests(unittest.TestCase):
             verified.append({"id": required, "source_url": f"https://example.com/{required}", "cosai_works": [], "category": "Organizational mention", "verification": "Directly inspected"})
         candidate = {"publisher": "external/project", "title": "README.md", "url": "https://github.com/external/project/blob/main/README.md", "matched_works": ["CoSAI Risk Map"]}
         report = REFRESH.render_report(verified, [candidate], [], date(2026, 8, 9), True)
-        self.assertIn("**Reach:** 1 external publications", report)
-        self.assertIn("**Total citations:** Those 1 publications create 1 distinct citations", report)
+        self.assertIn("| Publications citing CoSAI work | **1** |", report)
+        self.assertIn("| Total citations | **1** |", report)
         self.assertIn("**1 candidate references**", report)
 
     def test_snapshot_explains_each_metric_and_shows_last_updated_date(self):
@@ -71,8 +71,9 @@ class CitationImpactTests(unittest.TestCase):
         ]
         report = REFRESH.render_report(verified, [], [], date(2026, 8, 9), False)
         self.assertIn("## Summary", report)
-        self.assertIn("**Type of use:** 1 publications cite CoSAI formally and 0 discuss or apply its work substantively", report)
-        self.assertIn("**Additional visibility:** 1 publications mention CoSAI without citing a specific work", report)
+        self.assertIn("| Measure | Count | What it means |", report)
+        self.assertIn("| Type of use | **1 formal; 0 substantive** |", report)
+        self.assertIn("| Organization-only mentions | **1 additional; 2 total** |", report)
         self.assertIn("**Last updated: August 9, 2026**", report)
         self.assertNotIn("Evidence last reviewed", report)
         self.assertIn("every Monday at **12:00 p.m. Eastern Time**", report)

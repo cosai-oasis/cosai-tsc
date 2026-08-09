@@ -9,10 +9,12 @@
 
 ## Summary
 
-- **Reach:** 98 external publications reference at least one of 12 CoSAI papers, frameworks or technical works.
-- **Total citations:** Those 98 publications create 146 distinct citations because some reference more than one CoSAI work.
-- **Type of use:** 46 publications cite CoSAI formally and 52 discuss or apply its work substantively. These are the same 98 publications, not additional citations.
-- **Additional visibility:** 8 publications mention CoSAI without citing a specific work, bringing the total to 106 external publications.
+| Measure | Count | What it means |
+| --- | --- | --- |
+| Publications citing CoSAI work | **98** | External publications reference at least one of 12 CoSAI papers, frameworks or technical works. |
+| Total citations | **146** | Those 98 publications create 146 citation relationships because some reference multiple CoSAI works. |
+| Type of use | **46 formal; 52 substantive** | Of the same 98 publications, 46 cite CoSAI formally and 52 discuss or apply its work. |
+| Organization-only mentions | **8 additional; 106 total** | Another 8 publications mention CoSAI without citing a specific work, bringing the overall total to 106. |
 
 Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.
 
