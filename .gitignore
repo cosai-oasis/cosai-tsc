@@ -1,0 +1,19 @@
+# Python virtual environment
+.venv/
+
+# Python version file (optional to commit — we will commit this one)
+# .python-version
+
+# Environment variables — never commit secrets
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# macOS files
+.DS_Store
