@@ -141,9 +141,9 @@ def request_json(url: str, *, headers: dict[str, str] | None = None) -> dict[str
             retry_after = error.headers.get("Retry-After") if error.headers is not None else None
             reset_at = error.headers.get("X-RateLimit-Reset") if error.headers is not None else None
             if exhausted_search_limit and reset_at and reset_at.isdigit():
-                delay = min(max(int(reset_at) - int(time.time()) + 1, 1), 60)
+                delay = min(max(int(reset_at) - int(time.time()) + 1, 1), 3600)
             elif retry_after and retry_after.isdigit():
-                delay = min(int(retry_after), 60)
+                delay = min(int(retry_after), 3600)
             else:
                 delay = 2 ** attempt
             time.sleep(delay)
