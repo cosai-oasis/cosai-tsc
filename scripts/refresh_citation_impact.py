@@ -287,8 +287,6 @@ def discovery_review_entries(verified: list[dict[str, Any]], candidates: list[di
             "status": "Verified — included in totals",
         }
         for item in verified
-        if item.get("discovery_provider")
-    ]
     entries.extend({**item, "status": "Pending human review — not counted"} for item in candidates)
     for item in excluded:
         parts = [part for part in urlparse(item["source_url"]).path.split("/") if part]
