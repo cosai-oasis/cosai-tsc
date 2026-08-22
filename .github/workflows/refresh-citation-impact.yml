@@ -38,7 +38,7 @@ jobs:
         run: python -m unittest discover -s scripts/tests -v
 
       - name: Open or update review pull request
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/citation-impact-report
