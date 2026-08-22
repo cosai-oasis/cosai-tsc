@@ -1,0 +1,64 @@
+name: Refresh CoSAI Citation Impact Report
+
+on:
+  schedule:
+    # Every Monday at noon Eastern; GitHub applies daylight saving automatically.
+    - cron: "0 12 * * 1"
+      timezone: "America/New_York"
+  workflow_dispatch:
+
+concurrency:
+  group: cosai-citation-impact-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh-report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh verified report and discover public references
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/refresh_citation_impact.py --discover --max-results-per-query 10
+
+      - name: Validate report generation
+        run: python -m unittest discover -s scripts/tests -v
+
+      - name: Open or update review pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/citation-impact-report
+          delete-branch: true
+          commit-message: "docs: refresh CoSAI citation impact report"
+          title: "docs: refresh CoSAI citation and external impact report"
+          body: |
+            ## Summary
+
+            Refreshes the CoSAI TSC citation and external-impact report.
+
+            - Updates the public Markdown snapshot and refresh date.
+            - Discovers additional public GitHub and Crossref references.
+            - Keeps unreviewed discoveries separate from verified citation totals.
+
+            ## Review checklist
+
+            - [ ] Inspect newly discovered candidate references.
+            - [ ] Promote only verified sources into `sources.json`.
+            - [ ] Confirm member-affiliated sources are classified accurately.
+          labels: |
+            documentation
+            deliverable-publication

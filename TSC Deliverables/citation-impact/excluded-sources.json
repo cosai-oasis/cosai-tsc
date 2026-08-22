@@ -1,0 +1,757 @@
+[
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/ws4-agentic/README.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Mirrors the official CoSAI Workstream 4 README rather than independently citing or applying it.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/ai_risk_management/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Repeats the same CoSAI Risk Map references already captured in the publisher’s dedicated CoSAI training lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/ai_security_tools.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Repeats the same CoSAI Risk Map references already captured in the publisher’s dedicated CoSAI training lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/model_and_genai_application_security_testing.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Repeats the same CoSAI Risk Map references already captured in the publisher’s dedicated CoSAI training lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/AZIZI-Sajjad/Shared-Claude-Chats/blob/b76ee2c42ecadc6a69992d43f3e6a3e0dd530c63/claude_chats/Aisharedresponsibility-com-and-report-integration.md",
+    "matched_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "reason": "Archived AI-chat transcript, not an independently authored publication or implementation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/Agent-Threat-Rule/agent-threat-rules/blob/45cb8cd7c271ec2e2337c3d6f85fbab22e86bac0/docs/NSA-MCP-MAPPING.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Search matched NIST COSAiS and an indirect reference rather than a direct citation to a specific CoSAI work; the primary NSA document is counted separately.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/Agent-Threat-Rule/agent-threat-rules/blob/45cb8cd7c271ec2e2337c3d6f85fbab22e86bac0/governance/oasis-proposal-2026-05-26.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Draft governance proposal mentions CoSAI organizational collaboration but does not establish a separate cited CoSAI work.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/AlbertoWaissen/Software-SC-Security-for-AI-systems-COSAI/blob/f9fb373277218ddae706518053cf26735c513ab2/ROADMAP.md",
+    "matched_works": [
+      "Signing ML Artifacts"
+    ],
+    "reason": "Mirrors the official CoSAI Workstream 1 roadmap rather than independently citing or applying it.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/ArogyaReddy/https-github.com-FlorianBruniaux-claude-code-ultimate-guide/blob/bc250d4da70875fca3230297993657c7ddabfd6c/guide/security/security-hardening.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Unattributed reproduction of the already-counted Claude Code Ultimate Guide.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/GenAI-Security-Project/GenAI-Data-Security-Initiative/blob/2aa707af154d56670a31a25ac4c3a06ffdaf3f14/crosswalk/README.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "The phrase \"CoSAI holdout\" names evaluation data and does not cite or identify a CoSAI publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/blob/7bbe0f06f468cdcc61fa73e1752183c6cfd23987/2026/working/LLM03_SupplyChain.md",
+    "matched_works": [
+      "Signing ML Artifacts"
+    ],
+    "reason": "Working draft duplicates the already-counted final OWASP GenAI supply-chain publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/Grigaliunas/SAIL-GPL/blob/35896fd78f024d15d65c6f0db1f8f44a1b315e51/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Repository overview repeats the already-counted SAIL-GPL license document.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/HexCore8/HexCore8/blob/909925231509b43637132aeff9757d5e6ded806b/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Personal-profile and syndicated-feed content, not a standalone external CoSAI citation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/IBM/mcp-context-forge/blob/eaf295e64457d6f3354cb875916c927927973b91/docs/docs/best-practices/mcp-architecture-patterns.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security",
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Source-code version of the already-counted IBM ContextForge publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/JonathanCGill/airuntimesecurity.io/blob/5bb2bcac154c48ab5d0e39065f791c1773b4b1c8/docs/changelog.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Changelog duplicates the substantive CoSAI alignment already counted from the same publisher’s references document.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/appendices/Appendix-A-Glossary.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "False positive: NIST COSAiS is a distinct NIST control-overlay project, not the Coalition for Secure AI.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/OWASP/AISVS/blob/78775233666a2022dcfb82037e5e029116955c00/1.0/research/appendices/Appendix-B-Controls-Inventory.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "False positive: NIST COSAiS is a distinct NIST control-overlay project, not the Coalition for Secure AI.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/ScriptKittyOS/HolyTrinity-Benchmark/blob/60f7414212b662b97e986761ff4122399cbd6227/PAPER-ARCHITECTURE.md",
+    "matched_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "reason": "Architecture companion duplicates the separately counted formal benchmark paper from the same project.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/TalEliyahu/Awesome-AI-Security/blob/944b0e52f535d13d5b543fddd9bd3b895aa6de1b/Reports.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Secondary resource list repeats the already-counted AI-security catalog from the same publisher.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/course-materials/Creating Agents for Cybersecurity/README.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Course introduction repeats Project CodeGuard material already captured in the same contributor’s dedicated CoSAI lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/course-materials/Creating Agents for Cybersecurity/resources/glossary.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Course glossary repeats Project CodeGuard material already captured in the same contributor’s dedicated CoSAI lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/course-materials/Creating Agents for Cybersecurity/resources/references.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Course references repeat Project CodeGuard material already captured in the same contributor’s dedicated CoSAI lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/certifications/cisco/AITECH/Lesson-2-Prompt-Engineering/Lesson-2-6-resources.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Adjacent course lesson contains an organization-only mention already covered by the contributor’s CoSAI-specific lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/certifications/cisco/AITECH/Lesson-2-Prompt-Engineering/Lesson-2-8-resources.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Adjacent course lesson repeats the organization-only mention already covered by the contributor’s CoSAI-specific lesson.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/TurtleMcTurtle/claude-code-ultimate-guide/blob/84abc7c436da3610cf515c85b4022989b19446f7/guide/security/security-hardening.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Copied version of the already-counted Claude Code Ultimate Guide.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/adversa-ai/secureclaw/blob/bf17e2b3deb989e348b3a98080e33a7047e90ac3/secureclaw/README.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Nested package README substantially duplicates the already-counted SecureClaw publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/agbruneau/Agentique/blob/1e920ff2be706b2caaa58d20b1f7f0fce58af867/2 - Compendium/Livre III/24-passage-echelle-entreprise.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Chapter duplicates the CoSAI citations already represented by the same French-language compendium’s consolidated bibliography.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/agbruneau/Agentique/blob/1e920ff2be706b2caaa58d20b1f7f0fce58af867/Veille Technologique.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Research-note bibliography overlaps the already-counted consolidated publication from the same author.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/agentrust-io/awesome-ai-governance/blob/acb15346f6572926696aaf04009ae1d52f230314/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Repository-source version of the already-counted AgentTrust.io governance publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/agentrust-io/trace-spec/blob/618f544bd9f7ab3edcf39a7fa09a9e64c29aaf7c/CHARTER.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "TRACE charter duplicates the already-counted AgentTrust organizational reference without identifying a separate CoSAI work.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/ajessu/albertson-agents/blob/11bc84e80290724c3e3048d59bfb970b35669cd3/docs/corpus/agent-guardrails-sops/paper-cosai-mcp-security-threat-model.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Additional corpus item repeats the already-counted Albertson Agents CoSAI workstream document.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/alexica00/claude-code-ultimate-guide/blob/a9bb829eb41de72bd846489d955cd2b622bce00d/guide/security/security-hardening.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Unattributed copy of the already-counted Claude Code Ultimate Guide.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/andreibesleaga/awesome-agentic-ai-js/blob/ecc530c296db096aa0cb506bfa7372410c53b612/README.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Mentions CoSAI only as background to Google SAIF without citing a specific CoSAI work.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/aneasystone/github-trending/blob/ae1ed802dcad09a682b164a79229ff431d42b8c7/archived/2026-01.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Automated GitHub trending archive, not an independent citation or substantive adoption artifact.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/antgroup/Agent3Sigma-Canary/blob/c894cda30ea87f4920a7a2cdb0317849860772cd/workflow/images/offical_secureclaw/secureclaw/README.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Exact copy of the already-counted SecureClaw README embedded in another repository.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/CoSAI Shared Responsibility Framework v1.0.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems",
+      "AI Shared Responsibility Framework"
+    ],
+    "reason": "Reproduces the official CoSAI Shared Responsibility Framework itself; owner-originated text is not an external citation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/cisco-open/ai-deep-sast/blob/741a9e025ce0810cf06764f5869e490d1b80278c/config/codeguard/codeguard-0-mcp-security.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Exact copy of a Project CodeGuard security rule, not an independently authored external publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/felipeds-cdc/Docs-Ethical-Hacking/blob/2644e10e707363fd064b1c9b36f8b0aaee883b6f/ai-research/ai-research/model_security_testing.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Personal resource list reproduces material already covered by the original CoSAI training source.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/girdav01/AITF/blob/1b1bb3316cbd39d2ccfeafe8d5a782e6610591b2/README.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Describes a project donated to and maintained by CoSAI; not an independent external adoption source.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/girdav01/AITF/blob/1b1bb3316cbd39d2ccfeafe8d5a782e6610591b2/spec/overview.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Documentation for the same CoSAI-maintained donated telemetry project; not an independent external publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/girdav01/AITelemetry/blob/1368a0f5d75eebc55fdfb7ca916c993b610b8826/ai_ir_monitoring_research.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Research narrative duplicates the more complete, separately counted AI Telemetry report from the same contributor.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/girdav01/AITelemetry/blob/1368a0f5d75eebc55fdfb7ca916c993b610b8826/ai_monitoring_collection_framework.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Collection-framework note overlaps the separately counted comprehensive and ATLAS-mapped reports from the same contributor.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/grammy-jiang/subagent-factory/blob/ed811057778ab41ae28aa9e0a45c84f9233ea445/subagents/mcp-security-advisor/references/mcp-security-standards/cosai-mcp-security-515304c3.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Mirrors the official CoSAI MCP Security paper verbatim.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/hi120ki/hi120ki.github.io/blob/37787ea09785b0ef450d45b20d9a1463c0f53d94/i18n/ja/docusaurus-plugin-content-blog/2026-01-03-ai-security-challenges.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Japanese translation of the already-counted English AI-security article; not a distinct publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/jacobdjwilson/awesome-annual-security-reports/blob/f3f40eda507388dbe7c6f1de07df68983913003c/Markdown Conversions/2025/HiddenLayer-AI-Threat-Landscape-Report-2025.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Third-party reproduction of the already-counted HiddenLayer 2025 report.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/jadenstock/deep-researcher/blob/ef2b149f74053284fc58048b2f3cb810868a131e/runs/20260518T222827-11dd2f2e/report.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Ephemeral generated research run, not a stable independent publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/lushinshang/article_analysis/blob/2dd14147b4896ac40a7b0e9abed60fa4162a5b7b/State-of-Agentic-AI-Security-and-Governance/pdf-raw-web-article_20260604_111259.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Raw web-article extraction reproduces the separately counted official OWASP report.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/mcp-security-project/awesome-agentic-mcp-security/blob/0ba347c8fa2b6a44aa1d732e93eba671771531f5/README.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "Project landing page duplicates the separately counted MCP-security bibliography from the same publisher.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/mcp-security-project/awesome-agentic-mcp-security/blob/0ba347c8fa2b6a44aa1d732e93eba671771531f5/mcp_podcasts_webinars.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Podcast and event listing duplicates CoSAI-owned events and the separately counted MCP bibliography.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/nvdigitalsolutions/mcp-ai-wpoos/blob/1646f08f66505dd037d6940174cb64bbea8d27a2/README.md",
+    "matched_works": [
+      "Principles for Secure-by-Design Agentic Systems"
+    ],
+    "reason": "Project overview repeats the separately counted implementation roadmap from the same product.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/project-codeguard/rules/blob/036b66c1554f36a65d6f7a0bf3c8ff9804e0f998/skills/software-security/rules/codeguard-0-mcp-security.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "CoSAI-associated Project CodeGuard repository reproduces its own first-party rule.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/project-codeguard/rules/blob/036b66c1554f36a65d6f7a0bf3c8ff9804e0f998/sources/core/codeguard-0-mcp-security.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security"
+    ],
+    "reason": "CoSAI-associated Project CodeGuard repository reproduces its own first-party rule.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/researchrepository2025/research/blob/899f781a4406abe95562b1c86854cd5cbc052d65/ez/search_results/results_17_failure_modes_incident_response.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Generated research-result export is duplicated elsewhere and lacks publication provenance.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/researchrepository2025/research/blob/899f781a4406abe95562b1c86854cd5cbc052d65/search_results/results_17_failure_modes_incident_response.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Exact duplicate of the same generated research-result export.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Project landing page duplicates the separately counted full AI-security crosswalk research report.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Mirrors the official CoSAI tooling README.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/SOURCE_MANIFEST.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Manifest inventories copied CoSAI files; it is not an independent authored citation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/risk-map/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Mirrors the official CoSAI Risk Map README.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/risk-map/docs/developing.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Mirrors the official CoSAI Risk Map contribution documentation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/risk-map/docs/workflow.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Mirrors the official CoSAI Risk Map workflow documentation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/ws1-supply-chain/ROADMAP.md",
+    "matched_works": [
+      "Signing ML Artifacts"
+    ],
+    "reason": "Mirrors the official CoSAI Workstream 1 roadmap.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/ws1-supply-chain/signing-ml-artifacts.md",
+    "matched_works": [
+      "Signing ML Artifacts"
+    ],
+    "reason": "Mirrors the official CoSAI Signing ML Artifacts paper.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/docs/SESSION_CONTEXT.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Internal session context repeats the separately counted AI-security crosswalk publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/project2/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Project overview repeats the separately counted AI-security crosswalk publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/schema/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Schema documentation repeats the separately counted AI-security crosswalk publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/santosomar/santosomar/blob/ccc8d8fcf83e55f261c8d444a2873e049ee2b516/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "CoSAI co-chair’s personal profile and syndicated content; not independent external adoption.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/appendices/appendix-b.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security",
+      "AI Incident Response Framework",
+      "Signing ML Artifacts",
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Repository-source copy of the independently published book appendix, which is counted at its canonical publication URL.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book1/chapter-10/ch-10.3.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security",
+      "AI Incident Response Framework",
+      "Signing ML Artifacts",
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Additional chapter from a book already counted once at its canonical publication URL.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book2/chapter-18/ch-18.1.md",
+    "matched_works": [
+      "Signing ML Artifacts"
+    ],
+    "reason": "Additional chapter from a book already counted once at its canonical publication URL.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book2/chapter-19/ch-19.3.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Additional chapter from a book already counted once at its canonical publication URL.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book3/chapter-29/ch-29.5.md",
+    "matched_works": [
+      "AI Incident Response Framework",
+      "Signing ML Artifacts",
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Additional chapter from a book already counted once at its canonical publication URL.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book3/chapter-33/ch-33.3.md",
+    "matched_works": [
+      "Model Context Protocol (MCP) Security",
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Additional chapter from a book already counted once at its canonical publication URL.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/seahop/ai-threat-atlas/blob/e0ccd0a6513f76a64df2bed30da660cf7476f75b/docs/defenses/ai-incident-response-playbook.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Repository-source version of the already-counted AI Threat Atlas publication.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/tools-only/X-Skills/blob/efb931b2e3f5d32b229105a9364b072ac5f51d85/content-creation/2569-security-hardening_85ef6f9e/skill.md",
+    "matched_works": [
+      "AI Incident Response Framework"
+    ],
+    "reason": "Repackaged copy of the already-counted Claude Code Ultimate Guide.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/totallyGreg/claude-mp/blob/96fb90ab36adcc3c66e609325e6cd1f15d891bb5/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Marketplace landing page repeats the separately counted CoSAI-based assessment template.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/totallyGreg/claude-mp/blob/96fb90ab36adcc3c66e609325e6cd1f15d891bb5/plugins/ai-risk-mapper/skills/ai-risk-mapper/assets/cosai-schemas/README.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Bundled offline copy of first-party CoSAI schemas.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/totallyGreg/claude-mp/blob/96fb90ab36adcc3c66e609325e6cd1f15d891bb5/plugins/ai-risk-mapper/skills/ai-risk-mapper/references/cosai_overview.md",
+    "matched_works": [
+      "CoSAI Risk Map"
+    ],
+    "reason": "Reference overview repeats the separately counted CoSAI-based assessment template.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/weoifgiljb/interview-collection/blob/1daa92b1a52b372c135c034381f0a0cfad93fb18/02-ai-application/ai-interview-guide/docs/14-mcp-skill-systems/README.md",
+    "matched_works": [
+      "Agentic Identity and Access Management"
+    ],
+    "reason": "Exact duplicate of the already-counted Chinese-language AI engineering guide.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book2/chapter-21/ch-21.1.md",
+    "matched_works": [
+      "Preparing Defenders of AI Systems"
+    ],
+    "reason": "Additional chapter or overview duplicates a publication already counted from the same book or product-security project.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/README.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Additional chapter or overview duplicates a publication already counted from the same book or product-security project.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book3/chapter-25/ch-25.1.md",
+    "matched_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "reason": "Additional chapter or overview duplicates a publication already counted from the same book or product-security project.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/README.md",
+    "matched_works": [
+      "AI Shared Responsibility Framework"
+    ],
+    "reason": "Educational-companion landing page repeats the separately counted cross-framework synthesis and vertical implementation from the same CoSAI contributor.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/Arnon-hs/open-source/blob/53faccc2058511f66f2fb72b4cd094e9802476b8/orchestration/cosai-oasis-project-codeguard.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Automated repository-directory entry reproduces first-party Project CodeGuard metadata; not a separately authored citation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/docs/ge-core.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Additional Red Hat Product Security overview or individual skill duplicates the already-counted secure-development implementation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/module/skills/algorithm-selection/SKILL.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Additional Red Hat Product Security overview or individual skill duplicates the already-counted secure-development implementation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/RedHatProductSecurity/prodsec-skills/blob/b55c6b9c3392645f62da59a447c29473c413e371/module/skills/safe-c-functions/SKILL.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Additional Red Hat Product Security overview or individual skill duplicates the already-counted secure-development implementation.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/agent-skills/README.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Additional contributor-authored course material duplicates the already-counted CoSAI training lesson and Project CodeGuard attribution.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/course-materials/Creating Agents for Cybersecurity/modules/08-foundry-security-spec.md",
+    "matched_works": [
+      "Project CodeGuard"
+    ],
+    "reason": "Additional contributor-authored course material duplicates the already-counted CoSAI training lesson and Project CodeGuard attribution.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/ajessu/albertson-agents/blob/11bc84e80290724c3e3048d59bfb970b35669cd3/docs/corpus/agent-guardrails-sops/talk-cosai-rsac-2026-agentic-security-chatbots-to-swarms.md",
+    "matched_works": [
+      "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+    ],
+    "reason": "Additional corpus entry duplicates the already-counted CoSAI workstream implementation from the same agent-knowledge corpus.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/ajessu/albertson-agents/blob/11bc84e80290724c3e3048d59bfb970b35669cd3/docs/corpus/ai-ops-agents/blog-cosai-bots-run-incident-response-enterprise-security.md",
+    "matched_works": [
+      "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+    ],
+    "reason": "Additional corpus entry duplicates the already-counted CoSAI workstream implementation from the same agent-knowledge corpus.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/data/frameworks/cosai/ws1-supply-chain/risks-and-controls-for-the-ai-supply-chain-v1.md",
+    "matched_works": [
+      "Establish Risks and Controls for the AI Supply Chain"
+    ],
+    "reason": "Verbatim mirror of the official CoSAI supply-chain risks-and-controls paper.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/appendices/appendix-c.md",
+    "matched_works": [
+      "Establish Risks and Controls for the AI Supply Chain"
+    ],
+    "reason": "Additional chapter from a book already counted once through its canonical, eight-citation resource guide.",
+    "reviewed_on": "2026-08-09"
+  },
+  {
+    "source_url": "https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/book1/chapter-04/ch-4.1.md",
+    "matched_works": [
+      "Establish Risks and Controls for the AI Supply Chain"
+    ],
+    "reason": "Additional chapter from a book already counted once through its canonical, eight-citation resource guide.",
+    "reviewed_on": "2026-08-09"
+  }
+]
