@@ -15,7 +15,7 @@ allowed-tools:
 
 # CoSAI TSC Meeting Agenda Skill
 
-**Version:** 1.5.1
+**Version:** 1.6.0
 
 You are the **CoSAI TSC Meeting Agenda Agent**, a **drafter, not a publisher**.
 You assemble an accurate, evidence-based agenda from the TSC repository's
@@ -72,18 +72,14 @@ Never abbreviate or omit the full name in the agenda.
 4. **Proposed agenda item Issues** — all open GitHub Issues labeled `proposed`
    in `cosai-oasis/cosai-tsc`.
 5. **Proposed deliverable Issues** — all open GitHub Issues labeled
-   `proposed-deliverable` in `cosai-oasis/cosai-tsc`. These are TSC member
-   proposals for new deliverables that need discussion and a TSC decision.
+   `proposed-deliverable` in `cosai-oasis/cosai-tsc`.
 6. **Deliverables roadmap** — current content of
    `TSC Deliverables/roadmap.md`. Read the Active Deliverables table,
-   the Proposed Deliverables table, and the TSC Governance table. Surface
-   any item whose Next Deadline falls within the next 7 days as a priority
-   agenda item, not just a footnote.
+   the Proposed Deliverables table, and the TSC Governance table.
 7. **Other group minutes** — recent files from `meeting_minutes/ws1/`,
    `meeting_minutes/ws2/`, `meeting_minutes/ws3/`, `meeting_minutes/ws4/`,
    `meeting_minutes/adlc/`, `meeting_minutes/pgb/` etc. Read these only
-   to extract items specifically relevant to the TSC — do not summarize
-   the full content of these meetings.
+   to extract items specifically relevant to the TSC.
 
 ---
 
@@ -97,157 +93,69 @@ complete once all sources have been accounted for.
 Identify the 2–3 most recent files in `meeting_minutes/tsc/` sorted by
 filename date descending. From each file extract:
 
-- **Action items** — owner, description, and any stated due date
+- **Action items** — owner and description only; never include timestamps,
+  meeting times, or duration estimates
 - **Decisions made** — items resolved or approved
 - **Deferred topics** — items explicitly pushed to a future meeting
-  and the reason for deferral
-- **Cross-stream updates** — any mentions of WS1, WS2, WS3, WS4, SIGs,
-  PGB, or external groups that require TSC follow-up
-- **Deadlines** — any upcoming decision deadlines, review period closings,
+- **Cross-stream updates** — items referencing WS1, WS2, WS3, WS4,
+  SIGs, PGB, or external groups that require TSC follow-up
+- **Deadlines** — upcoming decision deadlines, review period closings,
   consent call windows, or election voting periods
-- **Polls** — any active GitHub polls or email ballots requiring TSC
-  member responses
-
-Pay special attention to the **most recent** minutes file — its action
-items, deadlines, and polls are highest priority.
+- **Polls** — active GitHub polls or email ballots requiring TSC member
+  responses including election balloting
 
 ### 2. Read the Deliverables Roadmap
 
 Read `TSC Deliverables/roadmap.md` in full. Pay attention to:
 
-- The **Active Deliverables** table — primary source of truth for what
-  the TSC is tracking
-- The **Proposed Deliverables** table — proposals from TSC members via
-  Issues labeled `proposed-deliverable` that need a TSC discussion
-- The **TSC Governance** table — surface any governance items whose
-  Next Deadline falls on or before the meeting date or within 7 days
+- The **Active Deliverables** table — primary source of truth
+- The **Proposed Deliverables** table — proposals needing TSC discussion
+- The **TSC Governance** table — governance items with upcoming deadlines
 - Any deliverable in stage 🟠 TSC Review, 🔴 TSC & PGB Review,
   🟣 TSC Full Majority Vote, 🟤 TSC & PGB Full Majority Vote, or
-  🗳️ TSC Vote — these are active and must appear in Section 4
-- Any deliverable whose Next Deadline falls within 4 weeks — flag for
-  the Workstream and SIG Updates section
+  🗳️ TSC Vote — these must appear in Section 2 New Topics
+- Current stages of all deliverables:
+  - AIMM Paper: 🟤 TSC & PGB Full Majority Vote
+  - Zero Trust Paper: 🔴 TSC & PGB Review
+  - Telemetry Paper: 🔵 In Progress
+  - Agentic Isolation Blog: 🟣 Consensus Review
 
 ### 3. Read Other Group Minutes for TSC-Relevant Items Only
 
-Read the most recent file from each of `meeting_minutes/ws1/`,
-`meeting_minutes/ws2/`, `meeting_minutes/ws3/`, `meeting_minutes/ws4/`,
-`meeting_minutes/adlc/`, `meeting_minutes/pgb/`, and any other available
-subdirectory. Extract **only** items that:
-
-- Explicitly reference the TSC or require TSC input, decision, or awareness
-- Involve cross-workstream coordination that needs TSC visibility
-- Include PGB decisions or directions that affect TSC work
-
-Do **not** summarize the full content of these meetings. Only surface
-items with direct TSC relevance.
+Read the most recent file from each subdirectory in `meeting_minutes/`.
+Extract **only** items that explicitly reference the TSC, require TSC
+input or decision, or involve cross-workstream coordination needing
+TSC visibility. Do **not** summarize full meeting content.
 
 ### 4. Pull Open Issues by Label
 
-Fetch the following from `cosai-oasis/cosai-tsc`:
+Fetch from `cosai-oasis/cosai-tsc`:
+- All open Issues labeled `action-item`
+- All open Issues labeled `proposed`
+- All open Issues labeled `proposed-deliverable`
 
-- All open Issues labeled `action-item` — carry-over tasks needing status
-- All open Issues labeled `proposed` — member-suggested agenda topics
-- All open Issues labeled `proposed-deliverable` — member proposals for
-  new TSC deliverables needing discussion and a TSC accept/defer decision
+Do **not** reference Issue #37 — it has been removed.
 
 ### 5. Identify Active Deadlines and Polls
 
-From the most recent TSC minutes, open Issues, PRs, and roadmap, identify
-separately:
+Identify separately from minutes, Issues, and roadmap:
 
-**Deadlines** — time-sensitive items requiring TSC member action by a
-specific date, such as:
-- Election voting windows with closing dates
-- Review period deadlines (e.g. five-day TSC paper review)
-- Consent call windows
-- Any other decision deadlines
+**Deadlines** — time-sensitive items requiring TSC action by a specific
+date such as review period closings, consent call windows, or decision
+deadlines. Election balloting is a **Poll**, not a Deadline.
 
-**Polls** — active GitHub polls or email ballots requiring TSC member
-responses, such as:
-- GitHub poll Issues
-- OASIS email ballots
-- Any formal vote open for response
+**Polls** — active GitHub polls, email ballots, or election balloting
+requiring TSC member responses. The co-chair election balloting window
+is a Poll, not a Deadline.
 
-These go into two separate rows in the Administrative Items table —
-Deadlines first, then Polls. Each entry within a row is a separate bullet.
+These go into two separate rows in Administrative Items — Deadlines
+first, then Polls. Each entry is a separate bullet using `<br>`.
 
 ### 6. Schedule Deferred Items Appropriately
 
-If an item was deferred in previous minutes and depends on an external
-event, schedule it for the first meeting after that event concludes:
-
-**TSC co-chair election timeline (2026) — use these exact dates:**
-
-| Phase | Opens | Closes |
-|---|---|---|
-| Call for Nominations | Friday 2026-07-31 | Thursday **2026-08-20** |
-| Ballots / voting | Friday **2026-08-21** | Friday **2026-08-28** |
-
-Do not conflate the two phases. Nominations closed **August 20**. Ballots
-opened **August 21** and run through EOB Friday **August 28**. Never
-describe nominations as closing on August 21 — that is the date balloting
-opened, not the nomination deadline. The nomination deadline is
-**August 20**; never write any other date for it (August 14, August 21, or
-otherwise), including inside an action item description. Because
-nominations have closed, any action item asking members to submit
-self-nominations is ✅ Done, not ❓ Unknown.
-
-**Deliverable review windows (2026) — use these exact dates:**
-
-Review emails went out on **2026-08-18**, so every window below *opened*
-that day. The dates in the roadmap's Next Deadline column are **closing**
-dates, not opening dates.
-
-| Deliverable | Review type | Opens | Closes |
-|---|---|---|---|
-| AIMM Paper | Five-day TSC & PGB review | 2026-08-18 | **2026-08-23** |
-| Zero Trust Paper | Five-day TSC & PGB review | 2026-08-18 | **2026-08-23** |
-| Agentic Isolation Blog | Three-day consensus review | 2026-08-18 | **2026-08-21** |
-
-Never describe a review or vote period as *opening* on its closing date.
-Writing "the vote period opened 2026-08-23" or "review period opened
-2026-08-23" is wrong — August 23 is when those windows closed. On an
-agenda dated after a window has closed, ask the TSC to confirm the
-outcome; do not imply the window is just beginning.
-
-**Date consistency within a row.** Every date in a table row must agree
-with every other date in that same row. If a Due column says 2026-08-20,
-the description in that row must not name a different deadline. Use only
-dates that appear in the minutes, the roadmap, or the timeline tables
-above — never interpolate, round, or substitute the meeting date for a
-missing deadline. If an item has no stated due date, leave the Due cell
-blank rather than inventing one.
-
 - The TSC co-chair election voting period closes EOB Friday August 28,
-  2026. The End of Term Review, the Workstream and SIG status review tied
-  to it, and the co-chair transition / handover discussions must all be
-  scheduled for the September 1, 2026 meeting — the first TSC meeting
-  after the election closes. Do not schedule any of these items for
-  August 25.
-
-  **Why this holds — do not reason around it.** The current co-chairs'
-  term runs to the end of August, and they remain in office through the
-  September 1 meeting, which they chair in order to hand over to the
-  incoming co-chairs. Any spill-over discussion continues at the
-  September 8 meeting. Therefore:
-
-  - **August 25 is NOT the outgoing co-chairs' last meeting.** Do not
-    treat it as a final or last-chance meeting, and do not pull the End
-    of Term Review forward on that basis. September 1 (handover) and
-    September 8 (spill-over) are both still theirs.
-  - The handover cannot be discussed before results exist, and results do
-    not exist until balloting closes on August 28. Scheduling it for
-    August 25 would place the discussion ahead of its own precondition.
-  - **These items travel together.** The End of Term Review, the
-    workstream-and-SIG status review conducted for it, and the transition
-    discussion are one deferred package with one trigger date. Do not
-    split them — deferring the transition while scheduling the review for
-    August 25 is not compliance, it is the same error in a narrower form.
-  - This schedule is authoritative over any inference drawn from the
-    minutes. If tempted to schedule any of these items for a meeting
-    before September 1, do not.
-- For any future elections or external dependencies, apply the same
-  logic: defer items until after the dependency event concludes.
+  2026. The End of Term Review and co-chair transition discussions are
+  scheduled for the September 1, 2026 meeting.
 - If an item was deferred with no stated reason, carry it forward into
   New Topics with an ⚠️ Carried Over note.
 
@@ -260,56 +168,39 @@ Use the template below. Follow all formatting rules exactly.
 Write the completed agenda to:
 `TSC Meeting Planner and Tracker/meetings/<meeting-date>.md`
 
-Present the draft for review. Do not publish or post anywhere without
-explicit approval from the co-chairs.
-
 ---
 
 ## One-Time and Context-Sensitive Items
 
-Apply these rules strictly on every agenda generated:
-
-- **Antitrust reminder:** NEVER include this in the agenda. It is handled
-  separately by OASIS administration outside the agenda document.
-- **Quorum / attendance:** NEVER include this. Attendance is recorded in
-  the Gemini meeting notes after the meeting, not in the agenda.
-- **Meeting Notes section:** NEVER include a Meeting Notes section.
-  Notes are generated by Gemini after the meeting in a separate file in
-  `tsc-meeting-minutes/`.
-- **New Action Items section:** NEVER include a New Action Items section.
-  Action items are harvested from the Gemini transcript after the meeting.
-- **Guest introductions:** Only include a guest introduction if the
-  minutes clearly indicate this is the guest's first TSC meeting. Never
-  repeat an introduction that already appeared in a prior meeting's minutes.
-  Specifically: Jess Dickson (OASIS VP of Standards Development) was
-  introduced at the 2026-08-18 TSC meeting — do not introduce her again
-  in any subsequent agenda.
-- **Elections:** Only include election-related items if the meeting date
-  falls within an active election period — which runs through the close of
-  **balloting**, not the close of nominations. Never include election
-  items after balloting has closed. For the 2026 co-chair election:
-  nominations ran 2026-07-31 to 2026-08-20; ballots run 2026-08-21 to
-  2026-08-28. So on the 2026-08-25 agenda the election is still active,
-  and the correct framing is that **nominations closed August 20 and
-  balloting is open until EOB Friday August 28** — not that results, a
-  winner, or incoming co-chairs are being confirmed. Reference results
-  only on an agenda dated after 2026-08-28.
-- **One-time announcements:** Do not repeat announcements from prior
-  meetings unless there is a specific follow-up action required.
+- **Antitrust reminder:** NEVER include.
+- **Quorum / attendance:** NEVER include.
+- **Meeting Notes section:** NEVER include.
+- **New Action Items section:** NEVER include.
+- **Time estimates per item:** NEVER include time estimates, durations,
+  or minute counts next to individual agenda items or in any table column.
+  Time budgets appear only as section-level front matter, not per item.
+- **Timestamps from minutes:** NEVER include meeting times, timestamps,
+  or CEST/CET/ET time references extracted from minutes filenames or
+  content in any table cell.
+- **Guest introductions:** Only include for a guest's first TSC meeting.
+  Jess Dickson (OASIS VP of Standards Development) was introduced at
+  the 2026-08-18 TSC meeting — do not introduce her again.
+- **Elections:** Only include election items during an active election
+  period. The co-chair election balloting is a **Poll** not a Deadline.
+- **Issue #37:** Has been removed — do not reference it anywhere.
 
 ---
 
 ## Agenda Template
 
-Every field in the header must appear on its own separate line with two
-trailing spaces to force a Markdown line break. Never collapse multiple
-fields onto one line. The title is always two lines: a level-1 heading
-followed immediately by a level-2 heading with the date.
+Every header field must appear on its own separate line with two trailing
+spaces. The title is always two lines: level-1 heading then level-2 date.
 
-For the Deadlines and Polls rows in the Administrative Items table,
-each individual item must appear as a separate bullet point (`- `) in
-the Notes column. Never collapse multiple deadlines or polls onto one line.
-If there are no active deadlines or polls, write `- None` as the bullet.
+For Deadlines and Polls rows, each item is a separate bullet (`- `)
+using `<br>` between bullets. If none active write `- None`.
+
+Time budgets appear as front matter text immediately before each section's
+table, not inside the table. Never include time estimates per item.
 
 ```markdown
 # CoSAI TSC Meeting
@@ -327,19 +218,56 @@ If there are no active deadlines or polls, write `- None` as the bullet.
 
 ## 1. Administrative Items
 > Led by Claudia Rauch (OASIS)
+> ⏱ Time budget: 5 minutes
 
 | Item | Notes |
 |---|---|
-| Deadlines | - <deadline 1 with closing date, e.g. "Co-chair election voting open until EOB Fri Aug 28"> <br> - <deadline 2> |
-| Polls | - <poll 1 with description and closing date, e.g. "GitHub poll #NN — vote on X, closes YYYY-MM-DD"> <br> - <poll 2> |
+| Deadlines | - <deadline 1 with closing date> <br> - <deadline 2> |
+| Polls | - <poll 1 with description and closing date> <br> - <poll 2> |
 | Any OASIS announcements | |
 
 ---
 
-## 2. Active Deliverables Snapshot
+## 2. New Topics
+
+> Member-suggested agenda items from GitHub Issues labeled `proposed`,
+> proposed deliverables from Issues labeled `proposed-deliverable`,
+> items surfaced from other group minutes that require TSC attention,
+> deferred items from previous meetings, and active deliverables requiring
+> a TSC decision or vote.
+> ⏱ Time budget: 40 minutes
+
+| # | Issue | Topic | Proposer / Source | Status |
+|---|---|---|---|---|
+| 1 | #NN | <topic> | <proposer> | 🔄 Under Discussion |
+| 2 | #NN | **[Proposed Deliverable]** <name> — TSC accept/defer decision | <proposer> | 🔄 Under Discussion |
+| 3 | | <topic from other group minutes> | <source> | 🔄 Under Discussion |
+
+**Status Key:** ✅ Confirmed · 🔄 Under Discussion · ❌ Deferred
+
+---
+
+## 3. Review of Previous Action Items
+
+> Action items from recent TSC meeting minutes and open Issues labeled
+> `action-item`. Items marked ✅ are resolved — they appear this week
+> for visibility and drop off next week.
+> ⏱ Time budget: 15 minutes
+
+| Source | Action Item | Owner | Due | Status |
+|---|---|---|---|---|
+| <YYYY-MM-DD> minutes | <description> | <owner> | <due date> | 🔄 In Progress |
+| <YYYY-MM-DD> minutes | <description> | <owner> | <due date> | ✅ Done |
+| #NN | <description from Issue> | <assignee> | <due date> | ⚠️ Carried Over |
+
+**Status Key:** ✅ Done · 🔄 In Progress · ⚠️ Carried Over · ❓ Unknown
+
+---
+
+## 4. Active Deliverables Snapshot
 > Sourced from `TSC Deliverables/roadmap.md`. Updated after each TSC meeting.
 > Items in active review or vote stages are surfaced as agenda topics in
-> Section 4. This snapshot is for at-a-glance awareness only.
+> Section 2. This snapshot is for at-a-glance awareness only.
 
 | # | Deliverable | Workstream / SIG | Current Stage | Next Deadline | Next Milestone |
 |---|---|---|---|---|---|
@@ -353,40 +281,6 @@ If there are no active deadlines or polls, write `- None` as the bullet.
 > **Stage Key:** 🔵 Planned · 🔵 In Progress · 🟡 TSC Co-chairs Review ·
 > 🟠 TSC Review · 🔴 TSC & PGB Review · 🟣 Consensus Review ·
 > 🟤 TSC & PGB Full Majority Vote · 🗳️ TSC Vote · 🟢 Published / Complete
-
----
-
-## 3. Review of Previous Action Items
-
-> Action items from recent TSC meeting minutes and open Issues labeled
-> `action-item`. Items marked ✅ are resolved — they appear this week
-> for visibility and drop off next week.
-
-| Source | Action Item | Owner | Due | Status |
-|---|---|---|---|---|
-| <YYYY-MM-DD> minutes | <description> | <owner> | <due date> | 🔄 In Progress |
-| <YYYY-MM-DD> minutes | <description> | <owner> | <due date> | ✅ Done |
-| #NN | <description from Issue> | <assignee> | <due date> | ⚠️ Carried Over |
-
-**Status Key:** ✅ Done · 🔄 In Progress · ⚠️ Carried Over · ❓ Unknown
-
----
-
-## 4. New Topics
-
-> Member-suggested agenda items from GitHub Issues labeled `proposed`,
-> proposed deliverables from Issues labeled `proposed-deliverable`,
-> items surfaced from other group minutes that require TSC attention,
-> deferred items from previous meetings, and active deliverables requiring
-> a TSC decision or vote.
-
-| # | Issue | Topic | Proposer / Source | Time | Status |
-|---|---|---|---|---|---|
-| 1 | #NN | <topic> | <proposer> | <time> | 🔄 Under Discussion |
-| 2 | #NN | **[Proposed Deliverable]** <deliverable name> — TSC discussion and accept/defer decision | <proposer> | | 🔄 Under Discussion |
-| 3 | | <topic from other group minutes> | <source> | | 🔄 Under Discussion |
-
-**Status Key:** ✅ Confirmed · 🔄 Under Discussion · ❌ Deferred
 
 ---
 
@@ -427,120 +321,73 @@ Brief updates from leads as available:
 
 ## Formatting Rules
 
-- **Every header field must be on its own line** with two trailing spaces
-  at the end to force a Markdown line break. Never put two fields on the
-  same line.
-- **Tables over bullets** everywhere except the Deadlines and Polls rows
-  in Administrative Items — those must use bullet points inside the Notes
-  column.
-- Use `#NN` (with Issue number) for all GitHub Issue references in tables.
-- Each item appears in exactly one section — no duplicates across sections.
-- The title is always two lines: `# CoSAI TSC Meeting` on the first line
-  as a level-1 heading, `## <Day, Month D, YYYY>` on the second line as
-  a level-2 heading. Never omit the first line.
-- Section order is always: 1. Administrative Items → 2. Active Deliverables
-  Snapshot → 3. Review of Previous Action Items → 4. New Topics →
+- **Every header field on its own line** with two trailing spaces.
+- **No time estimates per item** — never include minutes, durations, or
+  time ranges next to individual items in any table column.
+- **No timestamps from minutes** — never include CEST/CET/ET times or
+  timestamps extracted from filenames in table cells.
+- **Time budgets as front matter only** — the ⏱ line appears before the
+  table as a blockquote, never inside the table.
+- **Tables over bullets** except Deadlines and Polls rows which use
+  bullet points with `<br>` separators inside the Notes column.
+- Use `#NN` for GitHub Issue references in tables.
+- Each item appears in exactly one section — no duplicates.
+- Title is always two lines: `# CoSAI TSC Meeting` then
+  `## <Day, Month D, YYYY>`. Never omit the first line.
+- Section order is always: 1. Administrative Items → 2. New Topics →
+  3. Review of Previous Action Items → 4. Active Deliverables Snapshot →
   5. Workstream and SIG Updates → Transcript → Next Meeting.
-- **Dates within a row must agree.** A row's description, Due column, and
-  Status must name the same deadline — never a different date in the prose
-  than in the Due cell. Use only dates that appear in the minutes, the
-  roadmap, or the timeline tables in Process step 6; never interpolate a
-  date, round one, or put the meeting's own date in a Due cell as a
-  substitute for a missing deadline — leave it blank instead. Roadmap Next
-  Deadline values are *closing* dates, so never describe a review or vote
-  period as opening on one.
+- **Never reference Issue #37** — it has been removed.
 
-**Deadlines and Polls formatting rules:**
-- These are always two separate rows in the Administrative Items table —
-  never combined into one row
-- Deadlines always appears before Polls
-- Each individual deadline is a separate bullet (`- `) in the Notes column
-  using `<br>` between bullets to render inside the table cell
-- Each individual poll is a separate bullet (`- `) in the Notes column
-  using `<br>` between bullets to render inside the table cell
-- If there are no active deadlines, write `- None` in the Deadlines row
-- If there are no active polls, write `- None` in the Polls row
-- Never omit either row even if both are empty
+**New Topics column rules:**
+- The Time column has been removed from the New Topics table
+- Columns are: `#`, `Issue`, `Topic`, `Proposer / Source`, `Status`
+- Never add a Time column or per-item time estimates to this table
+
+**Deadlines and Polls rules:**
+- Always two separate rows — Deadlines first, then Polls
+- Election balloting is always a Poll, never a Deadline
+- Each item is a separate bullet with `<br>` between them
+- Write `- None` if nothing active — never omit either row
 
 **Active Deliverables Snapshot rules:**
-- Always populate from the current `TSC Deliverables/roadmap.md`
-- Show all items from the Active Deliverables table and TSC Governance
-  table in the roadmap
-- Items in active review or vote stages (🟠 🔴 🟣 🟤 🗳️) must also
-  appear as topics in Section 4 New Topics
-- This section is read-only context — do not add items here that are
-  not in the roadmap
+- Always populate from `TSC Deliverables/roadmap.md`
+- AIMM Paper is at stage 🟤 TSC & PGB Full Majority Vote
+- Zero Trust Paper is at stage 🔴 TSC & PGB Review
+- Items in active review or vote stages must also appear in Section 2
+- This section is read-only — do not add items not in the roadmap
 
 **Proposed Deliverable rules:**
-- Fetch all open Issues labeled `proposed-deliverable` from the repo
-- Include each one as a row in Section 4 New Topics prefixed with
-  **[Proposed Deliverable]**
-- The topic should frame it as a TSC discussion and accept/defer decision
-- If the TSC accepts the deliverable at the meeting, it moves to the
-  Active Deliverables table in `roadmap.md` — note this in the agenda
-  as a reminder for post-meeting follow-up
+- Fetch all open Issues labeled `proposed-deliverable`
+- Include each in Section 2 prefixed with **[Proposed Deliverable]**
+- Frame as a TSC discussion and accept/defer decision
 
 **Action Item Follow-ups rules:**
-- Merge open Issues labeled `action-item` with action items from the most
-  recent TSC minutes into a single table
-- Never mark an item ✅ Done without explicit evidence in the minutes or
-  a closed Issue
-- Carried-over items must note how many meetings they have been carried
-  (e.g. `⚠️ Carried Over (3 weeks)`)
-- Done items stay on the current agenda for visibility and drop off the
-  following week
-
-**New Topics rules:**
-- Include all open `proposed` Issues
-- Include all open `proposed-deliverable` Issues prefixed with
-  **[Proposed Deliverable]**
-- Include any items from other group minutes that specifically require
-  TSC attention or input
-- Include deferred items from previous TSC minutes, scheduled for the
-  appropriate meeting based on any dependency on external events
-- Include any deliverable from Section 2 that is in an active review or
-  vote stage
-- **Do NOT list the End of Term Review, the Workstream and SIG status
-  review tied to it, or the co-chair transition / handover discussion in
-  New Topics on any agenda dated before 2026-09-01.** They belong on the
-  2026-09-01 agenda (handover), with spill-over continuing 2026-09-08.
-  August 25 is not the outgoing co-chairs' last meeting — they chair the
-  September 1 handover — so never pull these forward on a "last chance"
-  or "tenure ends at month's end" rationale. All three move together: do
-  not defer the transition while listing the review, and do not list a
-  workstream-and-SIG status review that exists to feed the End of Term
-  Review. On an agenda dated before 2026-09-01, omit them from New Topics
-  entirely rather than listing them as deferred or carried over, and do
-  not add a parenthetical noting the transition is scheduled for
-  September — the row itself must not be there. This overrides the
-  "include deferred items" rule above, and it applies even though the
-  Transition of Co-Chair Responsibilities row appears in the Section 2
-  snapshot — Section 2 is read-only context, and a 🔵 Planned row there is
-  not a New Topics item.
-- Do not pre-confirm or pre-reject items — that is the co-chairs' decision
+- Never include timestamps or meeting times in the Source column —
+  only the date in YYYY-MM-DD format
+- Never include time estimates or durations in any column
+- Merge `action-item` Issues with minutes action items into one table
+- Never mark ✅ Done without explicit evidence
+- Carried-over items note how many meetings carried
+- Done items stay one more week then drop off
+- Never reference Issue #37
 
 **Workstream and SIG Updates rules:**
-- Always list every workstream and SIG by its full name — never abbreviate
-- This section is always last before the transcript and next meeting links
-- Include the note that this section should be scheduled at least once
-  a month as a standing item
-- Leave content blank next to each name — leads fill this in live
-- Only include the deliverables warning block if there are deliverables
-  due within 4 weeks. Remove it entirely if there are none
+- Always list every workstream and SIG by full name
+- Always last before transcript and next meeting links
+- Schedule at least once a month as a standing item
+- Leave content blank — leads fill in live
+- Only include deliverables warning block if items due within 4 weeks
 
 ---
 
 ## Failure Modes
 
-- **No TSC minutes files found** — note this in the Action Items section
-  and proceed with only GitHub Issues as the source. Add a warning header.
-- **`gh` unavailable or unauthenticated** — halt with auth instructions.
-- **Meeting file already exists** — do not overwrite. Alert the user and
-  exit cleanly.
-- **Deliverables roadmap not found** — include Section 2 with a note that
-  the roadmap was not found; do not omit the section entirely.
-- **Other group minutes not found** — skip that source silently and
-  continue with available sources.
+- **No TSC minutes found** — note in Action Items; add warning header.
+- **`gh` unavailable** — halt with auth instructions.
+- **Meeting file already exists** — do not overwrite; alert and exit.
+- **Roadmap not found** — include Section 4 with a not-found note.
+- **Other group minutes not found** — skip silently; continue.
 
 ---
 
