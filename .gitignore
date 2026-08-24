@@ -7,6 +7,9 @@
 # Environment variables — never commit secrets
 .env
 
+# Locally fetched meeting minutes — not committed
+meeting_minutes/
+
 # Python cache files
 __pycache__/
 *.pyc
@@ -16,4 +19,5 @@ __pycache__/
 .vscode/
 
 # macOS files
+.DS_Store
 .DS_Store
