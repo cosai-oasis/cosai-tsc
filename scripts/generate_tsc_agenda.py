@@ -205,41 +205,6 @@ def read_recent_minutes(root: str) -> dict:
     return collected
 
 
-# ── GitHub milestones ────────────────────────────────────────────────────────
-
-def fetch_milestone_number(iso: str) -> str | None:
-    """
-    Resolve the milestone number for the meeting date.
-
-    Milestones in this repo are titled by meeting date (e.g. "2026-08-25"), so
-    we match on title. Returns the number as a string, or None if no milestone
-    exists yet for that date (the agenda then carries a placeholder).
-    """
-    cmd = [
-        "gh", "api",
-        f"repos/{REPO}/milestones?state=all&per_page=100",
-        "--jq", ".[] | [(.number|tostring), .title] | @tsv",
-    ]
-    try:
-        out = subprocess.run(cmd, capture_output=True, text=True, check=True)
-    except FileNotFoundError:
-        print("⚠️  gh CLI not found — milestone number left as a placeholder.")
-        return None
-    except subprocess.CalledProcessError as exc:
-        print(f"⚠️  Could not list milestones: {exc.stderr.strip() or exc}")
-        return None
-
-    for line in out.stdout.splitlines():
-        number, _, title = line.partition("\t")
-        if title.strip() == iso:
-            print(f"  🎯 milestone for {iso}: #{number}")
-            return number
-
-    print(f"  ⚠️  No milestone titled '{iso}' exists yet — the agenda will "
-          "carry a placeholder for you to fill in.")
-    return None
-
-
 # ── GitHub Issues ────────────────────────────────────────────────────────────
 
 def fetch_issues(label: str) -> list:
@@ -253,7 +218,7 @@ def fetch_issues(label: str) -> list:
         "--label", label,
         "--state", "open",
         "--limit", "100",
-        "--json", "number,title,body,author,assignees,labels,milestone,createdAt,url",
+        "--json", "number,title,body,author,assignees,labels,createdAt,url",
     ]
     try:
         out = subprocess.run(cmd, capture_output=True, text=True, check=True)
@@ -317,7 +282,6 @@ def format_issues(issues: list, label: str, meeting_date: date) -> str:
     for it in issues:
         author = (it.get("author") or {}).get("login", "unknown")
         assignees = ", ".join(a.get("login", "") for a in it.get("assignees") or []) or "unassigned"
-        milestone = (it.get("milestone") or {}).get("title", "none")
         labels = ", ".join(l.get("name", "") for l in it.get("labels") or [])
         body = (it.get("body") or "").strip() or "_(no body)_"
 
@@ -334,7 +298,6 @@ def format_issues(issues: list, label: str, meeting_date: date) -> str:
             f"- URL: {it.get('url')}\n"
             f"- Author (proposer): {author}\n"
             f"- Assignees: {assignees}\n"
-            f"- Milestone: {milestone}\n"
             f"- Labels: {labels}\n"
             f"- Opened: {it.get('createdAt')}\n"
             f"{age_line}"
@@ -407,25 +370,9 @@ def build_minutes_section(minutes: dict) -> str:
 
 
 def build_user_prompt(meeting_date: date, minutes: dict, proposed: list,
-                      action_items: list, roadmap: str,
-                      milestone_number: str | None) -> str:
+                      action_items: list, roadmap: str) -> str:
     iso = meeting_date.isoformat()
     long_date = meeting_date.strftime("%A, %B %d, %Y").replace(" 0", " ")
-
-    if milestone_number:
-        milestone_line = (
-            f"The GitHub milestone for this meeting is number "
-            f"**{milestone_number}**. Write the Milestone header field exactly as:\n"
-            f"`**Milestone:** [{iso}](../../../../milestone/{milestone_number})`"
-        )
-    else:
-        milestone_line = (
-            f"No GitHub milestone exists yet for {iso}. Write the Milestone "
-            f"header field exactly as:\n"
-            f"`**Milestone:** [{iso}](../../../../milestone/TBD)` — leaving the "
-            f"literal `TBD` in the URL so a human can fill in the number once "
-            f"the milestone is created. Do not invent a number."
-        )
 
     return f"""Draft the CoSAI TSC meeting agenda for **{long_date}** (`{iso}`).
 
@@ -440,9 +387,12 @@ cell blank or mark it `❓ Unknown` rather than guessing.
 Note: Discussions in the `Agenda Suggestions` category are not included in this
 run — work only from the Issues and minutes provided here.
 
-## Milestone
+## Header fields
 
-{milestone_line}
+This project does not use GitHub Milestones. Do **not** emit a
+`**Milestone:**` line in the agenda header, and do not link to
+`/milestone/...` anywhere in the document. The header runs straight from
+the phone line to `**Co-chairs:**`.
 
 ---
 
@@ -536,7 +486,6 @@ def main():
     # Gather context
     print(f"📚 Gathering context for {iso}...")
     minutes = read_recent_minutes(root)
-    milestone_number = fetch_milestone_number(iso)
     proposed = fetch_issues("proposed")
     action_items = fetch_issues("action-item")
     roadmap = read_text(os.path.join(root, ROADMAP_PATH), "Deliverables roadmap")
@@ -548,7 +497,7 @@ def main():
         sys.exit(1)
 
     user_prompt = build_user_prompt(
-        meeting_date, minutes, proposed, action_items, roadmap, milestone_number
+        meeting_date, minutes, proposed, action_items, roadmap
     )
 
     # Generate
@@ -586,11 +535,7 @@ def main():
     print(f"✅ Draft agenda written to: {os.path.relpath(output_path, root)}")
     print("\n📌 Next steps:")
     print("   1. Review the draft — it is a draft, not a published agenda.")
-    if milestone_number:
-        print("   2. Confirm the call link and notes taker.")
-    else:
-        print(f"   2. Create the '{iso}' milestone and replace the `TBD` in the "
-              "Milestone link.")
+    print("   2. Confirm the call link and notes taker.")
     print("   3. Commit when the co-chairs are happy with it.")
 
 

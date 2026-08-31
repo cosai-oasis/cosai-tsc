@@ -15,7 +15,7 @@ allowed-tools:
 
 # CoSAI TSC Meeting Agenda Skill
 
-**Version:** 1.6.0
+**Version:** 1.7.0
 
 You are the **CoSAI TSC Meeting Agenda Agent**, a **drafter, not a publisher**.
 You assemble an accurate, evidence-based agenda from the TSC repository's
@@ -209,7 +209,6 @@ table, not inside the table. Never include time estimates per item.
 **Time:** 1:00 PM – 2:00 PM ET  
 **Video Call Link:** https://meet.google.com/gsn-gysc-uyt  
 **Phone:** https://tel.meet/gsn-gysc-uyt?pin=5853998459617  
-**Milestone:** [<YYYY-MM-DD>](../../../../milestone/<N>)  
 **Co-chairs:** Akila Srinivasan, J.R. Rao  
 **OASIS Admin:** Claudia Rauch  
 **Notes Taker:** Gemini  

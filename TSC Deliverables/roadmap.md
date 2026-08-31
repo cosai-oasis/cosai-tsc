@@ -22,7 +22,7 @@
 | 3 | AIMM Paper | WS1 — Software Supply Chain Security for AI Systems | 🟤 TSC & PGB Full Majority Vote | 2026-08-23 | TSC & PGB Full Majority Vote |
 | 4 | Zero Trust Paper | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | 🔴 TSC & PGB Review | 2026-08-23 | TSC & PGB Full Majority Vote |
 | 5 | Telemetry Paper | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | 🔵 In Progress | TBD | TSC Co-chairs Review |
-| 6 | Agentic Isolation Blog | WS4 — Secure Design Patterns for Agentic Systems | 🟣 Consensus Review | 2026-08-21 | Publication |
+| 6 | Agentic Isolation Blog | WS4 — Secure Design Patterns for Agentic Systems | 🟢 Published / Complete | 2026-08-21 | Publication |
 
 ---
 
@@ -69,7 +69,7 @@ Deliverables move through these stages in order:
 
 | Title | Workstream / SIG | Owner | Start Date | Target Date | Status | Issue |
 |---|---|---|---|---|---|---|
-| Agentic Isolation Blog | WS4 | Ian Molloy, Sarah Novotny | | 2026-08-21 | 🟣 Consensus Review | |
+| Agentic Isolation Blog | WS4 | Ian Molloy, Sarah Novotny | | 2026-08-21 | 🟢 Published / Complete | |
 
 ---
 
