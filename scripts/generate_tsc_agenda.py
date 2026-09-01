@@ -12,6 +12,9 @@ Context assembled:
   3. Open GitHub Issues labeled `action-item` — carry-over tasks needing status.
   4. TSC Deliverables/roadmap.md
   5. skills/cosai-tsc-meeting-agenda.md — used as the system prompt.
+  6. Week in Review material: the most recent minutes for each workstream and
+     SIG dated within WEEK_IN_REVIEW_WINDOW_DAYS of the meeting, with Last Met
+     dates computed here rather than inferred by the model.
 
 Non-TSC minutes (PGB, WS1-WS4, ADLC, ...) are passed with instructions to
 extract only TSC-relevant items rather than summarize the whole meeting.
@@ -31,7 +34,7 @@ import os
 import re
 import subprocess
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 from dotenv import load_dotenv
 from anthropic import Anthropic
@@ -58,8 +61,38 @@ MEETINGS_OUT_DIR = os.path.join("TSC Meeting Planner and Tracker", "meetings")
 # a cross-stream source and filtered for TSC relevance only.
 TSC_SUBDIR = "tsc"
 
+# ── CoSAI Week in Review ─────────────────────────────────────────────────────
+# Section 4 of the agenda summarizes every workstream and SIG since the last TSC
+# meeting. Unlike the rest of the prompt — which extracts only TSC-relevant
+# items — this section needs an actual summary of each group's meeting, and it
+# must list all eight groups even when a group did not meet.
+#
+# Group labels must match the skill's Section 4 table rows exactly, in order.
+WEEK_IN_REVIEW_GROUPS = [
+    ("ws1", "WS1 — Software Supply Chain Security for AI Systems"),
+    ("ws2", "WS2 — Preparing Defenders for a Changing Cybersecurity Landscape"),
+    ("ws3", "WS3 — AI Security Risk Governance"),
+    ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
+    ("rm-sig", "CoSAI-RM SIG — Coalition for Secure AI Risk Map"),
+    ("code-sig", "Code SIG — Security of AI-Assisted Code Generation"),
+    ("adlc", "ADLC SIG — Security of Agent Development Lifecycle"),
+    ("agent-credentials", "Agent Credentials Group"),
+]
+
+# A group's minutes count toward the Week in Review only if dated within this
+# many days of the meeting date. The skill defines the window as 14 days.
+WEEK_IN_REVIEW_WINDOW_DAYS = 14
+
+# How much of each in-window file to pass for summarization. Gemini notes lead
+# with a "Quick notes" digest and then repeat everything as a full transcript;
+# the digest is what a summary needs, and the transcripts run to ~500 KB each,
+# which would blow the context window if passed whole.
+WEEK_IN_REVIEW_EXCERPT_CHARS = 12000
+
 MODEL = "claude-sonnet-4-6"
-MAX_TOKENS = 4000
+# 4000 was sized before the agenda gained Section 4 CoSAI Week in Review, whose
+# eight summary rows push a full agenda past that cap and truncate Section 6.
+MAX_TOKENS = 8000
 
 
 # ── Repo root ────────────────────────────────────────────────────────────────
@@ -203,6 +236,133 @@ def read_recent_minutes(root: str) -> dict:
                   f"{', '.join(labels)}")
 
     return collected
+
+
+# ── CoSAI Week in Review ─────────────────────────────────────────────────────
+
+def parse_date_from_name(name: str):
+    """
+    Extract a date from a minutes filename, or None if it carries no date.
+
+    Handles both `YYYY-MM-DD.md` and `PREFIX-YYYYMMDD.md`. An impossible date
+    (e.g. a stray 8-digit run that is not a calendar date) returns None rather
+    than raising, so an oddly named file cannot abort the run.
+    """
+    match = DATE_IN_NAME.search(name)
+    if not match:
+        return None
+    try:
+        return date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+    except ValueError:
+        return None
+
+
+def collect_week_in_review(root: str, meeting_date: date) -> list:
+    """
+    Find the most recent in-window minutes file for each Week in Review group.
+
+    Returns one entry per group in WEEK_IN_REVIEW_GROUPS order, each a dict with
+    `subdir`, `label`, `last_met` (ISO date or None) and `excerpt`. A group with
+    no dated file inside the window gets last_met None, which the prompt renders
+    as "Did not meet" — the skill requires all eight groups to appear either way.
+
+    Undated files (topic-named aggregates like ws1/2025.md) are ignored: without
+    a date they cannot be placed inside or outside the window.
+    """
+    cutoff = meeting_date - timedelta(days=WEEK_IN_REVIEW_WINDOW_DAYS)
+    minutes_path = os.path.join(root, MINUTES_DIR)
+    rows = []
+
+    for subdir, label in WEEK_IN_REVIEW_GROUPS:
+        subdir_path = os.path.join(minutes_path, subdir)
+        best_name, best_date = None, None
+
+        if os.path.isdir(subdir_path):
+            for name in os.listdir(subdir_path):
+                if not name.endswith(".md"):
+                    continue
+                parsed = parse_date_from_name(name)
+                # Strictly after the cutoff and not in the future relative to
+                # the meeting: a file dated after the meeting is not "since the
+                # last TSC meeting".
+                if not parsed or parsed < cutoff or parsed > meeting_date:
+                    continue
+                if best_date is None or parsed > best_date:
+                    best_name, best_date = name, parsed
+
+        excerpt = ""
+        if best_name:
+            try:
+                with open(os.path.join(subdir_path, best_name), "r",
+                          encoding="utf-8") as fh:
+                    raw = fh.read()
+                text, _ = strip_embedded_images(raw)
+                excerpt = text[:WEEK_IN_REVIEW_EXCERPT_CHARS]
+            except OSError as exc:
+                print(f"⚠️  Could not read {subdir}/{best_name}: {exc}")
+                best_date = None
+
+        rows.append({
+            "subdir": subdir,
+            "label": label,
+            "last_met": best_date.isoformat() if best_date else None,
+            "source": best_name,
+            "excerpt": excerpt,
+        })
+
+    met = sum(1 for r in rows if r["last_met"])
+    print(f"  📅 Week in Review: {met}/{len(rows)} group(s) met since "
+          f"{cutoff.isoformat()}")
+    for row in rows:
+        state = row["last_met"] or "did not meet"
+        print(f"     • {row['subdir']}: {state}")
+    return rows
+
+
+def build_week_in_review_section(rows: list) -> str:
+    """
+    Build the Week in Review portion of the prompt.
+
+    This is deliberately separate from build_minutes_section: that section says
+    "do NOT summarize these meetings", which is the opposite of what Section 4
+    needs. The Last Met dates are computed here rather than left to the model,
+    which cannot reliably infer them from file contents.
+    """
+    parts = [
+        "## CoSAI Week in Review source material (agenda Section 4)\n",
+        "Write **Section 4 CoSAI Week in Review** from the material below.\n\n"
+        "This section is an exception to the TSC-relevance filter above: here "
+        "you SHOULD summarize what each group discussed, not just extract "
+        "TSC-relevant items. Rules:\n"
+        "- Include **all eight** groups as table rows, in the order given below, "
+        "using exactly the group labels shown.\n"
+        "- Use the **Last Met** value given for each group verbatim. Do not "
+        "infer, adjust, or recompute it.\n"
+        "- For a group marked `Did not meet`, put `Did not meet` in the Last Met "
+        "column and `Did not meet` as the summary. Do not invent activity.\n"
+        "- Each summary is one short paragraph: topics discussed, key decisions, "
+        "and anything with direct TSC relevance.\n"
+        "- Do not include timestamps, meeting times, or CEST/CET/ET references.\n"
+        "- Excerpts are truncated and may end mid-sentence; summarize only what "
+        "is present and never invent a conclusion to fill the gap.\n",
+    ]
+
+    for row in rows:
+        parts.append(f"\n### {row['label']}\n")
+        if not row["last_met"]:
+            parts.append(
+                "**Last Met:** Did not meet\n\n"
+                "_No minutes dated within the review window. Render this row as "
+                "`Did not meet`._\n"
+            )
+            continue
+        parts.append(
+            f"**Last Met:** {row['last_met']}\n"
+            f"**Source file:** `{MINUTES_DIR}/{row['subdir']}/{row['source']}`\n\n"
+            f"{row['excerpt']}\n"
+        )
+
+    return "\n".join(parts)
 
 
 # ── GitHub Issues ────────────────────────────────────────────────────────────
@@ -370,7 +530,8 @@ def build_minutes_section(minutes: dict) -> str:
 
 
 def build_user_prompt(meeting_date: date, minutes: dict, proposed: list,
-                      action_items: list, roadmap: str) -> str:
+                      action_items: list, roadmap: str,
+                      week_in_review: list) -> str:
     iso = meeting_date.isoformat()
     long_date = meeting_date.strftime("%A, %B %d, %Y").replace(" 0", " ")
 
@@ -397,6 +558,10 @@ the phone line to `**Co-chairs:**`.
 ---
 
 {build_minutes_section(minutes)}
+
+---
+
+{build_week_in_review_section(week_in_review)}
 
 ---
 
@@ -486,6 +651,7 @@ def main():
     # Gather context
     print(f"📚 Gathering context for {iso}...")
     minutes = read_recent_minutes(root)
+    week_in_review = collect_week_in_review(root, meeting_date)
     proposed = fetch_issues("proposed")
     action_items = fetch_issues("action-item")
     roadmap = read_text(os.path.join(root, ROADMAP_PATH), "Deliverables roadmap")
@@ -497,7 +663,7 @@ def main():
         sys.exit(1)
 
     user_prompt = build_user_prompt(
-        meeting_date, minutes, proposed, action_items, roadmap
+        meeting_date, minutes, proposed, action_items, roadmap, week_in_review
     )
 
     # Generate
