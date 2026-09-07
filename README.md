@@ -9,8 +9,10 @@ This Repository is for the work of the CoSAI Technical Steering Committee (TSC).
 ## TSC Co-Chairs and Membership
 
 ### TSC Co-Chairs
-* Akila Srinivasan (Anthropic)
 * J.R. Rao (IBM)
+* Jason Garman (Amazon)
+* Jodi Middleton (NVIDIA)
+* Karttik Panda (OpenAI)
 
 You can find a list of the current TSC members [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TECHNICAL-STEERING-COMMITTEE.md).
 
