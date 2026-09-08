@@ -174,5 +174,127 @@ class BuildWeekInReviewSectionTests(WeekInReviewTestCase):
         self.assertNotIn("**Source file:**", section)
 
 
+class DedupeActionItemsTests(unittest.TestCase):
+    """
+    Section 3 must not list a minutes-derived action item that an Issue already
+    tracks. The prompt asks the model to merge these, but the 2026-09-08 draft
+    carried seven such rows — two for Issues closed the previous day — so the
+    merge is enforced deterministically after generation.
+    """
+
+    OPEN_ISSUES = [
+        {"number": 46,
+         "title": "[ACTION] Create workstream review template for next TSC meeting"},
+        {"number": 47,
+         "title": "[ACTION] Develop regional meetup / community workshop proposal"},
+        {"number": 49,
+         "title": "[AGENDA] End of Term Review — workstream and SIG standup "
+                  "ahead of co-chair transition"},
+        {"number": 62,
+         "title": "[ACTION] Sync with team on ODIS meeting to prepare future "
+                  "agenda item"},
+    ]
+
+    CLOSED_ISSUES = [
+        {"number": 45, "closedDate": "2026-09-08",
+         "title": "[ACTION] Present telemetry documentation to Workstream 4"},
+        {"number": 60, "closedDate": "2026-09-08",
+         "title": "[ACTION] Notify WS/SIG leads to provide status updates at "
+                  "next meeting"},
+    ]
+
+    HEADER = ("| Source | Action Item | Owner | Due | Status |\n"
+              "|---|---|---|---|---|\n")
+
+    def dedupe(self, rows):
+        return GEN.dedupe_action_items(
+            self.HEADER + rows, self.OPEN_ISSUES, self.CLOSED_ISSUES
+        )
+
+    def test_drops_row_tracked_by_an_open_issue(self):
+        row = ("| 2026-09-01 minutes | Comment on regional meetup proposal and "
+               "defer to PGB for discussion with OASIS | J.R. Rao | | "
+               "🔄 In Progress |\n")
+        out, dropped = self.dedupe(row)
+        self.assertEqual(len(dropped), 1)
+        self.assertIn("#47", dropped[0])
+        self.assertNotIn("regional meetup", out)
+
+    def test_drops_row_tracked_by_a_closed_issue(self):
+        row = ("| 2026-08-25 minutes | Present telemetry documentation to WS4 "
+               "for review and feedback | Sarah Novotny | | "
+               "⚠️ Carried Over |\n")
+        out, dropped = self.dedupe(row)
+        self.assertEqual(len(dropped), 1)
+        self.assertIn("#45", dropped[0])
+        self.assertIn("closed 2026-09-08", dropped[0])
+
+    def test_matches_across_differing_verbs(self):
+        """Minutes name the action, Issue titles name the subject."""
+        row = ("| 2026-09-01 minutes | Open GitHub issue to track ODIS meeting "
+               "follow-up | J.R. Rao | | 🔄 In Progress |\n")
+        _, dropped = self.dedupe(row)
+        self.assertEqual(len(dropped), 1)
+        self.assertIn("#62", dropped[0])
+
+    def test_keeps_unrelated_minutes_rows(self):
+        rows = ("| 2026-09-01 minutes | Draft the multimodal threat taxonomy "
+                "outline | Klaudia Krawiecka | | 🔄 In Progress |\n"
+                "| 2026-09-01 minutes | Investigate CI runner cost overruns "
+                "for the RM SIG | Dalton House | | 🔄 In Progress |\n")
+        out, dropped = self.dedupe(rows)
+        self.assertEqual(dropped, [])
+        self.assertIn("multimodal threat taxonomy", out)
+        self.assertIn("CI runner cost overruns", out)
+
+    def test_never_touches_issue_sourced_rows(self):
+        """An Issue row is canonical even when its text matches another Issue."""
+        row = ("| #45 | Present telemetry documentation to Workstream 4 | "
+               "Sarah Novotny | | ✅ Done |\n")
+        out, dropped = self.dedupe(row)
+        self.assertEqual(dropped, [])
+        self.assertIn("#45", out)
+
+    def test_no_issues_leaves_agenda_untouched(self):
+        agenda = self.HEADER + ("| 2026-09-01 minutes | Anything at all | A | "
+                                "| 🔄 In Progress |\n")
+        self.assertEqual(GEN.dedupe_action_items(agenda, [], []), (agenda, []))
+
+    def test_preserves_non_table_content(self):
+        agenda = ("## 3. Review of Previous Action Items\n\n" + self.HEADER
+                  + "| 2026-09-01 minutes | Create review template for "
+                    "end-of-term workstream review | Akila | | ⚠️ Carried Over |\n"
+                  + "\n**Status Key:** ✅ Done\n")
+        out, dropped = self.dedupe_full(agenda)
+        self.assertEqual(len(dropped), 1)
+        self.assertIn("## 3. Review of Previous Action Items", out)
+        self.assertIn("**Status Key:**", out)
+        self.assertIn("|---|---|---|---|---|", out)
+
+    def dedupe_full(self, agenda):
+        return GEN.dedupe_action_items(
+            agenda, self.OPEN_ISSUES, self.CLOSED_ISSUES
+        )
+
+
+class SimilarityTests(unittest.TestCase):
+    def test_weak_verbs_do_not_carry_a_match(self):
+        """Two unrelated items sharing only a verb must not match."""
+        self.assertFalse(GEN._similar(
+            "Create the WS1 supply chain scenario list",
+            "Create workstream review template for next TSC meeting",
+        ))
+
+    def test_subject_nouns_carry_the_match(self):
+        self.assertTrue(GEN._similar(
+            "Finalize telemetry documentation for WS4 and close the issue",
+            "[ACTION] Present telemetry documentation to Workstream 4",
+        ))
+
+    def test_empty_text_never_matches(self):
+        self.assertFalse(GEN._similar("", "anything at all"))
+        self.assertFalse(GEN._similar("anything at all", ""))
+
+
 if __name__ == "__main__":
     unittest.main()

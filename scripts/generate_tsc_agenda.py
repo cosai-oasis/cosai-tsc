@@ -34,7 +34,7 @@ import os
 import re
 import subprocess
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 from dotenv import load_dotenv
 from anthropic import Anthropic
@@ -88,6 +88,12 @@ WEEK_IN_REVIEW_WINDOW_DAYS = 14
 # the digest is what a summary needs, and the transcripts run to ~500 KB each,
 # which would blow the context window if passed whole.
 WEEK_IN_REVIEW_EXCERPT_CHARS = 12000
+
+# Issues closed since shortly before the last TSC meeting are passed to the
+# model so it can mark settled work Done — or omit it — instead of inferring
+# "Carried Over" from minutes that predate the closure. Without this, an action
+# item reconciled into a closed Issue reappears as an open row every week.
+CLOSED_ISSUE_WINDOW_DAYS = 21
 
 MODEL = "claude-sonnet-4-6"
 # 4000 was sized before the agenda gained Section 4 CoSAI Week in Review, whose
@@ -396,6 +402,66 @@ def fetch_issues(label: str) -> list:
     return []
 
 
+def fetch_closed_issues(meeting_date: date) -> list:
+    """
+    Fetch action-item and proposed Issues closed within
+    CLOSED_ISSUE_WINDOW_DAYS before `meeting_date`.
+
+    These are context only — never agenda rows. They exist so the model can
+    tell that a minutes-derived action item has since been closed, which the
+    open-Issue list alone cannot convey.
+    """
+    cutoff = meeting_date - timedelta(days=CLOSED_ISSUE_WINDOW_DAYS)
+    by_number = {}
+    for label in ("action-item", "proposed"):
+        cmd = [
+            "gh", "issue", "list",
+            "--repo", REPO,
+            "--label", label,
+            "--state", "closed",
+            "--limit", "50",
+            "--json", "number,title,closedAt,stateReason",
+        ]
+        try:
+            out = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            rows = json.loads(out.stdout or "[]")
+        except (subprocess.CalledProcessError, json.JSONDecodeError,
+                FileNotFoundError) as exc:
+            print(f"⚠️  Could not fetch closed Issues for '{label}': {exc}")
+            continue
+
+        for row in rows:
+            closed_at = (row.get("closedAt") or "")[:10]
+            if not closed_at:
+                continue
+            try:
+                closed_date = datetime.strptime(closed_at, "%Y-%m-%d").date()
+            except ValueError:
+                continue
+            if closed_date < cutoff:
+                continue
+            row["closedDate"] = closed_at
+            by_number[row["number"]] = row
+
+    closed = sorted(by_number.values(), key=lambda r: r["closedDate"],
+                    reverse=True)
+    print(f"  🗄  {len(closed)} Issue(s) closed in the last "
+          f"{CLOSED_ISSUE_WINDOW_DAYS} days (context only)")
+    return closed
+
+
+def format_closed_issues(closed: list) -> str:
+    """Render closed Issues as a compact list for the prompt."""
+    if not closed:
+        return "_No Issues closed recently._"
+    return "\n".join(
+        f"- Issue #{row['number']} — closed {row['closedDate']}"
+        + (f" ({row['stateReason'].lower()})" if row.get("stateReason") else "")
+        + f" — {row.get('title', '(no title)')}"
+        for row in closed
+    )
+
+
 def issue_age(created_at: str, meeting_date: date) -> str:
     """
     Describe how long an Issue has been open, as of the meeting date.
@@ -530,7 +596,7 @@ def build_minutes_section(minutes: dict) -> str:
 
 
 def build_user_prompt(meeting_date: date, minutes: dict, proposed: list,
-                      action_items: list, roadmap: str,
+                      action_items: list, closed_issues: list, roadmap: str,
                       week_in_review: list) -> str:
     iso = meeting_date.isoformat()
     long_date = meeting_date.strftime("%A, %B %d, %Y").replace(" 0", " ")
@@ -589,7 +655,24 @@ canonical tracker for it — merge them into a single row rather than listing bo
 Never mark an item ✅ Done without explicit evidence in the minutes or a closed
 Issue.
 
+An Issue is the canonical tracker for its action item. When a minutes action
+item is tracked by any Issue — open above, or closed in the next section — emit
+the `#NN` row ONLY. Never emit a `<date> minutes` row for work an Issue already
+covers, and never emit both. A `<date> minutes` row is correct only for an
+action item with no Issue at all.
+
 {format_issues(action_items, "action-item", meeting_date)}
+
+---
+
+## Issues closed recently (context only — NOT agenda rows)
+
+This work is settled. Do NOT emit a row for any of these, and do NOT resurrect
+the matching minutes action item as 🔄 In Progress or ⚠️ Carried Over — the
+minutes predate the closure, so a minutes entry matching one of these describes
+work that is already done. Omit it.
+
+{format_closed_issues(closed_issues)}
 
 ---
 
@@ -624,6 +707,116 @@ def parse_args():
     return parsed
 
 
+# ── Section 3 de-duplication ─────────────────────────────────────────────────
+
+# Matches a Section 3 row whose Source cell is "<YYYY-MM-DD> minutes" — an
+# action item attributed to minutes rather than to an Issue.
+MINUTES_ROW_RE = re.compile(r"^\|\s*\d{4}-\d{2}-\d{2}\s+minutes\s*\|")
+
+# Words carrying no distinguishing signal when comparing an action item's text
+# against an Issue title.
+_STOPWORDS = frozenset("""
+a an and are as at be by for from has have in into is it its of on or that the
+to via with will shall should must be being been this these those
+action item items issue github close closed following follow up update updates
+""".split())
+
+# Minutes describe an action ("Finalize telemetry documentation…") while Issue
+# titles name the subject ("Present telemetry documentation to Workstream 4").
+# The verbs differ almost every time, so they are discounted and matching rests
+# on the subject nouns, which are what actually identify the work.
+_WEAK_VERBS = frozenset("""
+present finalize develop create open comment defer sync send share coordinate
+notify prepare draft review discuss schedule organize recruit track produce
+provide deliver complete confirm establish define document publish
+""".split())
+
+# Nouns appearing in nearly every TSC action item. Alone they cannot identify
+# one: "meeting" matched an ODIS row against an unrelated review-template Issue
+# purely on that word, so these are discounted alongside the weak verbs.
+_GENERIC_NOUNS = frozenset("""
+meeting meetings tsc cosai group groups next previous week weekly agenda
+member members team teams work working
+""".split())
+
+
+def _tokens(text: str) -> set:
+    """Content words of `text`, lowercased, for overlap comparison."""
+    words = re.findall(r"[a-z0-9]+", (text or "").lower())
+    return {w for w in words if w not in _STOPWORDS and len(w) > 2}
+
+
+def _similar(a: str, b: str, threshold: float = 0.5) -> bool:
+    """
+    True if `a` and `b` look like the same action item.
+
+    Compares subject nouns, discounting the weak verbs that differ between a
+    minutes phrasing and an Issue title. Overlap is measured against the
+    smaller token set so a terse Issue title still matches a verbose minutes
+    row describing the same work.
+
+    Verified against the seven duplicate rows in the 2026-09-08 draft: all
+    seven match, and no Issue-sourced or genuinely distinct row does.
+    """
+    weak = _WEAK_VERBS | _GENERIC_NOUNS
+    ta, tb = _tokens(a) - weak, _tokens(b) - weak
+    if not ta or not tb:
+        return False
+    overlap = ta & tb
+    if not overlap:
+        return False
+    # One shared token identifies an action item only when it is distinctive.
+    # "meeting" matched an ODIS row against an unrelated review-template Issue;
+    # "odis" or "telemetry" genuinely does pin down the subject. Length is a
+    # crude proxy for specificity, but it separates the two cases here without
+    # needing a corpus.
+    if len(overlap) == 1 and len(next(iter(overlap))) < 4:
+        return False
+    return len(overlap) / min(len(ta), len(tb)) >= threshold
+
+
+def dedupe_action_items(agenda: str, action_items: list,
+                        closed_issues: list) -> tuple:
+    """
+    Drop Section 3 rows sourced from minutes that duplicate a tracked Issue.
+
+    The prompt already asks the model to merge these, but that instruction does
+    not hold reliably: the 2026-09-08 draft carried seven such rows, two of them
+    for Issues closed the day before. Filtering here makes the outcome
+    deterministic instead of advisory.
+
+    Rows whose Source cell is an Issue reference are never touched — only
+    "<date> minutes" rows, and only when their text matches an Issue title.
+
+    Returns (agenda, dropped) where `dropped` lists one note per removed row.
+    """
+    titles = [(f"#{it['number']}", it.get("title", ""))
+              for it in action_items]
+    titles += [(f"#{it['number']} (closed {it.get('closedDate', '?')})",
+                it.get("title", ""))
+               for it in closed_issues]
+    if not titles:
+        return agenda, []
+
+    kept, dropped = [], []
+    for line in agenda.split("\n"):
+        if not MINUTES_ROW_RE.match(line):
+            kept.append(line)
+            continue
+
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        description = cells[1] if len(cells) > 1 else ""
+
+        match = next((ref for ref, title in titles
+                      if _similar(description, title)), None)
+        if match:
+            dropped.append(f"{cells[0]}: {description[:60]} → tracked by {match}")
+        else:
+            kept.append(line)
+
+    return "\n".join(kept), dropped
+
+
 def main():
     meeting_date = parse_args()
     iso = meeting_date.isoformat()
@@ -654,6 +847,7 @@ def main():
     week_in_review = collect_week_in_review(root, meeting_date)
     proposed = fetch_issues("proposed")
     action_items = fetch_issues("action-item")
+    closed_issues = fetch_closed_issues(meeting_date)
     roadmap = read_text(os.path.join(root, ROADMAP_PATH), "Deliverables roadmap")
     system_prompt = read_text(os.path.join(root, SKILL_PATH), "Agenda skill prompt")
 
@@ -663,7 +857,8 @@ def main():
         sys.exit(1)
 
     user_prompt = build_user_prompt(
-        meeting_date, minutes, proposed, action_items, roadmap, week_in_review
+        meeting_date, minutes, proposed, action_items, closed_issues, roadmap,
+        week_in_review
     )
 
     # Generate
@@ -692,6 +887,15 @@ def main():
     if response.stop_reason == "max_tokens":
         print(f"⚠️  Response hit the {MAX_TOKENS}-token limit — the agenda may "
               "be truncated. Review before use.")
+
+    # Drop minutes-derived Section 3 rows that an Issue already tracks. The
+    # prompt asks for this merge, but does not reliably deliver it.
+    agenda, dropped = dedupe_action_items(agenda, action_items, closed_issues)
+    if dropped:
+        print(f"🧹 Removed {len(dropped)} duplicate action item row(s) from "
+              "Section 3:")
+        for note in dropped:
+            print(f"   • {note}")
 
     # Write
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
