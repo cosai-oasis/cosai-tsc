@@ -280,8 +280,8 @@ def discovery_review_entries(verified: list[dict[str, Any]], candidates: list[di
     """Keep the complete discovery trail after candidates are reviewed or excluded."""
     entries = [
         {
-            "publisher": item["publisher"],
-            "title": item["citing_publication"],
+            "publisher": item.get("publisher", item["id"]),
+            "title": item.get("citing_publication", item["id"]),
             "url": item["source_url"],
             "matched_works": item.get("cosai_works", []),
             "status": "Verified — included in totals",
