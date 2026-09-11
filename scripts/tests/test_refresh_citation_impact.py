@@ -125,6 +125,106 @@ class CitationImpactTests(unittest.TestCase):
         self.assertEqual(urlopen.call_count, 2)
         sleep.assert_called_once_with(11)
 
+    def test_excessive_server_waits_are_not_shortened_or_retried(self):
+        header_cases = [
+            {"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "3700"},
+            {"Retry-After": "61"},
+            {"Retry-After": "Thu, 01 Jan 1970 01:00:00 GMT"},
+            {"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "110", "Retry-After": "61"},
+        ]
+        for headers in header_cases:
+            with self.subTest(headers=headers):
+                limited = HTTPError("https://api.github.com/search/code", 429, "Too Many Requests", headers, None)
+                with mock.patch.object(REFRESH, "urlopen", side_effect=limited) as urlopen:
+                    with mock.patch.object(REFRESH.time, "time", return_value=100):
+                        with mock.patch.object(REFRESH.time, "sleep") as sleep:
+                            with self.assertRaisesRegex(TimeoutError, "not retrying early"):
+                                REFRESH.request_json("https://api.github.com/search/code")
+                self.assertEqual(urlopen.call_count, 1)
+                sleep.assert_not_called()
+
+    def test_sixty_second_retry_is_allowed_and_logged_immediately(self):
+        limited = HTTPError("https://api.github.com/search/code", 429, "Too Many Requests", {"Retry-After": "60"}, None)
+        success = mock.MagicMock()
+        success.__enter__.return_value = io.BytesIO(b'{"items": []}')
+        with mock.patch.object(REFRESH, "urlopen", side_effect=[limited, success]):
+            with mock.patch.object(REFRESH, "print") as log:
+                def check_log_before_sleep(delay):
+                    self.assertEqual(delay, 60)
+                    log.assert_called_once_with(
+                        "HTTP 429 from api.github.com: retry 1/4 requires 60s wait (0s already waited).",
+                        file=REFRESH.sys.stderr, flush=True,
+                    )
+                with mock.patch.object(REFRESH.time, "sleep", side_effect=check_log_before_sleep) as sleep:
+                    self.assertEqual(REFRESH.request_json("https://api.github.com/search/code"), {"items": []})
+        sleep.assert_called_once_with(60)
+
+    def test_cumulative_retry_wait_is_bounded(self):
+        limited = HTTPError("https://api.github.com/search/code", 429, "Too Many Requests", {"Retry-After": "60"}, None)
+        with mock.patch.object(REFRESH, "urlopen", side_effect=limited) as urlopen:
+            with mock.patch.object(REFRESH.time, "sleep") as sleep:
+                with self.assertRaisesRegex(TimeoutError, "120s total wait budget"):
+                    REFRESH.request_json("https://api.github.com/search/code")
+        self.assertEqual(urlopen.call_count, 3)
+        self.assertEqual(sleep.call_args_list, [mock.call(60), mock.call(60)])
+
+    def test_reset_and_retry_after_both_must_be_respected(self):
+        headers = {"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "110", "Retry-After": "20"}
+        limited = HTTPError("https://api.github.com/search/code", 429, "Too Many Requests", headers, None)
+        success = mock.MagicMock()
+        success.__enter__.return_value = io.BytesIO(b'{"items": []}')
+        with mock.patch.object(REFRESH, "urlopen", side_effect=[limited, success]):
+            with mock.patch.object(REFRESH.time, "time", return_value=100):
+                with mock.patch.object(REFRESH.time, "sleep") as sleep:
+                    REFRESH.request_json("https://api.github.com/search/code")
+        sleep.assert_called_once_with(20)
+
+    def test_transient_failures_stop_after_five_attempts(self):
+        unavailable = HTTPError("https://api.github.com/search/code", 503, "Service Unavailable", None, None)
+        with mock.patch.object(REFRESH, "urlopen", side_effect=unavailable) as urlopen:
+            with mock.patch.object(REFRESH.time, "sleep") as sleep:
+                with self.assertRaises(HTTPError):
+                    REFRESH.request_json("https://api.github.com/search/code")
+        self.assertEqual(urlopen.call_count, 5)
+        self.assertEqual(sleep.call_args_list, [mock.call(1), mock.call(2), mock.call(4), mock.call(8)])
+
+    def test_provider_query_progress_is_flushed(self):
+        works = {"CoSAI Risk Map": ('"CoSAI Risk Map"', ("risk map",))}
+        with mock.patch.object(REFRESH, "WORKS", works):
+            with mock.patch.object(REFRESH, "github_token", return_value="test-token"):
+                with mock.patch.object(REFRESH, "request_json", return_value={"items": []}):
+                    with mock.patch.object(REFRESH, "print") as log:
+                        self.assertEqual(REFRESH.discover_github(10), ([], []))
+        log.assert_any_call("GitHub discovery 1/1: CoSAI Risk Map", file=REFRESH.sys.stderr, flush=True)
+        log.assert_any_call("GitHub discovery returned 0 raw matches for CoSAI Risk Map.", file=REFRESH.sys.stderr, flush=True)
+        with mock.patch.object(REFRESH, "request_json", return_value={"message": {"items": []}}):
+            with mock.patch.object(REFRESH, "print") as log:
+                self.assertEqual(REFRESH.discover_crossref(10), ([], []))
+        log.assert_any_call("Crossref discovery 1/3: Coalition for Secure AI", file=REFRESH.sys.stderr, flush=True)
+        self.assertEqual(log.call_count, 6)
+
+    def test_provider_wait_budget_failure_is_logged_and_returned_as_warning(self):
+        works = {
+            "CoSAI Risk Map": ('"CoSAI Risk Map"', ("risk map",)),
+            "Another work": ('"Another work"', ("another work",)),
+        }
+        with mock.patch.object(REFRESH, "WORKS", works):
+            with mock.patch.object(REFRESH, "github_token", return_value="test-token"):
+                with mock.patch.object(REFRESH, "request_json", side_effect=TimeoutError("wait budget exceeded")) as request:
+                    with mock.patch.object(REFRESH, "print") as log:
+                        candidates, warnings = REFRESH.discover_github(10)
+        request.assert_called_once()
+        self.assertEqual(candidates, [])
+        self.assertEqual(warnings, ["GitHub discovery for CoSAI Risk Map failed: wait budget exceeded"])
+        log.assert_any_call(f"WARNING: {warnings[0]}", file=REFRESH.sys.stderr, flush=True)
+        with mock.patch.object(REFRESH, "request_json", side_effect=TimeoutError("wait budget exceeded")) as request:
+            with mock.patch.object(REFRESH, "print") as log:
+                candidates, warnings = REFRESH.discover_crossref(10)
+        request.assert_called_once()
+        self.assertEqual(candidates, [])
+        self.assertEqual(warnings, ["Crossref discovery for Coalition for Secure AI failed: wait budget exceeded"])
+        log.assert_any_call(f"WARNING: {warnings[0]}", file=REFRESH.sys.stderr, flush=True)
+
 
 if __name__ == "__main__":
     unittest.main()

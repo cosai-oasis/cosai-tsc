@@ -14,34 +14,52 @@ concurrency:
 jobs:
   refresh-report:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-      - name: Check out main
+      - name: Check out selected ref
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
+      - name: Validate report generation
+        run: python -m unittest discover -s scripts/tests -p 'test_refresh_citation_impact.py' -v
+
       - name: Refresh verified report and discover public references
+        timeout-minutes: 5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/refresh_citation_impact.py --discover --max-results-per-query 10
+        run: python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --fail-on-discovery-error
 
-      - name: Validate report generation
-        run: python -m unittest discover -s scripts/tests -v
+      - name: Preserve refresh output for diagnosis and review
+        # On an early failure these may be the checked-in snapshot; inspect
+        # last_refreshed/discovery_warnings and the run status before using them.
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: citation-impact-refresh
+          path: |
+            TSC Deliverables/citation-impact/README.md
+            TSC Deliverables/citation-impact/discovered-candidates.json
+          retention-days: 14
 
       - name: Open or update review pull request
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/citation-impact-report
+          add-paths: |
+            TSC Deliverables/citation-impact/README.md
+            TSC Deliverables/citation-impact/discovered-candidates.json
           delete-branch: true
           commit-message: "docs: refresh CoSAI citation impact report"
           title: "docs: refresh CoSAI citation and external impact report"
