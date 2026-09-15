@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import math
 import os
 import re
 import subprocess
@@ -18,6 +19,7 @@ import sys
 import time
 from collections import Counter
 from datetime import date, datetime
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -130,23 +132,37 @@ def github_token() -> str | None:
 
 def request_json(url: str, *, headers: dict[str, str] | None = None) -> dict[str, Any]:
     request = Request(url, headers={"User-Agent": "cosai-tsc-citation-impact/1.0", **(headers or {})})
+    waited = 0
     for attempt in range(5):
         try:
             with urlopen(request, timeout=30) as response:
                 return json.load(response)
         except HTTPError as error:
-            exhausted_search_limit = error.code == 403 and error.headers is not None and error.headers.get("X-RateLimit-Remaining") == "0"
+            exhausted_search_limit = error.code in {403, 429} and error.headers is not None and error.headers.get("X-RateLimit-Remaining") == "0"
             if (error.code not in {429, 500, 502, 503, 504} and not exhausted_search_limit) or attempt == 4:
                 raise
             retry_after = error.headers.get("Retry-After") if error.headers is not None else None
             reset_at = error.headers.get("X-RateLimit-Reset") if error.headers is not None else None
-            if exhausted_search_limit and reset_at and reset_at.isdigit():
-                delay = min(max(int(reset_at) - int(time.time()) + 1, 1), 3600)
-            elif retry_after and retry_after.isdigit():
-                delay = min(int(retry_after), 3600)
-            else:
-                delay = 2 ** attempt
+            delay = 2 ** attempt
+            if exhausted_search_limit:
+                if reset_at and reset_at.isdigit():
+                    delay = max(delay, math.ceil(int(reset_at) - time.time()) + 1)
+                elif not retry_after:
+                    raise TimeoutError(f"HTTP {error.code} from {urlparse(url).netloc}: rate limit has no usable reset time; not retrying early") from error
+            if retry_after:
+                if retry_after.isdigit():
+                    required_wait = int(retry_after)
+                else:
+                    try:
+                        required_wait = math.ceil(parsedate_to_datetime(retry_after).timestamp() - time.time())
+                    except (TypeError, ValueError, OverflowError) as invalid_header:
+                        raise TimeoutError(f"HTTP {error.code} from {urlparse(url).netloc}: unusable Retry-After; cannot safely retry") from invalid_header
+                delay = max(delay, required_wait)
+            print(f"HTTP {error.code} from {urlparse(url).netloc}: retry {attempt + 1}/4 requires {delay}s wait ({waited}s already waited).", file=sys.stderr, flush=True)
+            if delay > 60 or waited + delay > 120:
+                raise TimeoutError(f"HTTP {error.code} from {urlparse(url).netloc}: required retry wait of {delay}s exceeds the 60s per-retry or 120s total wait budget; not retrying early") from error
             time.sleep(delay)
+            waited += delay
     raise RuntimeError(f"Request retry loop terminated unexpectedly for {url}")
 
 
@@ -169,14 +185,19 @@ def discover_github(max_results: int) -> tuple[list[dict[str, Any]], list[str]]:
     }
     discovered: dict[str, dict[str, Any]] = {}
     warnings: list[str] = []
-    for work, (query, _) in WORKS.items():
+    for index, (work, (query, _)) in enumerate(WORKS.items(), start=1):
+        print(f"GitHub discovery {index}/{len(WORKS)}: {work}", file=sys.stderr, flush=True)
         endpoint = f"{GITHUB_API}/search/code?{urlencode({'q': query, 'per_page': max_results})}"
         try:
             payload = request_json(endpoint, headers=headers)
         except (HTTPError, URLError, TimeoutError) as error:
             warnings.append(f"GitHub discovery for {work} failed: {error}")
+            print(f"WARNING: {warnings[-1]}", file=sys.stderr, flush=True)
+            if isinstance(error, TimeoutError):
+                break
             continue
 
+        print(f"GitHub discovery returned {len(payload.get('items', []))} raw matches for {work}.", file=sys.stderr, flush=True)
         for item in payload.get("items", []):
             repository = item.get("repository", {})
             full_name = repository.get("full_name", "")
@@ -217,14 +238,19 @@ def discover_crossref(max_results: int) -> tuple[list[dict[str, Any]], list[str]
     searches = ("Coalition for Secure AI", "CoSAI agentic security", "CoSAI Model Context Protocol")
     found: dict[str, dict[str, Any]] = {}
     warnings: list[str] = []
-    for query in searches:
+    for index, query in enumerate(searches, start=1):
+        print(f"Crossref discovery {index}/{len(searches)}: {query}", file=sys.stderr, flush=True)
         endpoint = f"{CROSSREF_API}?{urlencode({'query.bibliographic': query, 'rows': max_results})}"
         try:
             payload = request_json(endpoint)
         except (HTTPError, URLError, TimeoutError) as error:
             warnings.append(f"Crossref discovery for {query} failed: {error}")
+            print(f"WARNING: {warnings[-1]}", file=sys.stderr, flush=True)
+            if isinstance(error, TimeoutError):
+                break
             continue
 
+        print(f"Crossref discovery returned {len(payload.get('message', {}).get('items', []))} raw matches for {query}.", file=sys.stderr, flush=True)
         for item in payload.get("message", {}).get("items", []):
             text = crossref_text(item)
             if not re.search(r"\bcoalition for secure ai\b|\bcosai\b", text, flags=re.IGNORECASE):
