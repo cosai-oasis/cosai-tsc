@@ -26,7 +26,7 @@
 | 7 | MCP Security Whitepaper V2 | WS4 — Secure Design Patterns for Agentic Systems | 🟢 Published / Complete | 2026-08-12 | Published; V2.x residuals tracked in [#163](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/163) |
 | 8 | Containment Follow-on Paper | WS4 — Secure Design Patterns for Agentic Systems | 🔵 In Progress | 2026-10-15 | First draft to TSC reviewers; contributions close 2026-10-08 |
 | 9 | Agent Credentials Paper | WS4 — Agent Credentials Group | 🔵 In Progress | 2026-10-31 | Early draft skeleton for broader review (October; day not fixed) |
-| 10 | Multimodal Threat Taxonomy | WS4 — Multimodal Agentic Security Group | 🔵 In Progress | TBD | Refined modality-agnostic taxonomy draft for review. Target unconfirmed: PR #66 proposed 2026-10-31, the 2026-09-08 TSC minutes record late December — owner to confirm |
+| 10 | Multimodal Threat Taxonomy | WS4 — Multimodal Agentic Security Group | 🔵 In Progress | 2026-10-31 | Refined modality-agnostic taxonomy draft for review. |
 | 11 | MCP Risk Map Decomposition Review | WS4 — Secure Design Patterns for Agentic Systems | 🔵 In Progress | TBD | SME review of [secure-ai-tooling#507](https://github.com/cosai-oasis/secure-ai-tooling/pull/507) (76 entries); needs volunteers ([#178](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/178)) |
 | 12 | ADLC Lifecycle Definitional Paper | WS4 — SIG ADLC | 🔵 Planned | TBD | Blocked: paper has no author (SIG lead is not the paper owner) |
 | 13 | ADLC Risks and Controls | WS4 — SIG ADLC | 🔵 In Progress | Overdue (end of Aug) | Blocked on SIG leadership and the Definitional Paper |
