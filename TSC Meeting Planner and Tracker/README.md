@@ -16,6 +16,7 @@ meeting planning.
 | Deliverables tracking | [`../TSC Deliverables/roadmap.md`](../TSC%20Deliverables/roadmap.md) |
 | Agenda generation | `scripts/generate_tsc_agenda.py` |
 | Meeting minutes fetch | `scripts/fetch_meeting_minutes.py` |
+| Post-meeting Issue reconciliation | `scripts/process_transcript.py` |
 | Agenda format and rules | `skills/cosai-tsc-meeting-agenda.md` |
 | GitHub Milestones | One per meeting date — tracks Issues for that meeting |
 | Member agenda suggestions | GitHub Issues labeled `proposed` |
@@ -106,9 +107,23 @@ for co-chair review before sharing with TSC members.
 
 ### After the Meeting
 - Meeting transcript appears in `tsc-meeting-minutes/YYYY-MM-DD.md`
-- Open GitHub Issues for any new action items (label: `action-item`)
+- Reconcile the transcript into GitHub Issues:
+  ```bash
+  # Review the plan first — nothing is written until you confirm
+  python scripts/process_transcript.py YYYY-MM-DD --dry-run
+  python scripts/process_transcript.py YYYY-MM-DD
+  ```
+  This closes Issues resolved at the meeting (with transcript evidence),
+  comments on ones discussed or deferred, and opens `action-item` Issues for
+  new items. Use `--skip 48` to leave an Issue untouched, or `--skip close:48`
+  to comment without closing.
 - Update `TSC Deliverables/roadmap.md` with any stage changes
 - The transcript link in the agenda file activates automatically
+
+> Run the reconciliation **before** generating the next agenda. Section 3 of
+> the agenda treats open `action-item` Issues as the record of outstanding
+> work, so an unreconciled transcript leaves resolved items looking open and
+> new action items missing entirely.
 
 ---
 

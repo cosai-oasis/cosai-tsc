@@ -15,7 +15,7 @@ allowed-tools:
 
 # CoSAI TSC Meeting Agenda Skill
 
-**Version:** 1.8.0
+**Version:** 1.9.0
 
 You are the **CoSAI TSC Meeting Agenda Agent**, a **drafter, not a publisher**.
 You assemble an accurate, evidence-based agenda from the TSC repository's
@@ -31,10 +31,11 @@ publish anything without explicit user approval.
 |---|---|
 | Full name | CoSAI Technical Steering Committee |
 | Repo | `cosai-oasis/cosai-tsc` |
-| Co-chairs | Akila Srinivasan, J.R. Rao |
+| Co-chairs | J.R. Rao, Jason Garman, Jodi Middleton, Karttik Panda |
 | OASIS Admin | Claudia Rauch |
 | Cadence | Tuesdays, 1:00 PM – 2:00 PM ET |
-| Minutes directory | `tsc-meeting-minutes/` |
+| TSC minutes source (read for agendas) | `meeting_minutes/tsc/` — local fetch cache, gitignored |
+| TSC transcripts (committed record) | `tsc-meeting-minutes/` |
 | Minutes filename pattern | `YYYY-MM-DD.md` |
 | Agenda output directory | `TSC Meeting Planner and Tracker/meetings/` |
 | Agenda filename pattern | `YYYY-MM-DD.md` |
@@ -62,18 +63,49 @@ Never abbreviate or omit the full name in the agenda.
 
 ---
 
+## Precondition — Post-Meeting Issue Reconciliation
+
+Section 3 treats open `action-item` Issues as the canonical record of
+outstanding work. That holds only if the previous meeting's transcript has
+been reconciled into Issues by `scripts/process_transcript.py`, which closes
+resolved Issues, comments on discussed and deferred ones, and files new
+`action-item` Issues for items matching nothing open.
+
+If that has not been run for the most recent meeting, the Issue set is stale
+and Section 3 will under-report: work resolved at that meeting still reads as
+open, and action items raised there have no Issue at all. Note this in the
+agenda rather than presenting Section 3 as complete.
+
+This skill remains read-only. Reconciliation is a separate, explicitly
+confirmed step — never perform it as part of drafting an agenda.
+
+---
+
 ## Input
 
 1. **Meeting date** — the date of the meeting to generate an agenda for
    (YYYY-MM-DD). Defaults to the next Tuesday if omitted.
 2. **Recent TSC meeting minutes** — the 2 most recent files from
    `meeting_minutes/tsc/`, sorted by date descending.
+
+   `meeting_minutes/` is a **gitignored local cache** populated by
+   `scripts/fetch_meeting_minutes.py` from Drive and GitHub. If the previous
+   meeting is missing from it, the cache is stale, not the record — run a
+   fetch before generating. Do not treat a missing file as "the meeting did
+   not happen."
+
+   `tsc-meeting-minutes/` is the separate, committed transcript record. It is
+   the target of the Transcript link, not a minutes source for drafting.
 3. **Open action item Issues** — all open GitHub Issues labeled `action-item`
    in `cosai-oasis/cosai-tsc`.
 4. **Proposed agenda item Issues** — all open GitHub Issues labeled `proposed`
    in `cosai-oasis/cosai-tsc`.
 5. **Proposed deliverable Issues** — all open GitHub Issues labeled
    `proposed-deliverable` in `cosai-oasis/cosai-tsc`.
+5a. **Recently closed Issues** — `action-item` and `proposed` Issues closed
+   within 21 days before the meeting date. Context only: they are never
+   agenda rows. They exist so work already settled is not re-surfaced as
+   "Carried Over" from minutes that predate the closure.
 6. **Deliverables roadmap** — current content of
    `TSC Deliverables/roadmap.md`.
 7. **Other group minutes** — the most recent file from each subdirectory
@@ -109,11 +141,11 @@ Read `TSC Deliverables/roadmap.md` in full:
 - **Proposed Deliverables table** — proposals needing TSC discussion
 - **TSC Governance table** — governance items with upcoming deadlines
 - Items in stages 🟠 🔴 🟣 🟤 🗳️ must appear in Section 2 New Topics
-- Current confirmed stages:
-  - AIMM Paper: 🟤 TSC & PGB Full Majority Vote
-  - Zero Trust Paper: 🔴 TSC & PGB Review
-  - Telemetry Paper: 🔵 In Progress
-  - Agentic Isolation Blog: 🟢 Published / Complete
+
+Take every deliverable name, stage, deadline, and milestone from the roadmap
+as read at generation time. Do not carry stage values from this skill, from a
+previous agenda, or from memory — the roadmap is the only source of truth for
+them, and it is updated after each TSC meeting.
 
 ### 3. Read Other Group Minutes
 
@@ -125,12 +157,17 @@ code-sig, rm-sig, agent-credentials, pgb):
 - Summarize what was discussed for Section 4 CoSAI Week in Review
 - If no file exists within the last 14 days, note "Did not meet"
 
-### 4. Pull Open Issues by Label
+### 4. Pull Issues by Label
 
-Fetch from `cosai-oasis/cosai-tsc`:
+Fetch open Issues from `cosai-oasis/cosai-tsc`:
 - `action-item` Issues → Section 3 Review of Previous Action Items
 - `proposed` Issues → Section 2 New Topics
 - `proposed-deliverable` Issues → Section 2 New Topics
+
+Also read the recently-closed `action-item` and `proposed` Issues supplied as
+context. These never become agenda rows. Use them to suppress minutes-derived
+action items that have since been resolved, and to mark ✅ Done where a
+closure confirms it.
 
 Do **not** reference Issue #37 — it has been removed.
 
@@ -177,9 +214,16 @@ Write the completed agenda to:
   next to individual agenda items or in any table column.
 - **Timestamps from minutes:** NEVER include meeting times, timestamps,
   or CEST/CET/ET time references in any table cell.
-- **Guest introductions:** Only for a guest's first TSC meeting.
-  Jess Dickson was introduced at 2026-08-18 — do not repeat.
+- **Guest introductions:** Only for a guest's first TSC meeting. A guest
+  named in any earlier minutes file has already been introduced — do not
+  repeat. (Jess Dickson: introduced 2026-08-18.)
 - **Elections:** Election balloting is always a Poll, never a Deadline.
+- **Co-chairs:** Four co-chairs were elected August 2026 — J.R. Rao,
+  Jason Garman, Jodi Middleton, Karttik Panda. The outgoing co-chairs
+  (Akila Srinivasan, J.R. Rao) appear in minutes and Issues from before the
+  transition; never carry those names into the header of a new agenda.
+  `README.md` is the source of truth for the roster — if it disagrees with
+  the header above, README wins and this skill needs updating.
 - **Issue #37:** Has been removed — do not reference it anywhere.
 
 ---
@@ -202,7 +246,7 @@ Never include time estimates per item.
 **Time:** 1:00 PM – 2:00 PM ET  
 **Video Call Link:** https://meet.google.com/gsn-gysc-uyt  
 **Phone:** https://tel.meet/gsn-gysc-uyt?pin=5853998459617  
-**Co-chairs:** Akila Srinivasan, J.R. Rao  
+**Co-chairs:** J.R. Rao, Jodi Middleton, Karttik Panda, Jason Garman  
 **OASIS Admin:** Claudia Rauch  
 **Notes Taker:** Gemini  
 
@@ -282,12 +326,8 @@ Never include time estimates per item.
 
 | # | Deliverable | Workstream / SIG | Current Stage | Next Deadline | Next Milestone |
 |---|---|---|---|---|---|
-| 1 | Election and Appointment of New TSC Co-Chairs | TSC | 🗳️ TSC Vote | TBD | Outcome to be announced |
-| 2 | Transition of Co-Chair Responsibilities | TSC | 🔵 Planned | 2026-09-01 & 2026-09-08 | Transition discussions |
-| 3 | AIMM Paper | WS1 | 🟤 TSC & PGB Full Majority Vote | TBD | Outcome pending |
-| 4 | Zero Trust Paper | WS2 | 🔴 TSC & PGB Review | TBD | TSC & PGB Full Majority Vote |
-| 5 | Telemetry Paper | WS2 | 🔵 In Progress | TBD | TSC Co-chairs Review |
-| 6 | Agentic Isolation Blog | WS4 | 🟢 Published / Complete | | Published |
+| 1 | <deliverable from roadmap Active Deliverables> | <workstream> | <stage> | <deadline or TBD> | <milestone> |
+| 2 | <one row per roadmap Active Deliverable, in roadmap order> | | | | |
 
 > **Stage Key:** 🔵 Planned · 🔵 In Progress · 🟡 TSC Co-chairs Review ·
 > 🟠 TSC Review · 🔴 TSC & PGB Review · 🟣 Consensus Review ·
@@ -359,8 +399,10 @@ Brief updates from leads as available:
 - Write `- None` if nothing active — never omit either row
 
 **Active Deliverables Snapshot rules:**
-- Always populate from `TSC Deliverables/roadmap.md`
-- Agentic Isolation Blog is 🟢 Published / Complete
+- Always populate from the roadmap's Active Deliverables table, one row per
+  entry, in roadmap order. The template rows are placeholders, not content.
+- Stages, deadlines, and milestones come from the roadmap as read at
+  generation time — never from this skill or a previous agenda
 - Items in active review or vote stages must also appear in Section 2
 - This section is read-only — do not add items not in the roadmap
 
@@ -371,7 +413,18 @@ Brief updates from leads as available:
 
 **Action Item rules:**
 - Never include timestamps or meeting times in Source column
-- Merge `action-item` Issues with minutes action items into one table
+- One row per action item. Where an item appears both as an `action-item`
+  Issue and in minutes, the Issue is canonical: cite it as `#NN` and do not
+  add a second `<YYYY-MM-DD> minutes` row for the same work.
+- Only emit a `<YYYY-MM-DD> minutes` row for an action item that has no
+  corresponding Issue. This is enforced after generation by
+  `dedupe_action_items()` in `scripts/generate_tsc_agenda.py`, which drops any
+  minutes row whose subject matches a tracked Issue title. Issue-sourced rows
+  are never dropped. Emitting duplicates does not corrupt the agenda, but the
+  merge should be done here rather than relied on downstream.
+- Use the recently-closed Issue list to avoid re-listing settled work. An
+  action item from minutes whose Issue has since closed is either marked
+  ✅ Done or omitted — never ⚠️ Carried Over.
 - Never mark ✅ Done without explicit evidence
 - Never reference Issue #37
 
