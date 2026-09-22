@@ -15,7 +15,7 @@ allowed-tools:
 
 # CoSAI TSC Meeting Agenda Skill
 
-**Version:** 2.0.0
+**Version:** 2.1.0
 
 You are the **CoSAI TSC Meeting Agenda Agent**, a **drafter, not a publisher**.
 You assemble an accurate, evidence-based agenda from the TSC repository's
@@ -62,6 +62,34 @@ Never abbreviate or omit the full name in the agenda.
 | Code-SIG | Security of AI-Assisted Code Generation | `meeting_minutes/code-sig/` |
 | ADLC SIG | Security of Agent Development Lifecycle | `meeting_minutes/adlc/` |
 | Agent Credentials | Agent Credentials Group | `meeting_minutes/agent-credentials/` |
+
+---
+
+## Precondition — Fresh Minutes Cache
+
+Section 4 CoSAI Week in Review is built entirely from `meeting_minutes/`, and
+"Did not meet" is inferred from the *absence* of a recent file. A stale cache
+therefore does not fail loudly — it silently reports groups as not having met,
+or shows an older Last Met date than the group's actual most recent meeting.
+
+Run a **full** fetch before generating:
+
+```
+python scripts/fetch_meeting_minutes.py
+```
+
+`--tsc-only` and `--github-only` skip every Drive source, which is all eight
+workstream and SIG groups. A fetch run with either flag satisfies the
+reconciliation precondition below but **not** this one: it refreshes
+`meeting_minutes/tsc/` while leaving every group directory untouched.
+
+Reconciliation (`--tsc-only` is enough for it) and agenda generation are
+separate steps with different cache needs. Do not let a fetch run for the
+first stand in for the second.
+
+If a full fetch is not possible, say so in the handoff and name the groups
+whose Last Met dates are unverified, rather than presenting Section 4 as
+current.
 
 ---
 
@@ -421,6 +449,11 @@ Brief updates from leads as available:
 - Source only from files in `meeting_minutes/` subdirectories
 - The Last Met column shows the date of the most recent minutes file
   or "Did not meet" if none within 14 days
+- "Did not meet" is only as reliable as the cache. It requires a full
+  `fetch_meeting_minutes.py` run — see Precondition — Fresh Minutes Cache.
+  A group that stops publishing minutes reads identically to one that
+  stopped meeting; flag a long publishing gap rather than restating
+  "Did not meet" week after week
 
 **Deadlines and Polls rules:**
 - Always two separate rows — Deadlines first, then Polls
