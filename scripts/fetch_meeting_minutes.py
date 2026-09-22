@@ -177,6 +177,26 @@ SOURCES = [
         "shared_folder_name_template": "WS3-CoSAI-RM-SIG-{y}{m}{d}",
     },
     {
+        "name": "Telemetry-SIG",
+        "type": "drive",
+        # Lives in the WS2 "Meeting Summaries & Recordings" tree, in the
+        # Telemetry subfolder, so the folder_id is that subfolder rather than
+        # the WS2 parent above.
+        "folder_id": "1vREf5eZ5VbwS8sCSXljKC8QEhzOTirlv",
+        "subdir": "telemetry-sig",
+        # Titles are "WS2 Defenders – Telemetry - <date>" with an EN DASH
+        # before "Telemetry". Two variants exist: a duplicated "WS2 WS2"
+        # prefix, and "WS2 Telemetry SIG Working Session". Some entries run
+        # the date straight onto the en dash ("–2026/03/05") with no " - ",
+        # hence the optional separator.
+        "shared_name_contains": "Telemetry",
+        "shared_title_pattern": (
+            r"^WS2 (?:WS2 )?(?:Defenders \u2013 Telemetry|Telemetry SIG Working Session)"
+            r"\s*(?:-|\u2013)?\s*(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
+        ),
+        "shared_folder_name_template": "{y}-{m}-{d}",
+    },
+    {
         "name": "Agent-Credentials",
         "type": "drive",
         "folder_id": "1Telz7CDwCgPNUyHlMwu9cBGl-keqP9z3",
