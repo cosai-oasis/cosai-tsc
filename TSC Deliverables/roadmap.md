@@ -17,10 +17,10 @@
 
 | # | Deliverable | Workstream / SIG | Current Stage | Next Deadline | Next Milestone |
 |---|---|---|---|---|---|
-| 1 | Election and Appointment of New TSC Co-Chairs | TSC | 🗳️ TSC Vote | 2026-08-28 | Election closes EOB Friday |
-| 2 | Transition of Co-Chair Responsibilities | TSC | 🔵 Planned | 2026-09-01 & 2026-09-08 | Transition discussions at Sept 1 and Sept 8 meetings |
-| 3 | AIMM Paper | WS1 — Software Supply Chain Security for AI Systems | 🟤 TSC & PGB Full Majority Vote | 2026-08-23 | TSC & PGB Full Majority Vote |
-| 4 | Zero Trust Paper | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | 🔴 TSC & PGB Review | 2026-08-23 | TSC & PGB Full Majority Vote |
+| 1 | Election and Appointment of New TSC Co-Chairs | TSC | 🟢 Published / Complete | 2026-08-28 | Election closed; new co-chairs appointed |
+| 2 | Transition of Co-Chair Responsibilities | TSC | 🔵 In Progress | 2026-09-15 & 2026-09-22 | Transition discussions extended to the Sept 15 and Sept 22 meetings |
+| 3 | AIMM Paper | WS1 — Software Supply Chain Security for AI Systems | 🟢 Published / Complete | 2026-08-23 | Approved by TSC & PGB full majority vote |
+| 4 | Zero Trust Paper | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | 🟢 Published / Complete | 2026-08-23 | Approved by TSC & PGB full majority vote |
 | 5 | Telemetry Paper | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | 🔵 In Progress | TBD | TSC Co-chairs Review |
 | 6 | Agentic Isolation Blog | WS4 — Secure Design Patterns for Agentic Systems | 🟢 Published / Complete | 2026-08-21 | Publication |
 | 7 | MCP Security Whitepaper V2 | WS4 — Secure Design Patterns for Agentic Systems | 🟢 Published / Complete | 2026-08-12 | Published; V2.x residuals tracked in [#163](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/163) |
@@ -66,8 +66,8 @@ Deliverables move through these stages in order:
 
 | Title | Workstream / SIG | Owner | Start Date | Target Date | Status | Issue |
 |---|---|---|---|---|---|---|
-| AIMM Paper | WS1 | TBD | | 2026-08-23 | 🟤 TSC & PGB Full Majority Vote | |
-| Zero Trust Paper | WS2 | TBD | | 2026-08-23 | 🔴 TSC & PGB Review | |
+| AIMM Paper | WS1 | TBD | | 2026-08-23 | 🟢 Published / Complete | |
+| Zero Trust Paper | WS2 | TBD | | 2026-08-23 | 🟢 Published / Complete | |
 | Telemetry Paper | WS2 | TBD | | TBD | 🔵 In Progress | |
 | MCP Security Whitepaper V2 | WS4 | Sarah Novotny (@sarahnovotny), Ian Molloy (@imolloy) | | 2026-08-12 | 🟢 Published / Complete | [#141](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/pull/141) |
 | Containment Follow-on Paper | WS4 | Jeff Leva (@Levaj2000), Editor | 2026-08-25 | 2026-10-29 | 🔵 In Progress | [#172](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/172) |
@@ -113,8 +113,8 @@ Deliverables move through these stages in order:
 
 | Item | Responsible | Next Deadline | Next Milestone | Status |
 |---|---|---|---|---|
-| Election and Appointment of New TSC Co-Chairs | TSC | 2026-08-28 | Election closes EOB Friday | 🟡 In Progress |
-| Transition of Co-Chair Responsibilities | Akila Srinivasan, J.R. Rao | 2026-09-01 & 2026-09-08 | Transition discussions at Sept 1 and Sept 8 meetings | 🔵 Planned |
+| Election and Appointment of New TSC Co-Chairs | TSC | 2026-08-28 | Election closed; new co-chairs appointed | 🟢 Published / Complete |
+| Transition of Co-Chair Responsibilities | Akila Srinivasan, J.R. Rao | 2026-09-15 & 2026-09-22 | Transition discussions extended to the Sept 15 and Sept 22 meetings | 🔵 In Progress |
 
 ---
 
