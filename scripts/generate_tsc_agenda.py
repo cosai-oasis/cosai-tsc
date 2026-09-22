@@ -69,12 +69,13 @@ TSC_SUBDIR = "tsc"
 # Section 4 of the agenda summarizes every workstream and SIG since the last TSC
 # meeting. Unlike the rest of the prompt — which extracts only TSC-relevant
 # items — this section needs an actual summary of each group's meeting, and it
-# must list all eight groups even when a group did not meet.
+# must list all nine groups even when a group did not meet.
 #
 # Group labels must match the skill's Section 4 table rows exactly, in order.
 WEEK_IN_REVIEW_GROUPS = [
     ("ws1", "WS1 — Software Supply Chain Security for AI Systems"),
     ("ws2", "WS2 — Preparing Defenders for a Changing Cybersecurity Landscape"),
+    ("telemetry-sig", "Telemetry SIG — AI Security Telemetry (WS2)"),
     ("ws3", "WS3 — AI Security Risk Governance"),
     ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
     ("rm-sig", "CoSAI-RM SIG — Coalition for Secure AI Risk Map"),

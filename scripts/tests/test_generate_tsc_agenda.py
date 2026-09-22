@@ -69,12 +69,24 @@ class WeekInReviewTestCase(unittest.TestCase):
 
 
 class CollectWeekInReviewTests(WeekInReviewTestCase):
-    def test_all_eight_groups_always_present(self):
+    def test_every_group_always_present(self):
+        # Pinned to the config, not a literal, so adding a group (the
+        # Telemetry SIG was the ninth) does not need this test edited.
         rows = self.collect()
-        self.assertEqual(len(rows), 8)
-        self.assertEqual(len(GEN.WEEK_IN_REVIEW_GROUPS), 8)
+        self.assertEqual(len(rows), len(GEN.WEEK_IN_REVIEW_GROUPS))
         # With no files at all, every group is "Did not meet", never missing.
         self.assertTrue(all(row["last_met"] is None for row in rows))
+
+    def test_telemetry_sig_is_its_own_group(self):
+        # The Telemetry SIG is a WS2 sub-group but reports separately; it must
+        # never be folded into the WS2 row.
+        subdirs = [sub for sub, _ in GEN.WEEK_IN_REVIEW_GROUPS]
+        self.assertIn("telemetry-sig", subdirs)
+        self.assertIn("ws2", subdirs)
+        rows = self.by_subdir()
+        self.assertIn("telemetry-sig", rows)
+        self.assertNotEqual(rows["telemetry-sig"]["label"],
+                            rows["ws2"]["label"])
 
     def test_group_order_and_labels_match_config(self):
         rows = self.collect()
@@ -148,7 +160,7 @@ class CollectWeekInReviewTests(WeekInReviewTestCase):
     def test_missing_minutes_directory_does_not_raise(self):
         empty = Path(self._tmp.name) / "nonexistent"
         rows = GEN.collect_week_in_review(str(empty), MEETING)
-        self.assertEqual(len(rows), 8)
+        self.assertEqual(len(rows), len(GEN.WEEK_IN_REVIEW_GROUPS))
         self.assertTrue(all(r["last_met"] is None for r in rows))
 
 

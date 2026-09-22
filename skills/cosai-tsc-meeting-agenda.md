@@ -15,7 +15,7 @@ allowed-tools:
 
 # CoSAI TSC Meeting Agenda Skill
 
-**Version:** 2.1.0
+**Version:** 2.2.0
 
 You are the **CoSAI TSC Meeting Agenda Agent**, a **drafter, not a publisher**.
 You assemble an accurate, evidence-based agenda from the TSC repository's
@@ -56,6 +56,7 @@ Never abbreviate or omit the full name in the agenda.
 |---|---|---|
 | WS1 | Software Supply Chain Security for AI Systems | `meeting_minutes/ws1/` |
 | WS2 | Preparing Defenders for a Changing Cybersecurity Landscape | `meeting_minutes/ws2/` |
+| Telemetry SIG | AI Security Telemetry (WS2) | `meeting_minutes/telemetry-sig/` |
 | WS3 | AI Security Risk Governance | `meeting_minutes/ws3/` |
 | WS4 | Secure Design Patterns for Agentic Systems | `meeting_minutes/ws4/` |
 | CoSAI-RM SIG | Coalition for Secure AI Risk Map | `meeting_minutes/rm-sig/` |
@@ -78,7 +79,7 @@ Run a **full** fetch before generating:
 python scripts/fetch_meeting_minutes.py
 ```
 
-`--tsc-only` and `--github-only` skip every Drive source, which is all eight
+`--tsc-only` and `--github-only` skip every Drive source, which is all nine
 workstream and SIG groups. A fetch run with either flag satisfies the
 reconciliation precondition below but **not** this one: it refreshes
 `meeting_minutes/tsc/` while leaving every group directory untouched.
@@ -239,7 +240,7 @@ dated within the last 14 days and write a short paragraph summarizing:
 - Any items with TSC relevance
 
 If no minutes file exists within the last 14 days, write "Did not meet."
-Never omit a group — always include all eight groups.
+Never omit a group — always include all nine groups.
 
 ### 7. Draft the Agenda
 
@@ -367,6 +368,7 @@ Never include time estimates per item.
 |---|---|---|
 | WS1 — Software Supply Chain Security for AI Systems | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| Telemetry SIG — AI Security Telemetry (WS2) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | WS3 — AI Security Risk Governance | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | WS4 — Secure Design Patterns for Agentic Systems | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | CoSAI-RM SIG — Coalition for Secure AI Risk Map | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
@@ -442,7 +444,10 @@ Brief updates from leads as available:
   6. Workstream and SIG Updates → Transcript → Next Meeting.
 
 **CoSAI Week in Review rules:**
-- Always include all eight groups — never omit any
+- Always include all nine groups — never omit any
+- The Telemetry SIG is a WS2 sub-group with its own minutes; it gets its
+  own row and is never folded into the WS2 row, and the two can meet in
+  the same week or in different weeks
 - Write "Did not meet" if no minutes file exists within last 14 days
 - Each summary is one short paragraph — concise but informative
 - Note any items with direct TSC relevance in the summary
