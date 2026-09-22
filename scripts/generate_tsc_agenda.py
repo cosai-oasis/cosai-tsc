@@ -10,9 +10,13 @@ Context assembled:
      (how many per subdirectory is controlled by MEETINGS_TO_READ below).
   2. Open GitHub Issues labeled `proposed`    — member-suggested topics.
   3. Open GitHub Issues labeled `action-item` — carry-over tasks needing status.
-  4. TSC Deliverables/roadmap.md
-  5. skills/cosai-tsc-meeting-agenda.md — used as the system prompt.
-  6. Week in Review material: the most recent minutes for each workstream and
+  4. Open GitHub Issues labeled `feature-presentation` — deep-dive slots. This
+     is an overlay label: such Issues also carry `proposed` or `action-item`,
+     and are removed from those lists so each appears in exactly one section.
+     Issues labeled `deferred-indefinitely` are dropped from the backlog.
+  5. TSC Deliverables/roadmap.md
+  6. skills/cosai-tsc-meeting-agenda.md — used as the system prompt.
+  7. Week in Review material: the most recent minutes for each workstream and
      SIG dated within WEEK_IN_REVIEW_WINDOW_DAYS of the meeting, with Last Met
      dates computed here rather than inferred by the model.
 
@@ -489,6 +493,41 @@ def issue_age(created_at: str, meeting_date: date) -> str:
             f"roughly {weeks} weekly meeting(s)")
 
 
+def has_label(issue: dict, name: str) -> bool:
+    """True if `issue` carries the label `name`."""
+    return any(lbl.get("name") == name
+               for lbl in issue.get("labels") or [])
+
+
+def partition_feature_presentations(proposed: list, action_items: list,
+                                    features: list) -> tuple:
+    """
+    Remove `feature-presentation` Issues from the base-label lists.
+
+    `feature-presentation` is an overlay, never an Issue's only label: #79
+    carries `proposed` too, #49 carries `action-item`. Left in both lists, each
+    Issue is offered to the model twice and lands in both the Feature
+    Presentations and Issues sections. The skill states the precedence rule,
+    but relying on the prompt alone to de-duplicate has failed before — see
+    format_issues below — so enforce it here where the outcome is deterministic.
+    """
+    feature_numbers = {it["number"] for it in features}
+    keep = [it for it in proposed if it["number"] not in feature_numbers]
+    keep_ai = [it for it in action_items if it["number"] not in feature_numbers]
+    return keep, keep_ai
+
+
+def drop_deferred(issues: list) -> list:
+    """
+    Drop Issues labeled `deferred-indefinitely` from the Issues backlog.
+
+    Backlogged work that needs no active discussion, per the 2026-09-15 TSC
+    decision. Applied only to the Issues section: a deferred Issue that also
+    carries `feature-presentation` still gets its presentation slot.
+    """
+    return [it for it in issues if not has_label(it, "deferred-indefinitely")]
+
+
 def format_issues(issues: list, label: str, meeting_date: date) -> str:
     """
     Render issues as readable Markdown for the prompt.
@@ -496,8 +535,14 @@ def format_issues(issues: list, label: str, meeting_date: date) -> str:
     The age line is emitted only for `action-item` Issues. Those are the ones
     the agenda tracks as carried-over rows needing a week count. Adding it to
     `proposed` Issues made the model render them as carried-over action items
-    too, duplicating them into Review of Previous Action Items when they belong
-    in New Topics only.
+    too, duplicating them into the action-item section when they belonged in
+    New Topics only. That failure is why the `feature-presentation` overlay is
+    now subtracted in code (partition_feature_presentations) rather than by
+    prompt instruction alone.
+
+    `feature-presentation` is deliberately not in the age set: a presentation
+    slot is not a carried-over row, and the age line would push the model back
+    toward rendering it as one.
     """
     if not issues:
         return f"_No open Issues labeled `{label}`._"
@@ -596,7 +641,8 @@ def build_minutes_section(minutes: dict) -> str:
 
 
 def build_user_prompt(meeting_date: date, minutes: dict, proposed: list,
-                      action_items: list, closed_issues: list, roadmap: str,
+                      action_items: list, feature_presentations: list,
+                      closed_issues: list, roadmap: str,
                       week_in_review: list) -> str:
     iso = meeting_date.isoformat()
     long_date = meeting_date.strftime("%A, %B %d, %Y").replace(" 0", " ")
@@ -631,16 +677,51 @@ the phone line to `**Co-chairs:**`.
 
 ---
 
+## Open Issues labeled `feature-presentation` (deep-dive presentation slots)
+
+These are the deep dives for **Section 2 Feature Presentations**, which runs
+first and holds the substantive floor time. `feature-presentation` is an
+**overlay label**: every one of these Issues also carries `proposed` or
+`action-item`. They have already been removed from the two lists below, so each
+appears in exactly one section.
+
+Put each in **Section 2 only**. Do not also list it in Section 3 Issues, even
+though its other label would otherwise place it there.
+
+Carry the full tracking state into the row. An Issue that also carries
+`action-item` keeps its owner, due date, and status — a presentation slot does
+not discard accountability data. `in-progress` renders as 🔄 In Progress; a
+`proposed`-only presentation is 🔄 Under Discussion.
+
+For the Presenter column use the `## Presenter / Requester` field from the Issue
+body where present; otherwise the Issue author. Reproduce that field as written,
+including every name it lists.
+
+{format_issues(feature_presentations, "feature-presentation", meeting_date)}
+
+---
+
+## Section 3 Issues — one consolidated backlog
+
+Section 3 Issues is a single table with fixed columns
+`| Source | Item | Owner / Proposer | Due | Status |`. Both member-suggested
+topics and carry-over action items go in it, distinguished by their Status
+value, not by separate tables. Source is always the first column and the item
+description always the second.
+
+It is a **fallback section reviewed offline** — no fixed time budget. Keep rows
+compact.
+
+---
+
 ## Open Issues labeled `proposed` (member-suggested agenda topics)
 
 These are topics members have asked to put on the agenda. Use them to populate
-the **New Topics** section, with the Issue author as the proposer and any time
-estimate stated in the body.
+the **Section 3 Issues** table, with the Issue author in the Owner / Proposer
+column and any time estimate stated in the body.
 
-These Issues belong in **New Topics only**. Do not also list them in Review of
-Previous Action Items — that section is for action items from the minutes and
-Issues labeled `action-item`. A `proposed` Issue appears in exactly one section,
-even if it is long-running or describes follow-up work.
+Issues labeled `feature-presentation` have already been filtered out of this
+list — do not add them back.
 
 {format_issues(proposed, "proposed", meeting_date)}
 
@@ -649,11 +730,14 @@ even if it is long-running or describes follow-up work.
 ## Open Issues labeled `action-item` (carry-over tasks needing a status update)
 
 These are follow-up tasks from previous meetings. Every one of them needs a
-status update in the **Review of Previous Action Items** section. Cross-reference
-each against the minutes above: an Issue matching a minutes action item is the
-canonical tracker for it — merge them into a single row rather than listing both.
+status update in the **Section 3 Issues** table. Cross-reference each against
+the minutes above: an Issue matching a minutes action item is the canonical
+tracker for it — merge them into a single row rather than listing both.
 Never mark an item ✅ Done without explicit evidence in the minutes or a closed
 Issue.
+
+Issues labeled `feature-presentation` have already been filtered out of this
+list — do not add them back.
 
 An Issue is the canonical tracker for its action item. When a minutes action
 item is tracked by any Issue — open above, or closed in the next section — emit
@@ -788,6 +872,14 @@ def dedupe_action_items(agenda: str, action_items: list,
     Rows whose Source cell is an Issue reference are never touched — only
     "<date> minutes" rows, and only when their text matches an Issue title.
 
+    Column order is load-bearing: this reads Source from cells[0] and the
+    description from cells[1]. The Issues section table is specified as
+    `| Source | Item | Owner / Proposer | Due | Status |` for that reason.
+    Inserting a column ahead of Source, or swapping the first two, makes this
+    compare the wrong cell and silently stop de-duplicating. The filter is also
+    global rather than section-scoped — it matches any "<date> minutes" row
+    anywhere in the document.
+
     Returns (agenda, dropped) where `dropped` lists one note per removed row.
     """
     titles = [(f"#{it['number']}", it.get("title", ""))
@@ -847,7 +939,26 @@ def main():
     week_in_review = collect_week_in_review(root, meeting_date)
     proposed = fetch_issues("proposed")
     action_items = fetch_issues("action-item")
+    feature_presentations = fetch_issues("feature-presentation")
     closed_issues = fetch_closed_issues(meeting_date)
+
+    # `feature-presentation` is an overlay label, so these Issues arrive in the
+    # base-label lists too. Subtract them here so each lands in exactly one
+    # section, then drop backlogged items from the Issues section only.
+    proposed, action_items = partition_feature_presentations(
+        proposed, action_items, feature_presentations
+    )
+    before = len(proposed) + len(action_items)
+    proposed = drop_deferred(proposed)
+    action_items = drop_deferred(action_items)
+    deferred_count = before - len(proposed) - len(action_items)
+    if feature_presentations:
+        print(f"  🎤 {len(feature_presentations)} feature presentation(s); "
+              f"Issues backlog now {len(proposed)} proposed + "
+              f"{len(action_items)} action-item")
+    if deferred_count:
+        print(f"  🗄  {deferred_count} deferred-indefinitely Issue(s) omitted "
+              "from the backlog")
     roadmap = read_text(os.path.join(root, ROADMAP_PATH), "Deliverables roadmap")
     system_prompt = read_text(os.path.join(root, SKILL_PATH), "Agenda skill prompt")
 
@@ -857,8 +968,8 @@ def main():
         sys.exit(1)
 
     user_prompt = build_user_prompt(
-        meeting_date, minutes, proposed, action_items, closed_issues, roadmap,
-        week_in_review
+        meeting_date, minutes, proposed, action_items, feature_presentations,
+        closed_issues, roadmap, week_in_review
     )
 
     # Generate
@@ -893,7 +1004,7 @@ def main():
     agenda, dropped = dedupe_action_items(agenda, action_items, closed_issues)
     if dropped:
         print(f"🧹 Removed {len(dropped)} duplicate action item row(s) from "
-              "Section 3:")
+              "the Issues section:")
         for note in dropped:
             print(f"   • {note}")
 
