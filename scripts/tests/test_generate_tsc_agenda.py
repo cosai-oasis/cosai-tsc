@@ -296,5 +296,85 @@ class SimilarityTests(unittest.TestCase):
         self.assertFalse(GEN._similar("anything at all", ""))
 
 
+def issue(number, *labels):
+    """Minimal issue dict: the number plus whatever labels are named."""
+    return {"number": number,
+            "labels": [{"name": n} for n in labels]}
+
+
+class FeaturePresentationPartitionTests(unittest.TestCase):
+    """
+    `feature-presentation` is an overlay label, never an Issue's only label.
+    Left in the base-label lists, such an Issue is offered to the model twice
+    and lands in both the Feature Presentations and Issues sections.
+    """
+
+    def test_overlay_issues_leave_the_base_lists(self):
+        proposed = [issue(79, "proposed", "feature-presentation"),
+                    issue(80, "proposed")]
+        action_items = [issue(49, "action-item", "feature-presentation"),
+                        issue(48, "action-item")]
+        features = [issue(79, "proposed", "feature-presentation"),
+                    issue(49, "action-item", "feature-presentation")]
+
+        kept_p, kept_a = GEN.partition_feature_presentations(
+            proposed, action_items, features)
+
+        self.assertEqual([it["number"] for it in kept_p], [80])
+        self.assertEqual([it["number"] for it in kept_a], [48])
+
+    def test_no_features_leaves_both_lists_untouched(self):
+        proposed = [issue(80, "proposed")]
+        action_items = [issue(48, "action-item")]
+        kept_p, kept_a = GEN.partition_feature_presentations(
+            proposed, action_items, [])
+        self.assertEqual(kept_p, proposed)
+        self.assertEqual(kept_a, action_items)
+
+    def test_partition_does_not_mutate_its_inputs(self):
+        proposed = [issue(79, "proposed", "feature-presentation")]
+        action_items = [issue(49, "action-item", "feature-presentation")]
+        GEN.partition_feature_presentations(
+            proposed, action_items, list(action_items) + list(proposed))
+        self.assertEqual(len(proposed), 1)
+        self.assertEqual(len(action_items), 1)
+
+
+class DropDeferredTests(unittest.TestCase):
+    """`deferred-indefinitely` Issues are omitted from the Issues backlog."""
+
+    def test_deferred_issues_are_dropped(self):
+        issues = [issue(10, "action-item"),
+                  issue(11, "action-item", "deferred-indefinitely"),
+                  issue(12, "proposed")]
+        self.assertEqual([it["number"] for it in GEN.drop_deferred(issues)],
+                         [10, 12])
+
+    def test_in_progress_is_never_dropped(self):
+        """`in-progress` means actively worked — hiding it would bury live work."""
+        issues = [issue(48, "action-item", "in-progress"),
+                  issue(59, "action-item", "in-progress")]
+        self.assertEqual(GEN.drop_deferred(issues), issues)
+
+    def test_issue_without_labels_key_survives(self):
+        self.assertEqual(GEN.drop_deferred([{"number": 5}]), [{"number": 5}])
+
+    def test_empty_list(self):
+        self.assertEqual(GEN.drop_deferred([]), [])
+
+
+class HasLabelTests(unittest.TestCase):
+
+    def test_present_and_absent(self):
+        it = issue(1, "action-item", "feature-presentation")
+        self.assertTrue(GEN.has_label(it, "feature-presentation"))
+        self.assertFalse(GEN.has_label(it, "deferred-indefinitely"))
+
+    def test_missing_and_null_labels_are_safe(self):
+        self.assertFalse(GEN.has_label({"number": 1}, "proposed"))
+        self.assertFalse(GEN.has_label({"number": 1, "labels": None},
+                                       "proposed"))
+
+
 if __name__ == "__main__":
     unittest.main()
