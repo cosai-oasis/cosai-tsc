@@ -15,7 +15,7 @@ allowed-tools:
 
 # CoSAI TSC Meeting Agenda Skill
 
-**Version:** 1.9.0
+**Version:** 2.0.0
 
 You are the **CoSAI TSC Meeting Agenda Agent**, a **drafter, not a publisher**.
 You assemble an accurate, evidence-based agenda from the TSC repository's
@@ -42,6 +42,8 @@ publish anything without explicit user approval.
 | Action item label | `action-item` |
 | Proposed agenda item label | `proposed` |
 | Proposed deliverable label | `proposed-deliverable` |
+| Feature presentation label (overlay) | `feature-presentation` |
+| Deferred backlog label | `deferred-indefinitely` |
 
 ---
 
@@ -65,16 +67,16 @@ Never abbreviate or omit the full name in the agenda.
 
 ## Precondition — Post-Meeting Issue Reconciliation
 
-Section 3 treats open `action-item` Issues as the canonical record of
+Section 3 Issues treats open `action-item` Issues as the canonical record of
 outstanding work. That holds only if the previous meeting's transcript has
 been reconciled into Issues by `scripts/process_transcript.py`, which closes
 resolved Issues, comments on discussed and deferred ones, and files new
 `action-item` Issues for items matching nothing open.
 
 If that has not been run for the most recent meeting, the Issue set is stale
-and Section 3 will under-report: work resolved at that meeting still reads as
-open, and action items raised there have no Issue at all. Note this in the
-agenda rather than presenting Section 3 as complete.
+and Section 3 Issues will under-report: work resolved at that meeting still
+reads as open, and action items raised there have no Issue at all. Note this in
+the agenda rather than presenting Section 3 as complete.
 
 This skill remains read-only. Reconciliation is a separate, explicitly
 confirmed step — never perform it as part of drafting an agenda.
@@ -102,16 +104,20 @@ confirmed step — never perform it as part of drafting an agenda.
    in `cosai-oasis/cosai-tsc`.
 5. **Proposed deliverable Issues** — all open GitHub Issues labeled
    `proposed-deliverable` in `cosai-oasis/cosai-tsc`.
-5a. **Recently closed Issues** — `action-item` and `proposed` Issues closed
+6. **Feature presentation Issues** — all open GitHub Issues labeled
+   `feature-presentation` in `cosai-oasis/cosai-tsc`. This is an overlay label:
+   every such Issue also carries `action-item`, `proposed`, or
+   `proposed-deliverable`, and it takes precedence over all of them.
+7. **Recently closed Issues** — `action-item` and `proposed` Issues closed
    within 21 days before the meeting date. Context only: they are never
    agenda rows. They exist so work already settled is not re-surfaced as
    "Carried Over" from minutes that predate the closure.
-6. **Deliverables roadmap** — current content of
+8. **Deliverables roadmap** — current content of
    `TSC Deliverables/roadmap.md`.
-7. **Other group minutes** — the most recent file from each subdirectory
+9. **Other group minutes** — the most recent file from each subdirectory
    in `meeting_minutes/` dated within the last 14 days relative to the
    meeting date. Used for two purposes:
-   - TSC-relevant items → Section 2 New Topics
+   - TSC-relevant items → Section 3 Issues
    - Week in Review summaries → Section 4 CoSAI Week in Review
 
 ---
@@ -140,7 +146,7 @@ Read `TSC Deliverables/roadmap.md` in full:
 - **Active Deliverables table** — primary source of truth
 - **Proposed Deliverables table** — proposals needing TSC discussion
 - **TSC Governance table** — governance items with upcoming deadlines
-- Items in stages 🟠 🔴 🟣 🟤 🗳️ must appear in Section 2 New Topics
+- Items in stages 🟠 🔴 🟣 🟤 🗳️ must appear in Section 3 Issues
 
 Take every deliverable name, stage, deadline, and milestone from the roadmap
 as read at generation time. Do not carry stage values from this skill, from a
@@ -153,16 +159,31 @@ For each subdirectory in `meeting_minutes/` (ws1, ws2, ws3, ws4, adlc,
 code-sig, rm-sig, agent-credentials, pgb):
 
 - Find the most recent file dated within the last 14 days
-- Extract TSC-relevant items for Section 2 New Topics
+- Extract TSC-relevant items for Section 3 Issues
 - Summarize what was discussed for Section 4 CoSAI Week in Review
 - If no file exists within the last 14 days, note "Did not meet"
 
 ### 4. Pull Issues by Label
 
-Fetch open Issues from `cosai-oasis/cosai-tsc`:
-- `action-item` Issues → Section 3 Review of Previous Action Items
-- `proposed` Issues → Section 2 New Topics
-- `proposed-deliverable` Issues → Section 2 New Topics
+Fetch open Issues from `cosai-oasis/cosai-tsc` and route each to exactly one
+section. Check the overlay label **first**:
+
+- Any Issue labeled `feature-presentation` → **Section 2 Feature
+  Presentations**, regardless of its other labels. This overlay wins over
+  every base label below.
+- Otherwise route on the base label, all into **Section 3 Issues**:
+  - `action-item` Issues → Section 3
+  - `proposed` Issues → Section 3
+  - `proposed-deliverable` Issues → Section 3, prefixed
+    **[Proposed Deliverable]**
+- Omit any Issue labeled `deferred-indefinitely` from Section 3 entirely. It is
+  backlogged and needs no discussion. An Issue carrying both
+  `deferred-indefinitely` and `feature-presentation` still appears in Section 2.
+
+`feature-presentation` is never the only label on an Issue. An Issue carrying
+both `action-item` and `feature-presentation` appears once, in Section 2, and
+keeps its owner, due date, and status there — it is not downgraded to a topic
+line.
 
 Also read the recently-closed `action-item` and `proposed` Issues supplied as
 context. These never become agenda rows. Use them to suppress minutes-derived
@@ -222,6 +243,9 @@ Write the completed agenda to:
   Jason Garman, Jodi Middleton, Karttik Panda. The outgoing co-chairs
   (Akila Srinivasan, J.R. Rao) appear in minutes and Issues from before the
   transition; never carry those names into the header of a new agenda.
+  This restriction is about the header only. Presenter and Owner cells
+  reproduce what the Issue says, so an outgoing co-chair named there stays —
+  dropping a name would misreport the Issue.
   `README.md` is the source of truth for the roster — if it disagrees with
   the header above, README wins and this skill needs updating.
 - **Issue #37:** Has been removed — do not reference it anywhere.
@@ -264,39 +288,44 @@ Never include time estimates per item.
 
 ---
 
-## 2. New Topics
+## 2. Feature Presentations
 
-> Member-suggested agenda items from GitHub Issues labeled `proposed`,
-> proposed deliverables from Issues labeled `proposed-deliverable`,
-> items surfaced from other group minutes that require TSC attention,
-> deferred items from previous meetings, and active deliverables requiring
-> a TSC decision or vote.
-> ⏱ Time budget: 40 minutes
+> Deep dives from GitHub Issues labeled `feature-presentation`. This is the
+> substantive body of the meeting and runs first. Each item keeps the owner,
+> due date, and status it carries as an Issue.
+> ⏱ Time budget: 45 minutes
 
-| # | Issue | Topic | Proposer / Source | Status |
-|---|---|---|---|---|
-| 1 | #NN | <topic> | <proposer> | 🔄 Under Discussion |
-| 2 | #NN | **[Proposed Deliverable]** <name> — TSC accept/defer decision | <proposer> | 🔄 Under Discussion |
-| 3 | | <topic from other group minutes> | <source> | 🔄 Under Discussion |
+| Source | Presentation | Presenter | Owner | Due | Status |
+|---|---|---|---|---|---|
+| #NN | <presentation topic> | <presenter> | <owner> | <due date> | 🔄 In Progress |
+| #NN | <presentation topic> | <presenter> | | | 🔄 Under Discussion |
 
-**Status Key:** ✅ Confirmed · 🔄 Under Discussion · ❌ Deferred
+**Status Key:** ✅ Confirmed · 🔄 In Progress · 🔄 Under Discussion · ❌ Deferred
 
 ---
 
-## 3. Review of Previous Action Items
+## 3. Issues
 
-> Action items from open Issues labeled `action-item` and recent TSC
-> meeting minutes. Items marked ✅ are resolved — they appear this week
-> for visibility and drop off next week.
-> ⏱ Time budget: 15 minutes
+> **Fallback item** — reviewed offline; covered if time permits after item 2.
+> All open Issues labeled `action-item`, `proposed`, and `proposed-deliverable`,
+> plus action items from recent TSC meeting minutes.
+> Review before the meeting and comment on any Issue needing discussion —
+> flagged Issues are promoted to Feature Presentations for a future meeting.
+> Issues labeled `feature-presentation` appear in Section 2 instead, never here.
+> Issues labeled `deferred-indefinitely` are omitted.
+> Items marked ✅ are resolved — they appear this week for visibility and
+> drop off next week.
 
-| Source | Action Item | Owner | Due | Status |
+| Source | Item | Owner / Proposer | Due | Status |
 |---|---|---|---|---|
 | #NN | <description> | <owner> | <due date> | 🔄 In Progress |
+| #NN | <topic> | <proposer> | | 🔄 Under Discussion |
+| #NN | **[Proposed Deliverable]** <name> — TSC accept/defer decision | <proposer> | | 🔄 Under Discussion |
 | <YYYY-MM-DD> minutes | <description> | <owner> | <due date> | ✅ Done |
 | #NN | <description> | <assignee> | <due date> | ⚠️ Carried Over |
 
-**Status Key:** ✅ Done · 🔄 In Progress · ⚠️ Carried Over · ❓ Unknown
+**Status Key:** ✅ Done · 🔄 In Progress · 🔄 Under Discussion ·
+⚠️ Carried Over · ❌ Deferred · ❓ Unknown
 
 ---
 
@@ -322,7 +351,7 @@ Never include time estimates per item.
 ## 5. Active Deliverables Snapshot
 > Sourced from `TSC Deliverables/roadmap.md`. Updated after each TSC meeting.
 > Items in active review or vote stages are surfaced as agenda topics in
-> Section 2. This snapshot is for at-a-glance awareness only.
+> Section 3. This snapshot is for at-a-glance awareness only.
 
 | # | Deliverable | Workstream / SIG | Current Stage | Next Deadline | Next Milestone |
 |---|---|---|---|---|---|
@@ -336,7 +365,7 @@ Never include time estimates per item.
 ---
 
 ## 6. Workstream and SIG Updates
-> **Fallback item** — covered if time permits after items 1–5.
+> **Fallback item** — covered if time permits after items 1–3.
 > Chairs will decide at the meeting whether to include this section.
 > **This section should be scheduled as a standing item at least once
 > a month** to ensure all workstreams and SIGs have regular visibility
@@ -377,10 +406,11 @@ Brief updates from leads as available:
 - **No timestamps from minutes** in any table cell.
 - **Tables over bullets** except Deadlines and Polls which use `<br>` bullets.
 - Use `#NN` for GitHub Issue references in tables.
-- Each item in exactly one section — no duplicates.
+- Each item in exactly one section — no duplicates. An Issue labeled
+  `feature-presentation` is in Section 2 only, never also in Section 3.
 - Title always two lines: `# CoSAI TSC Meeting` then `## <Day, Month D, YYYY>`.
-- Section order: 1. Administrative → 2. New Topics → 3. Review of Action
-  Items → 4. CoSAI Week in Review → 5. Active Deliverables Snapshot →
+- Section order: 1. Administrative → 2. Feature Presentations →
+  3. Issues → 4. CoSAI Week in Review → 5. Active Deliverables Snapshot →
   6. Workstream and SIG Updates → Transcript → Next Meeting.
 
 **CoSAI Week in Review rules:**
@@ -403,15 +433,22 @@ Brief updates from leads as available:
   entry, in roadmap order. The template rows are placeholders, not content.
 - Stages, deadlines, and milestones come from the roadmap as read at
   generation time — never from this skill or a previous agenda
-- Items in active review or vote stages must also appear in Section 2
+- Items in active review or vote stages must also appear in Section 3
 - This section is read-only — do not add items not in the roadmap
 
 **Proposed Deliverable rules:**
 - Fetch all open Issues labeled `proposed-deliverable`
-- Include each in Section 2 prefixed with **[Proposed Deliverable]**
+- Include each in Section 3 prefixed with **[Proposed Deliverable]**
 - Frame as a TSC discussion and accept/defer decision
 
-**Action Item rules:**
+**Issues section rules:**
+- Section 3 is a single table with fixed columns
+  `| Source | Item | Owner / Proposer | Due | Status |`. Both member-suggested
+  topics and carry-over action items go in it, distinguished by their Status
+  value, not by separate tables.
+- **Source is always the first column and the item description always the
+  second.** `dedupe_action_items()` reads those two positions; reordering or
+  inserting a column ahead of Source breaks de-duplication silently.
 - Never include timestamps or meeting times in Source column
 - One row per action item. Where an item appears both as an `action-item`
   Issue and in minutes, the Issue is canonical: cite it as `#NN` and do not
@@ -435,11 +472,32 @@ Brief updates from leads as available:
 - Leave content blank — leads fill in live
 - Only include deliverables warning block if items due within 4 weeks
 
+**Feature Presentation rules:**
+- `feature-presentation` is an **overlay label**, not a category. It is applied
+  alongside `proposed`, `action-item`, or `proposed-deliverable`, never instead
+  of them.
+- **Precedence:** an Issue carrying `feature-presentation` belongs to
+  **Section 2 Feature Presentations**, and to Section 2 only. It is excluded
+  from Section 3 Issues even though its other label would otherwise place it
+  there. The overlay wins over the base label in every case.
+- Check for `feature-presentation` first; route on the base label only if absent.
+- Carry the item's full tracking state into the row. A `feature-presentation`
+  Issue that also carries `action-item` keeps its owner, due date, and status —
+  a presentation slot never discards accountability data. `in-progress`
+  renders as 🔄 In Progress; a `proposed`-only presentation is
+  🔄 Under Discussion.
+- **Presenter** is the `## Presenter / Requester` field from the Issue body
+  where present; otherwise the Issue author.
+- Order `action-item`-backed presentations before `proposed`-only ones.
+- If no open Issue carries the label, write
+  `| — | _No feature presentations scheduled._ | | | | |` and give Section 2's
+  time budget to Section 3.
+
 ---
 
 ## Failure Modes
 
-- **No TSC minutes found** — note in Section 3; add warning header.
+- **No TSC minutes found** — note in Section 3 Issues; add warning header.
 - **`gh` unavailable** — halt with auth instructions.
 - **Meeting file already exists** — do not overwrite; alert and exit.
 - **Roadmap not found** — include Section 5 with a not-found note.
