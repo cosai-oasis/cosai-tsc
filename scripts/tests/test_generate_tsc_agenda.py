@@ -179,11 +179,76 @@ class BuildWeekInReviewSectionTests(WeekInReviewTestCase):
         # Section 4 is the one place the TSC-relevance filter must not apply.
         section = GEN.build_week_in_review_section(self.collect())
         self.assertIn("summarize", section.lower())
-        self.assertIn("all eight", section.lower())
+        # The count must be derived from WEEK_IN_REVIEW_GROUPS, not hardcoded:
+        # a stale literal told the model "all eight" while handing it 12 rows,
+        # and it dropped three groups from the 2026-09-29 draft.
+        self.assertRegex(
+            section.lower(),
+            rf"all \**{len(GEN.WEEK_IN_REVIEW_GROUPS)}\** groups",
+        )
 
     def test_did_not_meet_group_carries_no_source_path(self):
         section = GEN.build_week_in_review_section(self.collect())
         self.assertNotIn("**Source file:**", section)
+
+
+class CheckWeekInReviewRowsTests(unittest.TestCase):
+    """
+    Section 4 must carry one row per group, including groups that did not meet.
+    The 2026-09-29 draft silently dropped three of twelve: a missing row looks
+    identical to a group that does not exist, so the omission is invisible in
+    the output. The prompt asks for every row; this verifies it got them.
+    """
+
+    WEEK_IN_REVIEW = [
+        {"label": "WS1 — Software Supply Chain Security for AI Systems"},
+        {"label": "Trust Graph — Agent Trust Graph (WS4)"},
+    ]
+
+    def check(self, agenda):
+        return GEN.check_week_in_review_rows(agenda, self.WEEK_IN_REVIEW)
+
+    def agenda(self, rows):
+        return (
+            "## 3. Action Items\n\n| Source | Action Item |\n|---|---|\n\n"
+            "## 4. CoSAI Week in Review\n\n"
+            "| Group | Last Met | Highlights |\n|---|---|---|\n"
+            + rows
+            + "\n## 5. Next Steps\n"
+        )
+
+    def test_no_missing_rows_when_every_group_is_present(self):
+        rows = ("| WS1 — Software Supply Chain Security for AI Systems | "
+                "Did not meet | Did not meet |\n"
+                "| Trust Graph — Agent Trust Graph (WS4) | 2026-09-24 | "
+                "Kick-off held |\n")
+        self.assertEqual(self.check(self.agenda(rows)), [])
+
+    def test_reports_a_dropped_row(self):
+        rows = ("| WS1 — Software Supply Chain Security for AI Systems | "
+                "Did not meet | Did not meet |\n")
+        self.assertEqual(
+            self.check(self.agenda(rows)),
+            ["Trust Graph — Agent Trust Graph (WS4)"],
+        )
+
+    def test_mention_outside_a_table_row_does_not_count_as_present(self):
+        # A false positive this check was written to avoid: substring-matching
+        # the whole section passes on prose that merely names the group.
+        rows = ("| WS1 — Software Supply Chain Security for AI Systems | "
+                "Did not meet | Did not meet |\n\n"
+                "The Trust Graph — Agent Trust Graph (WS4) group also met.\n")
+        self.assertEqual(
+            self.check(self.agenda(rows)),
+            ["Trust Graph — Agent Trust Graph (WS4)"],
+        )
+
+    def test_missing_section_reports_every_group(self):
+        agenda = "## 3. Action Items\n\nNothing to report.\n"
+        self.assertEqual(
+            self.check(agenda),
+            [row["label"] for row in self.WEEK_IN_REVIEW],
+        )
 
 
 class DedupeActionItemsTests(unittest.TestCase):

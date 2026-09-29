@@ -348,8 +348,10 @@ def build_week_in_review_section(rows: list) -> str:
         "This section is an exception to the TSC-relevance filter above: here "
         "you SHOULD summarize what each group discussed, not just extract "
         "TSC-relevant items. Rules:\n"
-        "- Include **all eight** groups as table rows, in the order given below, "
-        "using exactly the group labels shown.\n"
+        f"- Include **all {len(rows)}** groups as table rows, in the order "
+        "given below, using exactly the group labels shown. Every group below "
+        "must appear as its own row, including groups that did not meet. Do "
+        "not merge, omit, or combine rows.\n"
         "- Use the **Last Met** value given for each group verbatim. Do not "
         "infer, adjust, or recompute it.\n"
         "- For a group marked `Did not meet`, put `Did not meet` in the Last Met "
@@ -863,6 +865,35 @@ def _similar(a: str, b: str, threshold: float = 0.5) -> bool:
     return len(overlap) / min(len(ta), len(tb)) >= threshold
 
 
+def check_week_in_review_rows(agenda: str, week_in_review: list) -> list:
+    """
+    Return the Week in Review group labels missing from the drafted agenda.
+
+    Section 4 must carry one row per group in WEEK_IN_REVIEW_GROUPS, including
+    groups that did not meet. The prompt says so, but a prompt rule is advisory:
+    a dropped row is invisible in the output — the table still looks complete,
+    and the group simply appears not to exist rather than appearing as "Did not
+    meet". This checks the drafted text instead of trusting the instruction.
+
+    A label counts as present only when it begins a table row, so a passing
+    mention of the group name elsewhere in the section does not satisfy it.
+    """
+    section = agenda.split("## 4. CoSAI Week in Review")
+    if len(section) < 2:
+        return [row["label"] for row in week_in_review]
+    body = re.split(r"^## 5\.", section[1], flags=re.MULTILINE)[0]
+
+    row_labels = set()
+    for line in body.splitlines():
+        if line.startswith("|"):
+            cell = line.split("|")[1].strip() if line.count("|") >= 2 else ""
+            if cell:
+                row_labels.add(cell)
+
+    return [row["label"] for row in week_in_review
+            if row["label"] not in row_labels]
+
+
 def dedupe_action_items(agenda: str, action_items: list,
                         closed_issues: list) -> tuple:
     """
@@ -1011,6 +1042,15 @@ def main():
               "the Issues section:")
         for note in dropped:
             print(f"   • {note}")
+
+    missing_groups = check_week_in_review_rows(agenda, week_in_review)
+    if missing_groups:
+        print(f"⚠️  Section 4 is missing {len(missing_groups)} of "
+              f"{len(week_in_review)} Week in Review group row(s):")
+        for label in missing_groups:
+            print(f"   • {label}")
+        print("   The draft was still written — add the missing rows by hand, "
+              "or regenerate.")
 
     # Write
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
