@@ -69,7 +69,7 @@ TSC_SUBDIR = "tsc"
 # Section 4 of the agenda summarizes every workstream and SIG since the last TSC
 # meeting. Unlike the rest of the prompt — which extracts only TSC-relevant
 # items — this section needs an actual summary of each group's meeting, and it
-# must list all nine groups even when a group did not meet.
+# must list every group in WEEK_IN_REVIEW_GROUPS even when a group did not meet.
 #
 # Group labels must match the skill's Section 4 table rows exactly, in order.
 WEEK_IN_REVIEW_GROUPS = [
@@ -77,11 +77,14 @@ WEEK_IN_REVIEW_GROUPS = [
     ("ws2", "WS2 — Preparing Defenders for a Changing Cybersecurity Landscape"),
     ("telemetry-sig", "Telemetry SIG — AI Security Telemetry (WS2)"),
     ("ws3", "WS3 — AI Security Risk Governance"),
+    ("ws3-threat-modeling", "WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3)"),
     ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
     ("rm-sig", "CoSAI-RM SIG — Coalition for Secure AI Risk Map"),
     ("code-sig", "Code SIG — Security of AI-Assisted Code Generation"),
     ("adlc", "ADLC SIG — Security of Agent Development Lifecycle"),
     ("agent-credentials", "Agent Credentials Group"),
+    ("ws4-multimodal", "Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4)"),
+    ("ws4-trust-graph", "Trust Graph — Agent Trust Graph (WS4)"),
 ]
 
 # A group's minutes count toward the Week in Review only if dated within this
@@ -275,7 +278,7 @@ def collect_week_in_review(root: str, meeting_date: date) -> list:
     Returns one entry per group in WEEK_IN_REVIEW_GROUPS order, each a dict with
     `subdir`, `label`, `last_met` (ISO date or None) and `excerpt`. A group with
     no dated file inside the window gets last_met None, which the prompt renders
-    as "Did not meet" — the skill requires all eight groups to appear either way.
+    as "Did not meet" — the skill requires every group to appear either way.
 
     Undated files (topic-named aggregates like ws1/2025.md) are ignored: without
     a date they cannot be placed inside or outside the window.
