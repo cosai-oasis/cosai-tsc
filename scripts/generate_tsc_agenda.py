@@ -69,19 +69,25 @@ TSC_SUBDIR = "tsc"
 # Section 4 of the agenda summarizes every workstream and SIG since the last TSC
 # meeting. Unlike the rest of the prompt — which extracts only TSC-relevant
 # items — this section needs an actual summary of each group's meeting, and it
-# must list all nine groups even when a group did not meet.
+# must list every group in WEEK_IN_REVIEW_GROUPS even when a group did not meet.
 #
 # Group labels must match the skill's Section 4 table rows exactly, in order.
+# Order is by parent workstream: each workstream is followed by its own SIGs
+# and groups, so Section 4 reads WS1, WS2 + its SIGs, WS3 + its SIGs, WS4 +
+# its SIGs. A new group goes beside its parent, not at the end of the list.
 WEEK_IN_REVIEW_GROUPS = [
     ("ws1", "WS1 — Software Supply Chain Security for AI Systems"),
     ("ws2", "WS2 — Preparing Defenders for a Changing Cybersecurity Landscape"),
     ("telemetry-sig", "Telemetry SIG — AI Security Telemetry (WS2)"),
     ("ws3", "WS3 — AI Security Risk Governance"),
-    ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
+    ("ws3-threat-modeling", "WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3)"),
     ("rm-sig", "CoSAI-RM SIG — Coalition for Secure AI Risk Map"),
     ("code-sig", "Code SIG — Security of AI-Assisted Code Generation"),
+    ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
     ("adlc", "ADLC SIG — Security of Agent Development Lifecycle"),
     ("agent-credentials", "Agent Credentials Group"),
+    ("ws4-multimodal", "Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4)"),
+    ("ws4-trust-graph", "Trust Graph — Agent Trust Graph (WS4)"),
 ]
 
 # A group's minutes count toward the Week in Review only if dated within this
@@ -102,7 +108,7 @@ CLOSED_ISSUE_WINDOW_DAYS = 21
 
 MODEL = "claude-sonnet-4-6"
 # 4000 was sized before the agenda gained Section 4 CoSAI Week in Review, whose
-# eight summary rows push a full agenda past that cap and truncate Section 6.
+# per-group summary rows push a full agenda past that cap and truncate Section 6.
 MAX_TOKENS = 8000
 
 
@@ -275,7 +281,7 @@ def collect_week_in_review(root: str, meeting_date: date) -> list:
     Returns one entry per group in WEEK_IN_REVIEW_GROUPS order, each a dict with
     `subdir`, `label`, `last_met` (ISO date or None) and `excerpt`. A group with
     no dated file inside the window gets last_met None, which the prompt renders
-    as "Did not meet" — the skill requires all eight groups to appear either way.
+    as "Did not meet" — the skill requires every group to appear either way.
 
     Undated files (topic-named aggregates like ws1/2025.md) are ignored: without
     a date they cannot be placed inside or outside the window.
@@ -345,8 +351,10 @@ def build_week_in_review_section(rows: list) -> str:
         "This section is an exception to the TSC-relevance filter above: here "
         "you SHOULD summarize what each group discussed, not just extract "
         "TSC-relevant items. Rules:\n"
-        "- Include **all eight** groups as table rows, in the order given below, "
-        "using exactly the group labels shown.\n"
+        f"- Include **all {len(rows)}** groups as table rows, in the order "
+        "given below, using exactly the group labels shown. Every group below "
+        "must appear as its own row, including groups that did not meet. Do "
+        "not merge, omit, or combine rows.\n"
         "- Use the **Last Met** value given for each group verbatim. Do not "
         "infer, adjust, or recompute it.\n"
         "- For a group marked `Did not meet`, put `Did not meet` in the Last Met "
@@ -860,6 +868,35 @@ def _similar(a: str, b: str, threshold: float = 0.5) -> bool:
     return len(overlap) / min(len(ta), len(tb)) >= threshold
 
 
+def check_week_in_review_rows(agenda: str, week_in_review: list) -> list:
+    """
+    Return the Week in Review group labels missing from the drafted agenda.
+
+    Section 4 must carry one row per group in WEEK_IN_REVIEW_GROUPS, including
+    groups that did not meet. The prompt says so, but a prompt rule is advisory:
+    a dropped row is invisible in the output — the table still looks complete,
+    and the group simply appears not to exist rather than appearing as "Did not
+    meet". This checks the drafted text instead of trusting the instruction.
+
+    A label counts as present only when it begins a table row, so a passing
+    mention of the group name elsewhere in the section does not satisfy it.
+    """
+    section = agenda.split("## 4. CoSAI Week in Review")
+    if len(section) < 2:
+        return [row["label"] for row in week_in_review]
+    body = re.split(r"^## 5\.", section[1], flags=re.MULTILINE)[0]
+
+    row_labels = set()
+    for line in body.splitlines():
+        if line.startswith("|"):
+            cell = line.split("|")[1].strip() if line.count("|") >= 2 else ""
+            if cell:
+                row_labels.add(cell)
+
+    return [row["label"] for row in week_in_review
+            if row["label"] not in row_labels]
+
+
 def dedupe_action_items(agenda: str, action_items: list,
                         closed_issues: list) -> tuple:
     """
@@ -1008,6 +1045,15 @@ def main():
               "the Issues section:")
         for note in dropped:
             print(f"   • {note}")
+
+    missing_groups = check_week_in_review_rows(agenda, week_in_review)
+    if missing_groups:
+        print(f"⚠️  Section 4 is missing {len(missing_groups)} of "
+              f"{len(week_in_review)} Week in Review group row(s):")
+        for label in missing_groups:
+            print(f"   • {label}")
+        print("   The draft was still written — add the missing rows by hand, "
+              "or regenerate.")
 
     # Write
     os.makedirs(os.path.dirname(output_path), exist_ok=True)

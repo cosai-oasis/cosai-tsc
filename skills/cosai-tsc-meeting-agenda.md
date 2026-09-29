@@ -52,17 +52,36 @@ publish anything without explicit user approval.
 Always refer to workstreams and SIGs by their full names as listed below.
 Never abbreviate or omit the full name in the agenda.
 
-| Short | Full Name | Minutes Subdirectory |
-|---|---|---|
-| WS1 | Software Supply Chain Security for AI Systems | `meeting_minutes/ws1/` |
-| WS2 | Preparing Defenders for a Changing Cybersecurity Landscape | `meeting_minutes/ws2/` |
-| Telemetry SIG | AI Security Telemetry (WS2) | `meeting_minutes/telemetry-sig/` |
-| WS3 | AI Security Risk Governance | `meeting_minutes/ws3/` |
-| WS4 | Secure Design Patterns for Agentic Systems | `meeting_minutes/ws4/` |
-| CoSAI-RM SIG | Coalition for Secure AI Risk Map | `meeting_minutes/rm-sig/` |
-| Code-SIG | Security of AI-Assisted Code Generation | `meeting_minutes/code-sig/` |
-| ADLC SIG | Security of Agent Development Lifecycle | `meeting_minutes/adlc/` |
-| Agent Credentials | Agent Credentials Group | `meeting_minutes/agent-credentials/` |
+Each group's minutes come from a Google Drive folder under its parent
+workstream's "Meeting Summaries & Recordings" folder. The Drive Folder column
+records the authoritative location; `scripts/fetch_meeting_minutes.py` holds
+the folder IDs and title patterns and writes into the local subdirectory.
+
+| Short | Full Name | Minutes Subdirectory | Drive Folder |
+|---|---|---|---|
+| WS1 | Software Supply Chain Security for AI Systems | `meeting_minutes/ws1/` | WS1 > Meeting Summaries & Recordings > WS1 Meetings |
+| WS2 | Preparing Defenders for a Changing Cybersecurity Landscape | `meeting_minutes/ws2/` | WS2 > Meeting Summaries & Recordings > WS2 Bi-weekly Meetings |
+| Telemetry SIG | AI Security Telemetry (WS2) | `meeting_minutes/telemetry-sig/` | WS2 > Meeting Summaries & Recordings > Telemetry |
+| WS3 | AI Security Risk Governance | `meeting_minutes/ws3/` | WS3 > Meeting Summaries & Recordings > WS3 Meetings |
+| WS3 Threat Modeling | Agentic Coding Threat Modeling (WS3) | `meeting_minutes/ws3-threat-modeling/` | WS3 > Meeting Summaries & Recordings > WS3 Threat Modeling |
+| CoSAI-RM SIG | Coalition for Secure AI Risk Map | `meeting_minutes/rm-sig/` | WS3 > Meeting Summaries & Recordings > CoSAI-RM SIG |
+| Code-SIG | Security of AI-Assisted Code Generation | `meeting_minutes/code-sig/` | WS3 > Meeting Summaries & Recordings > SIG Security of AI-assisted Code Development |
+| WS4 | Secure Design Patterns for Agentic Systems | `meeting_minutes/ws4/` | WS4 > Meeting Summaries & Recordings > WS4 Meetings |
+| ADLC SIG | Security of Agent Development Lifecycle | `meeting_minutes/adlc/` | WS4 > Meeting Summaries & Recordings > SIG Security of Agent Development Lifecycle |
+| Agent Credentials | Agent Credentials Group | `meeting_minutes/agent-credentials/` | WS4 > Meeting Summaries & Recordings > WS4 Agent Credentials |
+| Multimodal Agentic Security | Multimodal Threat Taxonomy (WS4) | `meeting_minutes/ws4-multimodal/` | WS4 > Meeting Summaries & Recordings > Multimodal Agentic Security |
+| Trust Graph | Agent Trust Graph (WS4) | `meeting_minutes/ws4-trust-graph/` | WS4 > Meeting Summaries & Recordings > WS4 Trust Graph |
+
+TSC minutes come from GitHub, not Drive: `cosai-oasis/cosai-tsc` →
+`tsc-meeting-minutes/`. PGB minutes come from
+`cosai-oasis/oasis-open-project` → `pgb-meeting-minutes/`.
+
+Drive filenames are **not** standardized — each meeting's notes document is
+titled from the calendar event, and events get renamed. A renamed meeting is
+the most likely reason a group silently reports "Did not meet": the folder is
+correct but the title no longer matches its configured pattern. When a group
+looks absent, check the title pattern in `fetch_meeting_minutes.py` against
+the actual document titles in Drive before concluding the group did not meet.
 
 ---
 
@@ -79,8 +98,8 @@ Run a **full** fetch before generating:
 python scripts/fetch_meeting_minutes.py
 ```
 
-`--tsc-only` and `--github-only` skip every Drive source, which is all nine
-workstream and SIG groups. A fetch run with either flag satisfies the
+`--tsc-only` and `--github-only` skip every Drive source, which is every
+workstream and SIG group. A fetch run with either flag satisfies the
 reconciliation precondition below but **not** this one: it refreshes
 `meeting_minutes/tsc/` while leaving every group directory untouched.
 
@@ -240,7 +259,7 @@ dated within the last 14 days and write a short paragraph summarizing:
 - Any items with TSC relevance
 
 If no minutes file exists within the last 14 days, write "Did not meet."
-Never omit a group — always include all nine groups.
+Never omit a group — always include every group listed in the table above.
 
 ### 7. Draft the Agenda
 
@@ -370,11 +389,14 @@ Never include time estimates per item.
 | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | Telemetry SIG — AI Security Telemetry (WS2) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | WS3 — AI Security Risk Governance | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
-| WS4 — Secure Design Patterns for Agentic Systems | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | CoSAI-RM SIG — Coalition for Secure AI Risk Map | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | Code SIG — Security of AI-Assisted Code Generation | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| WS4 — Secure Design Patterns for Agentic Systems | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | ADLC SIG — Security of Agent Development Lifecycle | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | Agent Credentials Group | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| Trust Graph — Agent Trust Graph (WS4) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 
 ---
 
@@ -405,11 +427,16 @@ Brief updates from leads as available:
 
 - **WS1 — Software Supply Chain Security for AI Systems:**
 - **WS2 — Preparing Defenders for a Changing Cybersecurity Landscape:**
+- **Telemetry SIG — AI Security Telemetry (WS2):**
 - **WS3 — AI Security Risk Governance:**
-- **WS4 — Secure Design Patterns for Agentic Systems:**
+- **WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3):**
 - **CoSAI-RM SIG — Coalition for Secure AI Risk Map:**
 - **Code SIG — Security of AI-Assisted Code Generation:**
+- **WS4 — Secure Design Patterns for Agentic Systems:**
 - **ADLC SIG — Security of Agent Development Lifecycle:**
+- **Agent Credentials Group:**
+- **Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4):**
+- **Trust Graph — Agent Trust Graph (WS4):**
 
 > ⚠️ Deliverables with target dates within the next 4 weeks:
 > <list any flagged deliverables from roadmap.md or remove if none>
@@ -444,7 +471,7 @@ Brief updates from leads as available:
   6. Workstream and SIG Updates → Transcript → Next Meeting.
 
 **CoSAI Week in Review rules:**
-- Always include all nine groups — never omit any
+- Always include every group in the Workstreams and SIGs table — never omit any
 - The Telemetry SIG is a WS2 sub-group with its own minutes; it gets its
   own row and is never folded into the WS2 row, and the two can meet in
   the same week or in different weeks

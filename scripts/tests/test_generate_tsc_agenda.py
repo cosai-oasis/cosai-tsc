@@ -8,6 +8,7 @@ represents each group's "Last Met" date — the part that silently reported
 from __future__ import annotations
 
 import importlib.util
+import re
 import tempfile
 import unittest
 from datetime import date, timedelta
@@ -179,11 +180,122 @@ class BuildWeekInReviewSectionTests(WeekInReviewTestCase):
         # Section 4 is the one place the TSC-relevance filter must not apply.
         section = GEN.build_week_in_review_section(self.collect())
         self.assertIn("summarize", section.lower())
-        self.assertIn("all eight", section.lower())
+        # The count must be derived from WEEK_IN_REVIEW_GROUPS, not hardcoded:
+        # a stale literal told the model "all eight" while handing it 12 rows,
+        # and it dropped three groups from the 2026-09-29 draft.
+        self.assertRegex(
+            section.lower(),
+            rf"all \**{len(GEN.WEEK_IN_REVIEW_GROUPS)}\** groups",
+        )
 
     def test_did_not_meet_group_carries_no_source_path(self):
         section = GEN.build_week_in_review_section(self.collect())
         self.assertNotIn("**Source file:**", section)
+
+
+class SkillGroupTableAgreementTests(unittest.TestCase):
+    """
+    WEEK_IN_REVIEW_GROUPS and the skill must list the same groups in the same
+    order. The skill is the generator's system prompt, so a mismatch sends the
+    model one order while the source material arrives in another — and the two
+    had already drifted three ways before this test existed: the skill's
+    Section 4 template was missing three groups entirely, and its group table
+    ordered two pairs differently from the generator.
+    """
+
+    SKILL = Path(GEN.SKILL_PATH)
+
+    @classmethod
+    def setUpClass(cls):
+        root = Path(GEN.repo_root())
+        cls.text = (root / GEN.SKILL_PATH).read_text(encoding="utf-8")
+        cls.labels = [label for _, label in GEN.WEEK_IN_REVIEW_GROUPS]
+        cls.subdirs = [subdir for subdir, _ in GEN.WEEK_IN_REVIEW_GROUPS]
+
+    def test_section_4_template_matches_group_order(self):
+        rows = [
+            line.split("|")[1].strip()
+            for line in self.text.splitlines()
+            if line.startswith("| ") and "<YYYY-MM-DD or Did not meet>" in line
+        ]
+        self.assertEqual(rows, self.labels)
+
+    def test_section_6_update_list_matches_group_order(self):
+        listed = re.findall(r"^- \*\*(.+?):\*\*$", self.text, re.MULTILINE)
+        # Section 6 lists exactly the Week in Review groups, nothing else.
+        self.assertEqual(listed, self.labels)
+
+    def test_group_table_matches_subdir_order(self):
+        found = [
+            line.split("|")[3].strip().strip("`")
+            for line in self.text.splitlines()
+            if line.startswith("| ") and "meeting_minutes/" in line
+        ]
+        found = [
+            cell.replace("meeting_minutes/", "").rstrip("/")
+            for cell in found
+            if cell
+        ]
+        self.assertEqual(found, self.subdirs)
+
+
+class CheckWeekInReviewRowsTests(unittest.TestCase):
+    """
+    Section 4 must carry one row per group, including groups that did not meet.
+    The 2026-09-29 draft silently dropped three of twelve: a missing row looks
+    identical to a group that does not exist, so the omission is invisible in
+    the output. The prompt asks for every row; this verifies it got them.
+    """
+
+    WEEK_IN_REVIEW = [
+        {"label": "WS1 — Software Supply Chain Security for AI Systems"},
+        {"label": "Trust Graph — Agent Trust Graph (WS4)"},
+    ]
+
+    def check(self, agenda):
+        return GEN.check_week_in_review_rows(agenda, self.WEEK_IN_REVIEW)
+
+    def agenda(self, rows):
+        return (
+            "## 3. Action Items\n\n| Source | Action Item |\n|---|---|\n\n"
+            "## 4. CoSAI Week in Review\n\n"
+            "| Group | Last Met | Highlights |\n|---|---|---|\n"
+            + rows
+            + "\n## 5. Next Steps\n"
+        )
+
+    def test_no_missing_rows_when_every_group_is_present(self):
+        rows = ("| WS1 — Software Supply Chain Security for AI Systems | "
+                "Did not meet | Did not meet |\n"
+                "| Trust Graph — Agent Trust Graph (WS4) | 2026-09-24 | "
+                "Kick-off held |\n")
+        self.assertEqual(self.check(self.agenda(rows)), [])
+
+    def test_reports_a_dropped_row(self):
+        rows = ("| WS1 — Software Supply Chain Security for AI Systems | "
+                "Did not meet | Did not meet |\n")
+        self.assertEqual(
+            self.check(self.agenda(rows)),
+            ["Trust Graph — Agent Trust Graph (WS4)"],
+        )
+
+    def test_mention_outside_a_table_row_does_not_count_as_present(self):
+        # A false positive this check was written to avoid: substring-matching
+        # the whole section passes on prose that merely names the group.
+        rows = ("| WS1 — Software Supply Chain Security for AI Systems | "
+                "Did not meet | Did not meet |\n\n"
+                "The Trust Graph — Agent Trust Graph (WS4) group also met.\n")
+        self.assertEqual(
+            self.check(self.agenda(rows)),
+            ["Trust Graph — Agent Trust Graph (WS4)"],
+        )
+
+    def test_missing_section_reports_every_group(self):
+        agenda = "## 3. Action Items\n\nNothing to report.\n"
+        self.assertEqual(
+            self.check(agenda),
+            [row["label"] for row in self.WEEK_IN_REVIEW],
+        )
 
 
 class DedupeActionItemsTests(unittest.TestCase):

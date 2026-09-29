@@ -85,7 +85,11 @@ SOURCES = [
     {
         "name": "WS1",
         "type": "drive",
-        "folder_id": "1L7A46unF12D3Tk68_QVP53M9cGjJUMA3",
+        # "WS1 > Meeting Summaries & Recordings > WS1 Meetings". The previous
+        # ID pointed at the parent "Meeting Summaries & Recordings" folder,
+        # one level too high: it holds "WS1 Meetings" and "Archive" as
+        # subfolders, so the notes documents were never in direct scan range.
+        "folder_id": "1X4-1EqNua4U1h8yqS8bnUNcAENIiWpeW",
         "subdir": "ws1",
         # Prefix match — works whether or not "Notes by Gemini" is appended.
         # The meeting was renamed from "CoSAI WS1 Weekly Meeting" to
@@ -101,15 +105,24 @@ SOURCES = [
     {
         "name": "WS2",
         "type": "drive",
-        "folder_id": "1zmeLjxAp8UJdu99LM3qAhHf-CH9JGR32",
+        # "WS2 > Meeting Summaries & Recordings > WS2 Bi-weekly Meetings".
+        # The previous ID was the parent folder (holding "WS2 Bi-weekly
+        # Meetings", "Telemetry" and "Archive" as subfolders), one level too
+        # high for the notes documents to be in direct scan range.
+        "folder_id": "1JwWDB5jc9kbrQXoAAyoc5789ltmnN9pI",
         "subdir": "ws2",
-        # Prefix match — WS2 files end after the date with no "Notes by Gemini".
-        # Titles are now "CoSAI WS2 Defenders Bi-Weekly Meeting". Some older
-        # entries separate the date with "/" in the day position (2026/05-19),
-        # so accept "/" or "-" between date parts.
-        "shared_name_contains": "CoSAI WS2 Defenders",
+        # The meeting was renamed from "CoSAI WS2 Defenders Bi-Weekly Meeting"
+        # to "CoSAI WS2 Bi-weekly Meeting (updated invite)" — "Defenders" moved
+        # out of the title. The old pattern required it, so every WS2 meeting
+        # after the rename silently failed to match and the Week in Review
+        # reported "Did not meet" while the notes sat in Drive unfetched.
+        # Match both titles: "Defenders" optional, "(updated invite)" optional,
+        # and "Bi-weekly"/"Bi-Weekly" either case. Some older entries separate
+        # the date with "/" or "-" (2026/05-19), so accept both.
+        "shared_name_contains": "CoSAI WS2",
         "shared_title_pattern": (
-            r"^CoSAI WS2 Defenders (?:Bi-Weekly )?[Mm]eeting\s+- "
+            r"^CoSAI WS2 (?:Defenders )?Bi-[Ww]eekly [Mm]eeting"
+            r"(?: \(updated invite\))?\s+- "
             r"(?P<y>\d{4})[/-](?P<m>\d{2})[/-](?P<d>\d{2})"
         ),
         "shared_folder_name_template": "WS2-{y}{m}{d}",
@@ -177,6 +190,19 @@ SOURCES = [
         "shared_folder_name_template": "WS3-CoSAI-RM-SIG-{y}{m}{d}",
     },
     {
+        "name": "WS3-Threat-Modeling",
+        "type": "drive",
+        # "WS3 > Meeting Summaries & Recordings > WS3 Threat Modeling".
+        "folder_id": "1oHMzV4uKRcPGpiqqU6tSkLB6zYGH1yPo",
+        "subdir": "ws3-threat-modeling",
+        "shared_name_contains": "CoSAI WS3 Agentic Coding Threat Modeling",
+        "shared_title_pattern": (
+            r"^CoSAI WS3 Agentic Coding Threat Modeling Sync\s+- "
+            r"(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
+        ),
+        "shared_folder_name_template": "WS3-Threat-Modeling-{y}{m}{d}",
+    },
+    {
         "name": "Telemetry-SIG",
         "type": "drive",
         # Lives in the WS2 "Meeting Summaries & Recordings" tree, in the
@@ -207,6 +233,39 @@ SOURCES = [
             r"(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
         ),
         "shared_folder_name_template": "{y}-{m}-{d}",
+    },
+    {
+        "name": "WS4-Multimodal",
+        "type": "drive",
+        # "WS4 > Meeting Summaries & Recordings > Multimodal Agentic Security".
+        # This folder carries two distinct recurring meetings: the weekly
+        # "Multimodal Agentic Security Weekly Meeting" and the "Multimodal
+        # Security doc" working session. Both are group minutes, so match
+        # either title. The comma in "Security doc, weekly" is optional —
+        # some entries drop it.
+        "folder_id": "1JI89V3NrSQnEzcE6nlNUed2Huv114FD4",
+        "subdir": "ws4-multimodal",
+        "shared_name_contains": "WS4 Multimodal",
+        "shared_title_pattern": (
+            r"^WS4 Multimodal (?:Agentic Security Weekly Meeting"
+            r"|Security doc,? weekly working session)\s+- "
+            r"(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
+        ),
+        "shared_folder_name_template": "WS4-Multimodal-{y}{m}{d}",
+    },
+    {
+        "name": "WS4-Trust-Graph",
+        "type": "drive",
+        # "WS4 > Meeting Summaries & Recordings > WS4 Trust Graph".
+        # Match the recurring "Sync" and the original "Kick-off".
+        "folder_id": "1jnvmtw62-L3j0ssNRR6bnx4pks4c5ApM",
+        "subdir": "ws4-trust-graph",
+        "shared_name_contains": "CoSAI WS4 Trust Graph",
+        "shared_title_pattern": (
+            r"^CoSAI WS4 Trust Graph (?:Sync|Kick-off)\s+- "
+            r"(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
+        ),
+        "shared_folder_name_template": "WS4-Trust-Graph-{y}{m}{d}",
     },
 ]
 
