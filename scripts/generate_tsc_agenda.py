@@ -72,15 +72,18 @@ TSC_SUBDIR = "tsc"
 # must list every group in WEEK_IN_REVIEW_GROUPS even when a group did not meet.
 #
 # Group labels must match the skill's Section 4 table rows exactly, in order.
+# Order is by parent workstream: each workstream is followed by its own SIGs
+# and groups, so Section 4 reads WS1, WS2 + its SIGs, WS3 + its SIGs, WS4 +
+# its SIGs. A new group goes beside its parent, not at the end of the list.
 WEEK_IN_REVIEW_GROUPS = [
     ("ws1", "WS1 — Software Supply Chain Security for AI Systems"),
     ("ws2", "WS2 — Preparing Defenders for a Changing Cybersecurity Landscape"),
     ("telemetry-sig", "Telemetry SIG — AI Security Telemetry (WS2)"),
     ("ws3", "WS3 — AI Security Risk Governance"),
     ("ws3-threat-modeling", "WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3)"),
-    ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
     ("rm-sig", "CoSAI-RM SIG — Coalition for Secure AI Risk Map"),
     ("code-sig", "Code SIG — Security of AI-Assisted Code Generation"),
+    ("ws4", "WS4 — Secure Design Patterns for Agentic Systems"),
     ("adlc", "ADLC SIG — Security of Agent Development Lifecycle"),
     ("agent-credentials", "Agent Credentials Group"),
     ("ws4-multimodal", "Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4)"),
@@ -105,7 +108,7 @@ CLOSED_ISSUE_WINDOW_DAYS = 21
 
 MODEL = "claude-sonnet-4-6"
 # 4000 was sized before the agenda gained Section 4 CoSAI Week in Review, whose
-# eight summary rows push a full agenda past that cap and truncate Section 6.
+# per-group summary rows push a full agenda past that cap and truncate Section 6.
 MAX_TOKENS = 8000
 
 

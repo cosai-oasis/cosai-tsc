@@ -64,12 +64,12 @@ the folder IDs and title patterns and writes into the local subdirectory.
 | Telemetry SIG | AI Security Telemetry (WS2) | `meeting_minutes/telemetry-sig/` | WS2 > Meeting Summaries & Recordings > Telemetry |
 | WS3 | AI Security Risk Governance | `meeting_minutes/ws3/` | WS3 > Meeting Summaries & Recordings > WS3 Meetings |
 | WS3 Threat Modeling | Agentic Coding Threat Modeling (WS3) | `meeting_minutes/ws3-threat-modeling/` | WS3 > Meeting Summaries & Recordings > WS3 Threat Modeling |
-| Code-SIG | Security of AI-Assisted Code Generation | `meeting_minutes/code-sig/` | WS3 > Meeting Summaries & Recordings > SIG Security of AI-assisted Code Development |
 | CoSAI-RM SIG | Coalition for Secure AI Risk Map | `meeting_minutes/rm-sig/` | WS3 > Meeting Summaries & Recordings > CoSAI-RM SIG |
+| Code-SIG | Security of AI-Assisted Code Generation | `meeting_minutes/code-sig/` | WS3 > Meeting Summaries & Recordings > SIG Security of AI-assisted Code Development |
 | WS4 | Secure Design Patterns for Agentic Systems | `meeting_minutes/ws4/` | WS4 > Meeting Summaries & Recordings > WS4 Meetings |
 | ADLC SIG | Security of Agent Development Lifecycle | `meeting_minutes/adlc/` | WS4 > Meeting Summaries & Recordings > SIG Security of Agent Development Lifecycle |
-| Multimodal Agentic Security | Multimodal Threat Taxonomy (WS4) | `meeting_minutes/ws4-multimodal/` | WS4 > Meeting Summaries & Recordings > Multimodal Agentic Security |
 | Agent Credentials | Agent Credentials Group | `meeting_minutes/agent-credentials/` | WS4 > Meeting Summaries & Recordings > WS4 Agent Credentials |
+| Multimodal Agentic Security | Multimodal Threat Taxonomy (WS4) | `meeting_minutes/ws4-multimodal/` | WS4 > Meeting Summaries & Recordings > Multimodal Agentic Security |
 | Trust Graph | Agent Trust Graph (WS4) | `meeting_minutes/ws4-trust-graph/` | WS4 > Meeting Summaries & Recordings > WS4 Trust Graph |
 
 TSC minutes come from GitHub, not Drive: `cosai-oasis/cosai-tsc` →
@@ -389,11 +389,14 @@ Never include time estimates per item.
 | WS2 — Preparing Defenders for a Changing Cybersecurity Landscape | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | Telemetry SIG — AI Security Telemetry (WS2) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | WS3 — AI Security Risk Governance | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
-| WS4 — Secure Design Patterns for Agentic Systems | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | CoSAI-RM SIG — Coalition for Secure AI Risk Map | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | Code SIG — Security of AI-Assisted Code Generation | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| WS4 — Secure Design Patterns for Agentic Systems | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | ADLC SIG — Security of Agent Development Lifecycle | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 | Agent Credentials Group | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
+| Trust Graph — Agent Trust Graph (WS4) | <YYYY-MM-DD or Did not meet> | <one short paragraph> |
 
 ---
 
@@ -424,11 +427,16 @@ Brief updates from leads as available:
 
 - **WS1 — Software Supply Chain Security for AI Systems:**
 - **WS2 — Preparing Defenders for a Changing Cybersecurity Landscape:**
+- **Telemetry SIG — AI Security Telemetry (WS2):**
 - **WS3 — AI Security Risk Governance:**
-- **WS4 — Secure Design Patterns for Agentic Systems:**
+- **WS3 Threat Modeling — Agentic Coding Threat Modeling (WS3):**
 - **CoSAI-RM SIG — Coalition for Secure AI Risk Map:**
 - **Code SIG — Security of AI-Assisted Code Generation:**
+- **WS4 — Secure Design Patterns for Agentic Systems:**
 - **ADLC SIG — Security of Agent Development Lifecycle:**
+- **Agent Credentials Group:**
+- **Multimodal Agentic Security — Multimodal Threat Taxonomy (WS4):**
+- **Trust Graph — Agent Trust Graph (WS4):**
 
 > ⚠️ Deliverables with target dates within the next 4 weeks:
 > <list any flagged deliverables from roadmap.md or remove if none>
