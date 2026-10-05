@@ -89,6 +89,7 @@ class CitationImpactTests(unittest.TestCase):
         self.assertIn("| Unverified / uncertain findings | **1** |", report)
         self.assertIn(REFRESH.AUTOMATED_REPORT_URL, report)
         self.assertIn("do not require review before publication", report)
+        self.assertIn("a successful manual publication does not establish that the scheduled workflow is active", report)
         self.assertIn(REFRESH.UNVERIFIED_STATUS, report)
 
     def test_report_optional_fields_metrics_and_partial_freshness(self):
