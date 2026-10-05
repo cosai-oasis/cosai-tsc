@@ -6,6 +6,11 @@ on:
     - cron: "0 12 * * 1"
       timezone: "America/New_York"
   workflow_dispatch:
+    inputs:
+      publish_report:
+        description: Publish generated data to the report branch (no code changes)
+        type: boolean
+        default: false
 
 concurrency:
   group: cosai-citation-impact-refresh
@@ -17,10 +22,9 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
-      - name: Check out selected ref
+      - name: Check out selected code ref
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
@@ -30,18 +34,35 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate report generation
-        run: python -m unittest discover -s scripts/tests -p 'test_refresh_citation_impact.py' -v
+      - name: Validate report generation and isolated publication
+        run: |
+          python -m unittest discover -s scripts/tests -p 'test_refresh_citation_impact.py' -v
+          python -m unittest discover -s scripts/tests -p 'test_citation_report_branch.py' -v
 
-      - name: Refresh verified report and discover public references
+      - name: Restore previous discovery progress as data only
+        id: restore
+        run: python scripts/citation_report_branch.py restore --destination "$RUNNER_TEMP/citation-resume"
+
+      - name: Refresh report and discover public references
+        id: refresh
         timeout-minutes: 5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --fail-on-discovery-error
+        run: |
+          set +e
+          python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --discovery-budget-seconds 180 --resume-from "$RUNNER_TEMP/citation-resume" --fail-on-discovery-error
+          status=$?
+          set -e
+          # Exit 2 is explicit, resumable partial discovery. Other failures must
+          # never publish potentially stale or invalid report files.
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then
+            exit "$status"
+          fi
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
 
-      - name: Preserve refresh output for diagnosis and review
-        # On an early failure these may be the checked-in snapshot; inspect
-        # last_refreshed/discovery_warnings and the run status before using them.
+      - name: Preserve refresh output for diagnosis
+        # On an early failure these may be checked-in snapshots. Inspect metadata
+        # and run health; an uploaded artifact does not establish refresh success.
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
@@ -49,34 +70,26 @@ jobs:
           path: |
             TSC Deliverables/citation-impact/README.md
             TSC Deliverables/citation-impact/discovered-candidates.json
+            TSC Deliverables/citation-impact/discovery-state.json
           retention-days: 14
 
-      - name: Open or update review pull request
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/citation-impact-report
-          add-paths: |
-            TSC Deliverables/citation-impact/README.md
-            TSC Deliverables/citation-impact/discovered-candidates.json
-          delete-branch: true
-          commit-message: "docs: refresh CoSAI citation impact report"
-          title: "docs: refresh CoSAI citation and external impact report"
-          body: |
-            ## Summary
+      - name: Automatically publish clearly labeled discovery results
+        id: publish
+        # A diagnostic artifact outage must not block valid publication. Explicit
+        # refresh health still blocks test failures, fatal errors, and timeouts.
+        if: ${{ !cancelled() && steps.refresh.outcome == 'success' && steps.refresh.outputs.exit_code != '' && ((github.event_name == 'schedule' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.publish_report)) }}
+        env:
+          EXPECTED_PUBLICATION_HEAD: ${{ steps.restore.outputs.publication_head }}
+        run: python scripts/citation_report_branch.py publish --expected-head "$EXPECTED_PUBLICATION_HEAD"
 
-            Refreshes the CoSAI TSC citation and external-impact report.
+      - name: Summarize discovery and publication health
+        if: ${{ always() && steps.refresh.outputs.exit_code != '' }}
+        env:
+          PUBLISHED_COMMIT: ${{ steps.publish.outputs.commit }}
+        run: python scripts/citation_report_branch.py summary --publication "$PUBLISHED_COMMIT"
 
-            - Updates the public Markdown snapshot and refresh date.
-            - Discovers additional public GitHub and Crossref references.
-            - Keeps unreviewed discoveries separate from verified citation totals.
-
-            ## Review checklist
-
-            - [ ] Inspect newly discovered candidate references.
-            - [ ] Promote only verified sources into `sources.json`.
-            - [ ] Confirm member-affiliated sources are classified accurately.
-          labels: |
-            documentation
-            deliverable-publication
+      - name: Mark incomplete discovery unhealthy after preserving progress
+        if: ${{ always() && steps.refresh.outputs.exit_code == '2' }}
+        run: |
+          echo "::error::Discovery is partial. Generated findings and resume state were preserved; see the summary for publication status."
+          exit 1

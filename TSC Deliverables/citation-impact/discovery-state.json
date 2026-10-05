@@ -1,28 +1,13 @@
 {
   "schema_version": 1,
   "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
-  "last_refreshed": "2026-10-05",
+  "round_started_at": null,
+  "round_completed_at": null,
+  "completed_queries": [],
   "last_attempted": null,
   "last_completed": null,
-  "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
-  "discovery_enabled": false,
-  "discovery_status": "not_run",
-  "discovery_warnings": [],
-  "query_coverage": {
-    "completed": 0,
-    "total": 14,
-    "round_started_at": null,
-    "per_provider": {
-      "github": {
-        "completed": 0,
-        "total": 11
-      },
-      "crossref": {
-        "completed": 0,
-        "total": 3
-      }
-    }
-  },
+  "providers": {},
+  "query_warnings": {},
   "candidates": [
     {
       "publisher": "Divyansh2602/aegismesh",
@@ -179,5 +164,6 @@
       "first_seen": "2026-09-21",
       "last_seen": "2026-09-21"
     }
-  ]
+  ],
+  "updated_at": "2026-10-05T10:24:44.917210Z"
 }
