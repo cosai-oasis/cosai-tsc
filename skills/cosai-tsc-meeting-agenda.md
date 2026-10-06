@@ -33,7 +33,7 @@ publish anything without explicit user approval.
 | Repo | `cosai-oasis/cosai-tsc` |
 | Co-chairs | J.R. Rao, Jason Garman, Jodi Middleton, Karttik Panda |
 | OASIS Admin | Claudia Rauch |
-| Cadence | Tuesdays, 1:00 PM – 2:00 PM ET |
+| Cadence | Tuesdays. 12:00 PM – 1:00 PM ET, except the **second Tuesday of the month**, which is 7:00 PM – 8:00 PM ET to suit Asia-Pacific (agreed 2026-09-29, closing #56 and #70) |
 | TSC minutes source (read for agendas) | `meeting_minutes/tsc/` — local fetch cache, gitignored |
 | TSC transcripts (committed record) | `tsc-meeting-minutes/` |
 | Minutes filename pattern | `YYYY-MM-DD.md` |
@@ -315,7 +315,7 @@ Never include time estimates per item.
 # CoSAI TSC Meeting
 ## <Day, Month D, YYYY>
 
-**Time:** 1:00 PM – 2:00 PM ET  
+**Time:** <12:00 PM – 1:00 PM ET, or 7:00 PM – 8:00 PM ET on the second Tuesday of the month>  
 **Video Call Link:** https://meet.google.com/gsn-gysc-uyt  
 **Phone:** https://tel.meet/gsn-gysc-uyt?pin=5853998459617  
 **Co-chairs:** J.R. Rao, Jodi Middleton, Karttik Panda, Jason Garman  
