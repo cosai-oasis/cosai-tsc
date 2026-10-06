@@ -146,9 +146,14 @@ SOURCES = [
         "type": "drive",
         "folder_id": "1TJl4yqWIdfPc8fKWiTO0CsmsmuecGxWa",
         "subdir": "ws4",
-        "shared_name_contains": "CoSAI WS4 recurring meeting",
+        # The calendar event was renamed from "recurring meeting" to "weekly
+        # meeting (updated invite)" after 2026-09-17, which made the 09-24 and
+        # 10-01 meetings invisible to the agenda — the same silent failure WS2
+        # had. Match both spellings.
+        "shared_name_contains": "CoSAI WS4",
         "shared_title_pattern": (
-            r"^CoSAI WS4 recurring meeting - "
+            r"^CoSAI WS4 (?:recurring|weekly) meeting"
+            r"(?: \(updated invite\))? - "
             r"(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
         ),
         "shared_folder_name_template": "WS4-{y}{m}{d}",
