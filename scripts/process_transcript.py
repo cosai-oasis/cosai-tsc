@@ -32,8 +32,8 @@ Usage:
     python scripts/process_transcript.py 2026-09-01
     python scripts/process_transcript.py 2026-09-01 --dry-run
 
-    # Leave #48 untouched, and drop proposed new items 4 and 5
-    python scripts/process_transcript.py 2026-09-01 --skip 48 --skip new:4,new:5
+    # Leave #48 untouched, and drop any proposed new item about RSAC
+    python scripts/process_transcript.py 2026-09-01 --skip 48 --skip new:rsac
 
     # Comment on #48 but never close it
     python scripts/process_transcript.py 2026-09-01 --skip close:48
@@ -433,14 +433,20 @@ def parse_skips(raw_skips: list) -> dict:
     Parse --skip values into a spec.
 
     Accepted forms, comma- or repeat-separated:
-      48          → skip Issue #48 entirely (no comment, no close)
-      close:48    → comment on #48 but never close it
-      new:3       → drop the 3rd proposed new action item (1-based, as printed)
+      48           → skip Issue #48 entirely (no comment, no close)
+      close:48     → comment on #48 but never close it
+      new:3        → drop the 3rd proposed new action item (1-based, as printed)
+      new:rsac     → drop proposed new items whose title contains "rsac"
 
     Exits on an unparseable token rather than silently ignoring it — a typo'd
     skip that quietly does nothing is how an unwanted close slips through.
+
+    Prefer the text form. The plan is re-derived from the model on every
+    invocation, so a title can move to a different index — or drop out of the
+    plan entirely — between a --dry-run and the real run. An index reused from
+    an earlier run's output can therefore skip something you meant to keep.
     """
-    spec = {"issues": set(), "closes": set(), "new": set()}
+    spec = {"issues": set(), "closes": set(), "new": set(), "new_text": set()}
     for raw in raw_skips:
         for token in str(raw).split(","):
             token = token.strip().lower()
@@ -448,6 +454,11 @@ def parse_skips(raw_skips: list) -> dict:
                 continue
             if token.startswith("new:"):
                 target, kind = token[4:], "new"
+                # A non-numeric new: value is matched against item titles,
+                # which is stable across runs in a way an index is not.
+                if target and not target.lstrip("#").isdigit():
+                    spec["new_text"].add(target)
+                    continue
             elif token.startswith("close:"):
                 target, kind = token[6:], "closes"
             elif token.startswith("#"):
@@ -566,7 +577,15 @@ def build_plan(iso: str, analysis: dict, issues: dict,
             continue
         if index in skips["new"]:
             plan["skipped"].append(
-                f"new:{index} '{truncate(title, 60)}': excluded by --skip"
+                f"new:{index} '{truncate(title, 60)}': excluded by --skip "
+                "(by index)"
+            )
+            continue
+        matched = [s for s in skips.get("new_text", ()) if s in title.lower()]
+        if matched:
+            plan["skipped"].append(
+                f"new:{index} '{truncate(title, 60)}': excluded by --skip "
+                f"new:{matched[0]}"
             )
             continue
         if is_self_referential(title):
@@ -838,8 +857,10 @@ def parse_args() -> argparse.Namespace:
         metavar="SPEC",
         help="Exclude items from the plan. Repeatable and comma-separated. "
              "'48' skips Issue #48 entirely; 'close:48' comments on it but "
-             "does not close it; 'new:3' drops the 3rd proposed new action "
-             "item as numbered in the plan output.",
+             "does not close it; 'new:rsac' drops proposed new items whose "
+             "title contains 'rsac'; 'new:3' drops the 3rd proposed item by "
+             "position. Prefer the text form — the plan is re-derived each "
+             "run, so positions can shift between runs.",
     )
     args = parser.parse_args()
     try:
@@ -865,7 +886,21 @@ def main() -> None:
             parts.append("no-close " + ", ".join(f"#{n}" for n in sorted(skips["closes"])))
         if skips["new"]:
             parts.append("new items " + ", ".join(str(n) for n in sorted(skips["new"])))
+        if skips["new_text"]:
+            parts.append("new items matching " +
+                         ", ".join(repr(s) for s in sorted(skips["new_text"])))
         print(f"⏭  Skipping: {'; '.join(parts)}")
+        if skips["new"]:
+            # The plan is re-derived from the model each run, so new-item
+            # indices are not stable between a --dry-run and the real run.
+            # Reusing an index from earlier output has already skipped the
+            # wrong item once; check the skip line below against the plan.
+            print("⚠️  --skip new:<index> is positional and the plan is "
+                  "re-derived on every run, so an index taken from an earlier "
+                  "run may point at a different item now.")
+            print("    Prefer --skip new:<text> (matched against the title), "
+                  "and confirm the '⚠️  Skipped' list below names what you "
+                  "meant before typing 'yes'.")
 
     # Credentials
     load_dotenv(os.path.join(root, ".env"))
