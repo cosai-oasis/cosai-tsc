@@ -193,6 +193,73 @@ class BuildWeekInReviewSectionTests(WeekInReviewTestCase):
         self.assertNotIn("**Source file:**", section)
 
 
+class MeetingTimeTests(unittest.TestCase):
+    """
+    The TSC meets at 12:00 PM ET except the second Tuesday of the month, which
+    is 7:00 PM ET for Asia-Pacific (agreed 2026-09-29, closing #56 and #70).
+    The time was previously hardcoded in the skill template, which is the same
+    shape of defect that put the wrong weekday on the 2026-09-08 agenda.
+    """
+
+    def test_first_tuesday_is_midday(self):
+        self.assertEqual(GEN.meeting_time_for(date(2026, 10, 6)),
+                         GEN.MEETING_TIME_DEFAULT)
+
+    def test_second_tuesday_is_evening(self):
+        self.assertEqual(GEN.meeting_time_for(date(2026, 10, 13)),
+                         GEN.MEETING_TIME_LATE)
+
+    def test_third_and_fourth_tuesdays_are_midday(self):
+        for day in (20, 27):
+            with self.subTest(day=day):
+                self.assertEqual(GEN.meeting_time_for(date(2026, 10, day)),
+                                 GEN.MEETING_TIME_DEFAULT)
+
+    def test_exactly_one_evening_slot_per_month(self):
+        # Three weeks out of four at midday, per the agreed schedule.
+        for year, month in ((2026, 10), (2026, 11), (2026, 12), (2027, 1)):
+            tuesdays = [
+                date(year, month, day)
+                for day in range(1, 32)
+                if _valid(year, month, day)
+                and date(year, month, day).weekday() == 1
+            ]
+            late = [d for d in tuesdays
+                    if GEN.meeting_time_for(d) == GEN.MEETING_TIME_LATE]
+            with self.subTest(month=f"{year}-{month:02d}"):
+                self.assertEqual(len(late), 1)
+                self.assertEqual((late[0].day - 1) // 7 + 1, 2)
+
+    def test_check_meeting_time_accepts_the_expected_slot(self):
+        agenda = ("# CoSAI TSC Meeting\n## Tuesday, October 6, 2026\n\n"
+                  f"**Time:** {GEN.MEETING_TIME_DEFAULT}  \n")
+        self.assertEqual(GEN.check_meeting_time(agenda, date(2026, 10, 6)), "")
+
+    def test_check_meeting_time_rejects_the_wrong_slot(self):
+        # The stale hardcoded value the skill used to carry.
+        agenda = "**Time:** 1:00 PM – 2:00 PM ET  \n"
+        warning = GEN.check_meeting_time(agenda, date(2026, 10, 6))
+        self.assertIn("expected", warning)
+        self.assertIn("12:00 PM", warning)
+
+    def test_check_meeting_time_rejects_midday_on_an_evening_week(self):
+        agenda = f"**Time:** {GEN.MEETING_TIME_DEFAULT}  \n"
+        self.assertIn("7:00 PM",
+                      GEN.check_meeting_time(agenda, date(2026, 10, 13)))
+
+    def test_check_meeting_time_reports_a_missing_header(self):
+        self.assertIn("No **Time:**",
+                      GEN.check_meeting_time("# Agenda\n", date(2026, 10, 6)))
+
+
+def _valid(year, month, day):
+    try:
+        date(year, month, day)
+        return True
+    except ValueError:
+        return False
+
+
 class SkillGroupTableAgreementTests(unittest.TestCase):
     """
     WEEK_IN_REVIEW_GROUPS and the skill must list the same groups in the same

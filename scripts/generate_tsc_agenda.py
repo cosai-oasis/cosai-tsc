@@ -90,6 +90,25 @@ WEEK_IN_REVIEW_GROUPS = [
     ("ws4-trust-graph", "Trust Graph — Agent Trust Graph (WS4)"),
 ]
 
+# Meeting time. The TSC resolved on 2026-09-29 (closing #56 and #70) to meet at
+# 12:00 PM ET for three weeks out of four and at 7:00 PM ET on the second week
+# of the cycle, so the Asia-Pacific region can attend. The second Tuesday of the
+# month is the 7:00 PM slot. Computed here rather than written into the prompt:
+# the header time had been hardcoded in the skill, and a hardcoded header value
+# is what produced the wrong weekday on the 2026-09-08 agenda.
+MEETING_TIME_DEFAULT = "12:00 PM – 1:00 PM ET"
+MEETING_TIME_LATE = "7:00 PM – 8:00 PM ET"
+LATE_SLOT_WEEK_OF_MONTH = 2
+
+
+def meeting_time_for(meeting_date: date) -> str:
+    """Return the header time string for a meeting date."""
+    week_of_month = (meeting_date.day - 1) // 7 + 1
+    if week_of_month == LATE_SLOT_WEEK_OF_MONTH:
+        return MEETING_TIME_LATE
+    return MEETING_TIME_DEFAULT
+
+
 # A group's minutes count toward the Week in Review only if dated within this
 # many days of the meeting date. The skill defines the window as 14 days.
 WEEK_IN_REVIEW_WINDOW_DAYS = 14
@@ -655,6 +674,7 @@ def build_user_prompt(meeting_date: date, minutes: dict, proposed: list,
                       week_in_review: list) -> str:
     iso = meeting_date.isoformat()
     long_date = meeting_date.strftime("%A, %B %d, %Y").replace(" 0", " ")
+    meeting_time = meeting_time_for(meeting_date)
 
     return f"""Draft the CoSAI TSC meeting agenda for **{long_date}** (`{iso}`).
 
@@ -670,6 +690,11 @@ Note: Discussions in the `Agenda Suggestions` category are not included in this
 run — work only from the Issues and minutes provided here.
 
 ## Header fields
+
+The meeting time for this date is **{meeting_time}**. Use exactly that in the
+`**Time:**` header line, overriding any time shown in the template in your
+system prompt — the TSC alternates between a midday and an evening slot, so the
+template's value is not reliable for a given week.
 
 This project does not use GitHub Milestones. Do **not** emit a
 `**Milestone:**` line in the agenda header, and do not link to
@@ -868,6 +893,27 @@ def _similar(a: str, b: str, threshold: float = 0.5) -> bool:
     return len(overlap) / min(len(ta), len(tb)) >= threshold
 
 
+def check_meeting_time(agenda: str, meeting_date: date) -> str:
+    """
+    Return a warning if the agenda's Time header is not the expected slot.
+
+    The TSC alternates a midday and an evening slot, so the time depends on the
+    date. The prompt states the computed value, but a prompt rule is advisory
+    and the skill's template still shows a single fixed time — exactly the
+    shape of mistake that put the wrong weekday on the 2026-09-08 agenda. A
+    wrong time here sends members to a call that is not running.
+    """
+    expected = meeting_time_for(meeting_date)
+    for line in agenda.splitlines():
+        if line.strip().startswith("**Time:**"):
+            found = line.split("**Time:**", 1)[1].strip().rstrip("\\").strip()
+            if found != expected:
+                return (f"Time header reads {found!r}, expected "
+                        f"{expected!r} for this date")
+            return ""
+    return "No **Time:** line found in the agenda header"
+
+
 def check_week_in_review_rows(agenda: str, week_in_review: list) -> list:
     """
     Return the Week in Review group labels missing from the drafted agenda.
@@ -1045,6 +1091,12 @@ def main():
               "the Issues section:")
         for note in dropped:
             print(f"   • {note}")
+
+    time_warning = check_meeting_time(agenda, meeting_date)
+    if time_warning:
+        print(f"⚠️  {time_warning}.")
+        print("   Fix the **Time:** line before publishing — a wrong time "
+              "sends members to a call that is not running.")
 
     missing_groups = check_week_in_review_rows(agenda, week_in_review)
     if missing_groups:
