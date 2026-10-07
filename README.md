@@ -18,6 +18,16 @@ You can find a list of the current TSC members [here](https://github.com/cosai-o
 
 The governance document for the work of this TSC can be found [here](https://github.com/cosai-oasis/oasis-open-project/blob/main/TSC-WS-GOVERNANCE.md).
 
+### TSC Meeting Schedule
+
+The TSC is meeting weekly, meetings are only open to invite members and alternate members, WS leads and other invited guests.
+
+The meetings schedule is as follows:
+* The 1st, 3rd and 4th week of the month, the TSC meets at Noon / 12pm ET 
+* The 2nd week of each month, the TSC meet at 7pm ET.
+
+The calendar for TSC meetings can be found [here](https://lists.oasis-open-projects.org/g/cosai-tsc/calendar).
+
 ## What's in this Repository
 
 In this repository, you can find meeting minutes and documentation of policies that have be created and approved by the TSC, like the [Contributing](./CONTRIBUTING.md) and [Maintainer](./MAINTAINERS.md) policies. This repository also includes organization level documents created by workstreams and approved by the TSC such as the [CoSAI Principles for Secure-by-Design Agentic Systems](./security-principles-for-agentic-systems.md).
