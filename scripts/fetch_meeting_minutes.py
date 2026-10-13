@@ -47,6 +47,7 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
+from datetime import date, datetime
 from pathlib import Path
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -66,6 +67,7 @@ SOURCES = [
     # ── GitHub sources ────────────────────────────────────────────────────────
     {
         "name": "TSC",
+        "cadence_days": 7,
         "type": "github",
         "repo": "cosai-oasis/cosai-tsc",
         "path": "tsc-meeting-minutes",
@@ -73,6 +75,7 @@ SOURCES = [
     },
     {
         "name": "PGB",
+        "cadence_days": 14,
         "type": "github",
         "repo": "cosai-oasis/oasis-open-project",
         "path": "pgb-meeting-minutes",
@@ -84,6 +87,7 @@ SOURCES = [
     # ── Google Drive sources ──────────────────────────────────────────────────
     {
         "name": "WS1",
+        "cadence_days": 7,
         "type": "drive",
         # "WS1 > Meeting Summaries & Recordings > WS1 Meetings". The previous
         # ID pointed at the parent "Meeting Summaries & Recordings" folder,
@@ -104,6 +108,7 @@ SOURCES = [
     },
     {
         "name": "WS2",
+        "cadence_days": 14,
         "type": "drive",
         # "WS2 > Meeting Summaries & Recordings > WS2 Bi-weekly Meetings".
         # The previous ID was the parent folder (holding "WS2 Bi-weekly
@@ -129,6 +134,7 @@ SOURCES = [
     },
     {
         "name": "WS3",
+        "cadence_days": 14,
         "type": "drive",
         "folder_id": "1NFk_-2Plyi3qYr2qtrvt42AQhzJZB0Wf",
         "subdir": "ws3",
@@ -148,6 +154,7 @@ SOURCES = [
     },
     {
         "name": "WS4",
+        "cadence_days": 7,
         "type": "drive",
         "folder_id": "1TJl4yqWIdfPc8fKWiTO0CsmsmuecGxWa",
         "subdir": "ws4",
@@ -165,6 +172,7 @@ SOURCES = [
     },
     {
         "name": "ADLC",
+        "cadence_days": 7,
         "type": "drive",
         "folder_id": "1EkoOpMCtYahLu-sEhYrgNDmvPyTtgpit",
         "subdir": "adlc",
@@ -177,6 +185,7 @@ SOURCES = [
     },
     {
         "name": "Code-SIG",
+        "cadence_days": 7,
         "type": "drive",
         "folder_id": "1yKk-Mbbpowsk3gfRwGIT7UpMOJ-fDzdo",
         "subdir": "code-sig",
@@ -189,6 +198,7 @@ SOURCES = [
     },
     {
         "name": "RM-SIG",
+        "cadence_days": 7,
         "type": "drive",
         "folder_id": "1tboOFAyYHnJRlXqMO3Kdh6KrcAVVIpiB",
         "subdir": "rm-sig",
@@ -201,6 +211,7 @@ SOURCES = [
     },
     {
         "name": "WS3-Threat-Modeling",
+        "cadence_days": 7,
         "type": "drive",
         # "WS3 > Meeting Summaries & Recordings > WS3 Threat Modeling".
         "folder_id": "1oHMzV4uKRcPGpiqqU6tSkLB6zYGH1yPo",
@@ -214,6 +225,7 @@ SOURCES = [
     },
     {
         "name": "Telemetry-SIG",
+        "cadence_days": 7,
         "type": "drive",
         # Lives in the WS2 "Meeting Summaries & Recordings" tree, in the
         # Telemetry subfolder, so the folder_id is that subfolder rather than
@@ -234,6 +246,7 @@ SOURCES = [
     },
     {
         "name": "Agent-Credentials",
+        "cadence_days": 7,
         "type": "drive",
         "folder_id": "1Telz7CDwCgPNUyHlMwu9cBGl-keqP9z3",
         "subdir": "agent-credentials",
@@ -246,6 +259,7 @@ SOURCES = [
     },
     {
         "name": "WS4-Multimodal",
+        "cadence_days": 7,
         "type": "drive",
         # "WS4 > Meeting Summaries & Recordings > Multimodal Agentic Security".
         # This folder carries two distinct recurring meetings: the weekly
@@ -265,6 +279,7 @@ SOURCES = [
     },
     {
         "name": "WS4-Trust-Graph",
+        "cadence_days": 14,
         "type": "drive",
         # "WS4 > Meeting Summaries & Recordings > WS4 Trust Graph".
         # Match the recurring "Sync" and the original "Kick-off".
@@ -689,6 +704,99 @@ def fetch_github_source(source, output_dir, skip_existing):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
+# ── Staleness guard ──────────────────────────────────────────────────────────
+# Three separate sources (WS2, WS4, WS3) have had their Google Calendar event
+# renamed, which makes the title pattern stop matching. That failure is silent:
+# no error, no missing file, the group simply looks like it stopped meeting, and
+# the agenda reports "Did not meet". Each time it was caught only by querying
+# Drive by hand.
+#
+# This compares what actually landed on disk against each source's nominal
+# cadence. A weekly group with nothing for three weeks is far more likely a
+# broken pattern than a real gap, so it is worth a look even though a genuine
+# recess will also trip it. The check never fails the run — it prints what to
+# verify.
+# 2x cadence, floored at 14 days. Calibrated against the three renames that
+# actually happened: they were caught at 18, 35 and 40 days stale, so a 3x
+# multiplier (21/42-day thresholds) would have missed every one of them.
+# 2x flags all three while leaving a bi-weekly group one full missed meeting
+# of slack before it complains.
+STALENESS_CADENCE_MULTIPLIER = 2
+STALENESS_FLOOR_DAYS = 14
+
+DATE_IN_FILENAME = re.compile(r"(20\d{2})-?(\d{2})-?(\d{2})")
+
+
+def newest_meeting_date(directory):
+    """
+    Return the latest meeting date parsed from filenames in a directory.
+
+    Dates come from the filename, not the file's mtime: every file is rewritten
+    on each fetch, so mtime says when we last downloaded, not when the group
+    last met.
+    """
+    newest = None
+    if not directory.is_dir():
+        return None
+    for path in directory.glob("*.md"):
+        match = DATE_IN_FILENAME.search(path.name)
+        if not match:
+            continue  # undated aggregate (e.g. ws1/2025.md)
+        try:
+            found = date(*(int(g) for g in match.groups()))
+        except ValueError:
+            continue  # an 8-digit run that is not a calendar date
+        if newest is None or found > newest:
+            newest = found
+    return newest
+
+
+def check_source_staleness(sources, today=None):
+    """
+    Return [(name, newest_date, days_stale, threshold)] for suspect sources.
+
+    A source is suspect when its newest meeting on disk is older than
+    cadence_days * STALENESS_CADENCE_MULTIPLIER (at least STALENESS_FLOOR_DAYS).
+    Sources with no cadence configured, and those with no dated files at all,
+    are skipped — the latter is a different problem and already visible.
+    """
+    today = today or date.today()
+    suspect = []
+    for source in sources:
+        cadence = source.get("cadence_days")
+        if not cadence:
+            continue
+        directory = (
+            OUTPUT_DIR / source["subdir"] if source.get("subdir") else OUTPUT_DIR
+        )
+        newest = newest_meeting_date(directory)
+        if newest is None:
+            continue
+        threshold = max(cadence * STALENESS_CADENCE_MULTIPLIER,
+                        STALENESS_FLOOR_DAYS)
+        days_stale = (today - newest).days
+        if days_stale > threshold:
+            suspect.append((source["name"], newest, days_stale, threshold))
+    return sorted(suspect, key=lambda row: row[2], reverse=True)
+
+
+def report_staleness(sources, today=None):
+    """Print the staleness warning. Returns the suspect rows."""
+    suspect = check_source_staleness(sources, today)
+    if not suspect:
+        return suspect
+    print(f"\n⚠️  {len(suspect)} source(s) look stale — the most recent "
+          "meeting on disk is well past the expected cadence:")
+    for name, newest, days_stale, threshold in suspect:
+        print(f"   • {name}: newest {newest.isoformat()} "
+              f"({days_stale} days ago, expected within {threshold})")
+    print("   A renamed calendar event is the likeliest cause — it matches "
+          "nothing and reports no error.")
+    print("   Check the folder's document titles against "
+          "'shared_title_pattern' before trusting a \"Did not meet\".")
+    return suspect
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Fetch CoSAI meeting minutes from Drive and GitHub"
@@ -779,6 +887,10 @@ def main():
         f"\nDone: {total_fetched} fetched, {total_skipped} skipped, "
         f"{total_no_notes} without notes, {total_errors} errors"
     )
+
+    # Flag sources whose newest meeting is well past their cadence; a renamed
+    # calendar event looks exactly like a group that stopped meeting.
+    report_staleness(SOURCES)
 
 
 if __name__ == "__main__":
