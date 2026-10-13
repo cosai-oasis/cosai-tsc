@@ -132,11 +132,16 @@ SOURCES = [
         "type": "drive",
         "folder_id": "1NFk_-2Plyi3qYr2qtrvt42AQhzJZB0Wf",
         "subdir": "ws3",
-        # Titles are "WS3 bi-weekly meeting  - <date>" — note the double space
-        # before the dash, hence \s+ rather than a literal " ".
-        "shared_name_contains": "WS3 bi-weekly meeting",
+        # Titles vary: "WS3 bi-weekly meeting  - <date>" (note the double
+        # space before the dash, hence \s+) and, after a 2026-09 calendar
+        # rename, "CoSAI WS3 bi-weekly meeting (updated) - <date>". The older
+        # 2025 docs use "CoSAI WS3 recurring meeting". Match all three, or a
+        # rename silently hides real meetings — this is the third source where
+        # that has happened, after WS2 and WS4.
+        "shared_name_contains": "WS3",
         "shared_title_pattern": (
-            r"^WS3 bi-weekly meeting\s+- "
+            r"^(?:CoSAI )?WS3 (?:bi-weekly|recurring) meeting"
+            r"(?: \(updated(?: invite)?\))?\s+- "
             r"(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})"
         ),
         "shared_folder_name_template": "WS3-{y}{m}{d}",
