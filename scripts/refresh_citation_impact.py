@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Refresh the TSC's public, conservatively verified CoSAI citation report.
 
-Verified citations live in sources.json and are promoted by human reviewers.
+Verified citations live in sources.json and require supporting evidence.
 Public GitHub code search and Crossref expose additional unreviewed candidates;
 those candidates never change the verified headline counts automatically.
 """
@@ -9,6 +9,7 @@ those candidates never change the verified headline counts automatically.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import math
@@ -18,12 +19,12 @@ import subprocess
 import sys
 import time
 from collections import Counter
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode, urlparse
+from urllib.parse import quote, urlencode, urlparse
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -36,6 +37,9 @@ OWNER_DOMAINS = {"coalitionforsecureai.org", "oasis-open.org"}
 OWNER_REPOSITORIES = {"cosai-oasis", "project-codeguard"}
 KNOWN_MEMBER_OWNERS = {"google", "google-deepmind", "microsoft", "ibm", "cisco", "cisco-open", "ciscodevnet", "redhatproductsecurity"}
 EASTERN_TIME = ZoneInfo("America/New_York")
+CROSSREF_SEARCHES = ("Coalition for Secure AI", "CoSAI agentic security", "CoSAI Model Context Protocol")
+UNVERIFIED_STATUS = "Unverified / uncertain — not counted as verified"
+AUTOMATED_REPORT_URL = "https://github.com/cosai-oasis/cosai-tsc/tree/automation/citation-impact-report/TSC%20Deliverables/citation-impact"
 
 WORKS = {
     "Model Context Protocol (MCP) Security": (
@@ -85,14 +89,23 @@ WORKS = {
 }
 
 
+class FatalArgumentParser(argparse.ArgumentParser):
+    def error(self, message: str) -> None:
+        # Exit 2 is reserved for a valid but incomplete discovery snapshot.
+        self.print_usage(sys.stderr)
+        self.exit(1, f"{self.prog}: error: {message}\n")
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = FatalArgumentParser(description=__doc__)
     parser.add_argument("--discover", action="store_true", help="Look for new public GitHub and Crossref citations.")
     parser.add_argument("--skip-crossref", action="store_true", help="Skip Crossref, useful where api.crossref.org is unavailable.")
     parser.add_argument("--max-results-per-query", type=int, default=10, help="Maximum results fetched from each discovery query.")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--resume-from", type=Path, help="Restore candidate/checkpoint JSON only from this data directory.")
+    parser.add_argument("--discovery-budget-seconds", type=float, default=180, help="Global discovery time budget, including pacing and retries.")
     parser.add_argument("--as-of", type=date.fromisoformat, default=datetime.now(EASTERN_TIME).date(), help="Report date in YYYY-MM-DD format.")
-    parser.add_argument("--fail-on-discovery-error", action="store_true", help="Exit nonzero when a discovery provider cannot be reached.")
+    parser.add_argument("--fail-on-discovery-error", action="store_true", help="Exit 2 after saving an incomplete discovery snapshot; fatal errors use exit 1.")
     return parser.parse_args(argv)
 
 
@@ -130,39 +143,99 @@ def github_token() -> str | None:
     return process.stdout.strip() or None
 
 
-def request_json(url: str, *, headers: dict[str, str] | None = None) -> dict[str, Any]:
+def timestamp(value: float | None = None) -> str:
+    return datetime.fromtimestamp(time.time() if value is None else value, timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def timestamp_seconds(value: str | None) -> float:
+    if value is None:
+        return 0
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("Discovery timestamps must include a timezone")
+    return parsed.timestamp()
+
+
+class DiscoveryDeferred(TimeoutError):
+    """A provider must wait beyond this invocation's remaining budget."""
+
+
+class DiscoveryContext:
+    def __init__(self, state: dict[str, Any], budget_seconds: float, checkpoint: Any = None):
+        self.state = state
+        self.deadline = time.monotonic() + budget_seconds
+        self.checkpoint = checkpoint or (lambda: None)
+
+    def remaining(self) -> float:
+        return self.deadline - time.monotonic()
+
+    def provider(self, name: str) -> dict[str, Any]:
+        return self.state.setdefault("providers", {}).setdefault(name, {"next_retry_at": None, "last_request_at": None})
+
+    def before_request(self, name: str) -> float:
+        state = self.provider(name)
+        ready = timestamp_seconds(state.get("next_retry_at"))
+        if name == "github" and state.get("last_request_at"):
+            ready = max(ready, timestamp_seconds(state["last_request_at"]) + 7)
+        delay = max(0, ready - time.time())
+        if self.remaining() <= delay:
+            raise DiscoveryDeferred(f"{name} cannot run within the remaining discovery budget; next permitted request: {timestamp(ready) if ready else 'next invocation'}")
+        if delay:
+            print(f"{name}: waiting {delay:.1f}s before requesting (next permitted: {timestamp(ready)}).", file=sys.stderr, flush=True)
+            time.sleep(delay)
+        remaining = self.remaining()
+        if remaining <= 0:
+            raise DiscoveryDeferred("Global discovery budget exhausted; remaining queries will resume next time")
+        state["last_request_at"] = timestamp()
+        state["next_retry_at"] = None
+        self.checkpoint()
+        return min(30, remaining)
+
+    def defer_until(self, name: str, ready: float) -> None:
+        state = self.provider(name)
+        state["next_retry_at"] = timestamp(max(ready, timestamp_seconds(state.get("next_retry_at"))))
+        self.checkpoint()
+
+
+def request_json(url: str, *, headers: dict[str, str] | None = None, context: DiscoveryContext | None = None, provider: str | None = None) -> dict[str, Any]:
+    provider = provider or ("github" if urlparse(url).netloc == "api.github.com" else "crossref")
+    context = context or DiscoveryContext({}, 180)
     request = Request(url, headers={"User-Agent": "cosai-tsc-citation-impact/1.0", **(headers or {})})
-    waited = 0
     for attempt in range(5):
+        timeout = context.before_request(provider)
         try:
-            with urlopen(request, timeout=30) as response:
-                return json.load(response)
+            with urlopen(request, timeout=timeout) as response:
+                payload = json.load(response)
+                response_headers = getattr(response, "headers", {}) or {}
+                reset_at = response_headers.get("X-RateLimit-Reset")
+                if response_headers.get("X-RateLimit-Remaining") == "0" and isinstance(reset_at, str) and reset_at.isdigit():
+                    context.defer_until(provider, int(reset_at) + 1)
+                return payload
         except HTTPError as error:
             exhausted_search_limit = error.code in {403, 429} and error.headers is not None and error.headers.get("X-RateLimit-Remaining") == "0"
-            if (error.code not in {429, 500, 502, 503, 504} and not exhausted_search_limit) or attempt == 4:
-                raise
             retry_after = error.headers.get("Retry-After") if error.headers is not None else None
             reset_at = error.headers.get("X-RateLimit-Reset") if error.headers is not None else None
-            delay = 2 ** attempt
+            if error.code not in {429, 500, 502, 503, 504} and not exhausted_search_limit and not (error.code == 403 and retry_after):
+                raise
+            now = time.time()
+            usable_reset = exhausted_search_limit and reset_at and reset_at.isdigit()
+            ready = now + (60 if error.code in {403, 429} and not retry_after and not usable_reset else 2 ** attempt)
             if exhausted_search_limit:
                 if reset_at and reset_at.isdigit():
-                    delay = max(delay, math.ceil(int(reset_at) - time.time()) + 1)
-                elif not retry_after:
-                    raise TimeoutError(f"HTTP {error.code} from {urlparse(url).netloc}: rate limit has no usable reset time; not retrying early") from error
+                    ready = max(ready, int(reset_at) + 1)
             if retry_after:
                 if retry_after.isdigit():
-                    required_wait = int(retry_after)
+                    ready = max(ready, now + int(retry_after))
                 else:
                     try:
-                        required_wait = math.ceil(parsedate_to_datetime(retry_after).timestamp() - time.time())
+                        ready = max(ready, parsedate_to_datetime(retry_after).timestamp())
                     except (TypeError, ValueError, OverflowError) as invalid_header:
-                        raise TimeoutError(f"HTTP {error.code} from {urlparse(url).netloc}: unusable Retry-After; cannot safely retry") from invalid_header
-                delay = max(delay, required_wait)
-            print(f"HTTP {error.code} from {urlparse(url).netloc}: retry {attempt + 1}/4 requires {delay}s wait ({waited}s already waited).", file=sys.stderr, flush=True)
-            if delay > 60 or waited + delay > 120:
-                raise TimeoutError(f"HTTP {error.code} from {urlparse(url).netloc}: required retry wait of {delay}s exceeds the 60s per-retry or 120s total wait budget; not retrying early") from error
-            time.sleep(delay)
-            waited += delay
+                        context.defer_until(provider, now + 60)
+                        raise DiscoveryDeferred(f"HTTP {error.code} from {urlparse(url).netloc}: unusable Retry-After; query deferred") from invalid_header
+            context.defer_until(provider, ready)
+            print(f"HTTP {error.code} from {urlparse(url).netloc}: next permitted retry at {timestamp(ready)} ({math.ceil(ready - now)}s); attempt {attempt + 1}/5.", file=sys.stderr, flush=True)
+            if attempt == 4:
+                raise DiscoveryDeferred(f"{provider} exhausted five attempts; query and retry time saved for the next invocation") from error
     raise RuntimeError(f"Request retry loop terminated unexpectedly for {url}")
 
 
@@ -173,53 +246,28 @@ def source_snippet(item: dict[str, Any]) -> str:
     return " ".join(snippet.split())[:320]
 
 
-def discover_github(max_results: int) -> tuple[list[dict[str, Any]], list[str]]:
-    token = github_token()
-    if not token:
-        return [], ["GitHub code search was skipped because GITHUB_TOKEN/GH_TOKEN was unavailable."]
-
-    headers = {
-        "Accept": "application/vnd.github.text-match+json",
-        "Authorization": f"Bearer {token}",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
+def github_candidates(payload: dict[str, Any], work: str) -> list[dict[str, Any]]:
+    if not isinstance(payload.get("items"), list):
+        raise ValueError("GitHub discovery response has no items array")
     discovered: dict[str, dict[str, Any]] = {}
-    warnings: list[str] = []
-    for index, (work, (query, _)) in enumerate(WORKS.items(), start=1):
-        print(f"GitHub discovery {index}/{len(WORKS)}: {work}", file=sys.stderr, flush=True)
-        endpoint = f"{GITHUB_API}/search/code?{urlencode({'q': query, 'per_page': max_results})}"
-        try:
-            payload = request_json(endpoint, headers=headers)
-        except (HTTPError, URLError, TimeoutError) as error:
-            warnings.append(f"GitHub discovery for {work} failed: {error}")
-            print(f"WARNING: {warnings[-1]}", file=sys.stderr, flush=True)
-            if isinstance(error, TimeoutError):
-                break
+    for item in payload["items"]:
+        repository = item.get("repository", {})
+        full_name = repository.get("full_name", "")
+        url = item.get("html_url", "")
+        if not url or repository.get("private") is not False or repository.get("fork") or is_owner_controlled(url, full_name):
             continue
-
-        print(f"GitHub discovery returned {len(payload.get('items', []))} raw matches for {work}.", file=sys.stderr, flush=True)
-        for item in payload.get("items", []):
-            repository = item.get("repository", {})
-            full_name = repository.get("full_name", "")
-            url = item.get("html_url", "")
-            if not url or repository.get("fork") or is_owner_controlled(url, full_name):
-                continue
-            key = canonical_url(url)
-            candidate = discovered.setdefault(key, {
-                "publisher": full_name,
-                "title": item.get("path") or item.get("name") or full_name,
-                "url": url,
-                "matched_works": [],
-                "discovery_provider": "GitHub public code search",
-                "evidence": source_snippet(item),
-                "status": "Needs human review",
-                "publisher_relationship": "Known member-affiliated" if full_name.split("/", 1)[0].lower() in KNOWN_MEMBER_OWNERS else "Not established",
-            })
-            if work not in candidate["matched_works"]:
-                candidate["matched_works"].append(work)
-            if not candidate["evidence"]:
-                candidate["evidence"] = source_snippet(item)
-    return list(discovered.values()), warnings
+        key = canonical_url(url)
+        discovered[key] = {
+            "publisher": full_name,
+            "title": item.get("path") or item.get("name") or full_name,
+            "url": url,
+            "matched_works": [work],
+            "discovery_provider": "GitHub public code search",
+            "evidence": source_snippet(item),
+            "status": UNVERIFIED_STATUS,
+            "publisher_relationship": "Known member-affiliated" if full_name.split("/", 1)[0].lower() in KNOWN_MEMBER_OWNERS else "Not established",
+        }
+    return list(discovered.values())
 
 
 def crossref_text(item: dict[str, Any]) -> str:
@@ -234,44 +282,32 @@ def matched_works(text: str) -> list[str]:
     return [work for work, (_, terms) in WORKS.items() if any(term in lowered for term in terms)]
 
 
-def discover_crossref(max_results: int) -> tuple[list[dict[str, Any]], list[str]]:
-    searches = ("Coalition for Secure AI", "CoSAI agentic security", "CoSAI Model Context Protocol")
+def crossref_candidates(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    items = payload.get("message", {}).get("items")
+    if not isinstance(items, list):
+        raise ValueError("Crossref discovery response has no items array")
     found: dict[str, dict[str, Any]] = {}
-    warnings: list[str] = []
-    for index, query in enumerate(searches, start=1):
-        print(f"Crossref discovery {index}/{len(searches)}: {query}", file=sys.stderr, flush=True)
-        endpoint = f"{CROSSREF_API}?{urlencode({'query.bibliographic': query, 'rows': max_results})}"
-        try:
-            payload = request_json(endpoint)
-        except (HTTPError, URLError, TimeoutError) as error:
-            warnings.append(f"Crossref discovery for {query} failed: {error}")
-            print(f"WARNING: {warnings[-1]}", file=sys.stderr, flush=True)
-            if isinstance(error, TimeoutError):
-                break
+    for item in items:
+        text = crossref_text(item)
+        if not re.search(r"\bcoalition for secure ai\b|\bcosai\b", text, flags=re.IGNORECASE):
             continue
-
-        print(f"Crossref discovery returned {len(payload.get('message', {}).get('items', []))} raw matches for {query}.", file=sys.stderr, flush=True)
-        for item in payload.get("message", {}).get("items", []):
-            text = crossref_text(item)
-            if not re.search(r"\bcoalition for secure ai\b|\bcosai\b", text, flags=re.IGNORECASE):
-                continue
-            title = " ".join(item.get("title", []))
-            url = item.get("URL") or (f"https://doi.org/{item['DOI']}" if item.get("DOI") else "")
-            publisher = item.get("publisher", "Unknown publisher")
-            if not url or is_owner_controlled(url) or re.search(r"\boasis\b|coalition for secure ai", publisher, re.IGNORECASE):
-                continue
-            key = canonical_url(url)
-            found[key] = {
-                "publisher": publisher,
-                "title": title,
-                "url": url,
-                "matched_works": matched_works(text),
-                "discovery_provider": "Crossref scholarly metadata",
-                "evidence": " ".join(text.split())[:320],
-                "status": "Needs human review",
-                "publisher_relationship": "Not established",
-            }
-    return list(found.values()), warnings
+        title = " ".join(item.get("title", []))
+        url = item.get("URL") or (f"https://doi.org/{item['DOI']}" if item.get("DOI") else "")
+        publisher = item.get("publisher", "Unknown publisher")
+        if not url or is_owner_controlled(url) or re.search(r"\boasis\b|coalition for secure ai", publisher, re.IGNORECASE):
+            continue
+        key = canonical_url(url)
+        found[key] = {
+            "publisher": publisher,
+            "title": title,
+            "url": url,
+            "matched_works": matched_works(text),
+            "discovery_provider": "Crossref scholarly metadata",
+            "evidence": " ".join(text.split())[:320],
+            "status": UNVERIFIED_STATUS,
+            "publisher_relationship": "Not established",
+        }
+    return list(found.values())
 
 
 def merge_candidates(existing: list[dict[str, Any]], discovered: list[dict[str, Any]], verified: list[dict[str, Any]], as_of: date, excluded: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
@@ -298,8 +334,171 @@ def merge_candidates(existing: list[dict[str, Any]], discovered: list[dict[str, 
     return sorted(combined.values(), key=lambda item: (item.get("first_seen", ""), item.get("publisher", ""), item.get("title", "")))
 
 
+def discovery_queries(max_results: int) -> list[dict[str, str]]:
+    return [
+        {"id": f"github:{work}", "provider": "github", "label": work,
+         "url": f"{GITHUB_API}/search/code?{urlencode({'q': query + ' is:public', 'per_page': max_results})}"}
+        for work, (query, _) in WORKS.items()
+    ] + [
+        {"id": f"crossref:{query}", "provider": "crossref", "label": query,
+         "url": f"{CROSSREF_API}?{urlencode({'query.bibliographic': query, 'rows': max_results})}"}
+        for query in CROSSREF_SEARCHES
+    ]
+
+
+def query_plan(queries: list[dict[str, str]]) -> str:
+    return hashlib.sha256(json.dumps(queries, sort_keys=True).encode()).hexdigest()
+
+
+def stored_candidates(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    if not isinstance(payload, dict) or not isinstance(payload.get("candidates", []), list):
+        raise ValueError("Candidate data must be an object with a candidates array")
+    candidates = payload.get("candidates", [])
+    for item in candidates:
+        if not isinstance(item, dict) or not all(isinstance(item.get(key), str) for key in ("url", "title", "publisher")):
+            raise ValueError("Stored candidates require url, title and publisher strings")
+        if not item["url"].startswith("https://") or not isinstance(item.get("matched_works", []), list) or not all(isinstance(work, str) for work in item.get("matched_works", [])):
+            raise ValueError("Stored candidates require HTTPS URLs and string matched_works")
+    return candidates
+
+
+def merge_stored_candidates(payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Restoring saved data is not a new observation; keep its original dates."""
+    combined: dict[str, dict[str, Any]] = {}
+    for payload in payloads:
+        for item in stored_candidates(payload):
+            key = canonical_url(item["url"])
+            if key not in combined:
+                combined[key] = {**item, "status": UNVERIFIED_STATUS}
+                continue
+            current = combined[key]
+            current["matched_works"] = sorted(set(current.get("matched_works", [])) | set(item.get("matched_works", [])))
+            for field, choose in (("first_seen", min), ("last_seen", max)):
+                dates = [record[field] for record in (current, item) if record.get(field)]
+                if dates:
+                    current[field] = choose(dates)
+            if not current.get("evidence"):
+                current["evidence"] = item.get("evidence", "")
+    return list(combined.values())
+
+
+def validate_state(state: dict[str, Any]) -> None:
+    if not isinstance(state, dict) or state.get("schema_version") != 1:
+        raise ValueError("Unsupported discovery-state.json schema")
+    if not isinstance(state.get("query_plan"), str) or not isinstance(state.get("completed_queries"), list) or not all(isinstance(key, str) for key in state["completed_queries"]):
+        raise ValueError("Invalid discovery query checkpoint")
+    for field in ("updated_at", "round_started_at", "round_completed_at", "last_attempted", "last_completed"):
+        timestamp_seconds(state.get(field))
+    if not isinstance(state.get("providers", {}), dict) or not isinstance(state.get("query_warnings", {}), dict):
+        raise ValueError("Invalid discovery provider checkpoint")
+    if not all(isinstance(key, str) and isinstance(value, str) for key, value in state.get("query_warnings", {}).items()):
+        raise ValueError("Discovery warnings must be strings")
+    for provider in state.get("providers", {}).values():
+        if not isinstance(provider, dict):
+            raise ValueError("Invalid provider checkpoint")
+        timestamp_seconds(provider.get("next_retry_at"))
+        timestamp_seconds(provider.get("last_request_at"))
+    stored_candidates(state)
+
+
+def load_discovery_data(output_dir: Path, resume_from: Path | None, queries: list[dict[str, str]]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    payloads: list[dict[str, Any]] = []
+    states: list[dict[str, Any]] = []
+    for directory in dict.fromkeys([output_dir, *([resume_from.resolve()] if resume_from else [])]):
+        payloads.append(load_json(directory / "discovered-candidates.json", {"candidates": []}))
+        state_path = directory / "discovery-state.json"
+        if state_path.exists():
+            state = load_json(state_path, {})
+            validate_state(state)
+            states.append(state)
+            payloads.append(state)
+    fingerprint = query_plan(queries)
+    matching = [state for state in states if state["query_plan"] == fingerprint]
+    state = max(matching, key=lambda item: (timestamp_seconds(item.get("last_attempted")), len(set(item["completed_queries"])), timestamp_seconds(item.get("updated_at"))), default=None)
+    if state is None:
+        # Old last_refreshed/discovery_enabled metadata does not prove discovery completed.
+        state = {"schema_version": 1, "query_plan": fingerprint, "round_started_at": None,
+                 "round_completed_at": None, "completed_queries": [], "last_attempted": None,
+                 "last_completed": None, "providers": {}, "query_warnings": {}, "candidates": []}
+    query_ids = {query["id"] for query in queries}
+    if not set(state["completed_queries"]) <= query_ids:
+        raise ValueError("Checkpoint contains query IDs outside its query plan")
+    # A changed query plan does not waive a provider's persisted rate limit.
+    for previous in states:
+        for name, provider in previous.get("providers", {}).items():
+            current = state.setdefault("providers", {}).setdefault(name, {})
+            for field in ("next_retry_at", "last_request_at"):
+                values = [record.get(field) for record in (current, provider) if record.get(field)]
+                if values:
+                    current[field] = max(values, key=timestamp_seconds)
+    # Completion metadata is accepted only from the new schema and matching query plan.
+    for payload in payloads:
+        coverage = payload.get("query_coverage", {})
+        valid_metadata = (isinstance(coverage, dict) and coverage.get("total") == len(queries)
+                          and isinstance(coverage.get("completed"), int) and 0 <= coverage["completed"] <= len(queries)
+                          and payload.get("discovery_status") in {"complete", "partial", "not_run"}
+                          and (payload.get("discovery_status") != "complete" or coverage["completed"] == len(queries)))
+        if not matching and valid_metadata and payload.get("schema_version") == 1 and payload.get("query_plan") == fingerprint:
+            for field in ("last_attempted", "last_completed"):
+                value = payload.get(field)
+                if value and timestamp_seconds(value) > timestamp_seconds(state.get(field)):
+                    state[field] = value
+    return state, merge_stored_candidates(payloads)
+
+
+def atomic_write(path: Path, text: str) -> None:
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_text(text, encoding="utf-8")
+    temporary.replace(path)
+
+
+def run_discovery(queries: list[dict[str, str]], state: dict[str, Any], context: DiscoveryContext,
+                  verified: list[dict[str, Any]], excluded: list[dict[str, Any]], as_of: date,
+                  skip_crossref: bool, notices: list[str]) -> None:
+    token = github_token()
+    headers = {"Accept": "application/vnd.github.text-match+json", "Authorization": f"Bearer {token}", "X-GitHub-Api-Version": "2022-11-28"} if token else None
+    blocked: set[str] = set()
+    for index, query in enumerate(queries, start=1):
+        key, provider, label = query["id"], query["provider"], query["label"]
+        if key in state["completed_queries"] or provider in blocked:
+            continue
+        if provider == "github" and not token:
+            notices.append("GitHub code search was skipped because GITHUB_TOKEN/GH_TOKEN was unavailable.")
+            blocked.add(provider)
+            continue
+        if provider == "crossref" and skip_crossref:
+            notices.append("Crossref was explicitly skipped; its pending queries remain incomplete.")
+            blocked.add(provider)
+            continue
+        if context.remaining() <= 0:
+            notices.append("Global discovery budget exhausted; remaining queries will resume next time.")
+            break
+        print(f"{provider} discovery {index}/{len(queries)}: {label}", file=sys.stderr, flush=True)
+        try:
+            payload = request_json(query["url"], headers=headers if provider == "github" else None, context=context, provider=provider)
+        except (HTTPError, URLError, TimeoutError) as error:
+            warning = f"{provider} discovery for {label} incomplete: {error}"
+            state["query_warnings"][key] = warning
+            print(f"WARNING: {warning}", file=sys.stderr, flush=True)
+            if isinstance(error, TimeoutError) or (isinstance(error, HTTPError) and error.code in {401, 403, 429}):
+                blocked.add(provider)
+            context.checkpoint()
+            continue
+        discovered = github_candidates(payload, label) if provider == "github" else crossref_candidates(payload)
+        state["candidates"] = merge_candidates(state["candidates"], discovered, verified, as_of, excluded)
+        print(f"{provider} discovery retained {len(discovered)} external matches for {label}.", file=sys.stderr, flush=True)
+        if payload.get("incomplete_results", False):
+            state["query_warnings"][key] = f"{provider} returned incomplete_results for {label}; partial matches saved and this query will resume."
+        else:
+            state["completed_queries"].append(key)
+            state["query_warnings"].pop(key, None)
+        context.checkpoint()
+
+
 def markdown_link(label: str, url: str) -> str:
-    return f"[{label.replace('[', '(').replace(']', ')').replace('|', '&#124;')}]({url.replace(' ', '%20')})"
+    label = html.escape(" ".join(label.split()), quote=False).replace("[", "(").replace("]", ")").replace("|", "&#124;")
+    destination = quote(url, safe=":/?#[]@!$&'*+,;=%-._~")
+    return f"[{label}]({destination})"
 
 
 def discovery_review_entries(verified: list[dict[str, Any]], candidates: list[dict[str, Any]], excluded: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -313,7 +512,7 @@ def discovery_review_entries(verified: list[dict[str, Any]], candidates: list[di
             "status": "Verified — included in totals",
         }
         for item in verified]
-    entries.extend({**item, "status": "Pending human review — not counted"} for item in candidates)
+    entries.extend({**item, "status": UNVERIFIED_STATUS} for item in candidates)
     for item in excluded:
         parts = [part for part in urlparse(item["source_url"]).path.split("/") if part]
         publisher = "/".join(parts[:2]) if len(parts) >= 2 else urlparse(item["source_url"]).netloc
@@ -328,7 +527,7 @@ def discovery_review_entries(verified: list[dict[str, Any]], candidates: list[di
     return sorted(entries, key=lambda item: (item["publisher"].casefold(), item["title"].casefold()))
 
 
-def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any]], warnings: list[str], as_of: date, discovery_enabled: bool, excluded: list[dict[str, Any]] | None = None) -> str:
+def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any]], warnings: list[str], as_of: date, discovery_enabled: bool, excluded: list[dict[str, Any]] | None = None, discovery_metadata: dict[str, Any] | None = None) -> str:
     citing = [item for item in verified if item.get("cosai_works")]
     mentions = [item for item in verified if not item.get("cosai_works")]
     edges = sum(len(item.get("cosai_works", [])) for item in citing)
@@ -341,14 +540,23 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
     discovered_verified = sum(item["status"].startswith("Verified") for item in review_entries)
     preferred_sources = ("C96", "C60", "C61", "C82", "C97", "C53", "C92", "C95", "C31", "C01", "C02", "C04", "C05", "C08", "C09", "C10", "C30", "C32", "C33")
     source_priority = {identifier: position for position, identifier in enumerate(preferred_sources)}
+    metadata = discovery_metadata or {}
+    coverage = metadata.get("query_coverage", {})
+    status = metadata.get("discovery_status", "partial" if discovery_enabled else "not_run")
 
     lines = [
         "# CoSAI Citation and External Impact",
         "",
         "> [!NOTE]",
         f"> **Last updated: {as_of.strftime('%B %-d, %Y')}**",
+        "> Snapshot generation date, not evidence that every discovery query completed.",
+        f"> **Discovery status: {status}.** Current round: **{coverage.get('completed', 0)} of {coverage.get('total', 'unrecorded')} configured queries completed**.",
+        f"> Last attempted: **{metadata.get('last_attempted') or 'not recorded'}**. Last fully completed query round: **{metadata.get('last_completed') or 'not recorded'}**.",
+        "> Automated discovery does not re-verify existing sources in the verified registry.",
         ">",
-        "> Scheduled refresh: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).",
+        "> Configured refresh schedule: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).",
+        "",
+        f"**Automatically published report:** [Latest discovery snapshot]({AUTOMATED_REPORT_URL}). The `main` branch may contain an older snapshot.",
         "",
         "**Scope:** Publicly discoverable references to Coalition for Secure AI publications and frameworks.",
         "",
@@ -360,6 +568,7 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         f"| Total citations | **{edges}** | Those {len(citing)} publications create {edges} citation relationships because some reference multiple CoSAI works. |",
         f"| Type of use | **{formal} formal; {substantive} substantive** | Of the same {len(citing)} publications, {formal} cite CoSAI formally and {substantive} discuss or apply its work. |",
         f"| Organization-only mentions | **{len(mentions)} additional; {len(verified)} total** | Another {len(mentions)} publications mention CoSAI without citing a specific work, bringing the overall total to {len(verified)}. |",
+        f"| Unverified / uncertain findings | **{len(candidates)}** | Automatically published discoveries; not included in verified publication or citation totals. |",
         "",
         "Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.",
         "",
@@ -436,12 +645,12 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "",
         "## Discovery and review status",
         "",
-        f"The discovery log contains **{len(review_entries)} references**: **{discovered_verified} verified and counted**, **{len(candidates)} awaiting review**, and **{len(excluded or [])} excluded as false positives, copied materials or duplicates**. The remaining **{len(verified) - discovered_verified} verified sources** were found through direct research and are included in the complete source register above.",
+        f"The discovery log contains **{len(review_entries)} references**: **{discovered_verified} verified and counted**, **{len(candidates)} unverified / uncertain**, and **{len(excluded or [])} excluded as false positives, copied materials or duplicates**.",
         "",
         "<details>",
-        f"<summary>View all {len(review_entries)} reviewed references</summary>",
+        f"<summary>View all {len(review_entries)} references</summary>",
         "",
-        "| External reference | CoSAI works identified | Review status |",
+        "| External reference | CoSAI works identified | Verification status |",
         "| --- | --- | --- |",
     ]
     for item in review_entries:
@@ -452,15 +661,22 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         "",
         "</details>",
         "",
-        "## New references awaiting review",
+        "## Unverified / uncertain discoveries",
         "",
     ]
-    if discovery_enabled:
-        lines.append(f"The scheduled refresh identified **{len(candidates)} candidate references**. These are **not included** in the verified counts until a reviewer confirms and promotes them to [`sources.json`](sources.json).")
-    elif candidates:
-        lines.append(f"There are **{len(candidates)} previously discovered candidate references** awaiting review. Run the scheduled workflow or use `--discover` to search again.")
-    else:
-        lines.append("All currently discovered references have been reviewed. Newly discovered sources will appear here after a scheduled or manual refresh.")
+    metadata = discovery_metadata or {}
+    coverage = metadata.get("query_coverage", {})
+    status = metadata.get("discovery_status", "partial" if discovery_enabled else "not_run")
+    lines += [
+        f"**Discovery status: {status}.** Last attempted: **{metadata.get('last_attempted') or 'not recorded'}**. Last fully completed query round: **{metadata.get('last_completed') or 'not recorded'}**.",
+        "",
+    ]
+    if coverage:
+        lines.append(f"Current round: **{coverage['completed']} of {coverage['total']} configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.")
+        lines.append("")
+    lines.append("Completion means the configured, result-capped GitHub and Crossref queries finished; it does not mean exhaustive coverage of the web or all scholarly citations.")
+    lines.append("")
+    lines.append(f"There are **{len(candidates)} candidate references**, including retained findings from earlier attempts. These are automatically published as **unverified / uncertain** and are **not included** in verified totals. Only evidence-supported entries in [`sources.json`](sources.json) contribute to verified counts.")
     if candidates:
         lines += ["", "<details>", f"<summary>View {min(len(candidates), 15)} candidate references</summary>", ""]
         for candidate in candidates[:15]:
@@ -474,11 +690,12 @@ def render_report(verified: list[dict[str, Any]], candidates: list[dict[str, Any
         lines.extend(f"- {warning}" for warning in warnings)
     lines += [
         "",
-        "## Refresh and review",
+        "## Refresh and verification",
         "",
-        "- GitHub Actions refreshes this report every Monday at 12:00 p.m. Eastern Time, including daylight-saving changes, and can also be started manually.",
-        "- The workflow opens or updates a pull request; new candidates never increase verified counts automatically.",
-        "- To verify a candidate, inspect its source, add it to [`sources.json`](sources.json), and preserve its `discovery_provider` field. The next refresh recalculates all totals and keeps its discovery-review history.",
+        "- GitHub Actions is configured for Mondays at 12:00 p.m. Eastern Time, including daylight-saving changes, and can also be started manually.",
+        "- Scheduled publication requires this workflow version to be installed on `main`; a successful manual publication does not establish that the scheduled workflow is active.",
+        "- The workflow automatically publishes complete and partial snapshots on `automation/citation-impact-report`; uncertain findings do not require review before publication and never increase verified counts automatically.",
+        "- Evidence-supported citations belong in [`sources.json`](sources.json), with their `discovery_provider` preserved. Entries without sufficient support remain visibly unverified / uncertain.",
         "- To reject copied or duplicative material, record its source, matched works and reason in [`excluded-sources.json`](excluded-sources.json). Future refreshes will not rediscover it as pending.",
         "- GitHub code search discovers public code/documentation references; Crossref adds matching scholarly metadata. General-web discovery can be added later through an approved search provider.",
         "",
@@ -491,6 +708,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if args.max_results_per_query < 1 or args.max_results_per_query > 100:
         raise ValueError("--max-results-per-query must be between 1 and 100")
+    if not math.isfinite(args.discovery_budget_seconds) or args.discovery_budget_seconds <= 0:
+        raise ValueError("--discovery-budget-seconds must be a positive finite number")
     output_dir = args.output_dir.resolve()
     verified_path = output_dir / "sources.json"
     excluded_path = output_dir / "excluded-sources.json"
@@ -514,34 +733,64 @@ def main(argv: list[str] | None = None) -> int:
     if verified_urls & excluded_urls:
         raise ValueError("A source cannot be both verified and excluded")
 
-    existing_payload = load_json(candidates_path, {"candidates": []})
-    existing = existing_payload.get("candidates", [])
-    discovered: list[dict[str, Any]] = []
-    warnings: list[str] = []
+    queries = discovery_queries(args.max_results_per_query)
+    state, existing = load_discovery_data(output_dir, args.resume_from, queries)
+    state["candidates"] = merge_candidates(existing, [], verified, args.as_of, excluded)
+    notices: list[str] = []
     if args.discover:
-        github_results, github_warnings = discover_github(args.max_results_per_query)
-        discovered.extend(github_results)
-        warnings.extend(github_warnings)
-        if not args.skip_crossref:
-            crossref_results, crossref_warnings = discover_crossref(args.max_results_per_query)
-            discovered.extend(crossref_results)
-            warnings.extend(crossref_warnings)
-    candidates = merge_candidates(existing, discovered, verified, args.as_of, excluded)
-    candidates_payload = {
-        "last_refreshed": args.as_of.isoformat(),
-        "description": "Unreviewed external CoSAI references; not included in verified citation totals.",
-        "discovery_enabled": args.discover,
-        "discovery_warnings": warnings,
-        "candidates": candidates,
-    }
-    candidates_path.write_text(json.dumps(candidates_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    report_path.write_text(render_report(verified, candidates, warnings, args.as_of, args.discover, excluded), encoding="utf-8")
+        if len(set(state["completed_queries"])) == len(queries):
+            state["completed_queries"] = []
+            state["query_warnings"] = {}
+            state["round_started_at"] = None
+            state["round_completed_at"] = None
+        state["round_started_at"] = state.get("round_started_at") or timestamp()
+        state["last_attempted"] = timestamp()
+
+    candidates_payload: dict[str, Any] = {}
+
+    def checkpoint() -> None:
+        nonlocal candidates_payload
+        completed = len(set(state["completed_queries"]))
+        status = ("complete" if completed == len(queries) else "partial") if args.discover else "not_run"
+        if status == "complete" and not state.get("round_completed_at"):
+            state["round_completed_at"] = timestamp()
+            state["last_completed"] = state["round_completed_at"]
+        state["updated_at"] = timestamp()
+        warnings = list(dict.fromkeys([*notices, *state.get("query_warnings", {}).values()]))
+        candidates_payload = {
+            "schema_version": 1,
+            "query_plan": state["query_plan"],
+            "last_refreshed": args.as_of.isoformat(),
+            "last_attempted": state.get("last_attempted"),
+            "last_completed": state.get("last_completed"),
+            "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
+            "discovery_enabled": args.discover,
+            "discovery_status": status,
+            "discovery_warnings": warnings,
+            "query_coverage": {"completed": completed, "total": len(queries), "round_started_at": state.get("round_started_at"),
+                               "per_provider": {provider: {"completed": sum(query["id"] in state["completed_queries"] for query in queries if query["provider"] == provider),
+                                                          "total": sum(query["provider"] == provider for query in queries)} for provider in ("github", "crossref")}},
+            "candidates": state["candidates"],
+        }
+        report = render_report(verified, state["candidates"], warnings, args.as_of, args.discover, excluded, candidates_payload)
+        # The checkpoint contains candidates as well as query progress, so a later
+        # interrupted write cannot make resumed progress lose already found data.
+        atomic_write(output_dir / "discovery-state.json", json.dumps(state, indent=2, ensure_ascii=False) + "\n")
+        atomic_write(candidates_path, json.dumps(candidates_payload, indent=2, ensure_ascii=False) + "\n")
+        atomic_write(report_path, report)
+
+    checkpoint()
+    if args.discover:
+        context = DiscoveryContext(state, args.discovery_budget_seconds, checkpoint)
+        run_discovery(queries, state, context, verified, excluded, args.as_of, args.skip_crossref, notices)
+    checkpoint()
     print(f"Verified sources: {len(verified)}")
     print(f"Verified work-level citations: {sum(len(item.get('cosai_works', [])) for item in verified)}")
-    print(f"Unreviewed discovery candidates: {len(candidates)}")
-    for warning in warnings:
+    print(f"Unverified / uncertain discovery candidates: {len(state['candidates'])}")
+    print(f"Discovery status: {candidates_payload['discovery_status']} ({candidates_payload['query_coverage']['completed']}/{len(queries)} queries complete)")
+    for warning in candidates_payload["discovery_warnings"]:
         print(f"WARNING: {warning}", file=sys.stderr)
-    return 1 if warnings and args.fail_on_discovery_error else 0
+    return 2 if args.fail_on_discovery_error and candidates_payload["discovery_status"] == "partial" else 0
 
 
 if __name__ == "__main__":

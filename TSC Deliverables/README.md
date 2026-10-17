@@ -22,7 +22,7 @@ external publications.
 
 ## 📋 Quick Links
 - [📊 Roadmap Snapshot](./roadmap.md)
-- [📈 CoSAI Citation and External Impact](./citation-impact/README.md)
+- [📈 CoSAI Citation and External Impact — live report](https://github.com/cosai-oasis/cosai-tsc/blob/automation/citation-impact-report/TSC%20Deliverables/citation-impact/README.md)
 - [🗂 GitHub Projects Roadmap Board](../../projects)
 - [➕ Propose a New Deliverable](../../issues/new/choose)
 - [📄 All Paper Deliverables](../../issues?q=is%3Aopen+label%3Adeliverable-paper)
