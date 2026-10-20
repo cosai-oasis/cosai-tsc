@@ -32,7 +32,7 @@ The calendar for TSC meetings can be found [here](https://lists.oasis-open-proje
 
 In this repository, you can find meeting minutes and documentation of policies that have be created and approved by the TSC, like the [Contributing](./CONTRIBUTING.md) and [Maintainer](./MAINTAINERS.md) policies. This repository also includes organization level documents created by workstreams and approved by the TSC such as the [CoSAI Principles for Secure-by-Design Agentic Systems](./security-principles-for-agentic-systems.md).
 
-The [CoSAI Citation and External Impact report](./TSC%20Deliverables/citation-impact/README.md) tracks verified references to CoSAI publications and frameworks. It is refreshed every Monday at noon Eastern and surfaces new public citations for TSC review.
+The [live CoSAI Citation and External Impact report](https://github.com/cosai-oasis/cosai-tsc/blob/automation/citation-impact-report/TSC%20Deliverables/citation-impact/README.md) is published automatically every Monday at noon Eastern. Verified citations and automatically discovered, unverified findings are shown separately; incomplete searches are explicitly marked. See the [automation notes](./TSC%20Deliverables/citation-impact/AUTOMATION.md).
 
 ## Governance and Licenses
 
