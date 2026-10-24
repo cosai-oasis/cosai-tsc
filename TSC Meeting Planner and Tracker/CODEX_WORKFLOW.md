@@ -1,35 +1,36 @@
 # Running the TSC workflow in Codex
 
-Use Codex for transcript analysis and agenda drafting, with the connected Google Drive account for meeting-source access. This route does not require a LiteLLM key, a separate model API, or a `gws` OAuth client.
+Use Codex for transcript analysis and agenda drafting, with the native Google Drive connector for meeting-source access. Follow the format and source rules in [the agenda skill](../skills/cosai-tsc-meeting-agenda.md).
 
-The repository's original Python scripts are unchanged: `process_transcript.py` and `generate_tsc_agenda.py` still use the configured Claude/LiteLLM endpoint when invoked directly. `fetch_meeting_minutes.py` still requires `gws` for its Drive path. The Codex route below performs the equivalent work using the same source directories and agenda rules.
+The original Python scripts remain unchanged. `process_transcript.py` and `generate_tsc_agenda.py` require their configured Claude/LiteLLM endpoint. `fetch_meeting_minutes.py` uses `gws` for Drive access. The workflow below uses Codex and the Drive connector for those steps; it does not claim that the scripts' model calls or `gws` authentication ran successfully.
 
-## Each meeting cycle
+## 1. Process the completed meeting transcript
 
-1. Read `skills/cosai-tsc-meeting-agenda.md`, the latest two committed TSC meeting records, and the current roadmap. Establish the completed meeting date and next agenda date. Do not overwrite an existing agenda.
-2. Verify the connected Drive account is the intended account and verify `gh auth status`. No Google login is needed when the connector is already authenticated and can access the source folders.
-3. Fetch TSC/PGB history with `.venv/bin/python scripts/fetch_meeting_minutes.py --github-only`. Read its fetched/skipped/error counts; a successful process exit alone is insufficient.
-4. Read the authoritative folder IDs in `scripts/fetch_meeting_minutes.py`. List each of the 12 workstream/SIG folders, including dated subfolders where relevant, and check alternative titles/shared documents when recent notes appear absent. Export the relevant native Docs as Markdown through the Drive connector into `meeting_minutes/<group>/YYYY-MM-DD.md`. Preserve complete exports, record source URLs, and verify downloaded sizes and SHA-256 hashes. For agenda drafting, retrieve all available notes in the 14-day window plus the most recent prior record for groups with no in-window notes. This is an agenda-source refresh, not a complete Drive-history mirror.
-5. Snapshot all open Issues with bodies, labels, owners, assignees, and comments, plus recently closed Issues. Analyze the completed TSC record in Codex. Match follow-ups to existing Issues before proposing new ones. Do not infer completion, appointment approval, or publication from a proposal or draft minutes.
-6. Save an exact reconciliation plan under `workflow_runs/<run-date>/`. Follow the agenda skill's explicit-confirmation rule for reconciliation. After the user approves the concrete plan, recheck that affected Issues have not changed, apply only that plan, and verify each write through GitHub readback. Save an operation receipt. Do not regenerate a different plan during application.
-7. Refresh the Issue snapshot after reconciliation. Draft `TSC Meeting Planner and Tracker/meetings/YYYY-MM-DD.md` in Codex, following the agenda skill's six sections and full group names. Copy the Active Deliverables table directly from the current roadmap. Cite meeting sources. Record missing evidence as unknown rather than asserting a group did not meet.
-8. Validate the meeting date/time, every eligible Issue's inclusion exactly once in its proper section, all 12 group rows, and the exact 13-row roadmap snapshot (or the current roadmap's actual row count). Check owner/presenter conflicts, draft-versus-approved wording, and source freshness. Review the local draft before publishing it.
+Read the latest completed meeting's committed record in `tsc-meeting-minutes/YYYY-MM-DD.md`. If it has not been fetched yet, retrieve that prerequisite first. Snapshot current open Issues, their comments, and recently closed Issues, then match the transcript's follow-ups to existing trackers before proposing new ones. Treat draft minutes as draft evidence; do not infer completion, appointment approval, or publication.
 
-## Local files and privacy
+Save an exact reconciliation plan outside the minutes cache. The agenda skill requires separately confirmed reconciliation. After approval, recheck affected Issues, apply only that plan, and verify each write through readback. On a rerun, skip changes already present and preserve later human edits or deletions. Never regenerate a different plan during application.
 
-- `meeting_minutes/` contains source material and is ignored by Git.
-- `workflow_runs/` contains snapshots, plans, manifests, validation reports, and receipts and is ignored by Git. Keep these outside the meeting-source directories so the agenda generator cannot read a receipt as meeting minutes.
+## 2. Fetch meeting minutes
+
+Verify the GitHub identity and connected Drive account. An authenticated Drive connector with access to the source folders does not require a separate `gws` login.
+
+Fetch the TSC and PGB GitHub sources with the original Python fetcher. Check its fetched/skipped/error counts; process exit alone does not establish completeness. Use a separate output directory for a new run, or `--skip-existing` when preserving an existing cache. That flag does not refresh files already present.
+
+Read the folder IDs from `scripts/fetch_meeting_minutes.py`. List all 12 workstream/SIG folders and inspect relevant dated subfolders and alternative titles. Export all available notes in the agenda's 14-day window, plus the latest older record when a group has no in-window notes. Keep complete exports in `meeting_minutes/<group>/YYYY-MM-DD.md`, record canonical source URLs, and verify download sizes and hashes. This is an agenda-source refresh, not a complete Drive-history mirror.
+
+Read each group's minutes individually, the latest two TSC records, and the latest PGB record. Review summaries, decisions, and next steps, and consult detailed notes when wording is ambiguous. Record the source dates and any gaps. A missing recent file does not prove that a meeting did not happen.
+
+## 3. Generate, review, and publish the agenda
+
+Refresh Issues and the roadmap, then draft `TSC Meeting Planner and Tracker/meetings/YYYY-MM-DD.md` using the skill's six sections. Keep a separate draft when preserving an existing output; replace the canonical date file when the user authorizes revision.
+
+Route every eligible Issue exactly once, with the feature-presentation overlay taking precedence. Copy the Active Deliverables table from the current roadmap. Cite meeting sources and flag uncertain dates, presenter/owner conflicts, and draft-versus-approved distinctions.
+
+Validate the date/time, all eligible Issues, all 12 group rows, and the exact roadmap table. When publishing is authorized, review the complete diff, commit the intended agenda/guidance changes, push the branch, and open a PR for co-chair review. Opening a PR does not mean the agenda has been merged or approved.
+
+## Local evidence
+
+- `meeting_minutes/` contains downloaded sources and is ignored by Git.
+- `workflow_runs/` contains plans, snapshots, manifests, validation reports, and receipts and is ignored by Git. Keep these outside the minutes directories so the generator cannot mistake them for meeting notes.
 - `.venv/` contains the local Python environment and is ignored by Git.
-- Only agenda/guidance files and intentional repository changes should be reviewed for commit. Source downloads and credentials must not be committed.
-
-## October 24, 2026 run
-
-- Fresh clone: `cosai-oasis/cosai-tsc`, base commit `5d7c72aa2d4f3b8904a892826c83756b6e51d119`.
-- Branch: `codex/tsc-agenda-2026-10-27`.
-- GitHub account: `panda-oai`; Drive account: `panda@openai.com`.
-- Transcript: October 20; draft agenda: October 27.
-- Fetched 41 TSC and 10 PGB Markdown files, plus 19 complete Drive Markdown exports from all 12 configured groups.
-- Approved reconciliation: nine status comments, new Issues #125 and #126, zero closures; every write read back and verified.
-- Dependencies from `requirements.txt` installed in `.venv`. The pinned Python 3.11.11 executable was terminated by the local host; this run used the existing Python 3.12.12 runtime. The 82 existing tests for the three workflow scripts passed under that runtime.
-- No separate `gws` installation/login or Claude/LiteLLM request was performed. The existing Drive connector and Codex supplied those parts of this run.
-- Sources are current only through October 24. Refresh before the October 27 meeting. WS3's latest located main-workstream notes are October 1; the agenda flags this gap. Presenter, appointment outcome, owner-field inconsistencies, and roadmap currency require co-chair review.
+- Commit only intentional repository changes. Do not commit downloaded source caches, credentials, or local execution logs.
