@@ -19,7 +19,7 @@ concurrency:
 jobs:
   refresh-report:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     permissions:
       contents: write
 
@@ -35,9 +35,7 @@ jobs:
           python-version: "3.12"
 
       - name: Validate report generation and isolated publication
-        run: |
-          python -m unittest discover -s scripts/tests -p 'test_refresh_citation_impact.py' -v
-          python -m unittest discover -s scripts/tests -p 'test_citation_report_branch.py' -v
+        run: python -m unittest discover -s scripts/tests -p 'test_*citation*.py' -v
 
       - name: Restore previous discovery progress as data only
         id: restore
@@ -45,19 +43,38 @@ jobs:
 
       - name: Refresh report and discover public references
         id: refresh
-        timeout-minutes: 5
+        # All attempts and cooldowns share a 20-minute budget, with time left
+        # for checkpointing, artifacts, and publication before the job timeout.
+        timeout-minutes: 22
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set +e
-          python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --discovery-budget-seconds 180 --resume-from "$RUNNER_TEMP/citation-resume" --fail-on-discovery-error
-          status=$?
-          set -e
-          # Exit 2 is explicit, resumable partial discovery. Other failures must
-          # never publish potentially stale or invalid report files.
-          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then
-            exit "$status"
-          fi
+          started=$SECONDS
+          status=2
+          for attempt in 1 2 3; do
+            remaining=$((1200 - (SECONDS - started)))
+            if [ "$remaining" -le 0 ]; then
+              break
+            fi
+            echo "Discovery attempt $attempt/3; completed queries and provider cooldowns are restored from checkpoints."
+            if python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --discovery-budget-seconds "$remaining" --resume-from "$RUNNER_TEMP/citation-resume" --fail-on-discovery-error; then
+              status=0
+              break
+            else
+              status=$?
+            fi
+            # Only exit 2 is a valid partial snapshot. Fatal errors must stop
+            # immediately and cannot publish checked-in or stale output.
+            if [ "$status" -ne 2 ]; then
+              exit "$status"
+            fi
+            if [ "$attempt" -lt 3 ] && [ "$((1200 - (SECONDS - started)))" -gt 60 ]; then
+              echo "Discovery is partial; pausing 60 seconds before resuming unfinished queries."
+              sleep 60
+            else
+              break
+            fi
+          done
           echo "exit_code=$status" >> "$GITHUB_OUTPUT"
 
       - name: Preserve refresh output for diagnosis

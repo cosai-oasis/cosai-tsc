@@ -133,6 +133,24 @@ class CitationImpactTests(unittest.TestCase):
 
 
 class RequestTests(ClockTests):
+    def test_temporary_network_failures_retry_then_succeed(self):
+        for failure in (REFRESH.URLError("connection reset"), TimeoutError("read timed out")):
+            with self.subTest(failure=type(failure).__name__):
+                self.clock.now = 1000
+                self.clock.sleeps = []
+                with mock.patch.object(REFRESH, "urlopen", side_effect=[failure, response()]) as request:
+                    self.assertEqual(REFRESH.request_json(REFRESH.GITHUB_API), {"items": []})
+                self.assertEqual(request.call_count, 2)
+                self.assertEqual(self.clock.sleeps, [7])
+
+    def test_persistent_network_failure_is_bounded_and_checkpoints_retry(self):
+        state = {}
+        with mock.patch.object(REFRESH, "urlopen", side_effect=REFRESH.URLError("offline")) as request:
+            with self.assertRaisesRegex(REFRESH.DiscoveryDeferred, "five network attempts"):
+                REFRESH.request_json(REFRESH.GITHUB_API, context=REFRESH.DiscoveryContext(state, 180))
+        self.assertEqual(request.call_count, 5)
+        self.assertGreater(REFRESH.timestamp_seconds(state["providers"]["github"]["next_retry_at"]), self.clock.now)
+
     def test_github_requests_and_retries_are_paced(self):
         context = REFRESH.DiscoveryContext({}, 180)
         unavailable = HTTPError(REFRESH.GITHUB_API, 503, "Unavailable", {}, None)
@@ -156,6 +174,15 @@ class RequestTests(ClockTests):
             self.assertEqual(REFRESH.request_json(REFRESH.GITHUB_API), {"items": []})
         self.assertEqual(request.call_count, 2)
         self.assertEqual(self.clock.sleeps, [75])
+
+    def test_observed_twelve_minute_cooldown_fits_workflow_budget(self):
+        limited = HTTPError(REFRESH.GITHUB_API, 429, "Limited", {"Retry-After": "730"}, None)
+        context = REFRESH.DiscoveryContext({}, 1200)
+        with mock.patch.object(REFRESH, "urlopen", side_effect=[limited, response()]) as request:
+            self.assertEqual(REFRESH.request_json(REFRESH.GITHUB_API, context=context), {"items": []})
+        self.assertEqual(request.call_count, 2)
+        self.assertEqual(self.clock.sleeps, [730])
+        self.assertEqual(context.remaining(), 470)
 
     def test_long_retry_persisted_and_respected_across_invocations(self):
         state = {}
