@@ -16,6 +16,10 @@ The `Refresh CoSAI Citation Impact Report` workflow runs Mondays at noon in `Ame
 
 Searches are paced, retry headers are respected, and a bounded discovery budget prevents silent, hour-long waits. A deferred provider records when it can be retried; a later run resumes unfinished queries. Fatal errors and failed tests prevent publication. Incomplete discovery can publish its labelled results while still reporting an unsuccessful discovery-health check.
 
+Each workflow run makes up to three discovery attempts, with a three-minute budget per attempt and a one-minute pause before each retry. Later attempts resume only unfinished queries and honor saved provider cooldowns. Temporary network failures are also retried within the attempt budget. If all attempts remain incomplete, the workflow publishes the labelled partial snapshot and fails its final health check; a later run can continue from that checkpoint. Fatal errors stop immediately. The discovery step is limited to 12 minutes and the entire job to 15 minutes.
+
+The separate `Test CoSAI Citation Impact Automation` workflow runs offline regression and publication tests on relevant pushes and pull requests, so syntax or recovery failures are caught before the next scheduled refresh.
+
 Inspect the run summary and the `citation-impact-refresh` artifact for diagnostics. Artifact presence alone is not proof of a completed search. Check `discovery_status`, `last_attempted`, `last_completed`, and `discovery_warnings` in `discovered-candidates.json`; resumable progress lives in `discovery-state.json`.
 
 `sources.json` and `excluded-sources.json` are never automatically rewritten by discovery. No broader token, branch-protection bypass, or repository setting change is required for routine report publication. Installing changes to the workflow on `main` still follows the repository's normal code-review rules.

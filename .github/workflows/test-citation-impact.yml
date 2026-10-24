@@ -1,0 +1,30 @@
+name: Test CoSAI Citation Impact Automation
+
+on:
+  push:
+    paths:
+      - 'scripts/*citation*.py'
+      - 'scripts/tests/test_*citation*.py'
+      - '.github/workflows/*citation*.yml'
+  pull_request:
+    paths:
+      - 'scripts/*citation*.py'
+      - 'scripts/tests/test_*citation*.py'
+      - '.github/workflows/*citation*.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test generation, recovery, and isolated publication without network calls
+        run: python -m unittest discover -s scripts/tests -p 'test_*citation*.py' -v

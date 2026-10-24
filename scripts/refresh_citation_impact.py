@@ -236,6 +236,14 @@ def request_json(url: str, *, headers: dict[str, str] | None = None, context: Di
             print(f"HTTP {error.code} from {urlparse(url).netloc}: next permitted retry at {timestamp(ready)} ({math.ceil(ready - now)}s); attempt {attempt + 1}/5.", file=sys.stderr, flush=True)
             if attempt == 4:
                 raise DiscoveryDeferred(f"{provider} exhausted five attempts; query and retry time saved for the next invocation") from error
+        except (URLError, TimeoutError) as error:
+            # Temporary connection/read failures deserve the same bounded
+            # recovery as HTTP 5xx responses, rather than a week-long gap.
+            ready = time.time() + 2 ** attempt
+            context.defer_until(provider, ready)
+            print(f"Network error from {urlparse(url).netloc}: {error}; next permitted retry at {timestamp(ready)}; attempt {attempt + 1}/5.", file=sys.stderr, flush=True)
+            if attempt == 4:
+                raise DiscoveryDeferred(f"{provider} exhausted five network attempts; query and retry time saved for the next invocation") from error
     raise RuntimeError(f"Request retry loop terminated unexpectedly for {url}")
 
 
