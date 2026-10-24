@@ -2,29 +2,36 @@
   "schema_version": 1,
   "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
   "round_started_at": "2026-10-24T07:38:38.020984Z",
-  "round_completed_at": null,
+  "round_completed_at": "2026-10-24T07:52:45.031707Z",
   "completed_queries": [
     "github:Model Context Protocol (MCP) Security",
     "github:Principles for Secure-by-Design Agentic Systems",
     "crossref:Coalition for Secure AI",
     "crossref:CoSAI agentic security",
-    "crossref:CoSAI Model Context Protocol"
+    "crossref:CoSAI Model Context Protocol",
+    "github:AI Incident Response Framework",
+    "github:CoSAI Risk Map",
+    "github:Signing ML Artifacts",
+    "github:Agentic Identity and Access Management",
+    "github:AI Shared Responsibility Framework",
+    "github:Preparing Defenders of AI Systems",
+    "github:The Future of Agentic Security: From Chatbots to Autonomous Swarms",
+    "github:Establish Risks and Controls for the AI Supply Chain",
+    "github:Project CodeGuard"
   ],
-  "last_attempted": "2026-10-24T07:38:38.021008Z",
-  "last_completed": null,
+  "last_attempted": "2026-10-24T07:42:16.884914Z",
+  "last_completed": "2026-10-24T07:52:45.031707Z",
   "providers": {
     "github": {
-      "next_retry_at": "2026-10-24T07:51:48.494180Z",
-      "last_request_at": "2026-10-24T07:39:38.352510Z"
+      "next_retry_at": null,
+      "last_request_at": "2026-10-24T07:52:44.495513Z"
     },
     "crossref": {
       "next_retry_at": null,
       "last_request_at": "2026-10-24T07:40:39.027841Z"
     }
   },
-  "query_warnings": {
-    "github:AI Incident Response Framework": "github discovery for AI Incident Response Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-10-24T07:51:48.494180Z"
-  },
+  "query_warnings": {},
   "candidates": [
     {
       "publisher": "Divyansh2602/aegismesh",
@@ -299,9 +306,9 @@
       "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain wiki/Organizations/cosai.md",
       "matched_works": [
         "AI Incident Response Framework",
-        "Signing ML Artifacts",
+        "Establish Risks and Controls for the AI Supply Chain",
         "Preparing Defenders of AI Systems",
-        "Establish Risks and Controls for the AI Supply Chain"
+        "Signing ML Artifacts"
       ],
       "discovery_provider": "GitHub public code search",
       "evidence": "- [[nist-ai-rmf]] is the public-sector counterpart framework for AI risk. ## Source References - SRC-0028, CoSAI AI Incident Response Framework, page 65 (CoSAI Focus: OASIS Open Project, open ecosystem of AI and security experts, best practices for secure AI deployment; scope). - SRC-0034, CoSAI Risks and Controls for ",
@@ -358,9 +365,9 @@
       "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md",
       "matched_works": [
         "AI Incident Response Framework",
-        "Signing ML Artifacts",
+        "Establish Risks and Controls for the AI Supply Chain",
         "Preparing Defenders of AI Systems",
-        "Establish Risks and Controls for the AI Supply Chain"
+        "Signing ML Artifacts"
       ],
       "discovery_provider": "GitHub public code search",
       "evidence": "- [[nist-ai-rmf]] is the public-sector counterpart framework for AI risk. ## Source References - SRC-0028, CoSAI AI Incident Response Framework, page 65 (CoSAI Focus: OASIS Open Project, open ecosystem of AI and security experts, best practices for secure AI deployment; scope). - SRC-0034, CoSAI Risks and Controls for ",
@@ -389,9 +396,9 @@
       "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md",
       "matched_works": [
         "AI Incident Response Framework",
-        "Signing ML Artifacts",
+        "Establish Risks and Controls for the AI Supply Chain",
         "Preparing Defenders of AI Systems",
-        "Establish Risks and Controls for the AI Supply Chain"
+        "Signing ML Artifacts"
       ],
       "discovery_provider": "GitHub public code search",
       "evidence": "- [[nist-ai-rmf]] is the public-sector counterpart framework for AI risk. ## Source References - SRC-0028, CoSAI AI Incident Response Framework, page 65 (CoSAI Focus: OASIS Open Project, open ecosystem of AI and security experts, best practices for secure AI deployment; scope). - SRC-0034, CoSAI Risks and Controls for ",
@@ -419,8 +426,8 @@
       "title": "docs/compliance/cosai-mapping.md",
       "url": "https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md",
       "matched_works": [
-        "Principles for Secure-by-Design Agentic Systems",
-        "CoSAI Risk Map"
+        "CoSAI Risk Map",
+        "Principles for Secure-by-Design Agentic Systems"
       ],
       "discovery_provider": "GitHub public code search",
       "evidence": "## Coverage The control map is organized under the three core principles published by the CoSAI Technical Steering Committee (TSC) in *CoSAI Principles for Secure-by-Design Agentic Systems* ([cosai-oasis/cosai-tsc](https://github.com/cosai-oasis/cosai-tsc), `security-principles-for-agentic-systems.md`). Where the CoSAI",
@@ -430,5 +437,5 @@
       "last_seen": "2026-10-12"
     }
   ],
-  "updated_at": "2026-10-24T07:40:39.199798Z"
+  "updated_at": "2026-10-24T07:52:45.035376Z"
 }

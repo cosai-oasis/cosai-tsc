@@ -3,8 +3,8 @@
 > [!NOTE]
 > **Last updated: October 24, 2026**
 > Snapshot generation date, not evidence that every discovery query completed.
-> **Discovery status: partial.** Current round: **5 of 14 configured queries completed**.
-> Last attempted: **2026-10-24T07:38:38.021008Z**. Last fully completed query round: **not recorded**.
+> **Discovery status: complete.** Current round: **14 of 14 configured queries completed**.
+> Last attempted: **2026-10-24T07:42:16.884914Z**. Last fully completed query round: **2026-10-24T07:52:45.031707Z**.
 > Automated discovery does not re-verify existing sources in the verified registry.
 >
 > Configured refresh schedule: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).
@@ -327,13 +327,13 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 | [LatentMesh AI: The illusion of preparedness](https://github.com/KarthikSync/latentmesh-ai-blog/blob/3f02fdbb6321549a5b7eb21ae807a497751c5ce2/src/content/blog/the-incident-response-gap-in-ai-systems.md) | AI Incident Response Framework | Verified — included in totals |
 | [latifo01/governance-brain: brain wiki/AI Risk Mitigations/traceability.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain%20wiki/AI%20Risk%20Mitigations/traceability.md) | Signing ML Artifacts | Unverified / uncertain — not counted as verified |
 | [latifo01/governance-brain: brain wiki/Norms &amp; Frameworks/mitre-atlas.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain%20wiki/Norms%20&%20Frameworks/mitre-atlas.md) | Preparing Defenders of AI Systems | Unverified / uncertain — not counted as verified |
-| [latifo01/governance-brain: brain wiki/Organizations/cosai.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain%20wiki/Organizations/cosai.md) | AI Incident Response Framework; Signing ML Artifacts; Preparing Defenders of AI Systems; Establish Risks and Controls for the AI Supply Chain | Unverified / uncertain — not counted as verified |
+| [latifo01/governance-brain: brain wiki/Organizations/cosai.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain%20wiki/Organizations/cosai.md) | AI Incident Response Framework; Establish Risks and Controls for the AI Supply Chain; Preparing Defenders of AI Systems; Signing ML Artifacts | Unverified / uncertain — not counted as verified |
 | [latifo01/governance-brain: ingest/SRC-0034/units/p0003.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/ingest/SRC-0034/units/p0003.md) | Establish Risks and Controls for the AI Supply Chain | Unverified / uncertain — not counted as verified |
 | [latifo01/governance-brain: state/workshop/proposals/famous-ai-incidents-lot-008/review/review-report.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/famous-ai-incidents-lot-008/review/review-report.md) | AI Shared Responsibility Framework | Unverified / uncertain — not counted as verified |
 | [latifo01/governance-brain: state/workshop/proposals/norms-frameworks-lot-006/future-vault/Norms &amp; Frameworks/mitre-atlas.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/norms-frameworks-lot-006/future-vault/Norms%20&%20Frameworks/mitre-atlas.md) | Preparing Defenders of AI Systems | Unverified / uncertain — not counted as verified |
-| [latifo01/governance-brain: state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md) | AI Incident Response Framework; Signing ML Artifacts; Preparing Defenders of AI Systems; Establish Risks and Controls for the AI Supply Chain | Unverified / uncertain — not counted as verified |
+| [latifo01/governance-brain: state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md) | AI Incident Response Framework; Establish Risks and Controls for the AI Supply Chain; Preparing Defenders of AI Systems; Signing ML Artifacts | Unverified / uncertain — not counted as verified |
 | [latifo01/governance-brain: state/workshop/proposals/provenance-repair-20260920/future-vault/Norms &amp; Frameworks/mitre-atlas.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/provenance-repair-20260920/future-vault/Norms%20&%20Frameworks/mitre-atlas.md) | Preparing Defenders of AI Systems | Unverified / uncertain — not counted as verified |
-| [latifo01/governance-brain: state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md) | AI Incident Response Framework; Signing ML Artifacts; Preparing Defenders of AI Systems; Establish Risks and Controls for the AI Supply Chain | Unverified / uncertain — not counted as verified |
+| [latifo01/governance-brain: state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md](https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md) | AI Incident Response Framework; Establish Risks and Controls for the AI Supply Chain; Preparing Defenders of AI Systems; Signing ML Artifacts | Unverified / uncertain — not counted as verified |
 | [LLM-Agent Assurance Standard: LLM-Agent Assurance Standard (LAAS) — Proposal v1.1](https://github.com/jonathan-kellerai/kellerai-oss-template/blob/8c0f533df8d19f1ebbb560b31021436c05ff537d/docs/laas/proposal-v1.1.md) | Principles for Secure-by-Design Agentic Systems; Agentic Identity and Access Management | Verified — included in totals |
 | [lushinshang/article_analysis: State-of-Agentic-AI-Security-and-Governance/pdf-raw-web-article_20260604_111259.md](https://github.com/lushinshang/article_analysis/blob/2dd14147b4896ac40a7b0e9abed60fa4162a5b7b/State-of-Agentic-AI-Security-and-Governance/pdf-raw-web-article_20260604_111259.md) | AI Incident Response Framework | Excluded — Raw web-article extraction reproduces the separately counted official OWASP report. |
 | [MCP Security Project: Blogs, Whitepapers, and Research](https://github.com/mcp-security-project/awesome-agentic-mcp-security/blob/0ba347c8fa2b6a44aa1d732e93eba671771531f5/mcp_blogs_whitepapers_academicpapers.md) | Model Context Protocol (MCP) Security | Verified — included in totals |
@@ -416,7 +416,7 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 | [seahop/ai-threat-atlas: docs/defenses/ai-incident-response-playbook.md](https://github.com/seahop/ai-threat-atlas/blob/e0ccd0a6513f76a64df2bed30da660cf7476f75b/docs/defenses/ai-incident-response-playbook.md) | AI Incident Response Framework | Excluded — Repository-source version of the already-counted AI Threat Atlas publication. |
 | [Secure AI General Public License: SAIL‑GPL — Secure AI General Public License](https://github.com/Grigaliunas/SAIL-GPL/blob/35896fd78f024d15d65c6f0db1f8f44a1b315e51/SAIL-GPL-1.0.md) | AI Incident Response Framework; CoSAI Risk Map; Signing ML Artifacts | Verified — included in totals |
 | [SecureAI Framework / David Girard: SecureAI Framework - Project Summary](https://github.com/girdav01/AISEC/blob/1ad31bd991f56101dfcb44f714173cf72227b95b/FRAMEWORK_SUMMARY.md) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
-| [sipyourdrink-ltd/bernstein: docs/compliance/cosai-mapping.md](https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md) | Principles for Secure-by-Design Agentic Systems; CoSAI Risk Map | Unverified / uncertain — not counted as verified |
+| [sipyourdrink-ltd/bernstein: docs/compliance/cosai-mapping.md](https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md) | CoSAI Risk Map; Principles for Secure-by-Design Agentic Systems | Unverified / uncertain — not counted as verified |
 | [Software &amp; Information Industry Association: Submission to CAISI: Request for Information Regarding Security Considerations for Artificial Intelligence Agents](https://www.siia.net/wp-content/uploads/2026/03/SIIA-Submission-CAISI-RFI-on-Security-for-AI-Agents.pdf) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [Sondera Trustworthy Agent Development Kit: docs/References.md](https://github.com/sondera-ai/trustworthy-adk/blob/f010ad416087252700863e8f62304b5224811606/docs/References.md) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [SPDX AI Team: SPDX AI Team Meeting Minutes &#124; 2026-02-04](https://github.com/spdx/meetings/blob/d58ec031c89b83e6f6456946f01659177b374632/ai/2026/2026-02-04.md) | CoSAI Risk Map | Verified — included in totals |
@@ -455,9 +455,9 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 
 ## Unverified / uncertain discoveries
 
-**Discovery status: partial.** Last attempted: **2026-10-24T07:38:38.021008Z**. Last fully completed query round: **not recorded**.
+**Discovery status: complete.** Last attempted: **2026-10-24T07:42:16.884914Z**. Last fully completed query round: **2026-10-24T07:52:45.031707Z**.
 
-Current round: **5 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
+Current round: **14 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
 
 Completion means the configured, result-capped GitHub and Crossref queries finished; it does not mean exhaustive coverage of the web or all scholarly citations.
 
@@ -484,9 +484,6 @@ There are **28 candidate references**, including retained findings from earlier 
 - See [`discovered-candidates.json`](discovered-candidates.json) for all 28 candidates.
 
 </details>
-
-**Discovery warnings:**
-- github discovery for AI Incident Response Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-10-24T07:51:48.494180Z
 
 ## Refresh and verification
 
