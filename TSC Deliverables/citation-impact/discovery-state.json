@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
+  "round_started_at": "2026-10-24T07:38:38.020984Z",
+  "round_completed_at": null,
+  "completed_queries": [
+    "github:Model Context Protocol (MCP) Security",
+    "github:Principles for Secure-by-Design Agentic Systems",
+    "crossref:Coalition for Secure AI",
+    "crossref:CoSAI agentic security",
+    "crossref:CoSAI Model Context Protocol"
+  ],
+  "last_attempted": "2026-10-24T07:38:38.021008Z",
+  "last_completed": null,
+  "providers": {
+    "github": {
+      "next_retry_at": "2026-10-24T07:51:48.494180Z",
+      "last_request_at": "2026-10-24T07:39:38.352510Z"
+    },
+    "crossref": {
+      "next_retry_at": null,
+      "last_request_at": "2026-10-24T07:40:39.027841Z"
+    }
+  },
+  "query_warnings": {
+    "github:AI Incident Response Framework": "github discovery for AI Incident Response Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-10-24T07:51:48.494180Z"
+  },
+  "candidates": [
+    {
+      "publisher": "Divyansh2602/aegismesh",
+      "title": "docs/SPEC.md",
+      "url": "https://github.com/Divyansh2602/aegismesh/blob/9e976842b9713fb0cdc9bcc703c6d6f6812517ed/docs/SPEC.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## References - W3C Verifiable Credentials Data Model 2.0 - RFC 8785 — JSON Canonicalization Scheme (JCS) - RFC 6962 — Certificate Transparency - CoSAI Agentic Identity and Access Management (Apr 2026) - OWASP Top 10 for Agentic Applications 2026",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "Divyansh2602/aegismesh",
+      "title": "docs/THREAT_MODEL.md",
+      "url": "https://github.com/Divyansh2602/aegismesh/blob/9e976842b9713fb0cdc9bcc703c6d6f6812517ed/docs/THREAT_MODEL.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- OWASP Top 10 for Agentic Applications 2026, OWASP GenAI Security Project (Dec 2025) - EU AI Act Article 12 — Record-keeping and automatic logging; enforceable 2 Aug 2026 - CoSAI Agentic Identity and Access Management framework (Apr 2026) — on-behalf-of token chains, scope attenuation, signed agent manifests - Debened",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "Elite588/Hacker",
+      "title": "ai/ai-security/ai_security_tools.md",
+      "url": "https://github.com/Elite588/Hacker/blob/d83d38b2b7f035e7e60bf8ab69b6e4996fd07b3d/ai/ai-security/ai_security_tools.md",
+      "matched_works": [
+        "CoSAI Risk Map"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## AI Risk Maps and Secure Design Patterns - [Coalition for Secure AI (CoSAI)](https://github.com/cosai-oasis) – community defining standards, patterns, and tools for secure AI. - [CoSAI Risk Map / Secure AI Tooling](https://github.com/cosai-oasis/secure-ai-tooling) – framework for mapping AI-specific security risks ac",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "GenAI-Security-Project/crosswalk",
+      "title": "docs/COMPETITIVE_ANALYSIS.md",
+      "url": "https://github.com/GenAI-Security-Project/crosswalk/blob/922350d5d6a251914001f73b721ed0fa7b58d752/docs/COMPETITIVE_ANALYSIS.md",
+      "matched_works": [
+        "CoSAI Risk Map"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "| OWASP AI Exchange | OWASP | AI threat/control guidance with cross-references | | Google SAIF and the CoSAI Risk Map | Google; Coalition for Secure AI | AI risk/control map with framework mappings | | **OWASP AI Exchange** | \"300+ pages\" of guidance [58]; threat/control counts not stated | threat and control sections ",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-09-21"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01-dev/research/chapters/C06-Supply-Chain/C06-02-AI-BOM-Supply-Chain-Monitoring.md",
+      "url": "https://github.com/OWASP/AISVS/blob/d84a78032795da596e982b09ffb560a99e66c427/1.01-dev/research/chapters/C06-Supply-Chain/C06-02-AI-BOM-Supply-Chain-Monitoring.md",
+      "matched_works": [
+        "Signing ML Artifacts"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [GUAC v1.1.0 Release (March 2026)](https://github.com/guacsec/guac/releases/tag/v1.1.0) - [G7 Countries Release AI SBOM Guidance — SecurityWeek (May 2026)](https://www.securityweek.com/g7-countries-release-ai-sbom-guidance/) - [Infosecurity — Global Cyber Agencies Issue New SBOMs for AI Guidance (May 12, 2026)](https",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-09-21"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01-dev/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
+      "url": "https://github.com/OWASP/AISVS/blob/d84a78032795da596e982b09ffb560a99e66c427/1.01-dev/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [ ] **Are schema-strict wrapper tools enough when the wrapped CLI is the attack surface?** — CVE-2026-39884 (mcp-server-kubernetes `port_forward`) and CVE-2026-33980 (Azure Data Explorer MCP KQL injection) both passed schema validation at the MCP boundary and then reintroduced classical injection flaws below it: kube",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-09-21"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01-dev/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
+      "url": "https://github.com/OWASP/AISVS/blob/d84a78032795da596e982b09ffb560a99e66c427/1.01-dev/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
+      "matched_works": [
+        "AI Incident Response Framework",
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "| **11.3.1** | **Verify that** query-pattern analysis feeds an extraction-attempt detector. | 1 | Functionality and distillation extraction via systematic querying (MITRE ATLAS AML.T0024.002 Extract ML Model; OWASP LLM10:2025 Unbounded Consumption). Coordinated multi-account \"hydra cluster\" distillation (Anthropic, Feb",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-09-21"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01-dev/research/chapters/C12-Monitoring-and-Logging/C12-Monitoring-and-Logging.md",
+      "url": "https://github.com/OWASP/AISVS/blob/d84a78032795da596e982b09ffb560a99e66c427/1.01-dev/research/chapters/C12-Monitoring-and-Logging/C12-Monitoring-and-Logging.md",
+      "matched_works": [
+        "AI Incident Response Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "| Nov 2025 | GTG-1002 — AI-automated attack campaign targeting ~30 organizations | AI handled 80-90% of attack operations; traditional IR playbooks had no framework for response | [Reco.ai](https://www.reco.ai/blog/ai-and-cloud-security-breaches-2025) | | Jun 2025 | EchoLeak CVE-2025-32711 — zero-click Copilot exfiltra",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-09-21"
+    },
+    {
+      "publisher": "billbrietstout/ai-shared-responsibility",
+      "title": "papers/srf-vnext-agentic-extensions.md",
+      "url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/62db22c7784a39b7c12f865f983a60dd0f4b4ba8/papers/srf-vnext-agentic-extensions.md",
+      "matched_works": [
+        "AI Shared Responsibility Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "# Proposed CoSAI SRF next-version agentic extensions Independently proposed companion extension of the CoSAI Shared Responsibility Framework. Not part of CoSAI SRF v1.0. Not endorsed by CoSAI or OASIS. Canonical machine-readable register: `/data/srf-vnext-extensions.json`. Published page: `/papers/srf-vnext-agentic-ext",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "depalmar/ai-dfir-toolkit",
+      "title": "playbooks/README.md",
+      "url": "https://github.com/depalmar/ai-dfir-toolkit/blob/d3cf3577f6db374b3e196e1a05c0cd6708b9655d/playbooks/README.md",
+      "matched_works": [
+        "AI Incident Response Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "# playbooks/ — Machine-Readable AI-DFIR Response (CACAO v2.0) Executable response playbooks in **OASIS CACAO Security Playbooks v2.0** format, the machine-readable playbook standard the **CoSAI AI Incident Response Framework v1.0** references for automated response. These convert the prose procedures in `docs/ai-dfir-i",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "kimyennguyenthikimyen87-ops/Nguyenthikimyen-",
+      "title": "Markdown Conversions/2026/HiddenLayer-AI-Threat-Landscape-Report-2026.md",
+      "url": "https://github.com/kimyennguyenthikimyen87-ops/Nguyenthikimyen-/blob/76a35ab3249b6a77f6e977b8f25b60f1849136cf/Markdown Conversions/2026/HiddenLayer-AI-Threat-Landscape-Report-2026.md",
+      "matched_works": [
+        "Preparing Defenders of AI Systems"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "resilient design, and transparency/verifiability), along with CoSAI also introduced an AI Incident Response Framework, practical implementation strategies for agent developers, published guidance on operationalizing the CoSAI Risk adopters, and security engineers to balance autonomy Map, guidance on securing AI agents,",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-09-21",
+      "last_seen": "2026-09-21"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01/research/chapters/C09-Orchestration-and-Agents/C09-05-Agent-Authorization-Delegation.md",
+      "url": "https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C09-Orchestration-and-Agents/C09-05-Agent-Authorization-Delegation.md",
+      "matched_works": [
+        "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [CrewAI Sandbox Escape and RCE via Prompt Injection (CERT/CC VU#221883, April 2026)](https://kb.cert.org/vuls/id/221883) -- CVE-2026-2275/2286/2287/2285 in the CrewAI agent framework - [When Prompts Become Shells: RCE Vulnerabilities in AI Agent Frameworks (Microsoft Security, May 2026)](https://www.microsoft.com/en-",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
+      "url": "https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C10-MCP-Security/C10-MCP-Security.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [ ] **Are schema-strict wrapper tools enough when the wrapped CLI is the attack surface?** — CVE-2026-39884 (mcp-server-kubernetes `port_forward`) and CVE-2026-33980 (Azure Data Explorer MCP KQL injection) both passed schema validation at the MCP boundary and then reintroduced classical injection flaws below it: kube",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
+      "url": "https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [Functional Subspace Watermarking for Large Language Models (March 2026)](https://arxiv.org/abs/2603.18793) -- Ownership signals anchored into a stable functional subspace for robustness under fine-tuning, quantization, and distillation - [Beyond A Fixed Seal: Adaptive Stealing Watermark in Large Language Models (Apr",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "OWASP/AISVS",
+      "title": "1.01/research/chapters/C12-Monitoring-and-Logging/C12-Monitoring-and-Logging.md",
+      "url": "https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C12-Monitoring-and-Logging/C12-Monitoring-and-Logging.md",
+      "matched_works": [
+        "AI Incident Response Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "| Nov 2025 | GTG-1002 — AI-automated attack campaign targeting ~30 organizations | Anthropic reported AI performed 80-90% of the campaign with perhaps 4-6 critical human decision points (vendor-reported) | [Anthropic](https://www.anthropic.com/news/disrupting-AI-espionage) | | Jun 2025 | EchoLeak CVE-2025-32711 — zero-",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "aws-samples/sample-agentic-value-accelerator",
+      "title": "platform/docs/architecture/ai-safety-module-design.md",
+      "url": "https://github.com/aws-samples/sample-agentic-value-accelerator/blob/2b8849c997919b2f46767cb44636718d80e7b833/platform/docs/architecture/ai-safety-module-design.md",
+      "matched_works": [
+        "AI Incident Response Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "*Live-vs-illustrative:* illustrative scores + a live path noted (Bedrock evals / Inspect). RAI dimension: **Veracity & Robustness, Safety**. ### 4.5 Incident Management *(NEW — table-stakes, time-sensitive)* Incident lifecycle (detect → triage → remediate → report → learn), near-miss capture, and **EU AI Act Article 73",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "billbrietstout/ai-shared-responsibility",
+      "title": "HANDOFF.md",
+      "url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/d9f1d2bca84ef17b5249195a1eebe3e778ad6252/HANDOFF.md",
+      "matched_works": [
+        "AI Shared Responsibility Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## Goal Keep the published CoSAI AI Shared Responsibility Framework (SRF) v1.0 reference site accurate, machine-readable, and usable by humans and agents. New work either clarifies v1.0 or is labeled as an independently proposed companion extension. The site answers who is accountable for each activity. It does not inv",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "brain wiki/AI Risk Mitigations/traceability.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain wiki/AI Risk Mitigations/traceability.md",
+      "matched_works": [
+        "Signing ML Artifacts"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[aiuc-1]] ## Source References - SRC-0035, CoSAI Signing ML Artifacts, pages 4 and 6-8, 11-12, for integrity, provenance, attestations, signer identity, verification, manifests, consumer responsibility, limitations and broader governance context. - SRC-0036, SR 26-2, pages 12-14, for roles, monitoring, outcomes anal",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "brain wiki/Norms & Frameworks/mitre-atlas.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain wiki/Norms & Frameworks/mitre-atlas.md",
+      "matched_works": [
+        "Preparing Defenders of AI Systems"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[red-teaming]] operationalizes technique validation. - [[aiuc-1]] maps security controls against agentic risks that ATLAS-classified attacks exploit. ## Source References - SRC-0033, CoSAI Preparing Defenders of AI Systems, page 8 (ATLAS emerged from real-world AI attacks such as model extraction from prediction API",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "brain wiki/Organizations/cosai.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/brain wiki/Organizations/cosai.md",
+      "matched_works": [
+        "AI Incident Response Framework",
+        "Signing ML Artifacts",
+        "Preparing Defenders of AI Systems",
+        "Establish Risks and Controls for the AI Supply Chain"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[nist-ai-rmf]] is the public-sector counterpart framework for AI risk. ## Source References - SRC-0028, CoSAI AI Incident Response Framework, page 65 (CoSAI Focus: OASIS Open Project, open ecosystem of AI and security experts, best practices for secure AI deployment; scope). - SRC-0034, CoSAI Risks and Controls for ",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "ingest/SRC-0034/units/p0003.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/ingest/SRC-0034/units/p0003.md",
+      "matched_works": [
+        "Establish Risks and Controls for the AI Supply Chain"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "--- ## Page 3 > Establish Risks and Controls for the AI Supply Chain, V 1.0 > OASISOpenProject: CoalitionforSecureAI(CoSAI) Workstream1:SoftwareSupplyChainSecurity > forAISystems > ApprovedbytheCoSAIProjectGoverningBoardon12June2025",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "state/workshop/proposals/famous-ai-incidents-lot-008/review/review-report.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/famous-ai-incidents-lot-008/review/review-report.md",
+      "matched_works": [
+        "AI Shared Responsibility Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## Important judgement calls - Both incidents rest on a single documented source (SRC-0029, CoSAI Shared Responsibility Framework), which anonymizes the organizations in body text. The notes assert only corpus-verified facts: airline held liable, CAD 812.02; manipulated dealership chatbot, 2024 Chevy Tahoe, one dollar,",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "state/workshop/proposals/norms-frameworks-lot-006/future-vault/Norms & Frameworks/mitre-atlas.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/norms-frameworks-lot-006/future-vault/Norms & Frameworks/mitre-atlas.md",
+      "matched_works": [
+        "Preparing Defenders of AI Systems"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[red-teaming]] operationalizes technique validation. - [[aiuc-1]] maps security controls against agentic risks that ATLAS-classified attacks exploit. ## Source References - SRC-0033, CoSAI Preparing Defenders of AI Systems, page 8 (ATLAS emerged from real-world AI attacks such as model extraction from prediction API",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/organizations-lot-007/future-vault/Organizations/cosai.md",
+      "matched_works": [
+        "AI Incident Response Framework",
+        "Signing ML Artifacts",
+        "Preparing Defenders of AI Systems",
+        "Establish Risks and Controls for the AI Supply Chain"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[nist-ai-rmf]] is the public-sector counterpart framework for AI risk. ## Source References - SRC-0028, CoSAI AI Incident Response Framework, page 65 (CoSAI Focus: OASIS Open Project, open ecosystem of AI and security experts, best practices for secure AI deployment; scope). - SRC-0034, CoSAI Risks and Controls for ",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "state/workshop/proposals/provenance-repair-20260920/future-vault/Norms & Frameworks/mitre-atlas.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/provenance-repair-20260920/future-vault/Norms & Frameworks/mitre-atlas.md",
+      "matched_works": [
+        "Preparing Defenders of AI Systems"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[red-teaming]] operationalizes technique validation. - [[aiuc-1]] maps security controls against agentic risks that ATLAS-classified attacks exploit. ## Source References - SRC-0033, CoSAI Preparing Defenders of AI Systems, page 8 (ATLAS emerged from real-world AI attacks such as model extraction from prediction API",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "latifo01/governance-brain",
+      "title": "state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md",
+      "url": "https://github.com/latifo01/governance-brain/blob/9c7c37631401b6451a7edbf444dd984a47d37567/state/workshop/proposals/provenance-repair-20260920/future-vault/Organizations/cosai.md",
+      "matched_works": [
+        "AI Incident Response Framework",
+        "Signing ML Artifacts",
+        "Preparing Defenders of AI Systems",
+        "Establish Risks and Controls for the AI Supply Chain"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- [[nist-ai-rmf]] is the public-sector counterpart framework for AI risk. ## Source References - SRC-0028, CoSAI AI Incident Response Framework, page 65 (CoSAI Focus: OASIS Open Project, open ecosystem of AI and security experts, best practices for secure AI deployment; scope). - SRC-0034, CoSAI Risks and Controls for ",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "peopleforrester/Unleash_an_Agent_Watch_It_Burn",
+      "title": "docs/research/2026-09-22-guardrail-layer/03-commercial-landscape.md",
+      "url": "https://github.com/peopleforrester/Unleash_an_Agent_Watch_It_Burn/blob/a362cd4007b073dfdef9baf5466220b40c09fdc6/docs/research/2026-09-22-guardrail-layer/03-commercial-landscape.md",
+      "matched_works": [
+        "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "|---|---|---| | OWASP GenAI Security Project | Taxonomy and guidance. No implementation | Top 10 for LLM, 2025 and 2026 editions. 2026 list: LLM01 Prompt Injection, LLM02 Sensitive Information Disclosure, LLM03 Excessive Agency, LLM04 Supply Chain, LLM05 Data and Model Poisoning, LLM06 Unbounded Consumption, LLM07 Misi",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    },
+    {
+      "publisher": "sipyourdrink-ltd/bernstein",
+      "title": "docs/compliance/cosai-mapping.md",
+      "url": "https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md",
+      "matched_works": [
+        "Principles for Secure-by-Design Agentic Systems",
+        "CoSAI Risk Map"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## Coverage The control map is organized under the three core principles published by the CoSAI Technical Steering Committee (TSC) in *CoSAI Principles for Secure-by-Design Agentic Systems* ([cosai-oasis/cosai-tsc](https://github.com/cosai-oasis/cosai-tsc), `security-principles-for-agentic-systems.md`). Where the CoSAI",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-10-12",
+      "last_seen": "2026-10-12"
+    }
+  ],
+  "updated_at": "2026-10-24T07:40:39.199798Z"
+}
