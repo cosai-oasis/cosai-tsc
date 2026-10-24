@@ -19,7 +19,7 @@ concurrency:
 jobs:
   refresh-report:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     permissions:
       contents: write
 
@@ -43,14 +43,21 @@ jobs:
 
       - name: Refresh report and discover public references
         id: refresh
-        # Three 180-second passes plus two 60-second pauses fit within 12 minutes.
-        timeout-minutes: 12
+        # All attempts and cooldowns share a 20-minute budget, with time left
+        # for checkpointing, artifacts, and publication before the job timeout.
+        timeout-minutes: 22
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          started=$SECONDS
+          status=2
           for attempt in 1 2 3; do
+            remaining=$((1200 - (SECONDS - started)))
+            if [ "$remaining" -le 0 ]; then
+              break
+            fi
             echo "Discovery attempt $attempt/3; completed queries and provider cooldowns are restored from checkpoints."
-            if python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --discovery-budget-seconds 180 --resume-from "$RUNNER_TEMP/citation-resume" --fail-on-discovery-error; then
+            if python -u scripts/refresh_citation_impact.py --discover --max-results-per-query 10 --discovery-budget-seconds "$remaining" --resume-from "$RUNNER_TEMP/citation-resume" --fail-on-discovery-error; then
               status=0
               break
             else
@@ -61,9 +68,11 @@ jobs:
             if [ "$status" -ne 2 ]; then
               exit "$status"
             fi
-            if [ "$attempt" -lt 3 ]; then
+            if [ "$attempt" -lt 3 ] && [ "$((1200 - (SECONDS - started)))" -gt 60 ]; then
               echo "Discovery is partial; pausing 60 seconds before resuming unfinished queries."
               sleep 60
+            else
+              break
             fi
           done
           echo "exit_code=$status" >> "$GITHUB_OUTPUT"

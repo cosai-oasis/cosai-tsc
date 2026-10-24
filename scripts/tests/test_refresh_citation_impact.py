@@ -175,6 +175,15 @@ class RequestTests(ClockTests):
         self.assertEqual(request.call_count, 2)
         self.assertEqual(self.clock.sleeps, [75])
 
+    def test_observed_twelve_minute_cooldown_fits_workflow_budget(self):
+        limited = HTTPError(REFRESH.GITHUB_API, 429, "Limited", {"Retry-After": "730"}, None)
+        context = REFRESH.DiscoveryContext({}, 1200)
+        with mock.patch.object(REFRESH, "urlopen", side_effect=[limited, response()]) as request:
+            self.assertEqual(REFRESH.request_json(REFRESH.GITHUB_API, context=context), {"items": []})
+        self.assertEqual(request.call_count, 2)
+        self.assertEqual(self.clock.sleeps, [730])
+        self.assertEqual(context.remaining(), 470)
+
     def test_long_retry_persisted_and_respected_across_invocations(self):
         state = {}
         limited = HTTPError(REFRESH.GITHUB_API, 403, "Limited", {"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "2000"}, None)
