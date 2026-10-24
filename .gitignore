@@ -10,6 +10,9 @@
 # Locally fetched meeting minutes — not committed
 meeting_minutes/
 
+# Local Codex workflow evidence and reconciliation receipts
+workflow_runs/
+
 # Python cache files
 __pycache__/
 *.pyc
