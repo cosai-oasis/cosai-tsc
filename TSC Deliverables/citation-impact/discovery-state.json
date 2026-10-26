@@ -1,14 +1,11 @@
 {
   "schema_version": 1,
   "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
-  "round_started_at": "2026-10-24T07:38:38.020984Z",
-  "round_completed_at": "2026-10-24T07:52:45.031707Z",
+  "round_started_at": "2026-10-26T20:47:17.120639Z",
+  "round_completed_at": "2026-10-26T20:59:33.274715Z",
   "completed_queries": [
     "github:Model Context Protocol (MCP) Security",
     "github:Principles for Secure-by-Design Agentic Systems",
-    "crossref:Coalition for Secure AI",
-    "crossref:CoSAI agentic security",
-    "crossref:CoSAI Model Context Protocol",
     "github:AI Incident Response Framework",
     "github:CoSAI Risk Map",
     "github:Signing ML Artifacts",
@@ -17,18 +14,21 @@
     "github:Preparing Defenders of AI Systems",
     "github:The Future of Agentic Security: From Chatbots to Autonomous Swarms",
     "github:Establish Risks and Controls for the AI Supply Chain",
-    "github:Project CodeGuard"
+    "github:Project CodeGuard",
+    "crossref:Coalition for Secure AI",
+    "crossref:CoSAI agentic security",
+    "crossref:CoSAI Model Context Protocol"
   ],
-  "last_attempted": "2026-10-24T07:42:16.884914Z",
-  "last_completed": "2026-10-24T07:52:45.031707Z",
+  "last_attempted": "2026-10-26T20:47:17.120655Z",
+  "last_completed": "2026-10-26T20:59:33.274715Z",
   "providers": {
     "github": {
       "next_retry_at": null,
-      "last_request_at": "2026-10-24T07:52:44.495513Z"
+      "last_request_at": "2026-10-26T20:58:31.403510Z"
     },
     "crossref": {
       "next_retry_at": null,
-      "last_request_at": "2026-10-24T07:40:39.027841Z"
+      "last_request_at": "2026-10-26T20:59:32.730648Z"
     }
   },
   "query_warnings": {},
@@ -437,5 +437,5 @@
       "last_seen": "2026-10-12"
     }
   ],
-  "updated_at": "2026-10-24T07:52:45.035376Z"
+  "updated_at": "2026-10-26T20:59:33.284629Z"
 }

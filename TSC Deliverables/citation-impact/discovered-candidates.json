@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
-  "last_refreshed": "2026-10-24",
-  "last_attempted": "2026-10-24T07:42:16.884914Z",
-  "last_completed": "2026-10-24T07:52:45.031707Z",
+  "last_refreshed": "2026-10-26",
+  "last_attempted": "2026-10-26T20:47:17.120655Z",
+  "last_completed": "2026-10-26T20:59:33.274715Z",
   "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
   "discovery_enabled": true,
   "discovery_status": "complete",
@@ -11,7 +11,7 @@
   "query_coverage": {
     "completed": 14,
     "total": 14,
-    "round_started_at": "2026-10-24T07:38:38.020984Z",
+    "round_started_at": "2026-10-26T20:47:17.120639Z",
     "per_provider": {
       "github": {
         "completed": 11,
