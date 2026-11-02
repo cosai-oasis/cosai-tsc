@@ -1,10 +1,10 @@
 # CoSAI Citation and External Impact
 
 > [!NOTE]
-> **Last updated: October 26, 2026**
+> **Last updated: November 2, 2026**
 > Snapshot generation date, not evidence that every discovery query completed.
 > **Discovery status: complete.** Current round: **14 of 14 configured queries completed**.
-> Last attempted: **2026-10-26T20:47:17.120655Z**. Last fully completed query round: **2026-10-26T20:59:33.274715Z**.
+> Last attempted: **2026-11-02T23:44:00.307096Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
 > Automated discovery does not re-verify existing sources in the verified registry.
 >
 > Configured refresh schedule: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).
@@ -455,7 +455,7 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 
 ## Unverified / uncertain discoveries
 
-**Discovery status: complete.** Last attempted: **2026-10-26T20:47:17.120655Z**. Last fully completed query round: **2026-10-26T20:59:33.274715Z**.
+**Discovery status: complete.** Last attempted: **2026-11-02T23:44:00.307096Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
 
 Current round: **14 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
 
