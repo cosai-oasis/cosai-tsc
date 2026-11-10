@@ -1,20 +1,22 @@
 {
   "schema_version": 1,
   "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
-  "last_refreshed": "2026-11-02",
-  "last_attempted": "2026-11-02T23:44:00.307096Z",
+  "last_refreshed": "2026-11-09",
+  "last_attempted": "2026-11-10T00:45:40.427658Z",
   "last_completed": "2026-11-02T23:57:43.184106Z",
   "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
   "discovery_enabled": true,
-  "discovery_status": "complete",
-  "discovery_warnings": [],
+  "discovery_status": "partial",
+  "discovery_warnings": [
+    "github discovery for Signing ML Artifacts incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-10T00:56:56.322442Z"
+  ],
   "query_coverage": {
-    "completed": 14,
+    "completed": 7,
     "total": 14,
-    "round_started_at": "2026-11-02T23:44:00.307082Z",
+    "round_started_at": "2026-11-10T00:28:52.970426Z",
     "per_provider": {
       "github": {
-        "completed": 11,
+        "completed": 4,
         "total": 11
       },
       "crossref": {
