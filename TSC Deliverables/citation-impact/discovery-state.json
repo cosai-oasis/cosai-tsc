@@ -10,14 +10,16 @@
     "crossref:CoSAI agentic security",
     "crossref:CoSAI Model Context Protocol",
     "github:AI Incident Response Framework",
-    "github:CoSAI Risk Map"
+    "github:CoSAI Risk Map",
+    "github:Signing ML Artifacts",
+    "github:Agentic Identity and Access Management"
   ],
-  "last_attempted": "2026-11-10T00:45:40.427658Z",
+  "last_attempted": "2026-11-17T00:49:00.055293Z",
   "last_completed": "2026-11-02T23:57:43.184106Z",
   "providers": {
     "github": {
-      "next_retry_at": "2026-11-10T00:56:56.322442Z",
-      "last_request_at": "2026-11-10T00:44:40.154616Z"
+      "next_retry_at": "2026-11-17T01:01:13.229317Z",
+      "last_request_at": "2026-11-17T00:49:00.059126Z"
     },
     "crossref": {
       "next_retry_at": null,
@@ -25,7 +27,7 @@
     }
   },
   "query_warnings": {
-    "github:Signing ML Artifacts": "github discovery for Signing ML Artifacts incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-10T00:56:56.322442Z"
+    "github:AI Shared Responsibility Framework": "github discovery for AI Shared Responsibility Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-17T01:01:13.229317Z"
   },
   "candidates": [
     {
@@ -432,5 +434,5 @@
       "last_seen": "2026-10-12"
     }
   ],
-  "updated_at": "2026-11-10T00:45:40.437744Z"
+  "updated_at": "2026-11-17T00:49:00.236660Z"
 }

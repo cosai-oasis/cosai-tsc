@@ -1,10 +1,10 @@
 # CoSAI Citation and External Impact
 
 > [!NOTE]
-> **Last updated: November 9, 2026**
+> **Last updated: November 16, 2026**
 > Snapshot generation date, not evidence that every discovery query completed.
-> **Discovery status: partial.** Current round: **7 of 14 configured queries completed**.
-> Last attempted: **2026-11-10T00:45:40.427658Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
+> **Discovery status: partial.** Current round: **9 of 14 configured queries completed**.
+> Last attempted: **2026-11-17T00:49:00.055293Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
 > Automated discovery does not re-verify existing sources in the verified registry.
 >
 > Configured refresh schedule: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).
@@ -455,9 +455,9 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 
 ## Unverified / uncertain discoveries
 
-**Discovery status: partial.** Last attempted: **2026-11-10T00:45:40.427658Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
+**Discovery status: partial.** Last attempted: **2026-11-17T00:49:00.055293Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
 
-Current round: **7 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
+Current round: **9 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
 
 Completion means the configured, result-capped GitHub and Crossref queries finished; it does not mean exhaustive coverage of the web or all scholarly citations.
 
@@ -486,7 +486,7 @@ There are **28 candidate references**, including retained findings from earlier 
 </details>
 
 **Discovery warnings:**
-- github discovery for Signing ML Artifacts incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-10T00:56:56.322442Z
+- github discovery for AI Shared Responsibility Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-17T01:01:13.229317Z
 
 ## Refresh and verification
 
