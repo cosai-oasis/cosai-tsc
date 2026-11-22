@@ -1,10 +1,10 @@
 # CoSAI Citation and External Impact
 
 > [!NOTE]
-> **Last updated: November 16, 2026**
+> **Last updated: November 21, 2026**
 > Snapshot generation date, not evidence that every discovery query completed.
-> **Discovery status: partial.** Current round: **9 of 14 configured queries completed**.
-> Last attempted: **2026-11-17T00:49:00.055293Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
+> **Discovery status: partial.** Current round: **13 of 14 configured queries completed**.
+> Last attempted: **2026-11-22T01:34:33.632534Z**. Last fully completed query round: **not recorded**.
 > Automated discovery does not re-verify existing sources in the verified registry.
 >
 > Configured refresh schedule: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).
@@ -21,7 +21,7 @@
 | Total citations | **146** | Those 98 publications create 146 citation relationships because some reference multiple CoSAI works. |
 | Type of use | **46 formal; 52 substantive** | Of the same 98 publications, 46 cite CoSAI formally and 52 discuss or apply its work. |
 | Organization-only mentions | **8 additional; 106 total** | Another 8 publications mention CoSAI without citing a specific work, bringing the overall total to 106. |
-| Unverified / uncertain findings | **28** | Automatically published discoveries; not included in verified publication or citation totals. |
+| Unverified / uncertain findings | **38** | Automatically published discoveries; not included in verified publication or citation totals. |
 
 Here, **external** means published outside CoSAI/OASIS-controlled channels; it does not imply that every publisher is unaffiliated with CoSAI.
 
@@ -216,13 +216,14 @@ Reviewed false positives, mirrors and duplicate publisher listings are excluded 
 
 ## Discovery and review status
 
-The discovery log contains **227 references**: **106 verified and counted**, **28 unverified / uncertain**, and **93 excluded as false positives, copied materials or duplicates**.
+The discovery log contains **237 references**: **106 verified and counted**, **38 unverified / uncertain**, and **93 excluded as false positives, copied materials or duplicates**.
 
 <details>
-<summary>View all 227 references</summary>
+<summary>View all 237 references</summary>
 
 | External reference | CoSAI works identified | Verification status |
 | --- | --- | --- |
+| [416rehman/Guardrails: docs/references/research/h06-standards-regulation-sweep.md](https://github.com/416rehman/Guardrails/blob/7d2de579fead1aacd193b66a97348d8096363f80/docs/references/research/h06-standards-regulation-sweep.md) | The Future of Agentic Security: From Chatbots to Autonomous Swarms | Unverified / uncertain — not counted as verified |
 | [Adversa AI / SecureClaw: SecureClaw](https://github.com/adversa-ai/secureclaw/blob/bf17e2b3deb989e348b3a98080e33a7047e90ac3/README.md) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [adversa-ai/secureclaw: secureclaw/README.md](https://github.com/adversa-ai/secureclaw/blob/bf17e2b3deb989e348b3a98080e33a7047e90ac3/secureclaw/README.md) | Principles for Secure-by-Design Agentic Systems | Excluded — Nested package README substantially duplicates the already-counted SecureClaw publication. |
 | [agbruneau/Agentique: 2 - Compendium/Livre III/24-passage-echelle-entreprise.md](https://github.com/agbruneau/Agentique/blob/1e920ff2be706b2caaa58d20b1f7f0fce58af867/2%20-%20Compendium/Livre%20III/24-passage-echelle-entreprise.md) | AI Incident Response Framework | Excluded — Chapter duplicates the CoSAI citations already represented by the same French-language compendium’s consolidated bibliography. |
@@ -275,13 +276,18 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 | [billbrietstout/ai-shared-responsibility: HANDOFF.md](https://github.com/billbrietstout/ai-shared-responsibility/blob/d9f1d2bca84ef17b5249195a1eebe3e778ad6252/HANDOFF.md) | AI Shared Responsibility Framework | Unverified / uncertain — not counted as verified |
 | [billbrietstout/ai-shared-responsibility: papers/srf-vnext-agentic-extensions.md](https://github.com/billbrietstout/ai-shared-responsibility/blob/62db22c7784a39b7c12f865f983a60dd0f4b4ba8/papers/srf-vnext-agentic-extensions.md) | AI Shared Responsibility Framework | Unverified / uncertain — not counted as verified |
 | [billbrietstout/ai-shared-responsibility: README.md](https://github.com/billbrietstout/ai-shared-responsibility/blob/bcefe7bd929d3c8753cea1bf5bcc4753b9e9cf6f/README.md) | AI Shared Responsibility Framework | Excluded — Educational-companion landing page repeats the separately counted cross-framework synthesis and vertical implementation from the same CoSAI contributor. |
+| [billbrietstout/ai-shared-responsibility: reports/principles-diff.md](https://github.com/billbrietstout/ai-shared-responsibility/blob/f57a3ce8c5b9db165dad44579ab66fc92b28593b/reports/principles-diff.md) | The Future of Agentic Security: From Chatbots to Autonomous Swarms | Unverified / uncertain — not counted as verified |
+| [billbrietstout/ai-shared-responsibility: tools/threat-model/DESIGN.md](https://github.com/billbrietstout/ai-shared-responsibility/blob/f57a3ce8c5b9db165dad44579ab66fc92b28593b/tools/threat-model/DESIGN.md) | AI Shared Responsibility Framework | Unverified / uncertain — not counted as verified |
 | [BRACE Agent Security Framework: Input to CoSAI's Secure Design Patterns for Agentic Systems: Agent Identity and the Harness Pattern](https://github.com/brace-ai-security/brace/blob/e9daec3247120b5d722b5dcb797e8a3a1e6c3997/outreach/cosai-secure-design-patterns-input.md) | Model Context Protocol (MCP) Security; Agentic Identity and Access Management; Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [bureado / GitHub: awesome-agent-runtime-security](https://github.com/bureado/awesome-agent-runtime-security/blob/main/README.md) | Signing ML Artifacts; Model Context Protocol (MCP) Security | Verified — included in totals |
 | [Casaba Security: Agentic AI Security Guide: References](https://www.casaba.com/guides/agentic-ai-security/references/) | Model Context Protocol (MCP) Security | Verified — included in totals |
+| [cheaper-inference/OmniRoute: docs/i18n/ga/docs/guides/USER_GUIDE.md](https://github.com/cheaper-inference/OmniRoute/blob/5ffa68e835442a12ed1204a2eebf4076c298aecb/docs/i18n/ga/docs/guides/USER_GUIDE.md) | Model Context Protocol (MCP) Security | Unverified / uncertain — not counted as verified |
 | [Cisco: Securing AI/ML Ops](https://sec.cloudapps.cisco.com/security/center/resources/SecuringAIMLOps) | CoSAI organizational mention | Verified — included in totals |
 | [Cisco: The Domains of AI Security](https://cscrdr.cloudapps.cisco.com/cscrdr/security/center/files/cisco-domains-of-ai-security.pdf) | CoSAI Risk Map | Verified — included in totals |
 | [Cisco DevNet / Foundry Security Spec: Integration Decisions](https://github.com/CiscoDevNet/foundry-security-spec/blob/c770bf7764265dda188d9a270b1105a4bb62759b/docs/adoption/integration-decisions.md) | Project CodeGuard | Verified — included in totals |
 | [cisco-open/ai-deep-sast: config/codeguard/codeguard-0-mcp-security.md](https://github.com/cisco-open/ai-deep-sast/blob/741a9e025ce0810cf06764f5869e490d1b80278c/config/codeguard/codeguard-0-mcp-security.md) | Model Context Protocol (MCP) Security | Excluded — Exact copy of a Project CodeGuard security rule, not an independently authored external publication. |
+| [CiscoDevNet/skills: AGENTS.md](https://github.com/CiscoDevNet/skills/blob/ba8e034c2f77f1fc6fc2a85595a07e18b31aa25f/AGENTS.md) | Project CodeGuard | Unverified / uncertain — not counted as verified |
+| [CiscoDevNet/skills: README.md](https://github.com/CiscoDevNet/skills/blob/ba8e034c2f77f1fc6fc2a85595a07e18b31aa25f/README.md) | Project CodeGuard | Unverified / uncertain — not counted as verified |
 | [Claude Code Ultimate Guide / Florian Bruniaux: Security Hardening Guide](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/a4d1247c2188437cc855a0c24e6350e35a3015c3/guide/security/security-hardening.md) | AI Incident Response Framework | Verified — included in totals |
 | [Claude Marketplace AI Risk Mapper: AI Security Risk Assessment Report](https://github.com/totallyGreg/claude-mp/blob/96fb90ab36adcc3c66e609325e6cd1f15d891bb5/plugins/ai-risk-mapper/skills/ai-risk-mapper/assets/report_template.md) | CoSAI Risk Map | Verified — included in totals |
 | [Cloud Security Alliance: The Agentic Trust Framework: Zero Trust Governance for AI Agents](https://cloudsecurityalliance.org/blog/2026/02/02/the-agentic-trust-framework-zero-trust-governance-for-ai-agents) | CoSAI organizational mention | Verified — included in totals |
@@ -322,6 +328,8 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 | [jacobdjwilson/awesome-annual-security-reports: Markdown Conversions/2025/HiddenLayer-AI-Threat-Landscape-Report-2025.md](https://github.com/jacobdjwilson/awesome-annual-security-reports/blob/f3f40eda507388dbe7c6f1de07df68983913003c/Markdown%20Conversions/2025/HiddenLayer-AI-Threat-Landscape-Report-2025.md) | Principles for Secure-by-Design Agentic Systems | Excluded — Third-party reproduction of the already-counted HiddenLayer 2025 report. |
 | [jadenstock/deep-researcher: runs/20260518T222827-11dd2f2e/report.md](https://github.com/jadenstock/deep-researcher/blob/ef2b149f74053284fc58048b2f3cb810868a131e/runs/20260518T222827-11dd2f2e/report.md) | Agentic Identity and Access Management | Excluded — Ephemeral generated research run, not a stable independent publication. |
 | [JonathanCGill/airuntimesecurity.io: docs/changelog.md](https://github.com/JonathanCGill/airuntimesecurity.io/blob/5bb2bcac154c48ab5d0e39065f791c1773b4b1c8/docs/changelog.md) | Principles for Secure-by-Design Agentic Systems | Excluded — Changelog duplicates the substantive CoSAI alignment already counted from the same publisher’s references document. |
+| [kevin-biot/obo-standard: CHANGELOG.md](https://github.com/kevin-biot/obo-standard/blob/7e1d446f7692f2a8f2f55fc0ba95741baabfdf31/CHANGELOG.md) | Agentic Identity and Access Management | Unverified / uncertain — not counted as verified |
+| [kevin-biot/obo-standard: docs/COSAI-COMPOSITION.md](https://github.com/kevin-biot/obo-standard/blob/7e1d446f7692f2a8f2f55fc0ba95741baabfdf31/docs/COSAI-COMPOSITION.md) | Agentic Identity and Access Management | Unverified / uncertain — not counted as verified |
 | [kimyennguyenthikimyen87-ops/Nguyenthikimyen-: Markdown Conversions/2026/HiddenLayer-AI-Threat-Landscape-Report-2026.md](https://github.com/kimyennguyenthikimyen87-ops/Nguyenthikimyen-/blob/76a35ab3249b6a77f6e977b8f25b60f1849136cf/Markdown%20Conversions/2026/HiddenLayer-AI-Threat-Landscape-Report-2026.md) | Preparing Defenders of AI Systems | Unverified / uncertain — not counted as verified |
 | [Kubernaut: PROPOSAL-EXT-003: Agent Runtime Evaluation](https://github.com/jordigilh/kubernaut/blob/906779508502c76e42d83076f6d6d34588c7f1de/docs/architecture/proposals/PROPOSAL-EXT-003-goose-runtime-evaluation.md) | Model Context Protocol (MCP) Security; Agentic Identity and Access Management | Verified — included in totals |
 | [LatentMesh AI: The illusion of preparedness](https://github.com/KarthikSync/latentmesh-ai-blog/blob/3f02fdbb6321549a5b7eb21ae807a497751c5ce2/src/content/blog/the-incident-response-gap-in-ai-systems.md) | AI Incident Response Framework | Verified — included in totals |
@@ -401,6 +409,7 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 | [rocklambros/ai-security-framework-crosswalk: schema/README.md](https://github.com/rocklambros/ai-security-framework-crosswalk/blob/762186a5339ab340856c00a223fed550083b5317/schema/README.md) | CoSAI Risk Map | Excluded — Schema documentation repeats the separately counted AI-security crosswalk publication. |
 | [Safeguard: CoSAI Model Signing and Incident Response Frameworks](https://safeguard.sh/resources/blog/cosai-model-signing-incident-response-frameworks-2025) | Signing ML Artifacts; AI Incident Response Framework | Verified — included in totals |
 | [Safeguard: OpenSSF Model Signing v1.0 Sigstore Guide](https://safeguard.sh/resources/blog/openssf-model-signing-v1-0-sigstore-ml-supply-chain) | Signing ML Artifacts | Verified — included in totals |
+| [santosomar/AI-agents-for-cybersecurity: .windsurf/rules/codeguard-0-mcp-security.md](https://github.com/santosomar/AI-agents-for-cybersecurity/blob/0452bfa7a2d38e80a1d1e83ff088dcdb2b15577b/.windsurf/rules/codeguard-0-mcp-security.md) | Model Context Protocol (MCP) Security | Unverified / uncertain — not counted as verified |
 | [santosomar/santosomar: README.md](https://github.com/santosomar/santosomar/blob/ccc8d8fcf83e55f261c8d444a2873e049ee2b516/README.md) | CoSAI Risk Map | Excluded — CoSAI co-chair’s personal profile and syndicated content; not independent external adoption. |
 | [scovetta/oss-supply-chain: contents/appendices/appendix-b.md](https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/appendices/appendix-b.md) | Model Context Protocol (MCP) Security; AI Incident Response Framework; Signing ML Artifacts; Agentic Identity and Access Management | Excluded — Repository-source copy of the independently published book appendix, which is counted at its canonical publication URL. |
 | [scovetta/oss-supply-chain: contents/appendices/appendix-c.md](https://github.com/scovetta/oss-supply-chain/blob/3ca17c0ad7ecfdddd528a9a3e1ff4600b61c2243/contents/appendices/appendix-c.md) | Establish Risks and Controls for the AI Supply Chain | Excluded — Additional chapter from a book already counted once through its canonical, eight-citation resource guide. |
@@ -422,6 +431,7 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 | [SPDX AI Team: SPDX AI Team Meeting Minutes &#124; 2026-02-04](https://github.com/spdx/meetings/blob/d58ec031c89b83e6f6456946f01659177b374632/ai/2026/2026-02-04.md) | CoSAI Risk Map | Verified — included in totals |
 | [Splunk Monitoring Use Cases: splunk-uc-mcp](https://github.com/fenre/splunk-monitoring-use-cases/blob/a3402fc8513c22e665f830f052995e46327a9abd/mcp/README.md) | Model Context Protocol (MCP) Security | Verified — included in totals |
 | [TalEliyahu/Awesome-AI-Security: Reports.md](https://github.com/TalEliyahu/Awesome-AI-Security/blob/944b0e52f535d13d5b543fddd9bd3b895aa6de1b/Reports.md) | Principles for Secure-by-Design Agentic Systems | Excluded — Secondary resource list repeats the already-counted AI-security catalog from the same publisher. |
+| [TaroYamada08/Hacker: ai/ai-security/ai_security_tools.md](https://github.com/TaroYamada08/Hacker/blob/d83d38b2b7f035e7e60bf8ab69b6e4996fd07b3d/ai/ai-security/ai_security_tools.md) | CoSAI Risk Map | Unverified / uncertain — not counted as verified |
 | [TechNet: Comments to NIST Regarding Security Considerations for Artificial Intelligence Agents](https://www.technet.org/wp-content/uploads/2026/03/TechNet-Comment-RE-NIST-2025-0035.pdf) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [The Art of Hacking / Omar Santos: Coalition for Secure AI (CoSAI) Risk Map - Comprehensive Summary](https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/ai/ai-security/Coalition-for-Secure-AI-CoSAI-Risk-Map.md) | CoSAI Risk Map | Verified — included in totals |
 | [The Art of Hacking / Omar Santos: Lesson 2-7: Introducing the Coalition for Secure AI](https://github.com/The-Art-of-Hacking/h4cker/blob/bd91bee2c86c0941e8af5344c740b4f25d8cd04e/certifications/cisco/AITECH/Lesson-2-Prompt-Engineering/Lesson-2-7-resources.md) | Model Context Protocol (MCP) Security; Principles for Secure-by-Design Agentic Systems; AI Incident Response Framework; CoSAI Risk Map; Signing ML Artifacts; Agentic Identity and Access Management; Project CodeGuard | Verified — included in totals |
@@ -455,13 +465,13 @@ The discovery log contains **227 references**: **106 verified and counted**, **2
 
 ## Unverified / uncertain discoveries
 
-**Discovery status: partial.** Last attempted: **2026-11-17T00:49:00.055293Z**. Last fully completed query round: **2026-11-02T23:57:43.184106Z**.
+**Discovery status: partial.** Last attempted: **2026-11-22T01:34:33.632534Z**. Last fully completed query round: **not recorded**.
 
-Current round: **9 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
+Current round: **13 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
 
 Completion means the configured, result-capped GitHub and Crossref queries finished; it does not mean exhaustive coverage of the web or all scholarly citations.
 
-There are **28 candidate references**, including retained findings from earlier attempts. These are automatically published as **unverified / uncertain** and are **not included** in verified totals. Only evidence-supported entries in [`sources.json`](sources.json) contribute to verified counts.
+There are **38 candidate references**, including retained findings from earlier attempts. These are automatically published as **unverified / uncertain** and are **not included** in verified totals. Only evidence-supported entries in [`sources.json`](sources.json) contribute to verified counts.
 
 <details>
 <summary>View 15 candidate references</summary>
@@ -481,12 +491,12 @@ There are **28 candidate references**, including retained findings from earlier 
 - [OWASP/AISVS](https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C10-MCP-Security/C10-MCP-Security.md): Agentic Identity and Access Management.
 - [OWASP/AISVS](https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C11-Adversarial-Robustness/C11-03-Model-Extraction-Defense.md): Agentic Identity and Access Management.
 - [OWASP/AISVS](https://github.com/OWASP/AISVS/blob/55dc2203d861af14482b529c564f5b312134b165/1.01/research/chapters/C12-Monitoring-and-Logging/C12-Monitoring-and-Logging.md): AI Incident Response Framework.
-- See [`discovered-candidates.json`](discovered-candidates.json) for all 28 candidates.
+- See [`discovered-candidates.json`](discovered-candidates.json) for all 38 candidates.
 
 </details>
 
 **Discovery warnings:**
-- github discovery for AI Shared Responsibility Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-17T01:01:13.229317Z
+- github returned incomplete_results for Model Context Protocol (MCP) Security; partial matches saved and this query will resume.
 
 ## Refresh and verification
 

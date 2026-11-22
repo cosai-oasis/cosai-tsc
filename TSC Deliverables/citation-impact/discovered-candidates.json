@@ -1,22 +1,23 @@
 {
   "schema_version": 1,
-  "query_plan": "76cb358bf842de5d182f62bae1cf310e3500a89c5fe12211ed8322f5d83fc1ab",
-  "last_refreshed": "2026-11-16",
-  "last_attempted": "2026-11-17T00:49:00.055293Z",
-  "last_completed": "2026-11-02T23:57:43.184106Z",
+  "query_plan": "b111bea6cb1fbf5c889a2a07f4ec1de8bac0ee00a4e015999811d803d1ed408f",
+  "last_refreshed": "2026-11-21",
+  "last_attempted": "2026-11-22T01:34:33.632534Z",
+  "last_completed": null,
   "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
   "discovery_enabled": true,
   "discovery_status": "partial",
+  "discovery_health": "not_checked",
   "discovery_warnings": [
-    "github discovery for AI Shared Responsibility Framework incomplete: github cannot run within the remaining discovery budget; next permitted request: 2026-11-17T01:01:13.229317Z"
+    "github returned incomplete_results for Model Context Protocol (MCP) Security; partial matches saved and this query will resume."
   ],
   "query_coverage": {
-    "completed": 9,
+    "completed": 13,
     "total": 14,
-    "round_started_at": "2026-11-10T00:28:52.970426Z",
+    "round_started_at": "2026-11-22T01:30:54.690695Z",
     "per_provider": {
       "github": {
-        "completed": 6,
+        "completed": 10,
         "total": 11
       },
       "crossref": {
@@ -38,7 +39,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-09-21",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "Divyansh2602/aegismesh",
@@ -52,7 +53,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-09-21",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "Elite588/Hacker",
@@ -151,7 +152,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-09-21",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "depalmar/ai-dfir-toolkit",
@@ -165,7 +166,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-09-21",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "kimyennguyenthikimyen87-ops/Nguyenthikimyen-",
@@ -249,7 +250,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "billbrietstout/ai-shared-responsibility",
@@ -277,7 +278,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -291,7 +292,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -308,7 +309,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -322,7 +323,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -336,7 +337,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -350,7 +351,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -367,7 +368,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -381,7 +382,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "latifo01/governance-brain",
@@ -398,7 +399,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
     },
     {
       "publisher": "peopleforrester/Unleash_an_Agent_Watch_It_Burn",
@@ -427,7 +428,147 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-10-12"
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "416rehman/Guardrails",
+      "title": "docs/references/research/h06-standards-regulation-sweep.md",
+      "url": "https://github.com/416rehman/Guardrails/blob/7d2de579fead1aacd193b66a97348d8096363f80/docs/references/research/h06-standards-regulation-sweep.md",
+      "matched_works": [
+        "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- **OWASP MCP Top 10**: still beta, identifiers `MCP01:2025` to `MCP10:2025` (token mismanagement, scope creep, tool poisoning, supply chain, command injection, prompt injection via contextual payloads, insufficient authentication and authorisation, lack of audit and telemetry, shadow MCP servers, context over-sharing)",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "CiscoDevNet/skills",
+      "title": "AGENTS.md",
+      "url": "https://github.com/CiscoDevNet/skills/blob/ba8e034c2f77f1fc6fc2a85595a07e18b31aa25f/AGENTS.md",
+      "matched_works": [
+        "Project CodeGuard"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- Agent Skills specification: https://agentskills.io - Agent Skills reference implementation: https://github.com/agentskills/agentskills - CoSAI Project CodeGuard: https://github.com/cosai-oasis/project-codeguard For Cisco Secure Access authorization examples, use the current published API",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Known member-affiliated",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "CiscoDevNet/skills",
+      "title": "README.md",
+      "url": "https://github.com/CiscoDevNet/skills/blob/ba8e034c2f77f1fc6fc2a85595a07e18b31aa25f/README.md",
+      "matched_works": [
+        "Project CodeGuard"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "This repository follows the open [Agent Skills specification](https://github.com/agentskills/agentskills). Security guidance should also be checked against [CoSAI Project CodeGuard](https://github.com/cosai-oasis/project-codeguard). CodeGuard is linked as an upstream reference; vendoring or running its MCP server is op",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Known member-affiliated",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "TaroYamada08/Hacker",
+      "title": "ai/ai-security/ai_security_tools.md",
+      "url": "https://github.com/TaroYamada08/Hacker/blob/d83d38b2b7f035e7e60bf8ab69b6e4996fd07b3d/ai/ai-security/ai_security_tools.md",
+      "matched_works": [
+        "CoSAI Risk Map"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## AI Risk Maps and Secure Design Patterns - [Coalition for Secure AI (CoSAI)](https://github.com/cosai-oasis) – community defining standards, patterns, and tools for secure AI. - [CoSAI Risk Map / Secure AI Tooling](https://github.com/cosai-oasis/secure-ai-tooling) – framework for mapping AI-specific security risks ac",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "billbrietstout/ai-shared-responsibility",
+      "title": "reports/principles-diff.md",
+      "url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/f57a3ce8c5b9db165dad44579ab66fc92b28593b/reports/principles-diff.md",
+      "matched_works": [
+        "The Future of Agentic Security: From Chatbots to Autonomous Swarms"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "- `WP-0020` / `COSAI-MCP`: 6 principle(s) cite this source. - before: `{'title': 'Model Context Protocol (MCP) Security', 'org': 'Coalition for Secure AI', 'url': 'https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/blob/main/whitepapers/model-context-protocol-security.md', 'wp_id': 'WP-0020', 'monitor_iss",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "billbrietstout/ai-shared-responsibility",
+      "title": "tools/threat-model/DESIGN.md",
+      "url": "https://github.com/billbrietstout/ai-shared-responsibility/blob/f57a3ce8c5b9db165dad44579ab66fc92b28593b/tools/threat-model/DESIGN.md",
+      "matched_works": [
+        "AI Shared Responsibility Framework"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## SRF text versus inference Taken from SRF v1.0 text (`01-srf-core/framework/CoSAI Shared Responsibility Framework v1.0.md`): - the 5 layer names and IDs (section 3.2.1 matrix, A.7.2) - the 8 personas, their names and the layers each covers (section 3.1)",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "cheaper-inference/OmniRoute",
+      "title": "docs/i18n/ga/docs/guides/USER_GUIDE.md",
+      "url": "https://github.com/cheaper-inference/OmniRoute/blob/5ffa68e835442a12ed1204a2eebf4076c298aecb/docs/i18n/ga/docs/guides/USER_GUIDE.md",
+      "matched_works": [
+        "Model Context Protocol (MCP) Security"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "ar iarraidh nó seanléamh (níos sine ná 15 nóiméad, nó ó thréimhse bhilleála a athshocraíodh cheana) bac ar an nasc. Is cosaint áitiúil é seo, **ní uasteorainn chaiteachais ráthaithe**: d’fhéadfadh moilleanna i dtuairisciú GitHub, an t-eatramh athnuachana, iarratais atá ar siúl agus úsáid lasmuigh de OmniRoute dul Is **",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "kevin-biot/obo-standard",
+      "title": "CHANGELOG.md",
+      "url": "https://github.com/kevin-biot/obo-standard/blob/7e1d446f7692f2a8f2f55fc0ba95741baabfdf31/CHANGELOG.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "that OBO's protocol surface contains no model identifiers, model versions, or prompt content; attestation binds the execution environment but does not make the model a party to the protocol. - **§8.4 CoSAI Agentic Identity and Access Management**: relationship section describing convergence points (distinct agent/OBO r",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "kevin-biot/obo-standard",
+      "title": "docs/COSAI-COMPOSITION.md",
+      "url": "https://github.com/kevin-biot/obo-standard/blob/7e1d446f7692f2a8f2f55fc0ba95741baabfdf31/docs/COSAI-COMPOSITION.md",
+      "matched_works": [
+        "Agentic Identity and Access Management"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "## Further reading - CoSAI AIAM: *Agentic Identity and Access Management*, OASIS CoSAI Workstream 4, v1.0, 20 March 2026. (Referenced as [COSAI-AIAM] in the OBO draft §13.) - OBO §1.2 — the category errors: microservice-with-an-LLM,",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
+    },
+    {
+      "publisher": "santosomar/AI-agents-for-cybersecurity",
+      "title": ".windsurf/rules/codeguard-0-mcp-security.md",
+      "url": "https://github.com/santosomar/AI-agents-for-cybersecurity/blob/0452bfa7a2d38e80a1d1e83ff088dcdb2b15577b/.windsurf/rules/codeguard-0-mcp-security.md",
+      "matched_works": [
+        "Model Context Protocol (MCP) Security"
+      ],
+      "discovery_provider": "GitHub public code search",
+      "evidence": "--- trigger: glob globs: **/*.go,**/*.java,**/*.js,**/*.jsx,**/*.mjs,**/*.py,**/*.pyi,**/*.pyx,**/*.rs,**/*.ts,**/*.tsx title: MCP (Model Context Protocol) Security based on CoSAI MCP Security guidelines version: 1.5.0 ---",
+      "status": "Unverified / uncertain — not counted as verified",
+      "publisher_relationship": "Not established",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
     }
   ]
 }
