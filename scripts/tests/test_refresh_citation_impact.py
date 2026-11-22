@@ -114,10 +114,11 @@ class CitationImpactTests(unittest.TestCase):
         self.assertIn("&#124;", link)
         self.assertIn("https://example.com/a%29b%3Cc%3E%5Cd%20e", link)
 
-    def test_github_searches_and_publishes_explicitly_public_repositories_only(self):
+    def test_github_searches_without_is_public_and_publishes_public_repositories_only(self):
+        # GitHub code search returns no results for any query containing is:public.
         for query in REFRESH.discovery_queries(10):
             if query["provider"] == "github":
-                self.assertIn("is:public", parse_qs(urlparse(query["url"]).query)["q"][0])
+                self.assertNotIn("is:public", parse_qs(urlparse(query["url"]).query)["q"][0])
         for visibility in (True, None):
             payload = github_payload()
             payload["items"][0]["repository"]["private"] = visibility
@@ -419,6 +420,50 @@ class CheckpointTests(ClockTests):
         (self.directory / "discovery-state.json").unlink()
         with self.assertRaises(ValueError):
             self.run_refresh(lambda *args, **kwargs: {"unexpected": "response"})
+
+    def counted_payload(self, counts):
+        def request(url, **kwargs):
+            items = [{"html_url": f"https://github.com/external/project{index}/blob/main/README.md", "path": "README.md",
+                      "repository": {"full_name": f"external/project{index}", "private": False, "fork": False}}
+                     for index in range(counts.get(url, 0))]
+            return {"items": items, "incomplete_results": False} if kwargs["provider"] == "github" else {"message": {"items": []}}
+        return request
+
+    def github_urls(self):
+        return [query["url"] for query in REFRESH.discovery_queries(10) if query["provider"] == "github"]
+
+    def test_normal_week_passes_result_drop_guard(self):
+        first, second = self.github_urls()
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 6, second: 4})), 0)
+        self.clock.now += 100
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 5, second: 3})), 0)
+        payload = self.read("discovered-candidates.json")
+        self.assertEqual(payload["discovery_health"], "passed")
+        self.assertEqual(payload["discovery_warnings"], [])
+        self.assertEqual(self.read("discovery-state.json")["last_round_result_counts"],
+                         {"github:First work": 5, "github:Second work": 3, "crossref:CoSAI": 0})
+
+    def test_query_dropping_to_zero_blocks_publication(self):
+        first, second = self.github_urls()
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 6, second: 4})), 0)
+        self.clock.now += 100
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 6})), REFRESH.DISCOVERY_HEALTH_EXIT)
+        payload = self.read("discovered-candidates.json")
+        self.assertEqual(payload["discovery_health"], "failed")
+        self.assertTrue(any("github:Second work returned no results" in warning for warning in payload["discovery_warnings"]))
+        self.assertIn("github:Second work returned no results", self.directory.joinpath("README.md").read_text())
+        # The broken round does not become the baseline, so the next run still fails.
+        self.assertEqual(self.read("discovery-state.json")["last_round_result_counts"]["github:Second work"], 4)
+        self.clock.now += 100
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 6})), REFRESH.DISCOVERY_HEALTH_EXIT)
+
+    def test_sharp_fall_in_round_total_blocks_publication(self):
+        first, second = self.github_urls()
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 10, second: 10})), 0)
+        self.clock.now += 100
+        self.assertEqual(self.run_refresh(self.counted_payload({first: 4, second: 5})), REFRESH.DISCOVERY_HEALTH_EXIT)
+        warnings = self.read("discovered-candidates.json")["discovery_warnings"]
+        self.assertTrue(any("9 results against 20" in warning and "github:First work, github:Second work" in warning for warning in warnings))
 
     def test_invalid_cli_uses_fatal_exit_one(self):
         with self.assertRaises(SystemExit) as error:

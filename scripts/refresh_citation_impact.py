@@ -40,6 +40,10 @@ EASTERN_TIME = ZoneInfo("America/New_York")
 CROSSREF_SEARCHES = ("Coalition for Secure AI", "CoSAI agentic security", "CoSAI Model Context Protocol")
 UNVERIFIED_STATUS = "Unverified / uncertain — not counted as verified"
 AUTOMATED_REPORT_URL = "https://github.com/cosai-oasis/cosai-tsc/tree/automation/citation-impact-report/TSC%20Deliverables/citation-impact"
+# A completed round returning under this share of the previous completed round's
+# results is treated as a broken search, not as fewer citations.
+MIN_ROUND_RESULT_RATIO = 0.5
+DISCOVERY_HEALTH_EXIT = 3
 
 WORKS = {
     "Model Context Protocol (MCP) Security": (
@@ -91,7 +95,8 @@ WORKS = {
 
 class FatalArgumentParser(argparse.ArgumentParser):
     def error(self, message: str) -> None:
-        # Exit 2 is reserved for a valid but incomplete discovery snapshot.
+        # Exit 2 is reserved for a valid but incomplete discovery snapshot and
+        # exit 3 for a completed round whose results dropped (not published).
         self.print_usage(sys.stderr)
         self.exit(1, f"{self.prog}: error: {message}\n")
 
@@ -105,7 +110,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--resume-from", type=Path, help="Restore candidate/checkpoint JSON only from this data directory.")
     parser.add_argument("--discovery-budget-seconds", type=float, default=180, help="Global discovery time budget, including pacing and retries.")
     parser.add_argument("--as-of", type=date.fromisoformat, default=datetime.now(EASTERN_TIME).date(), help="Report date in YYYY-MM-DD format.")
-    parser.add_argument("--fail-on-discovery-error", action="store_true", help="Exit 2 after saving an incomplete discovery snapshot; fatal errors use exit 1.")
+    parser.add_argument("--fail-on-discovery-error", action="store_true", help="Exit 2 after saving an incomplete discovery snapshot; fatal errors use exit 1. A result drop always exits 3.")
     return parser.parse_args(argv)
 
 
@@ -343,9 +348,11 @@ def merge_candidates(existing: list[dict[str, Any]], discovered: list[dict[str, 
 
 
 def discovery_queries(max_results: int) -> list[dict[str, str]]:
+    # Code search returns nothing for any query containing is:public; private
+    # repositories and forks are filtered per result in github_candidates.
     return [
         {"id": f"github:{work}", "provider": "github", "label": work,
-         "url": f"{GITHUB_API}/search/code?{urlencode({'q': query + ' is:public', 'per_page': max_results})}"}
+         "url": f"{GITHUB_API}/search/code?{urlencode({'q': query, 'per_page': max_results})}"}
         for work, (query, _) in WORKS.items()
     ] + [
         {"id": f"crossref:{query}", "provider": "crossref", "label": query,
@@ -401,6 +408,10 @@ def validate_state(state: dict[str, Any]) -> None:
         raise ValueError("Invalid discovery provider checkpoint")
     if not all(isinstance(key, str) and isinstance(value, str) for key, value in state.get("query_warnings", {}).items()):
         raise ValueError("Discovery warnings must be strings")
+    for field in ("round_result_counts", "last_round_result_counts"):
+        counts = state.get(field, {})
+        if not isinstance(counts, dict) or not all(isinstance(key, str) and type(value) is int and value >= 0 for key, value in counts.items()):
+            raise ValueError("Discovery result counts must be non-negative integers")
     for provider in state.get("providers", {}).values():
         if not isinstance(provider, dict):
             raise ValueError("Invalid provider checkpoint")
@@ -499,8 +510,23 @@ def run_discovery(queries: list[dict[str, str]], state: dict[str, Any], context:
             state["query_warnings"][key] = f"{provider} returned incomplete_results for {label}; partial matches saved and this query will resume."
         else:
             state["completed_queries"].append(key)
+            state.setdefault("round_result_counts", {})[key] = len(payload["items"] if provider == "github" else payload["message"]["items"])
             state["query_warnings"].pop(key, None)
         context.checkpoint()
+
+
+def result_drop_warnings(previous: dict[str, int], current: dict[str, int]) -> list[str]:
+    """Compare a completed round with the last healthy completed round."""
+    warnings = []
+    emptied = sorted(key for key, count in previous.items() if count > 0 and current.get(key) == 0)
+    if emptied:
+        warnings.append(f"Discovery health failed: {', '.join(emptied)} returned no results after returning results in the previous completed round.")
+    before, after = sum(previous.values()), sum(current.values())
+    if before and after < before * MIN_ROUND_RESULT_RATIO:
+        fallen = sorted(key for key, count in previous.items() if current.get(key, 0) < count)
+        warnings.append(f"Discovery health failed: this round returned {after} results against {before} in the previous completed round "
+                        f"(below {MIN_ROUND_RESULT_RATIO:.0%}). Queries that fell: {', '.join(fallen)}.")
+    return warnings
 
 
 def markdown_link(label: str, url: str) -> str:
@@ -751,10 +777,12 @@ def main(argv: list[str] | None = None) -> int:
             state["query_warnings"] = {}
             state["round_started_at"] = None
             state["round_completed_at"] = None
+            state["round_result_counts"] = {}
         state["round_started_at"] = state.get("round_started_at") or timestamp()
         state["last_attempted"] = timestamp()
 
     candidates_payload: dict[str, Any] = {}
+    health_warnings: list[str] = []
 
     def checkpoint() -> None:
         nonlocal candidates_payload
@@ -774,6 +802,7 @@ def main(argv: list[str] | None = None) -> int:
             "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
             "discovery_enabled": args.discover,
             "discovery_status": status,
+            "discovery_health": "failed" if health_warnings else ("passed" if status == "complete" else "not_checked"),
             "discovery_warnings": warnings,
             "query_coverage": {"completed": completed, "total": len(queries), "round_started_at": state.get("round_started_at"),
                                "per_provider": {provider: {"completed": sum(query["id"] in state["completed_queries"] for query in queries if query["provider"] == provider),
@@ -791,6 +820,13 @@ def main(argv: list[str] | None = None) -> int:
     if args.discover:
         context = DiscoveryContext(state, args.discovery_budget_seconds, checkpoint)
         run_discovery(queries, state, context, verified, excluded, args.as_of, args.skip_crossref, notices)
+        if len(set(state["completed_queries"])) == len(queries):
+            # Only a healthy round becomes the baseline, so a broken search
+            # keeps failing until results return.
+            health_warnings = result_drop_warnings(state.get("last_round_result_counts", {}), state.get("round_result_counts", {}))
+            notices.extend(health_warnings)
+            if not health_warnings:
+                state["last_round_result_counts"] = dict(state.get("round_result_counts", {}))
     checkpoint()
     print(f"Verified sources: {len(verified)}")
     print(f"Verified work-level citations: {sum(len(item.get('cosai_works', [])) for item in verified)}")
@@ -798,6 +834,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Discovery status: {candidates_payload['discovery_status']} ({candidates_payload['query_coverage']['completed']}/{len(queries)} queries complete)")
     for warning in candidates_payload["discovery_warnings"]:
         print(f"WARNING: {warning}", file=sys.stderr)
+    if health_warnings:
+        return DISCOVERY_HEALTH_EXIT
     return 2 if args.fail_on_discovery_error and candidates_payload["discovery_status"] == "partial" else 0
 
 
