@@ -2,7 +2,7 @@
   "schema_version": 1,
   "query_plan": "b111bea6cb1fbf5c889a2a07f4ec1de8bac0ee00a4e015999811d803d1ed408f",
   "round_started_at": "2026-11-22T01:30:54.690695Z",
-  "round_completed_at": null,
+  "round_completed_at": "2026-11-24T03:05:37.668305Z",
   "completed_queries": [
     "github:Principles for Secure-by-Design Agentic Systems",
     "github:AI Incident Response Framework",
@@ -16,23 +16,22 @@
     "github:Project CodeGuard",
     "crossref:Coalition for Secure AI",
     "crossref:CoSAI agentic security",
-    "crossref:CoSAI Model Context Protocol"
+    "crossref:CoSAI Model Context Protocol",
+    "github:Model Context Protocol (MCP) Security"
   ],
-  "last_attempted": "2026-11-22T01:34:33.632534Z",
-  "last_completed": null,
+  "last_attempted": "2026-11-24T03:05:28.658890Z",
+  "last_completed": "2026-11-24T03:05:37.668305Z",
   "providers": {
     "github": {
       "next_retry_at": null,
-      "last_request_at": "2026-11-22T01:34:33.700065Z"
+      "last_request_at": "2026-11-24T03:05:28.662555Z"
     },
     "crossref": {
       "last_request_at": "2026-11-22T01:32:13.135266Z",
       "next_retry_at": null
     }
   },
-  "query_warnings": {
-    "github:Model Context Protocol (MCP) Security": "github returned incomplete_results for Model Context Protocol (MCP) Security; partial matches saved and this query will resume."
-  },
+  "query_warnings": {},
   "candidates": [
     {
       "publisher": "Divyansh2602/aegismesh",
@@ -428,6 +427,7 @@
       "url": "https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md",
       "matched_works": [
         "CoSAI Risk Map",
+        "Model Context Protocol (MCP) Security",
         "Principles for Secure-by-Design Agentic Systems"
       ],
       "discovery_provider": "GitHub public code search",
@@ -435,7 +435,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-11-21"
+      "last_seen": "2026-11-23"
     },
     {
       "publisher": "416rehman/Guardrails",
@@ -575,10 +575,10 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-11-21",
-      "last_seen": "2026-11-21"
+      "last_seen": "2026-11-23"
     }
   ],
-  "updated_at": "2026-11-22T01:34:35.223220Z",
+  "updated_at": "2026-11-24T03:05:37.672026Z",
   "round_result_counts": {
     "github:Principles for Secure-by-Design Agentic Systems": 10,
     "github:AI Incident Response Framework": 10,
@@ -592,6 +592,23 @@
     "github:Project CodeGuard": 10,
     "crossref:Coalition for Secure AI": 10,
     "crossref:CoSAI agentic security": 10,
-    "crossref:CoSAI Model Context Protocol": 10
+    "crossref:CoSAI Model Context Protocol": 10,
+    "github:Model Context Protocol (MCP) Security": 10
+  },
+  "last_round_result_counts": {
+    "github:Principles for Secure-by-Design Agentic Systems": 10,
+    "github:AI Incident Response Framework": 10,
+    "github:CoSAI Risk Map": 10,
+    "github:Signing ML Artifacts": 10,
+    "github:Agentic Identity and Access Management": 10,
+    "github:AI Shared Responsibility Framework": 10,
+    "github:Preparing Defenders of AI Systems": 10,
+    "github:The Future of Agentic Security: From Chatbots to Autonomous Swarms": 10,
+    "github:Establish Risks and Controls for the AI Supply Chain": 10,
+    "github:Project CodeGuard": 10,
+    "crossref:Coalition for Secure AI": 10,
+    "crossref:CoSAI agentic security": 10,
+    "crossref:CoSAI Model Context Protocol": 10,
+    "github:Model Context Protocol (MCP) Security": 10
   }
 }

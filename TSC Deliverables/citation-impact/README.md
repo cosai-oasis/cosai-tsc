@@ -1,10 +1,10 @@
 # CoSAI Citation and External Impact
 
 > [!NOTE]
-> **Last updated: November 21, 2026**
+> **Last updated: November 23, 2026**
 > Snapshot generation date, not evidence that every discovery query completed.
-> **Discovery status: partial.** Current round: **13 of 14 configured queries completed**.
-> Last attempted: **2026-11-22T01:34:33.632534Z**. Last fully completed query round: **not recorded**.
+> **Discovery status: complete.** Current round: **14 of 14 configured queries completed**.
+> Last attempted: **2026-11-24T03:05:28.658890Z**. Last fully completed query round: **2026-11-24T03:05:37.668305Z**.
 > Automated discovery does not re-verify existing sources in the verified registry.
 >
 > Configured refresh schedule: every Monday at **12:00 p.m. Eastern Time** (`America/New_York`).
@@ -425,7 +425,7 @@ The discovery log contains **237 references**: **106 verified and counted**, **3
 | [seahop/ai-threat-atlas: docs/defenses/ai-incident-response-playbook.md](https://github.com/seahop/ai-threat-atlas/blob/e0ccd0a6513f76a64df2bed30da660cf7476f75b/docs/defenses/ai-incident-response-playbook.md) | AI Incident Response Framework | Excluded — Repository-source version of the already-counted AI Threat Atlas publication. |
 | [Secure AI General Public License: SAIL‑GPL — Secure AI General Public License](https://github.com/Grigaliunas/SAIL-GPL/blob/35896fd78f024d15d65c6f0db1f8f44a1b315e51/SAIL-GPL-1.0.md) | AI Incident Response Framework; CoSAI Risk Map; Signing ML Artifacts | Verified — included in totals |
 | [SecureAI Framework / David Girard: SecureAI Framework - Project Summary](https://github.com/girdav01/AISEC/blob/1ad31bd991f56101dfcb44f714173cf72227b95b/FRAMEWORK_SUMMARY.md) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
-| [sipyourdrink-ltd/bernstein: docs/compliance/cosai-mapping.md](https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md) | CoSAI Risk Map; Principles for Secure-by-Design Agentic Systems | Unverified / uncertain — not counted as verified |
+| [sipyourdrink-ltd/bernstein: docs/compliance/cosai-mapping.md](https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md) | CoSAI Risk Map; Model Context Protocol (MCP) Security; Principles for Secure-by-Design Agentic Systems | Unverified / uncertain — not counted as verified |
 | [Software &amp; Information Industry Association: Submission to CAISI: Request for Information Regarding Security Considerations for Artificial Intelligence Agents](https://www.siia.net/wp-content/uploads/2026/03/SIIA-Submission-CAISI-RFI-on-Security-for-AI-Agents.pdf) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [Sondera Trustworthy Agent Development Kit: docs/References.md](https://github.com/sondera-ai/trustworthy-adk/blob/f010ad416087252700863e8f62304b5224811606/docs/References.md) | Principles for Secure-by-Design Agentic Systems | Verified — included in totals |
 | [SPDX AI Team: SPDX AI Team Meeting Minutes &#124; 2026-02-04](https://github.com/spdx/meetings/blob/d58ec031c89b83e6f6456946f01659177b374632/ai/2026/2026-02-04.md) | CoSAI Risk Map | Verified — included in totals |
@@ -465,9 +465,9 @@ The discovery log contains **237 references**: **106 verified and counted**, **3
 
 ## Unverified / uncertain discoveries
 
-**Discovery status: partial.** Last attempted: **2026-11-22T01:34:33.632534Z**. Last fully completed query round: **not recorded**.
+**Discovery status: complete.** Last attempted: **2026-11-24T03:05:28.658890Z**. Last fully completed query round: **2026-11-24T03:05:37.668305Z**.
 
-Current round: **13 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
+Current round: **14 of 14 configured queries completed**. Completed queries are checkpointed and partial rounds resume on the next run.
 
 Completion means the configured, result-capped GitHub and Crossref queries finished; it does not mean exhaustive coverage of the web or all scholarly citations.
 
@@ -494,9 +494,6 @@ There are **38 candidate references**, including retained findings from earlier 
 - See [`discovered-candidates.json`](discovered-candidates.json) for all 38 candidates.
 
 </details>
-
-**Discovery warnings:**
-- github returned incomplete_results for Model Context Protocol (MCP) Security; partial matches saved and this query will resume.
 
 ## Refresh and verification
 

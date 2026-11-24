@@ -1,23 +1,21 @@
 {
   "schema_version": 1,
   "query_plan": "b111bea6cb1fbf5c889a2a07f4ec1de8bac0ee00a4e015999811d803d1ed408f",
-  "last_refreshed": "2026-11-21",
-  "last_attempted": "2026-11-22T01:34:33.632534Z",
-  "last_completed": null,
+  "last_refreshed": "2026-11-23",
+  "last_attempted": "2026-11-24T03:05:28.658890Z",
+  "last_completed": "2026-11-24T03:05:37.668305Z",
   "description": "Automatically published unverified / uncertain CoSAI references; not included in verified totals.",
   "discovery_enabled": true,
-  "discovery_status": "partial",
-  "discovery_health": "not_checked",
-  "discovery_warnings": [
-    "github returned incomplete_results for Model Context Protocol (MCP) Security; partial matches saved and this query will resume."
-  ],
+  "discovery_status": "complete",
+  "discovery_health": "passed",
+  "discovery_warnings": [],
   "query_coverage": {
-    "completed": 13,
+    "completed": 14,
     "total": 14,
     "round_started_at": "2026-11-22T01:30:54.690695Z",
     "per_provider": {
       "github": {
-        "completed": 10,
+        "completed": 11,
         "total": 11
       },
       "crossref": {
@@ -421,6 +419,7 @@
       "url": "https://github.com/sipyourdrink-ltd/bernstein/blob/c9396d6216ee04a6fc46ed0f055d0387f239afe3/docs/compliance/cosai-mapping.md",
       "matched_works": [
         "CoSAI Risk Map",
+        "Model Context Protocol (MCP) Security",
         "Principles for Secure-by-Design Agentic Systems"
       ],
       "discovery_provider": "GitHub public code search",
@@ -428,7 +427,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-10-12",
-      "last_seen": "2026-11-21"
+      "last_seen": "2026-11-23"
     },
     {
       "publisher": "416rehman/Guardrails",
@@ -568,7 +567,7 @@
       "status": "Unverified / uncertain — not counted as verified",
       "publisher_relationship": "Not established",
       "first_seen": "2026-11-21",
-      "last_seen": "2026-11-21"
+      "last_seen": "2026-11-23"
     }
   ]
 }
